@@ -1,4 +1,4 @@
-# 汉 Chinese Learner
+# 中文 Chinese Learner
 
 A local HSK vocabulary drill app with LLM-generated lesson cards, spaced repetition (Leitner 5-box SRS), and free-text answers graded by an AI.
 

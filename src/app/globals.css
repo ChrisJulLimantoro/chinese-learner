@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* ─── Design tokens ─────────────────────────────────────────────────── */
+:root {
+  /* Palette */
+  --paper:   #F6F2E9;   /* rice-paper warm base */
+  --ink:     #1B1714;   /* brush black */
+  --seal:    #C0392B;   /* cinnabar / vermilion */
+  --jade:    #3F6F5E;   /* celadon green */
+  --ochre:   #B98A3C;   /* gold / due */
+
+  /* Surfaces */
+  --surface:      #FFFFFF;
+  --surface-2:    #F0EBE0;   /* slightly darker paper */
+  --border:       #DDD6C8;
+  --border-focus: var(--seal);
+
+  /* Text */
+  --text-primary:  var(--ink);
+  --text-muted:    #7A7068;
+  --text-faint:    #ABA39A;
+
+  /* Semantic aliases */
+  --background: var(--paper);
+  --foreground: var(--ink);
+}
+
+.dark {
+  --paper:   #14110D;   /* deep ink */
+  --ink:     #F0EBE0;   /* reversed – text is parchment */
+  --seal:    #D94F3E;   /* slightly brighter cinnabar */
+  --jade:    #52A085;   /* lighter jade for contrast */
+  --ochre:   #D4A44C;
+
+  --surface:      #1E1A15;
+  --surface-2:    #261F18;
+  --border:       #3A3028;
+  --border-focus: var(--seal);
+
+  --text-primary:  var(--ink);
+  --text-muted:    #9E9286;
+  --text-faint:    #615852;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+}
+
+/* ─── Tailwind v4 theme ──────────────────────────────────────────────── */
+@theme inline {
+  --color-paper:     var(--paper);
+  --color-ink:       var(--ink);
+  --color-seal:      var(--seal);
+  --color-jade:      var(--jade);
+  --color-ochre:     var(--ochre);
+  --color-surface:   var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border:    var(--border);
+  --color-muted:     var(--text-muted);
+  --color-faint:     var(--text-faint);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans:    var(--font-geist-sans);
+  --font-mono:    var(--font-geist-mono);
+  --font-display: var(--font-fraunces);
+  --font-hanzi:   var(--font-noto-serif-sc), "PingFang SC", "Microsoft YaHei", serif;
+}
+
+/* ─── Dark mode variant (class-based) ──────────────────────────────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Base styles ───────────────────────────────────────────────────── */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle paper grain via svg noise — no image dep, ultra-light */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ─── Typography utilities ──────────────────────────────────────────── */
+.hanzi {
+  font-family: var(--font-hanzi);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ─── Hanzi reveal animation ────────────────────────────────────────── */
+@keyframes hanzi-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-hanzi-in {
+  animation: hanzi-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Seal stamp animation ──────────────────────────────────────────── */
+@keyframes seal-stamp {
+  0%   { opacity: 0; transform: scale(2.2) rotate(-8deg); }
+  55%  { opacity: 1; transform: scale(0.92) rotate(2deg); }
+  75%  { transform: scale(1.04) rotate(-1deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.animate-seal-stamp {
+  animation: seal-stamp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Fade-up ────────────────────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.3s ease-out both;
+}
+
+/* ─── Reduced motion overrides ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-hanzi-in,
+  .animate-seal-stamp,
+  .animate-fade-up {
+    animation: none;
+  }
+}
+
+/* ─── Focus ring ─────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--seal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Scrollbar (subtle) ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }

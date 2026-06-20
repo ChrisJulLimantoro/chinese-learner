@@ -1,147 +1,117 @@
-# Graph Report - chinese-learner  (2026-06-02)
+# Graph Report - .  (2026-06-20)
 
 ## Corpus Check
-- 23 files · ~15,589 words
-- Verdict: corpus is large enough that graph structure adds value.
+- Corpus is ~14,506 words - fits in a single context window. You may not need a graph.
 
 ## Summary
-- 328 nodes · 489 edges · 21 communities (15 shown, 6 thin omitted)
-- Extraction: 85% EXTRACTED · 15% INFERRED · 0% AMBIGUOUS · INFERRED: 74 edges (avg confidence: 0.84)
-- Token cost: 0 input · 0 output
-
-## Graph Freshness
-- Built from commit: `c4261da4`
-- Run `git rev-parse HEAD` and compare to check if the graph is stale.
-- Run `graphify update .` after code changes (no API cost).
+- 184 nodes · 397 edges · 23 communities (12 shown, 11 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 4 edges (avg confidence: 0.82)
+- Token cost: 44,000 input · 2,247 output
 
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_Database Layer|Database Layer]]
-- [[_COMMUNITY_LLM & AI Integration|LLM & AI Integration]]
-- [[_COMMUNITY_SRS & Session Management|SRS & Session Management]]
-- [[_COMMUNITY_Grading & Cache Pipeline|Grading & Cache Pipeline]]
-- [[_COMMUNITY_App Entry & Navigation|App Entry & Navigation]]
-- [[_COMMUNITY_Session Service Layer|Session Service Layer]]
-- [[_COMMUNITY_Study UI & Lesson Schema|Study UI & Lesson Schema]]
-- [[_COMMUNITY_Wordbank Import|Wordbank Import]]
-- [[_COMMUNITY_Sessions UI & Redrill|Sessions UI & Redrill]]
-- [[_COMMUNITY_Home Page UI|Home Page UI]]
-- [[_COMMUNITY_Claude Dev Settings|Claude Dev Settings]]
-- [[_COMMUNITY_Claude Permissions|Claude Permissions]]
-- [[_COMMUNITY_Question Types & Hard Mode|Question Types & Hard Mode]]
-- [[_COMMUNITY_App Configuration|App Configuration]]
-- [[_COMMUNITY_Package Init|Package Init]]
-- [[_COMMUNITY_Community 16|Community 16]]
-- [[_COMMUNITY_Community 17|Community 17]]
-- [[_COMMUNITY_Community 18|Community 18]]
-- [[_COMMUNITY_Community 19|Community 19]]
-- [[_COMMUNITY_Community 20|Community 20]]
+- [[_COMMUNITY_UI Client Components|UI Client Components]]
+- [[_COMMUNITY_SRS & Stats Logic|SRS & Stats Logic]]
+- [[_COMMUNITY_App Pages & Routing|App Pages & Routing]]
+- [[_COMMUNITY_LLM & Grading|LLM & Grading]]
+- [[_COMMUNITY_Vocabulary Feature|Vocabulary Feature]]
+- [[_COMMUNITY_Auth & Layout|Auth & Layout]]
+- [[_COMMUNITY_Architecture Overview|Architecture Overview]]
+- [[_COMMUNITY_Word Bank Seeding|Word Bank Seeding]]
+- [[_COMMUNITY_Word Detail Page|Word Detail Page]]
+- [[_COMMUNITY_Session Proxy|Session Proxy]]
+- [[_COMMUNITY_Auth Concepts|Auth Concepts]]
+- [[_COMMUNITY_PostCSS Config|PostCSS Config]]
+- [[_COMMUNITY_ESLint Config|ESLint Config]]
+- [[_COMMUNITY_Next.js Config|Next.js Config]]
+- [[_COMMUNITY_PostCSS (concept)|PostCSS (concept)]]
+- [[_COMMUNITY_ESLint (concept)|ESLint (concept)]]
+- [[_COMMUNITY_Next Config (concept)|Next Config (concept)]]
+- [[_COMMUNITY_README|README]]
+- [[_COMMUNITY_Project Overview|Project Overview]]
+- [[_COMMUNITY_Auth Proxy (concept)|Auth Proxy (concept)]]
+- [[_COMMUNITY_Domain Types|Domain Types]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `start_session()` - 20 edges
-2. `fetchone()` - 18 edges
-3. `Chinese Learning Agent — v1 Spec` - 14 edges
-4. `transaction()` - 13 edges
-5. `frame()` - 13 edges
-6. `grade_answer()` - 12 edges
-7. `fetchall()` - 11 edges
-8. `load_session()` - 11 edges
-9. `redrill_session()` - 11 edges
-10. `get_stats()` - 11 edges
+1. `getUserContext()` - 33 edges
+2. `loadSession()` - 9 edges
+3. `startSession()` - 8 edges
+4. `getStats()` - 8 edges
+5. `getWordCard()` - 8 edges
+6. `addWordsToBank()` - 8 edges
+7. `gradeAnswerWithCache()` - 7 edges
+8. `getProfile()` - 7 edges
+9. `listSessions()` - 7 edges
+10. `listVocabulary()` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `LLM Minimization Strategy` --rationale_for--> `_ensure_lesson_card()`  [INFERRED]
-  architecture.md → src/learner/services.py
-- `Session Lifecycle (create/answer/complete/resume/redrill/review)` --references--> `start_session()`  [INFERRED]
-  specs/spec.md → src/learner/services.py
-- `Lesson Card JSON Schema` --references--> `generate_lesson_card()`  [INFERRED]
-  specs/spec.md → src/learner/llm.py
-- `Grader Output JSON Schema` --references--> `grade()`  [INFERRED]
-  specs/spec.md → src/learner/llm.py
-- `Service Layer (internal Python, no HTTP)` --references--> `start_session()`  [INFERRED]
-  specs/spec.md → src/learner/services.py
+- `SRS Leitner Logic` --implements--> `Supabase Database Schema`  [INFERRED]
+  src/lib/srs.ts → supabase/migrations/001_initial_schema.sql
+- `Service Layer` --implements--> `Supabase Database Schema`  [INFERRED]
+  src/lib/services.ts → supabase/migrations/001_initial_schema.sql
+- `Word Bank Seeding Script` --references--> `Supabase Database Schema`  [EXTRACTED]
+  scripts/seed-wordbank.ts → supabase/migrations/001_initial_schema.sql
+- `StudyPage()` --calls--> `getUserContext()`  [EXTRACTED]
+  src/app/study/page.tsx → src/lib/user.ts
+- `listVocabularyAction()` --calls--> `getUserContext()`  [EXTRACTED]
+  src/app/actions/vocabulary.ts → src/lib/user.ts
 
-## Hyperedges (group relationships)
-- **LLM Minimization: Cache-First + Batch Strategy** — learner_grading_grade_answer_with_cache, learner_grading_check_cache, learner_grading_store_cache, learner_services_ensure_lesson_card, learner_services_start_session [INFERRED 0.95]
-- **Session Persistence: cursor-based save/resume/redrill/review** — learner_services_start_session, learner_services_grade_answer, learner_services_load_session, learner_services_redrill_session, learner_services_get_in_progress_session [EXTRACTED 1.00]
-- **Leitner SRS Flow: word selection → answer → promote/demote** — learner_srs_get_mixed_words, learner_srs_update_srs, learner_srs_check_progression, learner_config_box_intervals [INFERRED 0.95]
+## Communities (23 total, 11 thin omitted)
 
-## Communities (21 total, 6 thin omitted)
+### Community 0 - "UI Client Components"
+Cohesion: 0.08
+Nodes (17): gradeAnswerAction(), redrillSessionAction(), TYPE_LABELS, DueReviews, GraderOutput, LessonCard, Outcome, Profile (+9 more)
 
-### Community 0 - "Database Layer"
-Cohesion: 0.07
-Nodes (40): Leak-Plugger SRS Rule, Leitner 5-Box SRS Design Decision, BOX_INTERVALS (SRS Box Durations), DB_PATH, execute(), fetchall(), fetchone(), get_conn() (+32 more)
-
-### Community 1 - "LLM & AI Integration"
-Cohesion: 0.07
-Nodes (39): MODEL_BY_PURPOSE, USE_STUB Flag, _chat(), _chat_json(), _extract_json(), generate_lesson_card(), generate_questions(), _get_client() (+31 more)
-
-### Community 2 - "SRS & Session Management"
-Cohesion: 0.10
-Nodes (34): get_user_profile(), jload(), add_words_to_bank(), _create_session(), _ensure_lesson_card(), get_word_card(), list_addable_words(), services.py — service layer (spec §8). Plain Python called by NiceGUI UI. No HTT (+26 more)
-
-### Community 3 - "Grading & Cache Pipeline"
-Cohesion: 0.28
-Nodes (8): LLM Minimization Strategy, check_cache(), grade_answer_with_cache(), normalize(), grading.py — normalize → accepted_answers cache → escalate to llm.grade. Local-g, Trim and strip punctuation from a Mandarin answer., Look up `normalized` in accepted_answers for (word_id, question_type).     Retur, Grade an answer for a question, using cache first, LLM on novelty.      Returns
-
-### Community 4 - "App Entry & Navigation"
-Cohesion: 0.06
-Nodes (33): page_stats Route, NiceGUI Over vanilla JS Decision, page_home(), page_stats(), page_vocabulary(), app.py — NiceGUI entry point. Page routes: / (home), /study, /sessions, /stats, due_reviews(), get_stats() (+25 more)
-
-### Community 5 - "Session Service Layer"
-Cohesion: 0.06
-Nodes (32): 10. Progression (unchanged from architecture.md), 11. Cost & constraints (unchanged), 12. Verification (build-time checklist), 1. Scope & philosophy, 2. Stack, 3. Data model, 4. Session lifecycle & saving mechanism (core), 5. LLM-minimization strategy (+24 more)
-
-### Community 6 - "Study UI & Lesson Schema"
-Cohesion: 0.11
-Nodes (21): page_study Route, page_study(), Grader Output JSON Schema, Lesson Card JSON Schema, build_study(), build_study_builder(), build_study_page(), _custom_start() (+13 more)
-
-### Community 7 - "Wordbank Import"
-Cohesion: 0.12
-Nodes (15): Chinese Learning Agent — Architecture, code:block1 (Browser (localhost:8000)), Component Map, Cost & Constraints, Data Model (essentials), Decisions, Deployment: local-only web app, Difficulty: hard-mode by default (+7 more)
-
-### Community 8 - "Sessions UI & Redrill"
-Cohesion: 0.12
-Nodes (21): page_home Route, get_in_progress_session(), load_session(), Load a session + all items (with saved answers/grading) + cursor., Load a session + all items (with saved answers/grading) + cursor., Load a session + all items (with saved answers/grading) + cursor., Clone a completed session into a new redrill session.     Default: reuse saved q, Clone a completed session into a new redrill session.     Default: reuse saved q (+13 more)
-
-### Community 9 - "Home Page UI"
-Cohesion: 0.15
-Nodes (15): list_vocabulary(), Number of words in the user's bank (have an srs_state row)., All words the user has added (have srs_state), with box / mastery / due info., Number of words in the user's bank (have an srs_state row)., All words the user has added (have srs_state), with box / mastery / due info., vocab_count(), components.py — shared UI building blocks reused across pages., Render a rich lesson card (learning material) — used by study + vocabulary. (+7 more)
-
-### Community 16 - "Community 16"
+### Community 1 - "SRS & Stats Logic"
 Cohesion: 0.18
-Nodes (10): code:bash (# Install uv (if you don't have it)), code:bash (# 1. Clone the repo), Configuration, Cost, Features, How it works, Makefile targets, Quickstart (+2 more)
+Nodes (22): getStatsAction(), BOX_INTERVALS, generateQuestions(), addWordsToBank(), createSession(), dueReviews(), ensureLessonCard(), getProfile() (+14 more)
 
-### Community 17 - "Community 17"
-Cohesion: 0.22
-Nodes (12): page_sessions Route, page_sessions(), build_sessions(), _do_redrill(), _fmt_time(), sessions.py — session list with status badges + Resume/Re-drill/Review actions., Inline read-only review of a session's items., Inline read-only review of a session's items. (+4 more)
+### Community 2 - "App Pages & Routing"
+Cohesion: 0.19
+Nodes (16): dueReviewsAction(), getInProgressSessionAction(), listSessionsAction(), loadSessionAction(), startSessionAction(), startSessionWithWordsAction(), HomePage(), SessionDetailPage() (+8 more)
 
-### Community 19 - "Community 19"
-Cohesion: 0.22
-Nodes (9): 9. UI spec (NiceGUI dashboard + sidebar), code:block5 (┌──────────────┬───────────────────────────────────────────┐), code:block6 (MATERIAL (flashcard)                    DRILL), Home / dashboard, Layout, Sessions view, Sidebar (`ui.left_drawer`, persistent), Stats view (+1 more)
+### Community 3 - "LLM & Grading"
+Cohesion: 0.16
+Nodes (19): LLM_MAX_RETRIES, LLM_MAX_TOKENS, MAX_TOKENS_BY_PURPOSE, MODEL_BY_PURPOSE, checkCache(), gradeAnswerWithCache(), normalize(), storeCache() (+11 more)
 
-### Community 20 - "Community 20"
+### Community 4 - "Vocabulary Feature"
+Cohesion: 0.18
+Nodes (11): addWordsToBankAction(), listAddableWordsAction(), listVocabularyAction(), vocabCountAction(), listAddableWords(), listVocabulary(), vocabCount(), Word (+3 more)
+
+### Community 5 - "Auth & Layout"
+Cohesion: 0.17
+Nodes (8): signIn(), signOut(), signUp(), geistMono, geistSans, metadata, NAV_LINKS, createClient()
+
+### Community 6 - "Architecture Overview"
+Cohesion: 0.27
+Nodes (10): Grading & Cache Logic, Home Client Component, Supabase Database Schema, LLM Client (OpenCode Zen), Home Page, Word Bank Seeding Script, Service Layer, Session Server Actions (+2 more)
+
+### Community 7 - "Word Bank Seeding"
+Cohesion: 0.6
+Nodes (4): fetchRaw(), main(), parseLevel(), WordRow
+
+### Community 8 - "Word Detail Page"
 Cohesion: 0.67
-Nodes (3): _is_han(), prompt_pinyin(), pinyin_util.py — convert mixed Chinese/Latin text to spaced toned pinyin.  Non-H
+Nodes (3): getWordCardAction(), getWordCard(), WordDetailPage()
+
+### Community 10 - "Auth Concepts"
+Cohesion: 0.67
+Nodes (3): Auth Server Actions, Root Layout, User Context Helper
 
 ## Knowledge Gaps
-- **59 isolated node(s):** `Deployment: local-only web app`, `Stack: FastAPI + SQLite + vanilla JS`, `LLM: DeepSeek V4 Flash (free) via OpenRouter`, `Memory model: Leitner 5-box SRS`, `Word bank: drkameleon/complete-hsk-vocabulary` (+54 more)
+- **25 isolated node(s):** `config`, `eslintConfig`, `nextConfig`, `WordRow`, `config` (+20 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `start_session()` connect `SRS & Session Management` to `Database Layer`, `Sessions UI & Redrill`, `Study UI & Lesson Schema`, `LLM & AI Integration`?**
-  _High betweenness centrality (0.092) - this node is a cross-community bridge._
-- **Why does `generate_questions()` connect `LLM & AI Integration` to `Sessions UI & Redrill`, `SRS & Session Management`?**
-  _High betweenness centrality (0.080) - this node is a cross-community bridge._
-- **Why does `fetchone()` connect `Database Layer` to `SRS & Session Management`, `Grading & Cache Pipeline`, `App Entry & Navigation`, `Sessions UI & Redrill`, `Home Page UI`?**
+- **Why does `getUserContext()` connect `App Pages & Routing` to `Word Detail Page`, `SRS & Stats Logic`, `Vocabulary Feature`, `UI Client Components`?**
   _High betweenness centrality (0.068) - this node is a cross-community bridge._
-- **Are the 6 inferred relationships involving `start_session()` (e.g. with `page_study()` and `transaction()`) actually correct?**
-  _`start_session()` has 6 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 7 inferred relationships involving `fetchone()` (e.g. with `start_session_with_words()` and `list_sessions()`) actually correct?**
-  _`fetchone()` has 7 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 4 inferred relationships involving `transaction()` (e.g. with `_ensure_lesson_card()` and `_create_session()`) actually correct?**
-  _`transaction()` has 4 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 4 inferred relationships involving `frame()` (e.g. with `inject_theme()` and `build_vocabulary()`) actually correct?**
-  _`frame()` has 4 INFERRED edges - model-reasoned connections that need verification._
+- **Why does `createClient()` connect `Auth & Layout` to `App Pages & Routing`?**
+  _High betweenness centrality (0.056) - this node is a cross-community bridge._
+- **Why does `gradeAnswerWithCache()` connect `LLM & Grading` to `SRS & Stats Logic`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **What connects `config`, `eslintConfig`, `nextConfig` to the rest of the system?**
+  _25 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `UI Client Components` be split into smaller, more focused modules?**
+  _Cohesion score 0.08 - nodes in this community are weakly interconnected._

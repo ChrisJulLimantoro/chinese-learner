@@ -1,0 +1,1 @@
+{"nodes": [{"id": "initial_schema_sql", "label": "Supabase Database Schema", "file_type": "code", "source_file": "supabase/migrations/001_initial_schema.sql"}], "edges": [], "hyperedges": []}

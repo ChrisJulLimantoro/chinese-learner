@@ -1,0 +1,1 @@
+{"nodes": [{"id": "homeclient_tsx_homeclient", "label": "Home Client Component", "file_type": "code", "source_file": "src/app/HomeClient.tsx"}], "edges": [{"source": "homeclient_tsx_homeclient", "target": "session_ts_actions", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "src/app/HomeClient.tsx"}], "hyperedges": []}

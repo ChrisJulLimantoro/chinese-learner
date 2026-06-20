@@ -1,0 +1,241 @@
+{
+  "nodes": [
+    {
+      "id": "postcss_config_mjs_config",
+      "label": "PostCSS Configuration",
+      "file_type": "code",
+      "source_file": "postcss.config.mjs"
+    },
+    {
+      "id": "eslint_config_mjs_eslintconfig",
+      "label": "ESLint Configuration",
+      "file_type": "code",
+      "source_file": "eslint.config.mjs"
+    },
+    {
+      "id": "next_config_ts_nextconfig",
+      "label": "Next.js Configuration",
+      "file_type": "code",
+      "source_file": "next.config.ts"
+    },
+    {
+      "id": "readme_md_project",
+      "label": "Chinese Learner README",
+      "file_type": "document",
+      "source_file": "README.md"
+    },
+    {
+      "id": "claude_md_project_overview",
+      "label": "Project Overview & Stack",
+      "file_type": "document",
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "seed_wordbank_ts_main",
+      "label": "Word Bank Seeding Script",
+      "file_type": "code",
+      "source_file": "scripts/seed-wordbank.ts"
+    },
+    {
+      "id": "proxy_ts_proxy",
+      "label": "Auth Session Proxy",
+      "file_type": "code",
+      "source_file": "src/proxy.ts"
+    },
+    {
+      "id": "layout_tsx_rootlayout",
+      "label": "Root Layout",
+      "file_type": "code",
+      "source_file": "src/app/layout.tsx"
+    },
+    {
+      "id": "homeclient_tsx_homeclient",
+      "label": "Home Client Component",
+      "file_type": "code",
+      "source_file": "src/app/HomeClient.tsx"
+    },
+    {
+      "id": "page_tsx_homepage",
+      "label": "Home Page",
+      "file_type": "code",
+      "source_file": "src/app/page.tsx"
+    },
+    {
+      "id": "vocabulary_ts_actions",
+      "label": "Vocabulary Server Actions",
+      "file_type": "code",
+      "source_file": "src/app/actions/vocabulary.ts"
+    },
+    {
+      "id": "session_ts_actions",
+      "label": "Session Server Actions",
+      "file_type": "code",
+      "source_file": "src/app/actions/session.ts"
+    },
+    {
+      "id": "auth_ts_actions",
+      "label": "Auth Server Actions",
+      "file_type": "code",
+      "source_file": "src/app/actions/auth.ts"
+    },
+    {
+      "id": "types_ts_interfaces",
+      "label": "Domain Types",
+      "file_type": "code",
+      "source_file": "src/lib/types.ts"
+    },
+    {
+      "id": "llm_ts_client",
+      "label": "LLM Client (OpenCode Zen)",
+      "file_type": "code",
+      "source_file": "src/lib/llm.ts"
+    },
+    {
+      "id": "grading_ts_logic",
+      "label": "Grading & Cache Logic",
+      "file_type": "code",
+      "source_file": "src/lib/grading.ts"
+    },
+    {
+      "id": "srs_ts_logic",
+      "label": "SRS Leitner Logic",
+      "file_type": "code",
+      "source_file": "src/lib/srs.ts"
+    },
+    {
+      "id": "services_ts_layer",
+      "label": "Service Layer",
+      "file_type": "code",
+      "source_file": "src/lib/services.ts"
+    },
+    {
+      "id": "user_ts_context",
+      "label": "User Context Helper",
+      "file_type": "code",
+      "source_file": "src/lib/user.ts"
+    },
+    {
+      "id": "initial_schema_sql",
+      "label": "Supabase Database Schema",
+      "file_type": "code",
+      "source_file": "supabase/migrations/001_initial_schema.sql"
+    }
+  ],
+  "edges": [
+    {
+      "source": "page_tsx_homepage",
+      "target": "homeclient_tsx_homeclient",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/page.tsx"
+    },
+    {
+      "source": "page_tsx_homepage",
+      "target": "services_ts_layer",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/page.tsx"
+    },
+    {
+      "source": "services_ts_layer",
+      "target": "srs_ts_logic",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/services.ts"
+    },
+    {
+      "source": "services_ts_layer",
+      "target": "llm_ts_client",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/services.ts"
+    },
+    {
+      "source": "services_ts_layer",
+      "target": "grading_ts_logic",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/services.ts"
+    },
+    {
+      "source": "grading_ts_logic",
+      "target": "llm_ts_client",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/grading.ts"
+    },
+    {
+      "source": "session_ts_actions",
+      "target": "services_ts_layer",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/actions/session.ts"
+    },
+    {
+      "source": "vocabulary_ts_actions",
+      "target": "services_ts_layer",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/actions/vocabulary.ts"
+    },
+    {
+      "source": "user_ts_context",
+      "target": "auth_ts_actions",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/lib/user.ts"
+    },
+    {
+      "source": "services_ts_layer",
+      "target": "initial_schema_sql",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "src/lib/services.ts"
+    },
+    {
+      "source": "srs_ts_logic",
+      "target": "initial_schema_sql",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "src/lib/srs.ts"
+    },
+    {
+      "source": "homeclient_tsx_homeclient",
+      "target": "session_ts_actions",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/HomeClient.tsx"
+    },
+    {
+      "source": "layout_tsx_rootlayout",
+      "target": "user_ts_context",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "src/app/layout.tsx"
+    },
+    {
+      "source": "seed_wordbank_ts_main",
+      "target": "initial_schema_sql",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/seed-wordbank.ts"
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 44000,
+  "output_tokens": 2247
+}

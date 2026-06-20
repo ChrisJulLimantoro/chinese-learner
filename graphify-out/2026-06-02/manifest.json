@@ -1,0 +1,122 @@
+{
+  "/Users/ceje/development/personal/chinese-learner/app.py": {
+    "mtime": 1779888239.3876035,
+    "ast_hash": "79a724811cb47634e2ada83f32b6bd48",
+    "semantic_hash": ""
+  },
+  "/Users/ceje/development/personal/chinese-learner/.claude/settings.json": {
+    "mtime": 1779848002.1081405,
+    "ast_hash": "87f0d903477984d0587a02f8fe185263",
+    "semantic_hash": "87f0d903477984d0587a02f8fe185263"
+  },
+  "/Users/ceje/development/personal/chinese-learner/.claude/settings.local.json": {
+    "mtime": 1779823215.8848436,
+    "ast_hash": "9dd953a30ad64799489bf2f6c02b979f",
+    "semantic_hash": "9dd953a30ad64799489bf2f6c02b979f"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/db.py": {
+    "mtime": 1779822404.3373635,
+    "ast_hash": "01d4e43c60f24df966ad3212a002c053",
+    "semantic_hash": "01d4e43c60f24df966ad3212a002c053"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/services.py": {
+    "mtime": 1779888064.9375074,
+    "ast_hash": "81c8544379231a5bc6ef187d9b5a79db",
+    "semantic_hash": ""
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/config.py": {
+    "mtime": 1779902648.9665766,
+    "ast_hash": "91fd0fe4490e28246a52e6f2f8acc5a0",
+    "semantic_hash": ""
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/srs.py": {
+    "mtime": 1779822504.9376261,
+    "ast_hash": "35d45386bd2dcc3f91e50ac2906212f1",
+    "semantic_hash": "35d45386bd2dcc3f91e50ac2906212f1"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/grading.py": {
+    "mtime": 1779822519.3904815,
+    "ast_hash": "049a5ef0e16abe6fe108f0aab4375bef",
+    "semantic_hash": "049a5ef0e16abe6fe108f0aab4375bef"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/__init__.py": {
+    "mtime": 1779822731.4983773,
+    "ast_hash": "92eb780adffaa1707087218fd93b605f",
+    "semantic_hash": "92eb780adffaa1707087218fd93b605f"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/wordbank.py": {
+    "mtime": 1779822993.4182909,
+    "ast_hash": "94d772f48761833aa77948a963eeea38",
+    "semantic_hash": "94d772f48761833aa77948a963eeea38"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/llm.py": {
+    "mtime": 1779902764.0979965,
+    "ast_hash": "7f17f7943d23cbe18b17f19f80d285a1",
+    "semantic_hash": ""
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/ui/sessions.py": {
+    "mtime": 1779902815.80872,
+    "ast_hash": "e726d6a9f0d04fadefd113aad899f331",
+    "semantic_hash": ""
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/ui/home.py": {
+    "mtime": 1779902807.631751,
+    "ast_hash": "bb721c12ae9a13b207a0077c49ae9f28",
+    "semantic_hash": ""
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/ui/layout.py": {
+    "mtime": 1779900725.262342,
+    "ast_hash": "dafa53d8d9d5dd8bb4295ffcc16305b2",
+    "semantic_hash": ""
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/ui/__init__.py": {
+    "mtime": 1779822582.87047,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/ui/stats.py": {
+    "mtime": 1779850270.0135038,
+    "ast_hash": "51ff6d04f05f487c6f3adb8a4c32ee01",
+    "semantic_hash": ""
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/ui/study.py": {
+    "mtime": 1779902846.5527625,
+    "ast_hash": "622cf974e555802fc8010f9e1f59dcde",
+    "semantic_hash": ""
+  },
+  "/Users/ceje/development/personal/chinese-learner/architecture.md": {
+    "mtime": 1779819780.0701284,
+    "ast_hash": "91b5abb47f05773e7b41f10a4f5b2310",
+    "semantic_hash": "91b5abb47f05773e7b41f10a4f5b2310"
+  },
+  "/Users/ceje/development/personal/chinese-learner/CLAUDE.md": {
+    "mtime": 1779848002.1078684,
+    "ast_hash": "82efb97a359f5c7290bf2513d14686be",
+    "semantic_hash": "82efb97a359f5c7290bf2513d14686be"
+  },
+  "/Users/ceje/development/personal/chinese-learner/specs/spec.md": {
+    "mtime": 1779820992.2514417,
+    "ast_hash": "d26c3acea289dd777d0e1fa264eef516",
+    "semantic_hash": "d26c3acea289dd777d0e1fa264eef516"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/ui/theme.py": {
+    "mtime": 1779900729.1772707,
+    "ast_hash": "2edb4a591e38d71ec7c88bbe105141d1",
+    "semantic_hash": ""
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/ui/components.py": {
+    "mtime": 1779888088.3901477,
+    "ast_hash": "5a52e7d62133362fb8c2f4a99d8acd13",
+    "semantic_hash": ""
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/learner/ui/vocabulary.py": {
+    "mtime": 1779902825.7543325,
+    "ast_hash": "e9b79b6771fd63f21f0f6afcb1ca21ce",
+    "semantic_hash": ""
+  },
+  "/Users/ceje/development/personal/chinese-learner/README.md": {
+    "mtime": 1779849580.5789747,
+    "ast_hash": "cafd50fa285b48ee4f413c3a6c8a55b3",
+    "semantic_hash": ""
+  }
+}

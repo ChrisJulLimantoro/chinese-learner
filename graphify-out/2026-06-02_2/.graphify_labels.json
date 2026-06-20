@@ -1,0 +1,23 @@
+{
+  "0": "Database Layer",
+  "1": "LLM & AI Integration",
+  "2": "SRS & Session Management",
+  "3": "Grading & Cache Pipeline",
+  "4": "App Entry & Navigation",
+  "5": "Session Service Layer",
+  "6": "Study UI & Lesson Schema",
+  "7": "Wordbank Import",
+  "8": "Sessions UI & Redrill",
+  "9": "Home Page UI",
+  "10": "Claude Dev Settings",
+  "11": "Claude Permissions",
+  "12": "Question Types & Hard Mode",
+  "13": "App Configuration",
+  "14": "Package Init",
+  "15": "UI Package",
+  "16": "Community 16",
+  "17": "Community 17",
+  "18": "Community 18",
+  "19": "Community 19",
+  "20": "Community 20"
+}

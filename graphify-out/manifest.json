@@ -1,0 +1,186 @@
+{
+  "/Users/ceje/development/personal/chinese-learner/postcss.config.mjs": {
+    "mtime": 1781965549.8062172,
+    "hash": "239f3ebf717465dc636818a1a619398d"
+  },
+  "/Users/ceje/development/personal/chinese-learner/next-env.d.ts": {
+    "mtime": 1781965549.8100934,
+    "hash": "2a74d3909800ca5467fa83b0ab4a4890"
+  },
+  "/Users/ceje/development/personal/chinese-learner/eslint.config.mjs": {
+    "mtime": 1781965549.808186,
+    "hash": "dfa1f5f6a7037bf39dc510f30b180002"
+  },
+  "/Users/ceje/development/personal/chinese-learner/next.config.ts": {
+    "mtime": 1781965549.8042324,
+    "hash": "9b77af189a21a7a64e4bd7a426f64176"
+  },
+  "/Users/ceje/development/personal/chinese-learner/supabase/migrations/001_initial_schema.sql": {
+    "mtime": 1781967244.7353811,
+    "hash": "2dccb68f8aa330879e82024570adda0e"
+  },
+  "/Users/ceje/development/personal/chinese-learner/scripts/seed-wordbank.ts": {
+    "mtime": 1781967805.8846087,
+    "hash": "243396fd966f5fe58d246894cd0bf13d"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/proxy.ts": {
+    "mtime": 1781967216.8936365,
+    "hash": "6000ffef1510eb13429dbb4a644aab51"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/layout.tsx": {
+    "mtime": 1781967294.2085307,
+    "hash": "bee3c97d06d9476c80e5639f7e8e59f1"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/HomeClient.tsx": {
+    "mtime": 1781965944.0278409,
+    "hash": "17f0b373100f8426f6e72fac5be06359"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/page.tsx": {
+    "mtime": 1781966924.8226073,
+    "hash": "ca2e35023893a4129e85eaf597843901"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/study/StudyBuilderClient.tsx": {
+    "mtime": 1781965978.6559308,
+    "hash": "94366686925f87bc364450ae467611b2"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/study/page.tsx": {
+    "mtime": 1781966928.6527114,
+    "hash": "eaf472322ddbb42d2296687531b7027f"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/study/[sessionId]/StudySessionClient.tsx": {
+    "mtime": 1781966036.0105236,
+    "hash": "a4654367c02cde38c94c41a423e3d62a"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/study/[sessionId]/page.tsx": {
+    "mtime": 1781966933.0500166,
+    "hash": "fd0136887e96cf5e329f1c850a7f2fc2"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/sessions/SessionsClient.tsx": {
+    "mtime": 1781966125.1801145,
+    "hash": "2fca87edd6d0765ad4ef414e62fa333e"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/sessions/page.tsx": {
+    "mtime": 1781966937.491204,
+    "hash": "c6ac78dcb98255039edaa3d4489644ce"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/sessions/[id]/SessionReviewClient.tsx": {
+    "mtime": 1781966145.5741763,
+    "hash": "b9514a2622d038a3b977b930b3c11a4d"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/sessions/[id]/page.tsx": {
+    "mtime": 1781966942.261986,
+    "hash": "7328bab253ad4a9d72563512165f1653"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/actions/vocabulary.ts": {
+    "mtime": 1781966776.5226984,
+    "hash": "13386c59767c07b66448be8c802ede40"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/actions/session.ts": {
+    "mtime": 1781966766.3695023,
+    "hash": "0df37684d028b82e403d2169f6748cae"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/actions/auth.ts": {
+    "mtime": 1781967192.2632813,
+    "hash": "918f0499c0b9f41479d30a4e80162671"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/login/page.tsx": {
+    "mtime": 1781967208.0567155,
+    "hash": "c338c0d9356d8aa9fe93245d37b07e8b"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/stats/StatsClient.tsx": {
+    "mtime": 1781966170.4110167,
+    "hash": "4ae64045042b38d37e0885f55f8304f0"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/stats/page.tsx": {
+    "mtime": 1781966947.1427991,
+    "hash": "edf3ec2a22090ebdfc147f525be927b4"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/VocabularyClient.tsx": {
+    "mtime": 1781966063.8258383,
+    "hash": "02a9d2daad9c92768a297a59e5590318"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/page.tsx": {
+    "mtime": 1781966956.0197127,
+    "hash": "f28d1282fcbeaf610449964ae97147a6"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/WordCardClient.tsx": {
+    "mtime": 1781966094.0860453,
+    "hash": "93dc6450e62c02e214aa63910b074a99"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/page.tsx": {
+    "mtime": 1781966962.3210814,
+    "hash": "cef77ff646a1eeaa2f4c6bbbf6e38c65"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/components/Nav.tsx": {
+    "mtime": 1781967282.039562,
+    "hash": "d10aa5bbdc10f6e132bef9604bf7ab14"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/types.ts": {
+    "mtime": 1781965650.347778,
+    "hash": "feece3c334c2ac8146330c4b49c5371c"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/llm.ts": {
+    "mtime": 1781965735.4246867,
+    "hash": "2f461da4bd22beb9b3e500d2acc71f2b"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/grading.ts": {
+    "mtime": 1781965748.137433,
+    "hash": "52931f002f8cb9ad41b2b0c0af2c3c09"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/config.ts": {
+    "mtime": 1781965634.5453122,
+    "hash": "885633d9e38ac6148bafd4e2138ce392"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/srs.ts": {
+    "mtime": 1781966301.082161,
+    "hash": "6b4e5f9b3b2204f31cfc22451c303f13"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/services.ts": {
+    "mtime": 1781966326.3031359,
+    "hash": "0038eced3813661f9208b64ecc72ee73"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/user.ts": {
+    "mtime": 1781967187.1314023,
+    "hash": "a01c2a62416f65c570175e670b908164"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/supabase/admin.ts": {
+    "mtime": 1781965610.348047,
+    "hash": "7a4ba14f268bd40248c7f56237735bfb"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/supabase/client.ts": {
+    "mtime": 1781965598.3626857,
+    "hash": "5453d99289cf630306e5030428c0fc33"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/supabase/server.ts": {
+    "mtime": 1781965603.6277905,
+    "hash": "e8bca08f3b2dc79760425fcfcb31b0b9"
+  },
+  "/Users/ceje/development/personal/chinese-learner/README.md": {
+    "mtime": 1781965549.8150465,
+    "hash": "f15aaa42d5d299d091b1171097ea56ad"
+  },
+  "/Users/ceje/development/personal/chinese-learner/CLAUDE.md": {
+    "mtime": 1781968246.0260482,
+    "hash": "5e52d6c90d785784ed1cab49af7439e6"
+  },
+  "/Users/ceje/development/personal/chinese-learner/public/file.svg": {
+    "mtime": 1781965549.8121243,
+    "hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
+  },
+  "/Users/ceje/development/personal/chinese-learner/public/vercel.svg": {
+    "mtime": 1781965549.812353,
+    "hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
+  },
+  "/Users/ceje/development/personal/chinese-learner/public/next.svg": {
+    "mtime": 1781965549.8125744,
+    "hash": "8e061864f388b47f33a1c3780831193e"
+  },
+  "/Users/ceje/development/personal/chinese-learner/public/globe.svg": {
+    "mtime": 1781965549.8127959,
+    "hash": "2aaafa6a49b6563925fe440891e32717"
+  },
+  "/Users/ceje/development/personal/chinese-learner/public/window.svg": {
+    "mtime": 1781965549.8130212,
+    "hash": "a2760511c65806022ad20adf74370ff3"
+  }
+}

@@ -1,0 +1,395 @@
+{
+  "communities": {
+    "0": [
+      "actions_session_gradeansweraction",
+      "actions_session_redrillsessionaction",
+      "app_homeclient_fmttime",
+      "app_homeclient_homeclient",
+      "app_homeclient_statusbadge",
+      "id_sessionreviewclient_outcomebadge",
+      "id_sessionreviewclient_sessionreviewclient",
+      "id_sessionreviewclient_type_labels",
+      "lib_types_duereviews",
+      "lib_types_graderoutput",
+      "lib_types_lessoncard",
+      "lib_types_outcome",
+      "lib_types_profile",
+      "lib_types_session",
+      "lib_types_sessionitem",
+      "lib_types_sessionsummary",
+      "lib_types_srsstate",
+      "lib_types_stats",
+      "lib_types_supabase",
+      "sessionid_studysessionclient_feedbackview",
+      "sessionid_studysessionclient_lessoncardview",
+      "sessionid_studysessionclient_studysessionclient",
+      "sessionid_studysessionclient_type_labels",
+      "sessions_sessionsclient_fmttime",
+      "sessions_sessionsclient_sessionsclient",
+      "sessions_sessionsclient_statusbadge",
+      "src_app_homeclient_tsx",
+      "src_app_sessions_id_sessionreviewclient_tsx",
+      "src_app_sessions_sessionsclient_tsx",
+      "src_app_stats_statsclient_tsx",
+      "src_app_study_sessionid_studysessionclient_tsx",
+      "src_app_vocabulary_wordid_wordcardclient_tsx",
+      "src_lib_types_ts",
+      "stats_statsclient_statsclient",
+      "wordid_wordcardclient_fmtnextreview",
+      "wordid_wordcardclient_wordcardclient"
+    ],
+    "1": [
+      "actions_vocabulary_getstatsaction",
+      "lib_config_box_intervals",
+      "lib_llm_generatequestions",
+      "lib_services_addwordstobank",
+      "lib_services_createsession",
+      "lib_services_duereviews",
+      "lib_services_ensurelessoncard",
+      "lib_services_getprofile",
+      "lib_services_getstats",
+      "lib_services_gradeanswer",
+      "lib_services_normalizewordrow",
+      "lib_services_recordstudyactivity",
+      "lib_services_redrillsession",
+      "lib_services_sessionscore",
+      "lib_services_startsession",
+      "lib_services_startsessionwithwords",
+      "lib_srs_checkprogression",
+      "lib_srs_countdue",
+      "lib_srs_ensuresrsstate",
+      "lib_srs_getduewords",
+      "lib_srs_getmixedwords",
+      "lib_srs_getunseenwords",
+      "lib_srs_normalizeword",
+      "lib_srs_updatesrs",
+      "src_lib_services_ts",
+      "src_lib_srs_ts"
+    ],
+    "2": [
+      "actions_session_duereviewsaction",
+      "actions_session_getinprogresssessionaction",
+      "actions_session_listsessionsaction",
+      "actions_session_loadsessionaction",
+      "actions_session_startsessionaction",
+      "actions_session_startsessionwithwordsaction",
+      "app_page_homepage",
+      "id_page_sessiondetailpage",
+      "lib_services_getinprogresssession",
+      "lib_services_listsessions",
+      "lib_services_loadsession",
+      "lib_user_getusercontext",
+      "sessionid_page_studysessionpage",
+      "sessions_page_sessionspage",
+      "src_app_actions_session_ts",
+      "src_app_page_tsx",
+      "src_app_sessions_id_page_tsx",
+      "src_app_sessions_page_tsx",
+      "src_app_stats_page_tsx",
+      "src_app_study_sessionid_page_tsx",
+      "src_app_study_studybuilderclient_tsx",
+      "src_lib_user_ts",
+      "stats_page_statspage",
+      "study_studybuilderclient_studybuilderclient",
+      "study_studybuilderclient_vocabword"
+    ],
+    "3": [
+      "lib_config_llm_max_retries",
+      "lib_config_llm_max_tokens",
+      "lib_config_max_tokens_by_purpose",
+      "lib_config_model_by_purpose",
+      "lib_grading_checkcache",
+      "lib_grading_gradeanswerwithcache",
+      "lib_grading_normalize",
+      "lib_grading_storecache",
+      "lib_llm_chat",
+      "lib_llm_chatjson",
+      "lib_llm_extractjson",
+      "lib_llm_generatelessoncard",
+      "lib_llm_getclient",
+      "lib_llm_grade",
+      "lib_llm_stubgrade",
+      "lib_llm_stublessoncard",
+      "lib_llm_stubquestions",
+      "lib_types_question",
+      "src_lib_config_ts",
+      "src_lib_grading_ts",
+      "src_lib_llm_ts",
+      "src_lib_supabase_admin_ts",
+      "supabase_admin_createadminclient"
+    ],
+    "4": [
+      "actions_vocabulary_addwordstobankaction",
+      "actions_vocabulary_listaddablewordsaction",
+      "actions_vocabulary_listvocabularyaction",
+      "actions_vocabulary_vocabcountaction",
+      "lib_services_listaddablewords",
+      "lib_services_listvocabulary",
+      "lib_services_vocabcount",
+      "lib_types_word",
+      "src_app_actions_vocabulary_ts",
+      "src_app_study_page_tsx",
+      "src_app_vocabulary_page_tsx",
+      "src_app_vocabulary_vocabularyclient_tsx",
+      "study_page_studypage",
+      "vocabulary_page_vocabularypage",
+      "vocabulary_vocabularyclient_boxpill",
+      "vocabulary_vocabularyclient_vocabularyclient",
+      "vocabulary_vocabularyclient_vocabword"
+    ],
+    "5": [
+      "actions_auth_signin",
+      "actions_auth_signout",
+      "actions_auth_signup",
+      "app_layout_geistmono",
+      "app_layout_geistsans",
+      "app_layout_metadata",
+      "app_layout_rootlayout",
+      "components_nav_nav",
+      "components_nav_nav_links",
+      "login_page_loginpage",
+      "src_app_actions_auth_ts",
+      "src_app_layout_tsx",
+      "src_app_login_page_tsx",
+      "src_components_nav_tsx",
+      "src_lib_supabase_server_ts",
+      "supabase_server_createclient"
+    ],
+    "6": [
+      "grading_ts_logic",
+      "homeclient_tsx_homeclient",
+      "initial_schema_sql",
+      "llm_ts_client",
+      "page_tsx_homepage",
+      "seed_wordbank_ts_main",
+      "services_ts_layer",
+      "session_ts_actions",
+      "srs_ts_logic",
+      "vocabulary_ts_actions"
+    ],
+    "7": [
+      "scripts_seed_wordbank_fetchraw",
+      "scripts_seed_wordbank_main",
+      "scripts_seed_wordbank_parselevel",
+      "scripts_seed_wordbank_ts",
+      "scripts_seed_wordbank_wordrow"
+    ],
+    "8": [
+      "actions_vocabulary_getwordcardaction",
+      "lib_services_getwordcard",
+      "src_app_vocabulary_wordid_page_tsx",
+      "wordid_page_worddetailpage"
+    ],
+    "9": [
+      "src_proxy_config",
+      "src_proxy_proxy",
+      "src_proxy_ts"
+    ],
+    "10": [
+      "auth_ts_actions",
+      "layout_tsx_rootlayout",
+      "user_ts_context"
+    ],
+    "11": [
+      "chinese_learner_postcss_config_config",
+      "postcss_config_mjs"
+    ],
+    "12": [
+      "chinese_learner_eslint_config_eslintconfig",
+      "eslint_config_mjs"
+    ],
+    "13": [
+      "chinese_learner_next_config_nextconfig",
+      "next_config_ts"
+    ],
+    "14": [
+      "src_lib_supabase_client_ts",
+      "supabase_client_createclient"
+    ],
+    "15": [
+      "next_env_d_ts"
+    ],
+    "16": [
+      "postcss_config_mjs_config"
+    ],
+    "17": [
+      "eslint_config_mjs_eslintconfig"
+    ],
+    "18": [
+      "next_config_ts_nextconfig"
+    ],
+    "19": [
+      "readme_md_project"
+    ],
+    "20": [
+      "claude_md_project_overview"
+    ],
+    "21": [
+      "proxy_ts_proxy"
+    ],
+    "22": [
+      "types_ts_interfaces"
+    ]
+  },
+  "cohesion": {
+    "0": 0.08,
+    "1": 0.18,
+    "2": 0.19,
+    "3": 0.16,
+    "4": 0.18,
+    "5": 0.17,
+    "6": 0.27,
+    "7": 0.6,
+    "8": 0.67,
+    "9": 0.67,
+    "10": 0.67,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0
+  },
+  "gods": [
+    {
+      "id": "lib_user_getusercontext",
+      "label": "getUserContext()",
+      "degree": 33
+    },
+    {
+      "id": "lib_services_loadsession",
+      "label": "loadSession()",
+      "degree": 9
+    },
+    {
+      "id": "lib_services_startsession",
+      "label": "startSession()",
+      "degree": 8
+    },
+    {
+      "id": "lib_services_getstats",
+      "label": "getStats()",
+      "degree": 8
+    },
+    {
+      "id": "lib_services_getwordcard",
+      "label": "getWordCard()",
+      "degree": 8
+    },
+    {
+      "id": "lib_services_addwordstobank",
+      "label": "addWordsToBank()",
+      "degree": 8
+    },
+    {
+      "id": "lib_grading_gradeanswerwithcache",
+      "label": "gradeAnswerWithCache()",
+      "degree": 7
+    },
+    {
+      "id": "lib_services_getprofile",
+      "label": "getProfile()",
+      "degree": 7
+    },
+    {
+      "id": "lib_services_listsessions",
+      "label": "listSessions()",
+      "degree": 7
+    },
+    {
+      "id": "lib_services_listvocabulary",
+      "label": "listVocabulary()",
+      "degree": 7
+    }
+  ],
+  "surprises": [
+    {
+      "source": "SRS Leitner Logic",
+      "target": "Supabase Database Schema",
+      "source_files": [
+        "src/lib/srs.ts",
+        "supabase/migrations/001_initial_schema.sql"
+      ],
+      "confidence": "INFERRED",
+      "relation": "implements",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "Service Layer",
+      "target": "Supabase Database Schema",
+      "source_files": [
+        "src/lib/services.ts",
+        "supabase/migrations/001_initial_schema.sql"
+      ],
+      "confidence": "INFERRED",
+      "relation": "implements",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "Word Bank Seeding Script",
+      "target": "Supabase Database Schema",
+      "source_files": [
+        "scripts/seed-wordbank.ts",
+        "supabase/migrations/001_initial_schema.sql"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "StudyPage()",
+      "target": "getUserContext()",
+      "source_files": [
+        "src/app/study/page.tsx",
+        "src/lib/user.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "listVocabularyAction()",
+      "target": "getUserContext()",
+      "source_files": [
+        "src/app/actions/vocabulary.ts",
+        "src/lib/user.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `getUserContext()` connect `Community 2` to `Community 8`, `Community 1`, `Community 4`, `Community 0`?",
+      "why": "High betweenness centrality (0.068) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `createClient()` connect `Community 5` to `Community 2`?",
+      "why": "High betweenness centrality (0.056) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `gradeAnswerWithCache()` connect `Community 3` to `Community 1`?",
+      "why": "High betweenness centrality (0.009) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `config`, `eslintConfig`, `nextConfig` to the rest of the system?",
+      "why": "25 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

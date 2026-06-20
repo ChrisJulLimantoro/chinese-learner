@@ -30,8 +30,10 @@ export async function proxy(request: NextRequest) {
     }
   );
 
-  // Touch the session so expired tokens get refreshed and cookies updated.
-  await supabase.auth.getUser();
+  // getClaims() verifies the JWT locally with asymmetric keys (no network call).
+  // For legacy HS256 keys it falls back to getUser() — either way, expired tokens
+  // trigger a cookie refresh via the setAll handler above.
+  await supabase.auth.getClaims();
 
   return response;
 }

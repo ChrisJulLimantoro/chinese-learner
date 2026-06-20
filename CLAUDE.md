@@ -26,6 +26,22 @@ npm install
 npm run dev
 ```
 
+## Performance notes
+
+### Manual step — enable asymmetric JWT signing keys
+`getClaims()` in `src/lib/user.ts` and `src/proxy.ts` verifies JWTs **locally** (zero network round-trips) when asymmetric keys are active. To activate them:
+1. Supabase dashboard → Project → Settings → Auth → **Signing Keys**
+2. Click **Add a new JWT signing key** and choose ECC (ES256) or RSA (RS256)
+3. Set it as the **primary** signing key and rotate. Existing sessions re-sign on next refresh.
+
+Until this is done, `getClaims()` falls back to `getUser()` (one network call per render), but React `cache()` still deduplicates the layout + page calls so you pay at most one call per request instead of three.
+
+### Region alignment
+Vercel functions should run in the same region as your Supabase project to minimise DB round-trip latency:
+- Supabase region: Dashboard → Project Settings → General → Region
+- Vercel region: Project → Settings → Functions (Hobby default `iad1` = US East)
+- If they differ, update `vercel.json` → `"regions"` (e.g. `"sin1"` for Singapore).
+
 ## Original Python app
 Preserved on git branch `local`. Reference with:
 ```

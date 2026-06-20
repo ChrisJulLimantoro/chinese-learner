@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { addWordsToBankAction } from "../actions/vocabulary";
 import type { Word } from "@/lib/types";
 import { Card, Button, Badge, PageHeader } from "@/components/ui";
+
+const PAGE_SIZE = 20;
 
 type VocabWord = Word & {
   box: number;
@@ -31,6 +33,8 @@ export default function VocabularyClient({ vocab }: { vocab: VocabWord[] }) {
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const [query, setQuery] = useState("");
+  const [visible, setVisible] = useState(PAGE_SIZE);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   const filtered = vocab.filter(
     (w) =>
@@ -38,6 +42,29 @@ export default function VocabularyClient({ vocab }: { vocab: VocabWord[] }) {
       w.pinyin.toLowerCase().includes(query.toLowerCase()) ||
       (w.meanings ?? []).some((m) => m.toLowerCase().includes(query.toLowerCase()))
   );
+
+  // Reset visible count whenever the search filter changes.
+  useEffect(() => {
+    setVisible(PAGE_SIZE);
+  }, [query]);
+
+  // Expand visible count when the sentinel div scrolls into view.
+  const setupObserver = useCallback(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setVisible((v) => v + PAGE_SIZE);
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(setupObserver, [setupObserver, filtered.length]);
 
   const handleAddWords = async (count: number) => {
     setAdding(true);
@@ -129,7 +156,7 @@ export default function VocabularyClient({ vocab }: { vocab: VocabWord[] }) {
       ) : (
         <Card variant="paper" padding="none">
           <div className="divide-y divide-border">
-            {filtered.map((w) => (
+            {filtered.slice(0, visible).map((w) => (
               <button
                 key={w.id}
                 onClick={() => router.push(`/vocabulary/${w.id}`)}
@@ -149,6 +176,12 @@ export default function VocabularyClient({ vocab }: { vocab: VocabWord[] }) {
               </button>
             ))}
           </div>
+          {/* Sentinel: triggers loading of the next page when scrolled into view */}
+          {visible < filtered.length && (
+            <div ref={sentinelRef} className="py-4 text-center text-xs text-faint">
+              Loading more…
+            </div>
+          )}
         </Card>
       )}
     </div>

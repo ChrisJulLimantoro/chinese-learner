@@ -132,7 +132,7 @@ async function createSession(
   const config = { kind, size: enrichedWords.length, level };
 
   // Insert session
-  const { data: sessionRow } = await supabase
+  const { data: sessionRow, error: sessionError } = await supabase
     .from("sessions")
     .insert({
       user_id: userId,
@@ -144,6 +144,10 @@ async function createSession(
     })
     .select()
     .single();
+
+  if (sessionError || !sessionRow) {
+    throw new Error(`Failed to create session: ${sessionError?.message ?? "unknown error"}`);
+  }
 
   const sessionId = sessionRow.id as number;
 
@@ -230,11 +234,8 @@ export async function startSessionWithWords(
   const profile = await getProfile(supabase, userId);
   const level = profile.current_hsk_level ?? START_HSK_LEVEL;
 
-  const words: Word[] = [];
-  for (const wid of wordIds) {
-    const { data } = await supabase.from("words").select("*").eq("id", wid).single();
-    if (data) words.push(normalizeWordRow(data));
-  }
+  const { data } = await supabase.from("words").select("*").in("id", wordIds);
+  const words = (data ?? []).map(normalizeWordRow);
 
   return createSession(supabase, userId, words, kind, level);
 }
@@ -504,7 +505,7 @@ export async function redrillSession(
   const nowSeconds = Date.now() / 1000;
   const config = { kind: "redrill", parent: sessionId, with_variation: withVariation };
 
-  const { data: newSession } = await supabase
+  const { data: newSession, error: newSessionError } = await supabase
     .from("sessions")
     .insert({
       user_id: userId,
@@ -517,6 +518,10 @@ export async function redrillSession(
     })
     .select()
     .single();
+
+  if (newSessionError || !newSession) {
+    throw new Error(`Failed to create redrill session: ${newSessionError?.message ?? "unknown error"}`);
+  }
 
   const newSessionId = newSession.id as number;
 
@@ -709,11 +714,12 @@ export async function listVocabulary(
 > {
   const nowSeconds = Date.now() / 1000;
 
+  // lesson_card is intentionally excluded — it is large JSONB not needed by the list view.
   const { data: rows } = await supabase
     .from("srs_state")
     .select(`
       box, mastered, next_review_at, correct_count, wrong_count,
-      words (id, simplified, traditional, pinyin, hsk_level, pos, meanings, frequency_rank, lesson_card)
+      words (id, simplified, traditional, pinyin, hsk_level, pos, meanings, frequency_rank)
     `)
     .eq("user_id", userId)
     .order("next_review_at", { ascending: true })

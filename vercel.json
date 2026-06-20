@@ -1,4 +1,3 @@
 {
-  "regions": ["hnd1"],
-  "$comment": "Set this to the Vercel region closest to your Supabase project region. Check your Supabase region at: Dashboard → Project Settings → General → Region. Common codes: sin1 (Singapore / ap-southeast-1), hnd1 (Tokyo / ap-northeast-1), iad1 (US East / us-east-1), cdg1 (Paris / eu-west-3). Keeping functions and the DB in the same region eliminates cross-region latency on every DB round-trip."
+  "regions": ["hnd1"]
 }

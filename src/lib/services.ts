@@ -775,6 +775,43 @@ export async function getWordCard(
   };
 }
 
+export async function regenerateWordCard(
+  supabase: SupabaseClient,
+  userId: string,
+  wordId: number,
+  reason?: string
+): Promise<{
+  word: Word;
+  lesson_card: import("./types").LessonCard;
+  srs: import("./types").SrsState | null;
+}> {
+  const { data: wordRow } = await supabase
+    .from("words")
+    .select("*")
+    .eq("id", wordId)
+    .single();
+
+  if (!wordRow) throw new Error(`Word ${wordId} not found`);
+  const word = normalizeWordRow(wordRow);
+
+  const card = await generateLessonCard(word, reason);
+  const admin = createAdminClient();
+  await admin.from("words").update({ lesson_card: card }).eq("id", word.id);
+
+  const { data: srsRow } = await supabase
+    .from("srs_state")
+    .select("*")
+    .eq("user_id", userId)
+    .eq("word_id", wordId)
+    .single();
+
+  return {
+    word: { ...word, lesson_card: card },
+    lesson_card: card,
+    srs: srsRow as import("./types").SrsState | null,
+  };
+}
+
 export async function addWordsToBank(
   supabase: SupabaseClient,
   userId: string,

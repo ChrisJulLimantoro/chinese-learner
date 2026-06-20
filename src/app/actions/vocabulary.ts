@@ -4,6 +4,7 @@ import { getUserContext } from "@/lib/user";
 import {
   listVocabulary,
   getWordCard,
+  regenerateWordCard,
   addWordsToBank,
   listAddableWords,
   vocabCount,
@@ -18,6 +19,11 @@ export async function listVocabularyAction() {
 export async function getWordCardAction(wordId: number) {
   const { supabase, userId } = await getUserContext();
   return getWordCard(supabase, userId, wordId);
+}
+
+export async function regenerateWordCardAction(wordId: number, reason?: string) {
+  const { supabase, userId } = await getUserContext();
+  return regenerateWordCard(supabase, userId, wordId, reason);
 }
 
 export async function addWordsToBankAction(count?: number) {

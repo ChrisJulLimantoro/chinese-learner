@@ -238,7 +238,7 @@ export async function generateLessonCard(word: {
   frequency_rank?: number | null;
   pos?: string[];
   meanings?: string[];
-}): Promise<LessonCard> {
+}, reason?: string): Promise<LessonCard> {
   if (USE_STUB) return stubLessonCard(word);
 
   const simplified = word.simplified ?? "";
@@ -252,6 +252,10 @@ export async function generateLessonCard(word: {
     "Do not think out loud, do not explain, do not use markdown fences or any prose. " +
     "Begin your response with '{' and end with '}'. " +
     "The entire response must be valid for JSON.parse().";
+
+  const correction = reason?.trim()
+    ? `\n\nThe previous version of this card was reported as INCORRECT for the following reason:\n"${reason.trim()}"\nFix this specifically and ensure the new card is accurate.`
+    : "";
 
   const user = `Create a detailed HSK lesson card for the Mandarin word:
 Simplified: ${simplified}
@@ -278,7 +282,7 @@ Return JSON matching EXACTLY this schema (all fields required unless marked null
   "common_mistakes": [string],
   "character_breakdown": [{"char": string, "meaning": string, "mnemonic": string}]
 }
-Provide 2-3 examples, near_synonyms if any exist, and character_breakdown for each character.
+Provide 2-3 examples, near_synonyms if any exist, and character_breakdown for each character.${correction}
 `;
 
   return chatJson<LessonCard>("lesson", [

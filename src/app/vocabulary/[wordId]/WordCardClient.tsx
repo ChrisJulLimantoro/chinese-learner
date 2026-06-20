@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Word, LessonCard, SrsState } from "@/lib/types";
 import { Card, Button, Badge } from "@/components/ui";
+import { regenerateWordCardAction } from "@/app/actions/vocabulary";
 
 function fmtNextReview(ts: number | null): string {
   if (!ts) return "Not scheduled";
@@ -24,19 +26,102 @@ function Section({ label, children }: { label: string; children: React.ReactNode
   );
 }
 
+function RegenerateModal({
+  open,
+  regenerating,
+  reason,
+  onReasonChange,
+  onConfirm,
+  onCancel,
+}: {
+  open: boolean;
+  regenerating: boolean;
+  reason: string;
+  onReasonChange: (v: string) => void;
+  onConfirm: () => void;
+  onCancel: () => void;
+}) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+      <Card variant="elevated" padding="lg" className="w-full max-w-md space-y-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-faint mb-1">
+            Regenerate lesson card
+          </p>
+          <p className="text-sm text-muted leading-relaxed">
+            Optionally describe what looks wrong — the AI will use this to generate a better card.
+            Leave blank to regenerate without guidance.
+          </p>
+        </div>
+        <textarea
+          rows={4}
+          value={reason}
+          onChange={(e) => onReasonChange(e.target.value)}
+          placeholder="e.g. The pinyin tones are wrong, and example 2 uses the word incorrectly…"
+          className="w-full border border-border rounded-xl px-4 py-3 text-ink text-sm bg-surface focus:outline-none focus:ring-2 focus:ring-seal focus:border-transparent transition-colors placeholder:text-faint resize-none"
+          disabled={regenerating}
+        />
+        <div className="flex gap-2 justify-end">
+          <Button variant="ghost" size="sm" onClick={onCancel} disabled={regenerating}>
+            Cancel
+          </Button>
+          <Button variant="outline" size="sm" onClick={onConfirm} loading={regenerating}>
+            Regenerate
+          </Button>
+        </div>
+      </Card>
+    </div>
+  );
+}
+
 export default function WordCardClient({
   data,
 }: {
   data: { word: Word; lesson_card: LessonCard | null; srs: SrsState | null };
 }) {
   const router = useRouter();
-  const { word, lesson_card: card, srs } = data;
+  const { word, srs } = data;
+  const [card, setCard] = useState<LessonCard | null>(data.lesson_card);
+  const [showModal, setShowModal] = useState(false);
+  const [reason, setReason] = useState("");
+  const [regenerating, setRegenerating] = useState(false);
+
+  const openModal = () => setShowModal(true);
+  const closeModal = () => { setShowModal(false); setReason(""); };
+
+  const handleRegenerate = async () => {
+    setRegenerating(true);
+    try {
+      const result = await regenerateWordCardAction(word.id, reason.trim() || undefined);
+      setCard(result.lesson_card);
+      closeModal();
+    } catch (e) {
+      alert(String(e));
+    } finally {
+      setRegenerating(false);
+    }
+  };
 
   return (
+    <>
+    <RegenerateModal
+      open={showModal}
+      regenerating={regenerating}
+      reason={reason}
+      onReasonChange={setReason}
+      onConfirm={handleRegenerate}
+      onCancel={closeModal}
+    />
     <div className="max-w-2xl mx-auto space-y-5">
-      <Button variant="ghost" size="sm" onClick={() => router.back()} className="text-muted -ml-2">
-        ← Back
-      </Button>
+      <div className="flex items-center justify-between -ml-2">
+        <Button variant="ghost" size="sm" onClick={() => router.back()} className="text-muted">
+          ← Back
+        </Button>
+        <Button variant="outline" size="sm" onClick={openModal}>
+          Regenerate card
+        </Button>
+      </div>
 
       {/* Hero card */}
       <Card variant="elevated" padding="lg">
@@ -178,5 +263,6 @@ export default function WordCardClient({
         </Card>
       )}
     </div>
+    </>
   );
 }

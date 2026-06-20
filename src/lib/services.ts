@@ -128,6 +128,18 @@ async function createSession(
     });
   }
 
+  // Realign questions to words by target_word so review/drill word always matches the question.
+  // The LLM may return questions in a different order than the words list.
+  const usedQIdx = new Set<number>();
+  const alignedQuestions = enrichedWords.map((w, i) => {
+    const matchIdx = questions.findIndex(
+      (q, qi) => !usedQIdx.has(qi) && q.target_word === w.simplified
+    );
+    const pick = matchIdx >= 0 ? matchIdx : i;
+    usedQIdx.add(pick);
+    return questions[pick];
+  });
+
   const nowSeconds = Date.now() / 1000;
   const config = { kind, size: enrichedWords.length, level };
 
@@ -157,7 +169,7 @@ async function createSession(
     user_id: userId,
     order_index: i,
     word_id: w.id,
-    question: questions[i],
+    question: alignedQuestions[i],
   }));
 
   const { data: itemRows } = await supabase
@@ -175,7 +187,7 @@ async function createSession(
     order_index: i,
     word: normalizeWordRow(w as unknown as Record<string, unknown>),
     lesson_card: w.lesson_card,
-    question_json: questions[i],
+    question_json: alignedQuestions[i],
     user_answer: null,
     grader_output_json: null,
     response_time_ms: null,
@@ -498,6 +510,16 @@ export async function redrillSession(
         context: meanings[0] ?? "",
       });
     }
+    // Realign questions to original word order by target_word
+    const usedQIdx = new Set<number>();
+    questions = orig.items.map((it, i) => {
+      const matchIdx = questions.findIndex(
+        (q, qi) => !usedQIdx.has(qi) && q.target_word === it.word.simplified
+      );
+      const pick = matchIdx >= 0 ? matchIdx : i;
+      usedQIdx.add(pick);
+      return questions[pick];
+    });
   } else {
     questions = orig.items.map((it) => it.question_json);
   }

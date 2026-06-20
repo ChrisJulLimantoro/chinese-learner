@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { gradeAnswerAction } from "../../actions/session";
-import type { Session, LessonCard, GraderOutput } from "@/lib/types";
+import type { Session, LessonCard, GraderOutput, Outcome } from "@/lib/types";
 import { Card, Button, Badge, ProgressBar } from "@/components/ui";
 import Seal from "@/components/Seal";
 
@@ -143,6 +143,11 @@ export default function StudySessionClient({ session: initialSession }: { sessio
   const [overTimer, setOverTimer] = useState(false);
   const [sessionComplete, setSessionComplete] = useState(initialSession.status === "completed");
   const [showStamp, setShowStamp] = useState(false);
+  const [outcomes, setOutcomes] = useState<Record<number, Outcome>>(() => {
+    const m: Record<number, Outcome> = {};
+    for (const it of initialSession.items) if (it.outcome) m[it.item_id] = it.outcome;
+    return m;
+  });
   // eslint-disable-next-line react-hooks/purity
   const startTimeRef = useRef<number>(Date.now());
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -237,8 +242,8 @@ export default function StudySessionClient({ session: initialSession }: { sessio
   // ── SESSION COMPLETE ──────────────────────────────────────────────────────
 
   if (sessionComplete) {
-    const answered = items.filter((it) => it.outcome !== null).length;
-    const correct = items.filter((it) => it.outcome === "correct").length;
+    const answered = Object.keys(outcomes).length;
+    const correct = Object.values(outcomes).filter((o) => o === "correct").length;
     const pct = answered > 0 ? Math.round((correct / answered) * 100) : 0;
 
     return (
@@ -282,6 +287,7 @@ export default function StudySessionClient({ session: initialSession }: { sessio
         hesitated || overTimer
       );
       setFeedback({ graderOut: result.grader_output, outcome: result.outcome });
+      setOutcomes((o) => ({ ...o, [currentItem.item_id]: result.outcome }));
       if (result.grader_output.correct) {
         setShowStamp(true);
       }
@@ -335,12 +341,11 @@ export default function StudySessionClient({ session: initialSession }: { sessio
           </div>
         )}
 
-        {/* Character */}
-        <div className="text-center py-4 bg-paper rounded-xl border border-border animate-hanzi-in">
-          <div className="hanzi text-6xl font-bold text-ink leading-none mb-2">
-            {currentItem.word.simplified}
+        {/* Decorative hanzi (alternates, reveals nothing) */}
+        <div className="text-center py-4 bg-paper rounded-xl border border-border animate-hanzi-in" aria-hidden>
+          <div className="hanzi text-6xl font-bold text-ink/20 leading-none select-none">
+            {cursor % 2 === 0 ? "中文" : "测试"}
           </div>
-          <div className="text-jade text-base">{currentItem.word.pinyin}</div>
         </div>
 
         {/* Question type */}

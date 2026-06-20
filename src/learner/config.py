@@ -9,12 +9,17 @@ from dotenv import load_dotenv
 # Paths
 # ---------------------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).parent.parent.parent
-DB_PATH = PROJECT_ROOT / "progress.db"
 
 # ---------------------------------------------------------------------------
 # Environment
 # ---------------------------------------------------------------------------
 load_dotenv(PROJECT_ROOT / ".env")
+
+# DB path is configurable so containers can point it at a mounted directory
+# (mounting the directory — not the single file — is required for SQLite WAL,
+# whose -wal/-shm sidecars must live next to the db file).
+DB_PATH = Path(os.getenv("DB_PATH", str(PROJECT_ROOT / "progress.db")))
+DB_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 OPENCODE_API_KEY: str = os.getenv("OPENCODE_API_KEY", "").strip()
 USE_STUB: bool = not OPENCODE_API_KEY

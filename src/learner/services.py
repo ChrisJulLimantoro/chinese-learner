@@ -188,6 +188,39 @@ def start_session_with_words(word_ids: list[int], kind: str = "custom") -> dict:
 # grade_answer
 # ---------------------------------------------------------------------------
 
+def record_study_activity() -> None:
+    """
+    Update the daily study streak. Called whenever the user studies.
+
+    - same day as last_study_date  → no change
+    - exactly the previous day     → streak += 1
+    - any larger gap (or first time)→ streak reset to 1
+    """
+    from datetime import date, timedelta
+
+    profile = get_user_profile()
+    today = date.today()
+    last_str = profile.get("last_study_date")
+
+    if last_str == today.isoformat():
+        return  # already counted today
+
+    streak = profile.get("study_streak_days", 0) or 0
+    last = None
+    if last_str:
+        try:
+            last = date.fromisoformat(last_str)
+        except ValueError:
+            last = None
+
+    if last is not None and last == today - timedelta(days=1):
+        streak += 1
+    else:
+        streak = 1
+
+    update_user_profile(study_streak_days=streak, last_study_date=today.isoformat())
+
+
 def grade_answer(
     session_item_id: int,
     answer: str,
@@ -253,6 +286,9 @@ def grade_answer(
 
     # Update SRS
     srs = update_srs(word_id, outcome, over_timer=over_timer, hesitated=hesitated)
+
+    # Record daily study streak
+    record_study_activity()
 
     return {
         "grader_output": grader_out,

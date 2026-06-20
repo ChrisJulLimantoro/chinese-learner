@@ -141,7 +141,7 @@ def _render_review_page(session_id: int) -> None:
             if user_ans:
                 ui.label(f"Your answer: {user_ans}").classes("text-sm ink")
 
-            if grader.get("normalized_answer"):
+            if grader.get("correct") and grader.get("normalized_answer"):
                 ui.label(f"Accepted: {grader['normalized_answer']}").classes("text-xs faint")
 
             if grader.get("feedback"):

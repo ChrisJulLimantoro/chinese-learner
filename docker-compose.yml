@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - RELOAD=true
+      - DB_PATH=/app/data/progress.db
+    volumes:
+      - ./data:/app/data
+      - ./app.py:/app/app.py
+      - ./src:/app/src
+    restart: unless-stopped

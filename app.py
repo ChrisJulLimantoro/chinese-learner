@@ -3,6 +3,7 @@ app.py — NiceGUI entry point.
 Page routes: / (home), /study, /sessions, /stats
 """
 import logging
+import os
 import sys
 
 logging.basicConfig(
@@ -75,11 +76,12 @@ if __name__ in ("__main__", "__mp_main__"):
     mode = "STUB (offline)" if USE_STUB else "LIVE (OpenRouter)"
     log.info("Starting Chinese Learner in %s mode.", mode)
 
+    reload = os.getenv("RELOAD", "false").strip().lower() in ("1", "true", "yes")
     ui.run(
         title="中文 Learner",
-        host="127.0.0.1",
+        host="0.0.0.0",
         port=8080,
-        reload=True,
+        reload=reload,
         show=False,
         dark=True,
         favicon="🀄",

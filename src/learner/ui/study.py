@@ -12,6 +12,7 @@ from learner.services import (
 )
 from learner.ui.layout import frame
 from learner.ui.components import render_lesson_card
+from learner.pinyin_util import prompt_pinyin
 
 TIMER_SECONDS = 120
 
@@ -276,6 +277,35 @@ def build_study(session_data: dict) -> None:
             ui.label(_TYPE_LABELS.get(qtype, qtype)).classes("section-title mb-3")
             ui.label(prompt).classes("text-xl ink mb-5").style("font-family: var(--font-display)")
 
+            hint_used_ref = {"used": False}
+            prompt_hint = prompt_pinyin(prompt)
+            answer_hint = "" if qtype == "cloze" else (word.get("pinyin") or "")
+
+            def _make_hint(label: str, pinyin_text: str):
+                state = {"on": False}
+                with ui.row().classes("items-center gap-2"):
+                    btn = ui.button(f"Show {label}").props("flat dense no-caps").classes("hint-btn")
+                    pin_label = ui.label(pinyin_text).classes("hint-text")
+                    pin_label.set_visibility(False)
+
+                def toggle():
+                    state["on"] = not state["on"]
+                    pin_label.set_visibility(state["on"])
+                    btn.set_text(f"{'Hide' if state['on'] else 'Show'} {label}")
+                    if state["on"] and not hint_used_ref["used"]:
+                        hint_used_ref["used"] = True
+                    if hint_used_ref["used"]:
+                        btn.classes(add="used")
+
+                btn.on("click", toggle)
+
+            if prompt_hint or answer_hint:
+                with ui.row().classes("gap-3 items-center flex-wrap mb-4"):
+                    if prompt_hint:
+                        _make_hint("prompt pinyin", prompt_hint)
+                    if answer_hint:
+                        _make_hint("answer pinyin", answer_hint)
+
             timer_label = ui.label(f"⏱ {timer_ref['remaining']}s").classes(
                 "text-sm font-mono mb-4"
             ).style("color: var(--gold)")
@@ -303,7 +333,7 @@ def build_study(session_data: dict) -> None:
                         session_item_id=item["item_id"],
                         answer=answer,
                         response_time_ms=elapsed_ms,
-                        hesitated=hesitated,
+                        hesitated=hesitated or hint_used_ref["used"],
                     )
                     n.dismiss()
                 except Exception as e:

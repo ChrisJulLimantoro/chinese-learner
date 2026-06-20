@@ -56,23 +56,23 @@
       "source_file": "app.py",
       "source_location": "L1",
       "id": "app_py",
-      "community": 17,
+      "community": 4,
       "norm_label": "app.py"
     },
     {
       "label": "page_home()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L35",
+      "source_location": "L36",
       "id": "chinese_learner_app_page_home",
-      "community": 17,
+      "community": 4,
       "norm_label": "page_home()"
     },
     {
       "label": "page_study()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L41",
+      "source_location": "L42",
       "id": "chinese_learner_app_page_study",
       "community": 6,
       "norm_label": "page_study()"
@@ -81,27 +81,27 @@
       "label": "page_vocabulary()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L52",
+      "source_location": "L53",
       "id": "chinese_learner_app_page_vocabulary",
-      "community": 17,
+      "community": 4,
       "norm_label": "page_vocabulary()"
     },
     {
       "label": "page_sessions()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L58",
+      "source_location": "L59",
       "id": "chinese_learner_app_page_sessions",
-      "community": 8,
+      "community": 17,
       "norm_label": "page_sessions()"
     },
     {
       "label": "page_stats()",
       "file_type": "code",
       "source_file": "app.py",
-      "source_location": "L64",
+      "source_location": "L65",
       "id": "chinese_learner_app_page_stats",
-      "community": 17,
+      "community": 4,
       "norm_label": "page_stats()"
     },
     {
@@ -110,7 +110,7 @@
       "source_file": "app.py",
       "source_location": "L1",
       "id": "chinese_learner_app_rationale_1",
-      "community": 17,
+      "community": 4,
       "norm_label": "app.py \u2014 nicegui entry point. page routes: / (home), /study, /sessions, /stats"
     },
     {
@@ -155,7 +155,7 @@
       "source_file": "src/learner/db.py",
       "source_location": "L125",
       "id": "learner_db_jdump",
-      "community": 2,
+      "community": 0,
       "norm_label": "jdump()"
     },
     {
@@ -209,7 +209,7 @@
       "source_file": "src/learner/db.py",
       "source_location": "L154",
       "id": "learner_db_get_user_profile",
-      "community": 0,
+      "community": 2,
       "norm_label": "get_user_profile()"
     },
     {
@@ -326,23 +326,32 @@
       "source_file": "src/learner/services.py",
       "source_location": "L172",
       "id": "learner_services_start_session_with_words",
-      "community": 0,
+      "community": 2,
       "norm_label": "start_session_with_words()"
+    },
+    {
+      "label": "record_study_activity()",
+      "file_type": "code",
+      "source_file": "src/learner/services.py",
+      "source_location": "L191",
+      "id": "learner_services_record_study_activity",
+      "community": 2,
+      "norm_label": "record_study_activity()"
     },
     {
       "label": "grade_answer()",
       "file_type": "code",
       "source_file": "src/learner/services.py",
-      "source_location": "L191",
+      "source_location": "L224",
       "id": "learner_services_grade_answer",
-      "community": 2,
+      "community": 0,
       "norm_label": "grade_answer()"
     },
     {
       "label": "load_session()",
       "file_type": "code",
       "source_file": "src/learner/services.py",
-      "source_location": "L270",
+      "source_location": "L306",
       "id": "learner_services_load_session",
       "community": 8,
       "norm_label": "load_session()"
@@ -351,7 +360,7 @@
       "label": "list_sessions()",
       "file_type": "code",
       "source_file": "src/learner/services.py",
-      "source_location": "L335",
+      "source_location": "L371",
       "id": "learner_services_list_sessions",
       "community": 0,
       "norm_label": "list_sessions()"
@@ -360,7 +369,7 @@
       "label": "redrill_session()",
       "file_type": "code",
       "source_file": "src/learner/services.py",
-      "source_location": "L370",
+      "source_location": "L406",
       "id": "learner_services_redrill_session",
       "community": 8,
       "norm_label": "redrill_session()"
@@ -369,7 +378,7 @@
       "label": "due_reviews()",
       "file_type": "code",
       "source_file": "src/learner/services.py",
-      "source_location": "L451",
+      "source_location": "L487",
       "id": "learner_services_due_reviews",
       "community": 4,
       "norm_label": "due_reviews()"
@@ -378,16 +387,16 @@
       "label": "get_stats()",
       "file_type": "code",
       "source_file": "src/learner/services.py",
-      "source_location": "L473",
+      "source_location": "L509",
       "id": "learner_services_get_stats",
-      "community": 0,
+      "community": 4,
       "norm_label": "get_stats()"
     },
     {
       "label": "get_in_progress_session()",
       "file_type": "code",
       "source_file": "src/learner/services.py",
-      "source_location": "L519",
+      "source_location": "L555",
       "id": "learner_services_get_in_progress_session",
       "community": 8,
       "norm_label": "get_in_progress_session()"
@@ -396,7 +405,7 @@
       "label": "vocab_count()",
       "file_type": "code",
       "source_file": "src/learner/services.py",
-      "source_location": "L534",
+      "source_location": "L570",
       "id": "learner_services_vocab_count",
       "community": 9,
       "norm_label": "vocab_count()"
@@ -405,7 +414,7 @@
       "label": "list_vocabulary()",
       "file_type": "code",
       "source_file": "src/learner/services.py",
-      "source_location": "L540",
+      "source_location": "L576",
       "id": "learner_services_list_vocabulary",
       "community": 9,
       "norm_label": "list_vocabulary()"
@@ -414,7 +423,7 @@
       "label": "get_word_card()",
       "file_type": "code",
       "source_file": "src/learner/services.py",
-      "source_location": "L567",
+      "source_location": "L603",
       "id": "learner_services_get_word_card",
       "community": 2,
       "norm_label": "get_word_card()"
@@ -423,7 +432,7 @@
       "label": "add_words_to_bank()",
       "file_type": "code",
       "source_file": "src/learner/services.py",
-      "source_location": "L581",
+      "source_location": "L617",
       "id": "learner_services_add_words_to_bank",
       "community": 2,
       "norm_label": "add_words_to_bank()"
@@ -432,7 +441,7 @@
       "label": "list_addable_words()",
       "file_type": "code",
       "source_file": "src/learner/services.py",
-      "source_location": "L598",
+      "source_location": "L634",
       "id": "learner_services_list_addable_words",
       "community": 2,
       "norm_label": "list_addable_words()"
@@ -488,24 +497,33 @@
       "source_file": "src/learner/services.py",
       "source_location": "L173",
       "id": "learner_services_rationale_173",
-      "community": 0,
+      "community": 2,
       "norm_label": "build a session from an explicit list of word ids (bank + new hsk words)."
+    },
+    {
+      "label": "Update the daily study streak. Called whenever the user studies.      - same day",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L192",
+      "id": "learner_services_rationale_192",
+      "community": 2,
+      "norm_label": "update the daily study streak. called whenever the user studies.      - same day"
     },
     {
       "label": "Grade answer, persist to DB, advance cursor, update SRS.     Returns {grader_out",
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
-      "source_location": "L197",
-      "id": "learner_services_rationale_197",
-      "community": 2,
+      "source_location": "L230",
+      "id": "learner_services_rationale_230",
+      "community": 0,
       "norm_label": "grade answer, persist to db, advance cursor, update srs.     returns {grader_out"
     },
     {
       "label": "Load a session + all items (with saved answers/grading) + cursor.",
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
-      "source_location": "L271",
-      "id": "learner_services_rationale_271",
+      "source_location": "L307",
+      "id": "learner_services_rationale_307",
       "community": 8,
       "norm_label": "load a session + all items (with saved answers/grading) + cursor."
     },
@@ -513,8 +531,8 @@
       "label": "Return recent sessions with basic stats.",
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
-      "source_location": "L336",
-      "id": "learner_services_rationale_336",
+      "source_location": "L372",
+      "id": "learner_services_rationale_372",
       "community": 0,
       "norm_label": "return recent sessions with basic stats."
     },
@@ -522,8 +540,8 @@
       "label": "Clone a completed session into a new redrill session.     Default: reuse saved q",
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
-      "source_location": "L375",
-      "id": "learner_services_rationale_375",
+      "source_location": "L411",
+      "id": "learner_services_rationale_411",
       "community": 8,
       "norm_label": "clone a completed session into a new redrill session.     default: reuse saved q"
     },
@@ -531,8 +549,8 @@
       "label": "Return count + preview of due SRS items.",
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
-      "source_location": "L452",
-      "id": "learner_services_rationale_452",
+      "source_location": "L488",
+      "id": "learner_services_rationale_488",
       "community": 4,
       "norm_label": "return count + preview of due srs items."
     },
@@ -540,17 +558,17 @@
       "label": "Mastery, weakest words, progression toward next level.",
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
-      "source_location": "L474",
-      "id": "learner_services_rationale_474",
-      "community": 0,
+      "source_location": "L510",
+      "id": "learner_services_rationale_510",
+      "community": 4,
       "norm_label": "mastery, weakest words, progression toward next level."
     },
     {
       "label": "Return the most recent in-progress session, or None.",
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
-      "source_location": "L520",
-      "id": "learner_services_rationale_520",
+      "source_location": "L556",
+      "id": "learner_services_rationale_556",
       "community": 8,
       "norm_label": "return the most recent in-progress session, or none."
     },
@@ -558,8 +576,8 @@
       "label": "Number of words in the user's bank (have an srs_state row).",
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
-      "source_location": "L535",
-      "id": "learner_services_rationale_535",
+      "source_location": "L571",
+      "id": "learner_services_rationale_571",
       "community": 9,
       "norm_label": "number of words in the user's bank (have an srs_state row)."
     },
@@ -567,8 +585,8 @@
       "label": "All words the user has added (have srs_state), with box / mastery / due info.",
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
-      "source_location": "L541",
-      "id": "learner_services_rationale_541",
+      "source_location": "L577",
+      "id": "learner_services_rationale_577",
       "community": 9,
       "norm_label": "all words the user has added (have srs_state), with box / mastery / due info."
     },
@@ -576,8 +594,8 @@
       "label": "Load a word + its lesson card (generating if missing) + srs state.",
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
-      "source_location": "L568",
-      "id": "learner_services_rationale_568",
+      "source_location": "L604",
+      "id": "learner_services_rationale_604",
       "community": 2,
       "norm_label": "load a word + its lesson card (generating if missing) + srs state."
     },
@@ -585,8 +603,8 @@
       "label": "Add the next `count` most-frequent unseen words at the current level to the",
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
-      "source_location": "L582",
-      "id": "learner_services_rationale_582",
+      "source_location": "L618",
+      "id": "learner_services_rationale_618",
       "community": 2,
       "norm_label": "add the next `count` most-frequent unseen words at the current level to the"
     },
@@ -594,8 +612,8 @@
       "label": "Next unseen words (not yet in the bank) for the custom-session 'New words' tab.",
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
-      "source_location": "L599",
-      "id": "learner_services_rationale_599",
+      "source_location": "L635",
+      "id": "learner_services_rationale_635",
       "community": 2,
       "norm_label": "next unseen words (not yet in the bank) for the custom-session 'new words' tab."
     },
@@ -641,7 +659,7 @@
       "source_file": "src/learner/srs.py",
       "source_location": "L35",
       "id": "learner_srs_update_srs",
-      "community": 2,
+      "community": 0,
       "norm_label": "update_srs()"
     },
     {
@@ -686,7 +704,7 @@
       "source_file": "src/learner/srs.py",
       "source_location": "L182",
       "id": "learner_srs_count_due",
-      "community": 0,
+      "community": 4,
       "norm_label": "count_due()"
     },
     {
@@ -695,7 +713,7 @@
       "source_file": "src/learner/srs.py",
       "source_location": "L192",
       "id": "learner_srs_check_progression",
-      "community": 0,
+      "community": 4,
       "norm_label": "check_progression()"
     },
     {
@@ -722,7 +740,7 @@
       "source_file": "src/learner/srs.py",
       "source_location": "L41",
       "id": "learner_srs_rationale_41",
-      "community": 2,
+      "community": 0,
       "norm_label": "apply srs rules for a graded answer. returns updated srs_state row as dict."
     },
     {
@@ -758,7 +776,7 @@
       "source_file": "src/learner/srs.py",
       "source_location": "L183",
       "id": "learner_srs_rationale_183",
-      "community": 0,
+      "community": 4,
       "norm_label": "count srs items due now."
     },
     {
@@ -767,7 +785,7 @@
       "source_file": "src/learner/srs.py",
       "source_location": "L193",
       "id": "learner_srs_rationale_193",
-      "community": 0,
+      "community": 4,
       "norm_label": "return true if the user should advance from `level` to level+1."
     },
     {
@@ -803,7 +821,7 @@
       "source_file": "src/learner/grading.py",
       "source_location": "L39",
       "id": "learner_grading_store_cache",
-      "community": 3,
+      "community": 0,
       "norm_label": "store_cache()"
     },
     {
@@ -848,7 +866,7 @@
       "source_file": "src/learner/grading.py",
       "source_location": "L40",
       "id": "learner_grading_rationale_40",
-      "community": 3,
+      "community": 0,
       "norm_label": "store a grader verdict in accepted_answers."
     },
     {
@@ -981,7 +999,7 @@
       "label": "_get_client()",
       "file_type": "code",
       "source_file": "src/learner/llm.py",
-      "source_location": "L28",
+      "source_location": "L29",
       "id": "learner_llm_get_client",
       "community": 1,
       "norm_label": "_get_client()"
@@ -990,7 +1008,7 @@
       "label": "_chat()",
       "file_type": "code",
       "source_file": "src/learner/llm.py",
-      "source_location": "L42",
+      "source_location": "L43",
       "id": "learner_llm_chat",
       "community": 1,
       "norm_label": "_chat()"
@@ -999,7 +1017,7 @@
       "label": "_chat_json()",
       "file_type": "code",
       "source_file": "src/learner/llm.py",
-      "source_location": "L65",
+      "source_location": "L66",
       "id": "learner_llm_chat_json",
       "community": 1,
       "norm_label": "_chat_json()"
@@ -1008,7 +1026,7 @@
       "label": "_extract_json()",
       "file_type": "code",
       "source_file": "src/learner/llm.py",
-      "source_location": "L94",
+      "source_location": "L95",
       "id": "learner_llm_extract_json",
       "community": 1,
       "norm_label": "_extract_json()"
@@ -1017,7 +1035,7 @@
       "label": "_stub_lesson_card()",
       "file_type": "code",
       "source_file": "src/learner/llm.py",
-      "source_location": "L144",
+      "source_location": "L145",
       "id": "learner_llm_stub_lesson_card",
       "community": 1,
       "norm_label": "_stub_lesson_card()"
@@ -1026,7 +1044,7 @@
       "label": "_stub_questions()",
       "file_type": "code",
       "source_file": "src/learner/llm.py",
-      "source_location": "L199",
+      "source_location": "L200",
       "id": "learner_llm_stub_questions",
       "community": 1,
       "norm_label": "_stub_questions()"
@@ -1035,7 +1053,7 @@
       "label": "_stub_grade()",
       "file_type": "code",
       "source_file": "src/learner/llm.py",
-      "source_location": "L238",
+      "source_location": "L239",
       "id": "learner_llm_stub_grade",
       "community": 1,
       "norm_label": "_stub_grade()"
@@ -1044,7 +1062,7 @@
       "label": "generate_lesson_card()",
       "file_type": "code",
       "source_file": "src/learner/llm.py",
-      "source_location": "L264",
+      "source_location": "L265",
       "id": "learner_llm_generate_lesson_card",
       "community": 1,
       "norm_label": "generate_lesson_card()"
@@ -1053,7 +1071,7 @@
       "label": "generate_questions()",
       "file_type": "code",
       "source_file": "src/learner/llm.py",
-      "source_location": "L319",
+      "source_location": "L320",
       "id": "learner_llm_generate_questions",
       "community": 1,
       "norm_label": "generate_questions()"
@@ -1062,7 +1080,7 @@
       "label": "grade()",
       "file_type": "code",
       "source_file": "src/learner/llm.py",
-      "source_location": "L370",
+      "source_location": "L371",
       "id": "learner_llm_grade",
       "community": 1,
       "norm_label": "grade()"
@@ -1080,8 +1098,8 @@
       "label": "Make one OpenCode Zen chat completion.     Returns (content, finish_reason). Rea",
       "file_type": "rationale",
       "source_file": "src/learner/llm.py",
-      "source_location": "L43",
-      "id": "learner_llm_rationale_43",
+      "source_location": "L44",
+      "id": "learner_llm_rationale_44",
       "community": 1,
       "norm_label": "make one opencode zen chat completion.     returns (content, finish_reason). rea"
     },
@@ -1089,8 +1107,8 @@
       "label": "Call the LLM and return parsed JSON, retrying on empty/truncated/invalid output.",
       "file_type": "rationale",
       "source_file": "src/learner/llm.py",
-      "source_location": "L66",
-      "id": "learner_llm_rationale_66",
+      "source_location": "L67",
+      "id": "learner_llm_rationale_67",
       "community": 1,
       "norm_label": "call the llm and return parsed json, retrying on empty/truncated/invalid output."
     },
@@ -1098,8 +1116,8 @@
       "label": "Extract the first JSON object or array from text, handling markdown fences.",
       "file_type": "rationale",
       "source_file": "src/learner/llm.py",
-      "source_location": "L95",
-      "id": "learner_llm_rationale_95",
+      "source_location": "L96",
+      "id": "learner_llm_rationale_96",
       "community": 1,
       "norm_label": "extract the first json object or array from text, handling markdown fences."
     },
@@ -1107,8 +1125,8 @@
       "label": "Return a canned lesson card matching the \u00a76 schema.",
       "file_type": "rationale",
       "source_file": "src/learner/llm.py",
-      "source_location": "L145",
-      "id": "learner_llm_rationale_145",
+      "source_location": "L146",
+      "id": "learner_llm_rationale_146",
       "community": 1,
       "norm_label": "return a canned lesson card matching the \u00a76 schema."
     },
@@ -1116,8 +1134,8 @@
       "label": "Return one question per word, cycling through all four types.",
       "file_type": "rationale",
       "source_file": "src/learner/llm.py",
-      "source_location": "L200",
-      "id": "learner_llm_rationale_200",
+      "source_location": "L201",
+      "id": "learner_llm_rationale_201",
       "community": 1,
       "norm_label": "return one question per word, cycling through all four types."
     },
@@ -1125,8 +1143,8 @@
       "label": "Stub grader: correct if the answer contains the target word (case-insensitive",
       "file_type": "rationale",
       "source_file": "src/learner/llm.py",
-      "source_location": "L239",
-      "id": "learner_llm_rationale_239",
+      "source_location": "L240",
+      "id": "learner_llm_rationale_240",
       "community": 1,
       "norm_label": "stub grader: correct if the answer contains the target word (case-insensitive"
     },
@@ -1134,8 +1152,8 @@
       "label": "Generate (or stub) a rich lesson card for `word` (a words-table row as dict).",
       "file_type": "rationale",
       "source_file": "src/learner/llm.py",
-      "source_location": "L265",
-      "id": "learner_llm_rationale_265",
+      "source_location": "L266",
+      "id": "learner_llm_rationale_266",
       "community": 1,
       "norm_label": "generate (or stub) a rich lesson card for `word` (a words-table row as dict)."
     },
@@ -1143,8 +1161,8 @@
       "label": "Batch-generate questions for a list of words.     Returns a list of question dic",
       "file_type": "rationale",
       "source_file": "src/learner/llm.py",
-      "source_location": "L320",
-      "id": "learner_llm_rationale_320",
+      "source_location": "L321",
+      "id": "learner_llm_rationale_321",
       "community": 1,
       "norm_label": "batch-generate questions for a list of words.     returns a list of question dic"
     },
@@ -1152,10 +1170,46 @@
       "label": "Grade `answer` against `question`. Returns \u00a77 grader_output_json.",
       "file_type": "rationale",
       "source_file": "src/learner/llm.py",
-      "source_location": "L371",
-      "id": "learner_llm_rationale_371",
+      "source_location": "L372",
+      "id": "learner_llm_rationale_372",
       "community": 1,
       "norm_label": "grade `answer` against `question`. returns \u00a77 grader_output_json."
+    },
+    {
+      "label": "pinyin_util.py",
+      "file_type": "code",
+      "source_file": "src/learner/pinyin_util.py",
+      "source_location": "L1",
+      "id": "src_learner_pinyin_util_py",
+      "community": 20,
+      "norm_label": "pinyin_util.py"
+    },
+    {
+      "label": "_is_han()",
+      "file_type": "code",
+      "source_file": "src/learner/pinyin_util.py",
+      "source_location": "L11",
+      "id": "learner_pinyin_util_is_han",
+      "community": 20,
+      "norm_label": "_is_han()"
+    },
+    {
+      "label": "prompt_pinyin()",
+      "file_type": "code",
+      "source_file": "src/learner/pinyin_util.py",
+      "source_location": "L15",
+      "id": "learner_pinyin_util_prompt_pinyin",
+      "community": 20,
+      "norm_label": "prompt_pinyin()"
+    },
+    {
+      "label": "pinyin_util.py \u2014 convert mixed Chinese/Latin text to spaced toned pinyin.  Non-H",
+      "file_type": "rationale",
+      "source_file": "src/learner/pinyin_util.py",
+      "source_location": "L1",
+      "id": "learner_pinyin_util_rationale_1",
+      "community": 20,
+      "norm_label": "pinyin_util.py \u2014 convert mixed chinese/latin text to spaced toned pinyin.  non-h"
     },
     {
       "label": "sessions.py",
@@ -1163,7 +1217,7 @@
       "source_file": "src/learner/ui/sessions.py",
       "source_location": "L1",
       "id": "src_learner_ui_sessions_py",
-      "community": 8,
+      "community": 17,
       "norm_label": "sessions.py"
     },
     {
@@ -1172,7 +1226,7 @@
       "source_file": "src/learner/ui/sessions.py",
       "source_location": "L10",
       "id": "ui_sessions_fmt_time",
-      "community": 8,
+      "community": 17,
       "norm_label": "_fmt_time()"
     },
     {
@@ -1181,7 +1235,7 @@
       "source_file": "src/learner/ui/sessions.py",
       "source_location": "L16",
       "id": "ui_sessions_status_badge",
-      "community": 8,
+      "community": 17,
       "norm_label": "_status_badge()"
     },
     {
@@ -1190,34 +1244,34 @@
       "source_file": "src/learner/ui/sessions.py",
       "source_location": "L27",
       "id": "ui_sessions_build_sessions",
-      "community": 8,
+      "community": 17,
       "norm_label": "build_sessions()"
     },
     {
       "label": "_session_card()",
       "file_type": "code",
       "source_file": "src/learner/ui/sessions.py",
-      "source_location": "L50",
+      "source_location": "L51",
       "id": "ui_sessions_session_card",
-      "community": 8,
+      "community": 17,
       "norm_label": "_session_card()"
     },
     {
       "label": "_do_redrill()",
       "file_type": "code",
       "source_file": "src/learner/ui/sessions.py",
-      "source_location": "L84",
+      "source_location": "L85",
       "id": "ui_sessions_do_redrill",
-      "community": 8,
+      "community": 17,
       "norm_label": "_do_redrill()"
     },
     {
       "label": "_render_review_page()",
       "file_type": "code",
       "source_file": "src/learner/ui/sessions.py",
-      "source_location": "L95",
+      "source_location": "L96",
       "id": "ui_sessions_render_review_page",
-      "community": 8,
+      "community": 17,
       "norm_label": "_render_review_page()"
     },
     {
@@ -1226,16 +1280,16 @@
       "source_file": "src/learner/ui/sessions.py",
       "source_location": "L1",
       "id": "ui_sessions_rationale_1",
-      "community": 8,
+      "community": 17,
       "norm_label": "sessions.py \u2014 session list with status badges + resume/re-drill/review actions."
     },
     {
       "label": "Inline read-only review of a session's items.",
       "file_type": "rationale",
       "source_file": "src/learner/ui/sessions.py",
-      "source_location": "L96",
-      "id": "ui_sessions_rationale_96",
-      "community": 8,
+      "source_location": "L97",
+      "id": "ui_sessions_rationale_97",
+      "community": 17,
       "norm_label": "inline read-only review of a session's items."
     },
     {
@@ -1278,7 +1332,7 @@
       "label": "_start_new()",
       "file_type": "code",
       "source_file": "src/learner/ui/home.py",
-      "source_location": "L123",
+      "source_location": "L129",
       "id": "ui_home_start_new",
       "community": 8,
       "norm_label": "_start_new()"
@@ -1287,7 +1341,7 @@
       "label": "_session_row()",
       "file_type": "code",
       "source_file": "src/learner/ui/home.py",
-      "source_location": "L134",
+      "source_location": "L140",
       "id": "ui_home_session_row",
       "community": 8,
       "norm_label": "_session_row()"
@@ -1296,7 +1350,7 @@
       "label": "_do_redrill()",
       "file_type": "code",
       "source_file": "src/learner/ui/home.py",
-      "source_location": "L161",
+      "source_location": "L167",
       "id": "ui_home_do_redrill",
       "community": 8,
       "norm_label": "_do_redrill()"
@@ -1323,7 +1377,7 @@
       "label": "inject_theme()",
       "file_type": "code",
       "source_file": "src/learner/ui/theme.py",
-      "source_location": "L252",
+      "source_location": "L280",
       "id": "ui_theme_inject_theme",
       "community": 4,
       "norm_label": "inject_theme()"
@@ -1341,8 +1395,8 @@
       "label": "Emit the Midnight Ink stylesheet + fonts into the page head (call once per page)",
       "file_type": "rationale",
       "source_file": "src/learner/ui/theme.py",
-      "source_location": "L253",
-      "id": "ui_theme_rationale_253",
+      "source_location": "L281",
+      "id": "ui_theme_rationale_281",
       "community": 4,
       "norm_label": "emit the midnight ink stylesheet + fonts into the page head (call once per page)"
     },
@@ -1377,7 +1431,7 @@
       "label": "frame()",
       "file_type": "code",
       "source_file": "src/learner/ui/layout.py",
-      "source_location": "L72",
+      "source_location": "L74",
       "id": "ui_layout_frame",
       "community": 4,
       "norm_label": "frame()"
@@ -1404,8 +1458,8 @@
       "label": "Context manager that wraps page content in the shared layout.",
       "file_type": "rationale",
       "source_file": "src/learner/ui/layout.py",
-      "source_location": "L73",
-      "id": "ui_layout_rationale_73",
+      "source_location": "L75",
+      "id": "ui_layout_rationale_75",
       "community": 4,
       "norm_label": "context manager that wraps page content in the shared layout."
     },
@@ -1424,7 +1478,7 @@
       "source_file": "src/learner/ui/stats.py",
       "source_location": "L1",
       "id": "src_learner_ui_stats_py",
-      "community": 17,
+      "community": 4,
       "norm_label": "stats.py"
     },
     {
@@ -1433,7 +1487,7 @@
       "source_file": "src/learner/ui/stats.py",
       "source_location": "L10",
       "id": "ui_stats_build_stats",
-      "community": 17,
+      "community": 4,
       "norm_label": "build_stats()"
     },
     {
@@ -1442,7 +1496,7 @@
       "source_file": "src/learner/ui/stats.py",
       "source_location": "L1",
       "id": "ui_stats_rationale_1",
-      "community": 17,
+      "community": 4,
       "norm_label": "stats.py \u2014 mastery counts, weakest words, progression to next level."
     },
     {
@@ -1557,7 +1611,7 @@
       "label": "build_study_builder()",
       "file_type": "code",
       "source_file": "src/learner/ui/study.py",
-      "source_location": "L30",
+      "source_location": "L31",
       "id": "ui_study_build_study_builder",
       "community": 6,
       "norm_label": "build_study_builder()"
@@ -1566,7 +1620,7 @@
       "label": "_quick_start()",
       "file_type": "code",
       "source_file": "src/learner/ui/study.py",
-      "source_location": "L121",
+      "source_location": "L124",
       "id": "ui_study_quick_start",
       "community": 6,
       "norm_label": "_quick_start()"
@@ -1575,7 +1629,7 @@
       "label": "_custom_start()",
       "file_type": "code",
       "source_file": "src/learner/ui/study.py",
-      "source_location": "L132",
+      "source_location": "L135",
       "id": "ui_study_custom_start",
       "community": 6,
       "norm_label": "_custom_start()"
@@ -1584,7 +1638,7 @@
       "label": "_render_feedback()",
       "file_type": "code",
       "source_file": "src/learner/ui/study.py",
-      "source_location": "L150",
+      "source_location": "L153",
       "id": "ui_study_render_feedback",
       "community": 6,
       "norm_label": "_render_feedback()"
@@ -1593,7 +1647,7 @@
       "label": "_phase_header()",
       "file_type": "code",
       "source_file": "src/learner/ui/study.py",
-      "source_location": "L177",
+      "source_location": "L180",
       "id": "ui_study_phase_header",
       "community": 6,
       "norm_label": "_phase_header()"
@@ -1602,7 +1656,7 @@
       "label": "build_study()",
       "file_type": "code",
       "source_file": "src/learner/ui/study.py",
-      "source_location": "L183",
+      "source_location": "L186",
       "id": "ui_study_build_study",
       "community": 6,
       "norm_label": "build_study()"
@@ -1611,7 +1665,7 @@
       "label": "build_study_page()",
       "file_type": "code",
       "source_file": "src/learner/ui/study.py",
-      "source_location": "L358",
+      "source_location": "L390",
       "id": "ui_study_build_study_page",
       "community": 6,
       "norm_label": "build_study_page()"
@@ -1620,7 +1674,7 @@
       "label": "_render_review()",
       "file_type": "code",
       "source_file": "src/learner/ui/study.py",
-      "source_location": "L373",
+      "source_location": "L405",
       "id": "ui_study_render_review",
       "community": 6,
       "norm_label": "_render_review()"
@@ -1638,8 +1692,8 @@
       "label": "Run a session: LEARN all cards, then DRILL all words.",
       "file_type": "rationale",
       "source_file": "src/learner/ui/study.py",
-      "source_location": "L184",
-      "id": "ui_study_rationale_184",
+      "source_location": "L187",
+      "id": "ui_study_rationale_187",
       "community": 6,
       "norm_label": "run a session: learn all cards, then drill all words."
     },
@@ -1647,8 +1701,8 @@
       "label": "Read-only review of a completed session.",
       "file_type": "rationale",
       "source_file": "src/learner/ui/study.py",
-      "source_location": "L374",
-      "id": "ui_study_rationale_374",
+      "source_location": "L406",
+      "id": "ui_study_rationale_406",
       "community": 6,
       "norm_label": "read-only review of a completed session."
     },
@@ -1872,7 +1926,7 @@
       "label": "Makefile targets",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L72",
+      "source_location": "L79",
       "id": "chinese_learner_readme_makefile_targets",
       "community": 16,
       "norm_label": "makefile targets"
@@ -1881,7 +1935,7 @@
       "label": "How it works",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L83",
+      "source_location": "L90",
       "id": "chinese_learner_readme_how_it_works",
       "community": 16,
       "norm_label": "how it works"
@@ -1890,7 +1944,7 @@
       "label": "Cost",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L98",
+      "source_location": "L105",
       "id": "chinese_learner_readme_cost",
       "community": 16,
       "norm_label": "cost"
@@ -2180,7 +2234,7 @@
       "source_file": "specs/spec.md",
       "source_location": "L329",
       "id": "specs_spec_9_ui_spec_nicegui_dashboard_sidebar",
-      "community": 5,
+      "community": 19,
       "norm_label": "9. ui spec (nicegui dashboard + sidebar)"
     },
     {
@@ -2189,7 +2243,7 @@
       "source_file": "specs/spec.md",
       "source_location": "L334",
       "id": "specs_spec_layout",
-      "community": 5,
+      "community": 19,
       "norm_label": "layout"
     },
     {
@@ -2198,7 +2252,7 @@
       "source_file": "specs/spec.md",
       "source_location": "L335",
       "id": "specs_spec_codeblock_5",
-      "community": 5,
+      "community": 19,
       "norm_label": "code:block5 (\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510)"
     },
     {
@@ -2207,7 +2261,7 @@
       "source_file": "specs/spec.md",
       "source_location": "L354",
       "id": "specs_spec_sidebar_ui_left_drawer_persistent",
-      "community": 5,
+      "community": 19,
       "norm_label": "sidebar (`ui.left_drawer`, persistent)"
     },
     {
@@ -2216,7 +2270,7 @@
       "source_file": "specs/spec.md",
       "source_location": "L360",
       "id": "specs_spec_home_dashboard",
-      "community": 5,
+      "community": 19,
       "norm_label": "home / dashboard"
     },
     {
@@ -2225,7 +2279,7 @@
       "source_file": "specs/spec.md",
       "source_location": "L364",
       "id": "specs_spec_study_view_two_phases",
-      "community": 5,
+      "community": 19,
       "norm_label": "study view \u2014 two phases"
     },
     {
@@ -2234,7 +2288,7 @@
       "source_file": "specs/spec.md",
       "source_location": "L365",
       "id": "specs_spec_codeblock_6",
-      "community": 5,
+      "community": 19,
       "norm_label": "code:block6 (material (flashcard)                    drill)"
     },
     {
@@ -2243,7 +2297,7 @@
       "source_file": "specs/spec.md",
       "source_location": "L385",
       "id": "specs_spec_sessions_view",
-      "community": 5,
+      "community": 19,
       "norm_label": "sessions view"
     },
     {
@@ -2252,7 +2306,7 @@
       "source_file": "specs/spec.md",
       "source_location": "L389",
       "id": "specs_spec_stats_view",
-      "community": 5,
+      "community": 19,
       "norm_label": "stats view"
     },
     {
@@ -2290,6 +2344,240 @@
       "id": "specs_spec_appendix_divergences_from_architecture_md",
       "community": 5,
       "norm_label": "appendix \u2014 divergences from architecture.md"
+    },
+    {
+      "label": "Grade answer, persist to DB, advance cursor, update SRS.     Returns {grader_out",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L197",
+      "community": 0,
+      "norm_label": "grade answer, persist to db, advance cursor, update srs.     returns {grader_out",
+      "id": "learner_services_rationale_197"
+    },
+    {
+      "label": "Load a session + all items (with saved answers/grading) + cursor.",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L271",
+      "community": 8,
+      "norm_label": "load a session + all items (with saved answers/grading) + cursor.",
+      "id": "learner_services_rationale_271"
+    },
+    {
+      "label": "Return recent sessions with basic stats.",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L336",
+      "community": 0,
+      "norm_label": "return recent sessions with basic stats.",
+      "id": "learner_services_rationale_336"
+    },
+    {
+      "label": "Clone a completed session into a new redrill session.     Default: reuse saved q",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L375",
+      "community": 8,
+      "norm_label": "clone a completed session into a new redrill session.     default: reuse saved q",
+      "id": "learner_services_rationale_375"
+    },
+    {
+      "label": "Return count + preview of due SRS items.",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L452",
+      "community": 4,
+      "norm_label": "return count + preview of due srs items.",
+      "id": "learner_services_rationale_452"
+    },
+    {
+      "label": "Mastery, weakest words, progression toward next level.",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L474",
+      "community": 4,
+      "norm_label": "mastery, weakest words, progression toward next level.",
+      "id": "learner_services_rationale_474"
+    },
+    {
+      "label": "Return the most recent in-progress session, or None.",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L520",
+      "community": 8,
+      "norm_label": "return the most recent in-progress session, or none.",
+      "id": "learner_services_rationale_520"
+    },
+    {
+      "label": "Number of words in the user's bank (have an srs_state row).",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L535",
+      "community": 9,
+      "norm_label": "number of words in the user's bank (have an srs_state row).",
+      "id": "learner_services_rationale_535"
+    },
+    {
+      "label": "All words the user has added (have srs_state), with box / mastery / due info.",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L541",
+      "community": 9,
+      "norm_label": "all words the user has added (have srs_state), with box / mastery / due info.",
+      "id": "learner_services_rationale_541"
+    },
+    {
+      "label": "Load a word + its lesson card (generating if missing) + srs state.",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L568",
+      "community": 2,
+      "norm_label": "load a word + its lesson card (generating if missing) + srs state.",
+      "id": "learner_services_rationale_568"
+    },
+    {
+      "label": "Add the next `count` most-frequent unseen words at the current level to the",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L582",
+      "community": 2,
+      "norm_label": "add the next `count` most-frequent unseen words at the current level to the",
+      "id": "learner_services_rationale_582"
+    },
+    {
+      "label": "Next unseen words (not yet in the bank) for the custom-session 'New words' tab.",
+      "file_type": "rationale",
+      "source_file": "src/learner/services.py",
+      "source_location": "L599",
+      "community": 2,
+      "norm_label": "next unseen words (not yet in the bank) for the custom-session 'new words' tab.",
+      "id": "learner_services_rationale_599"
+    },
+    {
+      "label": "Make one OpenCode Zen chat completion.     Returns (content, finish_reason). Rea",
+      "file_type": "rationale",
+      "source_file": "src/learner/llm.py",
+      "source_location": "L43",
+      "community": 1,
+      "norm_label": "make one opencode zen chat completion.     returns (content, finish_reason). rea",
+      "id": "learner_llm_rationale_43"
+    },
+    {
+      "label": "Call the LLM and return parsed JSON, retrying on empty/truncated/invalid output.",
+      "file_type": "rationale",
+      "source_file": "src/learner/llm.py",
+      "source_location": "L66",
+      "community": 1,
+      "norm_label": "call the llm and return parsed json, retrying on empty/truncated/invalid output.",
+      "id": "learner_llm_rationale_66"
+    },
+    {
+      "label": "Extract the first JSON object or array from text, handling markdown fences.",
+      "file_type": "rationale",
+      "source_file": "src/learner/llm.py",
+      "source_location": "L95",
+      "community": 1,
+      "norm_label": "extract the first json object or array from text, handling markdown fences.",
+      "id": "learner_llm_rationale_95"
+    },
+    {
+      "label": "Return a canned lesson card matching the \u00a76 schema.",
+      "file_type": "rationale",
+      "source_file": "src/learner/llm.py",
+      "source_location": "L145",
+      "community": 1,
+      "norm_label": "return a canned lesson card matching the \u00a76 schema.",
+      "id": "learner_llm_rationale_145"
+    },
+    {
+      "label": "Return one question per word, cycling through all four types.",
+      "file_type": "rationale",
+      "source_file": "src/learner/llm.py",
+      "source_location": "L200",
+      "community": 1,
+      "norm_label": "return one question per word, cycling through all four types.",
+      "id": "learner_llm_rationale_200"
+    },
+    {
+      "label": "Stub grader: correct if the answer contains the target word (case-insensitive",
+      "file_type": "rationale",
+      "source_file": "src/learner/llm.py",
+      "source_location": "L239",
+      "community": 1,
+      "norm_label": "stub grader: correct if the answer contains the target word (case-insensitive",
+      "id": "learner_llm_rationale_239"
+    },
+    {
+      "label": "Generate (or stub) a rich lesson card for `word` (a words-table row as dict).",
+      "file_type": "rationale",
+      "source_file": "src/learner/llm.py",
+      "source_location": "L265",
+      "community": 1,
+      "norm_label": "generate (or stub) a rich lesson card for `word` (a words-table row as dict).",
+      "id": "learner_llm_rationale_265"
+    },
+    {
+      "label": "Batch-generate questions for a list of words.     Returns a list of question dic",
+      "file_type": "rationale",
+      "source_file": "src/learner/llm.py",
+      "source_location": "L320",
+      "community": 1,
+      "norm_label": "batch-generate questions for a list of words.     returns a list of question dic",
+      "id": "learner_llm_rationale_320"
+    },
+    {
+      "label": "Grade `answer` against `question`. Returns \u00a77 grader_output_json.",
+      "file_type": "rationale",
+      "source_file": "src/learner/llm.py",
+      "source_location": "L371",
+      "community": 1,
+      "norm_label": "grade `answer` against `question`. returns \u00a77 grader_output_json.",
+      "id": "learner_llm_rationale_371"
+    },
+    {
+      "label": "Inline read-only review of a session's items.",
+      "file_type": "rationale",
+      "source_file": "src/learner/ui/sessions.py",
+      "source_location": "L96",
+      "community": 17,
+      "norm_label": "inline read-only review of a session's items.",
+      "id": "ui_sessions_rationale_96"
+    },
+    {
+      "label": "Emit the Midnight Ink stylesheet + fonts into the page head (call once per page)",
+      "file_type": "rationale",
+      "source_file": "src/learner/ui/theme.py",
+      "source_location": "L253",
+      "community": 4,
+      "norm_label": "emit the midnight ink stylesheet + fonts into the page head (call once per page)",
+      "id": "ui_theme_rationale_253"
+    },
+    {
+      "label": "Context manager that wraps page content in the shared layout.",
+      "file_type": "rationale",
+      "source_file": "src/learner/ui/layout.py",
+      "source_location": "L73",
+      "community": 4,
+      "norm_label": "context manager that wraps page content in the shared layout.",
+      "id": "ui_layout_rationale_73"
+    },
+    {
+      "label": "Run a session: LEARN all cards, then DRILL all words.",
+      "file_type": "rationale",
+      "source_file": "src/learner/ui/study.py",
+      "source_location": "L184",
+      "community": 6,
+      "norm_label": "run a session: learn all cards, then drill all words.",
+      "id": "ui_study_rationale_184"
+    },
+    {
+      "label": "Read-only review of a completed session.",
+      "file_type": "rationale",
+      "source_file": "src/learner/ui/study.py",
+      "source_location": "L374",
+      "community": 6,
+      "norm_label": "read-only review of a completed session.",
+      "id": "ui_study_rationale_374"
     },
     {
       "label": "settings.json",
@@ -2350,7 +2638,7 @@
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
       "source_location": "L183",
-      "community": 2,
+      "community": 0,
       "norm_label": "grade answer, persist to db, advance cursor, update srs.     returns {grader_out",
       "id": "learner_services_rationale_183"
     },
@@ -2395,7 +2683,7 @@
       "file_type": "rationale",
       "source_file": "src/learner/services.py",
       "source_location": "L460",
-      "community": 0,
+      "community": 4,
       "norm_label": "mastery, weakest words, progression toward next level.",
       "id": "learner_services_rationale_460"
     },
@@ -2485,7 +2773,7 @@
       "file_type": "rationale",
       "source_file": "src/learner/ui/sessions.py",
       "source_location": "L93",
-      "community": 8,
+      "community": 17,
       "norm_label": "inline read-only review of a session's items.",
       "id": "ui_sessions_rationale_93"
     },
@@ -2587,7 +2875,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 8,
+      "community": 17,
       "norm_label": "page_sessions route",
       "id": "app_page_sessions"
     },
@@ -2600,7 +2888,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 17,
+      "community": 4,
       "norm_label": "page_stats route",
       "id": "app_page_stats"
     },
@@ -2626,7 +2914,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 0,
       "norm_label": "box_intervals (srs box durations)",
       "id": "learner_config_box_intervals"
     },
@@ -2665,7 +2953,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 0,
       "norm_label": "leitner 5-box srs design decision",
       "id": "architecture_leitner_srs"
     },
@@ -2717,7 +3005,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 0,
       "norm_label": "leak-plugger srs rule",
       "id": "architecture_leak_plugger"
     },
@@ -2814,9 +3102,9 @@
       "source_file": "app.py",
       "source_location": "L52",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_py",
-      "target": "chinese_learner_app_page_vocabulary",
-      "confidence_score": 1.0
+      "target": "chinese_learner_app_page_vocabulary"
     },
     {
       "relation": "contains",
@@ -3726,6 +4014,17 @@
     {
       "relation": "calls",
       "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/learner/services.py",
+      "source_location": "L201",
+      "weight": 1.0,
+      "source": "learner_services_record_study_activity",
+      "target": "learner_db_get_user_profile"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/learner/services.py",
@@ -3755,6 +4054,17 @@
       "weight": 1.0,
       "source": "learner_services_list_addable_words",
       "target": "learner_db_get_user_profile"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/learner/services.py",
+      "source_location": "L221",
+      "weight": 1.0,
+      "source": "learner_services_record_study_activity",
+      "target": "learner_db_update_user_profile"
     },
     {
       "relation": "contains",
@@ -3802,9 +4112,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L79",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_services_py",
-      "target": "learner_services_create_session",
-      "confidence_score": 1.0
+      "target": "learner_services_create_session"
     },
     {
       "relation": "contains",
@@ -3822,9 +4132,19 @@
       "source_file": "src/learner/services.py",
       "source_location": "L172",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_services_py",
-      "target": "learner_services_start_session_with_words",
-      "confidence_score": 1.0
+      "target": "learner_services_start_session_with_words"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
+      "source_location": "L191",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_learner_services_py",
+      "target": "learner_services_record_study_activity"
     },
     {
       "relation": "contains",
@@ -3902,9 +4222,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L534",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_services_py",
-      "target": "learner_services_vocab_count",
-      "confidence_score": 1.0
+      "target": "learner_services_vocab_count"
     },
     {
       "relation": "contains",
@@ -3912,9 +4232,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L540",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_services_py",
-      "target": "learner_services_list_vocabulary",
-      "confidence_score": 1.0
+      "target": "learner_services_list_vocabulary"
     },
     {
       "relation": "contains",
@@ -3922,9 +4242,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L567",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_services_py",
-      "target": "learner_services_get_word_card",
-      "confidence_score": 1.0
+      "target": "learner_services_get_word_card"
     },
     {
       "relation": "contains",
@@ -3932,9 +4252,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L581",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_services_py",
-      "target": "learner_services_add_words_to_bank",
-      "confidence_score": 1.0
+      "target": "learner_services_add_words_to_bank"
     },
     {
       "relation": "contains",
@@ -3942,9 +4262,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L598",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_services_py",
-      "target": "learner_services_list_addable_words",
-      "confidence_score": 1.0
+      "target": "learner_services_list_addable_words"
     },
     {
       "relation": "rationale_for",
@@ -3984,9 +4304,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L90",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_create_session",
-      "target": "learner_services_ensure_lesson_card",
-      "confidence_score": 1.0
+      "target": "learner_services_ensure_lesson_card"
     },
     {
       "relation": "calls",
@@ -3995,9 +4315,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L572",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_get_word_card",
-      "target": "learner_services_ensure_lesson_card",
-      "confidence_score": 1.0
+      "target": "learner_services_ensure_lesson_card"
     },
     {
       "relation": "calls",
@@ -4006,9 +4326,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L592",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_add_words_to_bank",
-      "target": "learner_services_ensure_lesson_card",
-      "confidence_score": 1.0
+      "target": "learner_services_ensure_lesson_card"
     },
     {
       "relation": "rationale_for",
@@ -4058,9 +4378,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L138",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_create_session",
-      "target": "learner_services_word_row_to_dict",
-      "confidence_score": 1.0
+      "target": "learner_services_word_row_to_dict"
     },
     {
       "relation": "calls",
@@ -4069,9 +4389,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L575",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_get_word_card",
-      "target": "learner_services_word_row_to_dict",
-      "confidence_score": 1.0
+      "target": "learner_services_word_row_to_dict"
     },
     {
       "relation": "calls",
@@ -4080,9 +4400,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L594",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_add_words_to_bank",
-      "target": "learner_services_word_row_to_dict",
-      "confidence_score": 1.0
+      "target": "learner_services_word_row_to_dict"
     },
     {
       "relation": "calls",
@@ -4091,9 +4411,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L604",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_list_addable_words",
-      "target": "learner_services_word_row_to_dict",
-      "confidence_score": 1.0
+      "target": "learner_services_word_row_to_dict"
     },
     {
       "relation": "calls",
@@ -4113,9 +4433,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L169",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_start_session",
-      "target": "learner_services_create_session",
-      "confidence_score": 1.0
+      "target": "learner_services_create_session"
     },
     {
       "relation": "calls",
@@ -4124,9 +4444,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L184",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_start_session_with_words",
-      "target": "learner_services_create_session",
-      "confidence_score": 1.0
+      "target": "learner_services_create_session"
     },
     {
       "relation": "rationale_for",
@@ -4134,9 +4454,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L80",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_rationale_80",
-      "target": "learner_services_create_session",
-      "confidence_score": 1.0
+      "target": "learner_services_create_session"
     },
     {
       "relation": "calls",
@@ -4155,9 +4475,9 @@
       "source_file": "src/learner/services.py",
       "source_location": "L156",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_rationale_156",
-      "target": "learner_services_start_session",
-      "confidence_score": 1.0
+      "target": "learner_services_start_session"
     },
     {
       "relation": "calls",
@@ -4270,19 +4590,40 @@
       "source_file": "src/learner/services.py",
       "source_location": "L173",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_rationale_173",
-      "target": "learner_services_start_session_with_words",
-      "confidence_score": 1.0
+      "target": "learner_services_start_session_with_words"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
+      "source_location": "L291",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_grade_answer",
+      "target": "learner_services_record_study_activity"
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
-      "source_location": "L197",
+      "source_location": "L192",
       "weight": 1.0,
-      "source": "learner_services_rationale_197",
-      "target": "learner_services_grade_answer",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_192",
+      "target": "learner_services_record_study_activity"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
+      "source_location": "L230",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_230",
+      "target": "learner_services_grade_answer"
     },
     {
       "relation": "calls",
@@ -4305,6 +4646,16 @@
       "weight": 1.0,
       "source": "learner_services_grade_answer",
       "target": "learner_srs_update_srs"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
+      "source_location": "L197",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_197",
+      "target": "learner_services_grade_answer"
     },
     {
       "relation": "rationale_for",
@@ -4352,11 +4703,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
-      "source_location": "L271",
+      "source_location": "L307",
       "weight": 1.0,
-      "source": "learner_services_rationale_271",
-      "target": "learner_services_load_session",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_307",
+      "target": "learner_services_load_session"
     },
     {
       "relation": "calls",
@@ -4384,6 +4735,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
+      "source_location": "L271",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_271",
+      "target": "learner_services_load_session"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
       "source_location": "L257",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4394,11 +4755,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
-      "source_location": "L336",
+      "source_location": "L372",
       "weight": 1.0,
-      "source": "learner_services_rationale_336",
-      "target": "learner_services_list_sessions",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_372",
+      "target": "learner_services_list_sessions"
     },
     {
       "relation": "calls",
@@ -4426,6 +4787,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
+      "source_location": "L336",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_336",
+      "target": "learner_services_list_sessions"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
       "source_location": "L322",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4436,11 +4807,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
+      "source_location": "L411",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_411",
+      "target": "learner_services_redrill_session"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
       "source_location": "L375",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_services_rationale_375",
-      "target": "learner_services_redrill_session",
-      "confidence_score": 1.0
+      "target": "learner_services_redrill_session"
     },
     {
       "relation": "rationale_for",
@@ -4498,11 +4879,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
-      "source_location": "L452",
+      "source_location": "L488",
       "weight": 1.0,
-      "source": "learner_services_rationale_452",
-      "target": "learner_services_due_reviews",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_488",
+      "target": "learner_services_due_reviews"
     },
     {
       "relation": "calls",
@@ -4541,6 +4922,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
+      "source_location": "L452",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_452",
+      "target": "learner_services_due_reviews"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
       "source_location": "L438",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4551,11 +4942,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
-      "source_location": "L474",
+      "source_location": "L510",
       "weight": 1.0,
-      "source": "learner_services_rationale_474",
-      "target": "learner_services_get_stats",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_510",
+      "target": "learner_services_get_stats"
     },
     {
       "relation": "calls",
@@ -4605,6 +4996,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
+      "source_location": "L474",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_474",
+      "target": "learner_services_get_stats"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
       "source_location": "L460",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4615,11 +5016,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
-      "source_location": "L520",
+      "source_location": "L556",
       "weight": 1.0,
-      "source": "learner_services_rationale_520",
-      "target": "learner_services_get_in_progress_session",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_556",
+      "target": "learner_services_get_in_progress_session"
     },
     {
       "relation": "calls",
@@ -4636,6 +5037,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
+      "source_location": "L520",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_520",
+      "target": "learner_services_get_in_progress_session"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
       "source_location": "L506",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4646,11 +5057,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
-      "source_location": "L535",
+      "source_location": "L571",
       "weight": 1.0,
-      "source": "learner_services_rationale_535",
-      "target": "learner_services_vocab_count",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_571",
+      "target": "learner_services_vocab_count"
     },
     {
       "relation": "calls",
@@ -4667,11 +5078,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
-      "source_location": "L541",
+      "source_location": "L535",
       "weight": 1.0,
-      "source": "learner_services_rationale_541",
-      "target": "learner_services_list_vocabulary",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_535",
+      "target": "learner_services_vocab_count"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
+      "source_location": "L577",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_577",
+      "target": "learner_services_list_vocabulary"
     },
     {
       "relation": "calls",
@@ -4699,11 +5120,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
-      "source_location": "L568",
+      "source_location": "L541",
       "weight": 1.0,
-      "source": "learner_services_rationale_568",
-      "target": "learner_services_get_word_card",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_541",
+      "target": "learner_services_list_vocabulary"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
+      "source_location": "L604",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_604",
+      "target": "learner_services_get_word_card"
     },
     {
       "relation": "calls",
@@ -4720,11 +5151,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
-      "source_location": "L582",
+      "source_location": "L568",
       "weight": 1.0,
-      "source": "learner_services_rationale_582",
-      "target": "learner_services_add_words_to_bank",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_568",
+      "target": "learner_services_get_word_card"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
+      "source_location": "L618",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_618",
+      "target": "learner_services_add_words_to_bank"
     },
     {
       "relation": "calls",
@@ -4752,11 +5193,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/services.py",
-      "source_location": "L599",
+      "source_location": "L582",
       "weight": 1.0,
-      "source": "learner_services_rationale_599",
-      "target": "learner_services_list_addable_words",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_582",
+      "target": "learner_services_add_words_to_bank"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
+      "source_location": "L635",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_635",
+      "target": "learner_services_list_addable_words"
     },
     {
       "relation": "calls",
@@ -4778,6 +5229,16 @@
       "source_location": "L61",
       "weight": 1.0,
       "source": "ui_study_build_study_builder",
+      "target": "learner_services_list_addable_words"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/services.py",
+      "source_location": "L599",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_services_rationale_599",
       "target": "learner_services_list_addable_words"
     },
     {
@@ -5337,9 +5798,9 @@
       "source_file": "src/learner/llm.py",
       "source_location": "L65",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_llm_py",
-      "target": "learner_llm_chat_json",
-      "confidence_score": 1.0
+      "target": "learner_llm_chat_json"
     },
     {
       "relation": "contains",
@@ -5439,9 +5900,19 @@
       "source_file": "src/learner/llm.py",
       "source_location": "L73",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_chat_json",
-      "target": "learner_llm_chat",
-      "confidence_score": 1.0
+      "target": "learner_llm_chat"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/llm.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_llm_rationale_44",
+      "target": "learner_llm_chat"
     },
     {
       "relation": "rationale_for",
@@ -5449,9 +5920,9 @@
       "source_file": "src/learner/llm.py",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_rationale_43",
-      "target": "learner_llm_chat",
-      "confidence_score": 1.0
+      "target": "learner_llm_chat"
     },
     {
       "relation": "calls",
@@ -5513,9 +5984,9 @@
       "source_file": "src/learner/llm.py",
       "source_location": "L85",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_chat_json",
-      "target": "learner_llm_extract_json",
-      "confidence_score": 1.0
+      "target": "learner_llm_extract_json"
     },
     {
       "relation": "calls",
@@ -5524,9 +5995,9 @@
       "source_file": "src/learner/llm.py",
       "source_location": "L316",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_generate_lesson_card",
-      "target": "learner_llm_chat_json",
-      "confidence_score": 1.0
+      "target": "learner_llm_chat_json"
     },
     {
       "relation": "calls",
@@ -5535,9 +6006,9 @@
       "source_file": "src/learner/llm.py",
       "source_location": "L364",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_generate_questions",
-      "target": "learner_llm_chat_json",
-      "confidence_score": 1.0
+      "target": "learner_llm_chat_json"
     },
     {
       "relation": "calls",
@@ -5546,9 +6017,19 @@
       "source_file": "src/learner/llm.py",
       "source_location": "L410",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_grade",
-      "target": "learner_llm_chat_json",
-      "confidence_score": 1.0
+      "target": "learner_llm_chat_json"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/llm.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_llm_rationale_67",
+      "target": "learner_llm_chat_json"
     },
     {
       "relation": "rationale_for",
@@ -5556,9 +6037,19 @@
       "source_file": "src/learner/llm.py",
       "source_location": "L66",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_rationale_66",
-      "target": "learner_llm_chat_json",
-      "confidence_score": 1.0
+      "target": "learner_llm_chat_json"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/llm.py",
+      "source_location": "L96",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_llm_rationale_96",
+      "target": "learner_llm_extract_json"
     },
     {
       "relation": "rationale_for",
@@ -5566,9 +6057,9 @@
       "source_file": "src/learner/llm.py",
       "source_location": "L95",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_rationale_95",
-      "target": "learner_llm_extract_json",
-      "confidence_score": 1.0
+      "target": "learner_llm_extract_json"
     },
     {
       "relation": "calls",
@@ -5628,11 +6119,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/llm.py",
+      "source_location": "L146",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_llm_rationale_146",
+      "target": "learner_llm_stub_lesson_card"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/llm.py",
       "source_location": "L145",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_rationale_145",
-      "target": "learner_llm_stub_lesson_card",
-      "confidence_score": 1.0
+      "target": "learner_llm_stub_lesson_card"
     },
     {
       "relation": "rationale_for",
@@ -5659,11 +6160,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/llm.py",
+      "source_location": "L201",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_llm_rationale_201",
+      "target": "learner_llm_stub_questions"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/llm.py",
       "source_location": "L200",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_rationale_200",
-      "target": "learner_llm_stub_questions",
-      "confidence_score": 1.0
+      "target": "learner_llm_stub_questions"
     },
     {
       "relation": "rationale_for",
@@ -5690,11 +6201,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/llm.py",
+      "source_location": "L240",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_llm_rationale_240",
+      "target": "learner_llm_stub_grade"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/llm.py",
       "source_location": "L239",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_rationale_239",
-      "target": "learner_llm_stub_grade",
-      "confidence_score": 1.0
+      "target": "learner_llm_stub_grade"
     },
     {
       "relation": "rationale_for",
@@ -5710,11 +6231,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/llm.py",
+      "source_location": "L266",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_llm_rationale_266",
+      "target": "learner_llm_generate_lesson_card"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/llm.py",
       "source_location": "L265",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_rationale_265",
-      "target": "learner_llm_generate_lesson_card",
-      "confidence_score": 1.0
+      "target": "learner_llm_generate_lesson_card"
     },
     {
       "relation": "rationale_for",
@@ -5750,11 +6281,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/llm.py",
+      "source_location": "L321",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_llm_rationale_321",
+      "target": "learner_llm_generate_questions"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/llm.py",
       "source_location": "L320",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_rationale_320",
-      "target": "learner_llm_generate_questions",
-      "confidence_score": 1.0
+      "target": "learner_llm_generate_questions"
     },
     {
       "relation": "rationale_for",
@@ -5780,11 +6321,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/llm.py",
+      "source_location": "L372",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_llm_rationale_372",
+      "target": "learner_llm_grade"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/llm.py",
       "source_location": "L371",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "learner_llm_rationale_371",
-      "target": "learner_llm_grade",
-      "confidence_score": 1.0
+      "target": "learner_llm_grade"
     },
     {
       "relation": "rationale_for",
@@ -5815,6 +6366,47 @@
       "weight": 1.0,
       "source": "learner_config_use_stub",
       "target": "learner_llm_grade"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/pinyin_util.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_learner_pinyin_util_py",
+      "target": "learner_pinyin_util_is_han"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/pinyin_util.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_learner_pinyin_util_py",
+      "target": "learner_pinyin_util_prompt_pinyin"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/pinyin_util.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_pinyin_util_rationale_1",
+      "target": "src_learner_pinyin_util_py"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/pinyin_util.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "learner_pinyin_util_prompt_pinyin",
+      "target": "learner_pinyin_util_is_han"
     },
     {
       "relation": "contains",
@@ -5976,11 +6568,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/ui/sessions.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_sessions_rationale_97",
+      "target": "ui_sessions_render_review_page"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/ui/sessions.py",
       "source_location": "L96",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_sessions_rationale_96",
-      "target": "ui_sessions_render_review_page",
-      "confidence_score": 1.0
+      "target": "ui_sessions_render_review_page"
     },
     {
       "relation": "rationale_for",
@@ -6154,9 +6756,9 @@
       "source_file": "src/learner/ui/theme.py",
       "source_location": "L252",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_ui_theme_py",
-      "target": "ui_theme_inject_theme",
-      "confidence_score": 1.0
+      "target": "ui_theme_inject_theme"
     },
     {
       "relation": "rationale_for",
@@ -6164,19 +6766,19 @@
       "source_file": "src/learner/ui/theme.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_theme_rationale_1",
-      "target": "src_learner_ui_theme_py",
-      "confidence_score": 1.0
+      "target": "src_learner_ui_theme_py"
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/ui/theme.py",
-      "source_location": "L253",
+      "source_location": "L281",
       "weight": 1.0,
-      "source": "ui_theme_rationale_253",
-      "target": "ui_theme_inject_theme",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "ui_theme_rationale_281",
+      "target": "ui_theme_inject_theme"
     },
     {
       "relation": "calls",
@@ -6187,6 +6789,16 @@
       "source_location": "L74",
       "weight": 1.0,
       "source": "ui_layout_frame",
+      "target": "ui_theme_inject_theme"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/ui/theme.py",
+      "source_location": "L253",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_theme_rationale_253",
       "target": "ui_theme_inject_theme"
     },
     {
@@ -6257,9 +6869,9 @@
       "source_file": "src/learner/ui/layout.py",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_layout_rationale_20",
-      "target": "ui_layout_sidebar",
-      "confidence_score": 1.0
+      "target": "ui_layout_sidebar"
     },
     {
       "relation": "rationale_for",
@@ -6275,11 +6887,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/ui/layout.py",
-      "source_location": "L73",
+      "source_location": "L75",
       "weight": 1.0,
-      "source": "ui_layout_rationale_73",
-      "target": "ui_layout_frame",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "ui_layout_rationale_75",
+      "target": "ui_layout_frame"
     },
     {
       "relation": "calls",
@@ -6323,6 +6935,16 @@
       "source_location": "line 266",
       "weight": 1.0,
       "source": "ui_study_build_study_page",
+      "target": "ui_layout_frame"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/ui/layout.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_layout_rationale_73",
       "target": "ui_layout_frame"
     },
     {
@@ -6381,9 +7003,9 @@
       "source_file": "src/learner/ui/components.py",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_ui_components_py",
-      "target": "ui_components_render_lesson_card",
-      "confidence_score": 1.0
+      "target": "ui_components_render_lesson_card"
     },
     {
       "relation": "rationale_for",
@@ -6391,9 +7013,9 @@
       "source_file": "src/learner/ui/components.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_components_rationale_1",
-      "target": "src_learner_ui_components_py",
-      "confidence_score": 1.0
+      "target": "src_learner_ui_components_py"
     },
     {
       "relation": "rationale_for",
@@ -6401,9 +7023,9 @@
       "source_file": "src/learner/ui/components.py",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_components_rationale_9",
-      "target": "ui_components_render_lesson_card",
-      "confidence_score": 1.0
+      "target": "ui_components_render_lesson_card"
     },
     {
       "relation": "calls",
@@ -6422,9 +7044,9 @@
       "source_file": "src/learner/ui/vocabulary.py",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_ui_vocabulary_py",
-      "target": "ui_vocabulary_build_vocabulary",
-      "confidence_score": 1.0
+      "target": "ui_vocabulary_build_vocabulary"
     },
     {
       "relation": "contains",
@@ -6432,9 +7054,9 @@
       "source_file": "src/learner/ui/vocabulary.py",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_ui_vocabulary_py",
-      "target": "ui_vocabulary_render_list",
-      "confidence_score": 1.0
+      "target": "ui_vocabulary_render_list"
     },
     {
       "relation": "contains",
@@ -6442,9 +7064,9 @@
       "source_file": "src/learner/ui/vocabulary.py",
       "source_location": "L53",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_ui_vocabulary_py",
-      "target": "ui_vocabulary_word_row",
-      "confidence_score": 1.0
+      "target": "ui_vocabulary_word_row"
     },
     {
       "relation": "contains",
@@ -6452,9 +7074,9 @@
       "source_file": "src/learner/ui/vocabulary.py",
       "source_location": "L76",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_ui_vocabulary_py",
-      "target": "ui_vocabulary_add",
-      "confidence_score": 1.0
+      "target": "ui_vocabulary_add"
     },
     {
       "relation": "contains",
@@ -6462,9 +7084,9 @@
       "source_file": "src/learner/ui/vocabulary.py",
       "source_location": "L92",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_ui_vocabulary_py",
-      "target": "ui_vocabulary_render_detail",
-      "confidence_score": 1.0
+      "target": "ui_vocabulary_render_detail"
     },
     {
       "relation": "rationale_for",
@@ -6472,9 +7094,9 @@
       "source_file": "src/learner/ui/vocabulary.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_vocabulary_rationale_1",
-      "target": "src_learner_ui_vocabulary_py",
-      "confidence_score": 1.0
+      "target": "src_learner_ui_vocabulary_py"
     },
     {
       "relation": "calls",
@@ -6483,9 +7105,9 @@
       "source_file": "src/learner/ui/vocabulary.py",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_vocabulary_build_vocabulary",
-      "target": "ui_vocabulary_render_detail",
-      "confidence_score": 1.0
+      "target": "ui_vocabulary_render_detail"
     },
     {
       "relation": "calls",
@@ -6494,9 +7116,9 @@
       "source_file": "src/learner/ui/vocabulary.py",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_vocabulary_build_vocabulary",
-      "target": "ui_vocabulary_render_list",
-      "confidence_score": 1.0
+      "target": "ui_vocabulary_render_list"
     },
     {
       "relation": "calls",
@@ -6505,9 +7127,9 @@
       "source_file": "src/learner/ui/vocabulary.py",
       "source_location": "L37",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_vocabulary_render_list",
-      "target": "ui_vocabulary_add",
-      "confidence_score": 1.0
+      "target": "ui_vocabulary_add"
     },
     {
       "relation": "calls",
@@ -6516,9 +7138,9 @@
       "source_file": "src/learner/ui/vocabulary.py",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_vocabulary_render_list",
-      "target": "ui_vocabulary_word_row",
-      "confidence_score": 1.0
+      "target": "ui_vocabulary_word_row"
     },
     {
       "relation": "contains",
@@ -6526,9 +7148,9 @@
       "source_file": "src/learner/ui/study.py",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_ui_study_py",
-      "target": "ui_study_build_study_builder",
-      "confidence_score": 1.0
+      "target": "ui_study_build_study_builder"
     },
     {
       "relation": "contains",
@@ -6536,9 +7158,9 @@
       "source_file": "src/learner/ui/study.py",
       "source_location": "L121",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_ui_study_py",
-      "target": "ui_study_quick_start",
-      "confidence_score": 1.0
+      "target": "ui_study_quick_start"
     },
     {
       "relation": "contains",
@@ -6546,9 +7168,9 @@
       "source_file": "src/learner/ui/study.py",
       "source_location": "L132",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_ui_study_py",
-      "target": "ui_study_custom_start",
-      "confidence_score": 1.0
+      "target": "ui_study_custom_start"
     },
     {
       "relation": "contains",
@@ -6566,9 +7188,9 @@
       "source_file": "src/learner/ui/study.py",
       "source_location": "L177",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_learner_ui_study_py",
-      "target": "ui_study_phase_header",
-      "confidence_score": 1.0
+      "target": "ui_study_phase_header"
     },
     {
       "relation": "contains",
@@ -6627,9 +7249,9 @@
       "source_file": "src/learner/ui/study.py",
       "source_location": "L41",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_study_build_study_builder",
-      "target": "ui_study_quick_start",
-      "confidence_score": 1.0
+      "target": "ui_study_quick_start"
     },
     {
       "relation": "calls",
@@ -6638,9 +7260,9 @@
       "source_file": "src/learner/ui/study.py",
       "source_location": "L117",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_study_build_study_builder",
-      "target": "ui_study_custom_start",
-      "confidence_score": 1.0
+      "target": "ui_study_custom_start"
     },
     {
       "relation": "rationale_for",
@@ -6687,11 +7309,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/ui/study.py",
+      "source_location": "L187",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_study_rationale_187",
+      "target": "ui_study_build_study"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/ui/study.py",
       "source_location": "L184",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_study_rationale_184",
-      "target": "ui_study_build_study",
-      "confidence_score": 1.0
+      "target": "ui_study_build_study"
     },
     {
       "relation": "calls",
@@ -6738,11 +7370,21 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "src/learner/ui/study.py",
+      "source_location": "L406",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_study_rationale_406",
+      "target": "ui_study_render_review"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/learner/ui/study.py",
       "source_location": "L374",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_study_rationale_374",
-      "target": "ui_study_render_review",
-      "confidence_score": 1.0
+      "target": "ui_study_render_review"
     },
     {
       "relation": "rationale_for",
@@ -6760,9 +7402,9 @@
       "source_file": "architecture.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "architecture_md",
-      "target": "chinese_learner_architecture_chinese_learning_agent_architecture",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_chinese_learning_agent_architecture"
     },
     {
       "relation": "contains",
@@ -6770,9 +7412,9 @@
       "source_file": "architecture.md",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_chinese_learning_agent_architecture",
-      "target": "chinese_learner_architecture_decisions",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_decisions"
     },
     {
       "relation": "contains",
@@ -6780,9 +7422,9 @@
       "source_file": "architecture.md",
       "source_location": "L58",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_chinese_learning_agent_architecture",
-      "target": "chinese_learner_architecture_component_map",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_component_map"
     },
     {
       "relation": "contains",
@@ -6790,9 +7432,9 @@
       "source_file": "architecture.md",
       "source_location": "L79",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_chinese_learning_agent_architecture",
-      "target": "chinese_learner_architecture_data_model_essentials",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_data_model_essentials"
     },
     {
       "relation": "contains",
@@ -6800,9 +7442,9 @@
       "source_file": "architecture.md",
       "source_location": "L91",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_chinese_learning_agent_architecture",
-      "target": "chinese_learner_architecture_progression",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_progression"
     },
     {
       "relation": "contains",
@@ -6810,9 +7452,9 @@
       "source_file": "architecture.md",
       "source_location": "L101",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_chinese_learning_agent_architecture",
-      "target": "chinese_learner_architecture_cost_constraints",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_cost_constraints"
     },
     {
       "relation": "contains",
@@ -6820,9 +7462,9 @@
       "source_file": "architecture.md",
       "source_location": "L108",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_chinese_learning_agent_architecture",
-      "target": "chinese_learner_architecture_what_s_deferred",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_what_s_deferred"
     },
     {
       "relation": "contains",
@@ -6830,9 +7472,9 @@
       "source_file": "architecture.md",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_decisions",
-      "target": "chinese_learner_architecture_deployment_local_only_web_app",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_deployment_local_only_web_app"
     },
     {
       "relation": "contains",
@@ -6840,9 +7482,9 @@
       "source_file": "architecture.md",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_decisions",
-      "target": "chinese_learner_architecture_stack_fastapi_sqlite_vanilla_js",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_stack_fastapi_sqlite_vanilla_js"
     },
     {
       "relation": "contains",
@@ -6850,9 +7492,9 @@
       "source_file": "architecture.md",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_decisions",
-      "target": "chinese_learner_architecture_llm_deepseek_v4_flash_free_via_openrouter",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_llm_deepseek_v4_flash_free_via_openrouter"
     },
     {
       "relation": "contains",
@@ -6860,9 +7502,9 @@
       "source_file": "architecture.md",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_decisions",
-      "target": "chinese_learner_architecture_memory_model_leitner_5_box_srs",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_memory_model_leitner_5_box_srs"
     },
     {
       "relation": "contains",
@@ -6870,9 +7512,9 @@
       "source_file": "architecture.md",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_decisions",
-      "target": "chinese_learner_architecture_word_bank_drkameleon_complete_hsk_vocabulary",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_word_bank_drkameleon_complete_hsk_vocabulary"
     },
     {
       "relation": "contains",
@@ -6880,9 +7522,9 @@
       "source_file": "architecture.md",
       "source_location": "L40",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_decisions",
-      "target": "chinese_learner_architecture_difficulty_hard_mode_by_default",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_difficulty_hard_mode_by_default"
     },
     {
       "relation": "contains",
@@ -6890,9 +7532,9 @@
       "source_file": "architecture.md",
       "source_location": "L51",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_decisions",
-      "target": "chinese_learner_architecture_llm_as_grader_not_string_matcher",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_llm_as_grader_not_string_matcher"
     },
     {
       "relation": "contains",
@@ -6900,9 +7542,9 @@
       "source_file": "architecture.md",
       "source_location": "L60",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_architecture_component_map",
-      "target": "chinese_learner_architecture_codeblock_1",
-      "confidence_score": 1.0
+      "target": "chinese_learner_architecture_codeblock_1"
     },
     {
       "relation": "contains",
@@ -6910,9 +7552,9 @@
       "source_file": "README.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_md",
-      "target": "chinese_learner_readme_\u6c49_chinese_learner",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_\u6c49_chinese_learner"
     },
     {
       "relation": "contains",
@@ -6920,9 +7562,9 @@
       "source_file": "README.md",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_readme_\u6c49_chinese_learner",
-      "target": "chinese_learner_readme_features",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_features"
     },
     {
       "relation": "contains",
@@ -6930,9 +7572,9 @@
       "source_file": "README.md",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_readme_\u6c49_chinese_learner",
-      "target": "chinese_learner_readme_requirements",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_requirements"
     },
     {
       "relation": "contains",
@@ -6940,9 +7582,9 @@
       "source_file": "README.md",
       "source_location": "L33",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_readme_\u6c49_chinese_learner",
-      "target": "chinese_learner_readme_quickstart",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_quickstart"
     },
     {
       "relation": "contains",
@@ -6950,9 +7592,9 @@
       "source_file": "README.md",
       "source_location": "L57",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_readme_\u6c49_chinese_learner",
-      "target": "chinese_learner_readme_configuration",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_configuration"
     },
     {
       "relation": "contains",
@@ -6960,9 +7602,9 @@
       "source_file": "README.md",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_readme_\u6c49_chinese_learner",
-      "target": "chinese_learner_readme_makefile_targets",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_makefile_targets"
     },
     {
       "relation": "contains",
@@ -6970,9 +7612,9 @@
       "source_file": "README.md",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_readme_\u6c49_chinese_learner",
-      "target": "chinese_learner_readme_how_it_works",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_how_it_works"
     },
     {
       "relation": "contains",
@@ -6980,9 +7622,9 @@
       "source_file": "README.md",
       "source_location": "L98",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_readme_\u6c49_chinese_learner",
-      "target": "chinese_learner_readme_cost",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_cost"
     },
     {
       "relation": "contains",
@@ -6990,9 +7632,9 @@
       "source_file": "README.md",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_readme_requirements",
-      "target": "chinese_learner_readme_codeblock_1",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_codeblock_1"
     },
     {
       "relation": "contains",
@@ -7000,9 +7642,9 @@
       "source_file": "README.md",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_readme_quickstart",
-      "target": "chinese_learner_readme_codeblock_2",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_codeblock_2"
     },
     {
       "relation": "contains",
@@ -7010,9 +7652,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "claude_md",
-      "target": "chinese_learner_claude_graphify",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_graphify"
     },
     {
       "relation": "contains",
@@ -7020,9 +7662,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_md",
-      "target": "specs_spec_chinese_learning_agent_v1_spec",
-      "confidence_score": 1.0
+      "target": "specs_spec_chinese_learning_agent_v1_spec"
     },
     {
       "relation": "contains",
@@ -7030,9 +7672,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_1_scope_philosophy",
-      "confidence_score": 1.0
+      "target": "specs_spec_1_scope_philosophy"
     },
     {
       "relation": "contains",
@@ -7040,9 +7682,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_2_stack",
-      "confidence_score": 1.0
+      "target": "specs_spec_2_stack"
     },
     {
       "relation": "contains",
@@ -7050,9 +7692,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L73",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_3_data_model",
-      "confidence_score": 1.0
+      "target": "specs_spec_3_data_model"
     },
     {
       "relation": "contains",
@@ -7060,9 +7702,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L146",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_4_session_lifecycle_saving_mechanism_core",
-      "confidence_score": 1.0
+      "target": "specs_spec_4_session_lifecycle_saving_mechanism_core"
     },
     {
       "relation": "contains",
@@ -7070,9 +7712,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L188",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_5_llm_minimization_strategy",
-      "confidence_score": 1.0
+      "target": "specs_spec_5_llm_minimization_strategy"
     },
     {
       "relation": "contains",
@@ -7080,9 +7722,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L204",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_6_lesson_material_schema_most_detailed_section",
-      "confidence_score": 1.0
+      "target": "specs_spec_6_lesson_material_schema_most_detailed_section"
     },
     {
       "relation": "contains",
@@ -7090,9 +7732,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L272",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_7_practice_question_types_typed_mandarin_only",
-      "confidence_score": 1.0
+      "target": "specs_spec_7_practice_question_types_typed_mandarin_only"
     },
     {
       "relation": "contains",
@@ -7100,9 +7742,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L312",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_8_service_layer_internal_python_no_http",
-      "confidence_score": 1.0
+      "target": "specs_spec_8_service_layer_internal_python_no_http"
     },
     {
       "relation": "contains",
@@ -7110,9 +7752,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L329",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_9_ui_spec_nicegui_dashboard_sidebar",
-      "confidence_score": 1.0
+      "target": "specs_spec_9_ui_spec_nicegui_dashboard_sidebar"
     },
     {
       "relation": "contains",
@@ -7120,9 +7762,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L395",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_10_progression_unchanged_from_architecture_md",
-      "confidence_score": 1.0
+      "target": "specs_spec_10_progression_unchanged_from_architecture_md"
     },
     {
       "relation": "contains",
@@ -7130,9 +7772,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L403",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_11_cost_constraints_unchanged",
-      "confidence_score": 1.0
+      "target": "specs_spec_11_cost_constraints_unchanged"
     },
     {
       "relation": "contains",
@@ -7140,9 +7782,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L412",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_12_verification_build_time_checklist",
-      "confidence_score": 1.0
+      "target": "specs_spec_12_verification_build_time_checklist"
     },
     {
       "relation": "contains",
@@ -7150,9 +7792,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L431",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_chinese_learning_agent_v1_spec",
-      "target": "specs_spec_appendix_divergences_from_architecture_md",
-      "confidence_score": 1.0
+      "target": "specs_spec_appendix_divergences_from_architecture_md"
     },
     {
       "relation": "contains",
@@ -7160,9 +7802,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L42",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_2_stack",
-      "target": "specs_spec_why_nicegui_revision_to_architecture_md",
-      "confidence_score": 1.0
+      "target": "specs_spec_why_nicegui_revision_to_architecture_md"
     },
     {
       "relation": "contains",
@@ -7170,9 +7812,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L58",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_2_stack",
-      "target": "specs_spec_llm_routing_unchanged_from_architecture_md",
-      "confidence_score": 1.0
+      "target": "specs_spec_llm_routing_unchanged_from_architecture_md"
     },
     {
       "relation": "contains",
@@ -7180,9 +7822,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_llm_routing_unchanged_from_architecture_md",
-      "target": "specs_spec_codeblock_1",
-      "confidence_score": 1.0
+      "target": "specs_spec_codeblock_1"
     },
     {
       "relation": "contains",
@@ -7190,9 +7832,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L78",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_3_data_model",
-      "target": "specs_spec_words_hsk_word_bank_cached_lesson_card",
-      "confidence_score": 1.0
+      "target": "specs_spec_words_hsk_word_bank_cached_lesson_card"
     },
     {
       "relation": "contains",
@@ -7200,9 +7842,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L93",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_3_data_model",
-      "target": "specs_spec_srs_state_one_row_per_introduced_word",
-      "confidence_score": 1.0
+      "target": "specs_spec_srs_state_one_row_per_introduced_word"
     },
     {
       "relation": "contains",
@@ -7210,9 +7852,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L105",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_3_data_model",
-      "target": "specs_spec_user_profile_single_row",
-      "confidence_score": 1.0
+      "target": "specs_spec_user_profile_single_row"
     },
     {
       "relation": "contains",
@@ -7220,9 +7862,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L108",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_3_data_model",
-      "target": "specs_spec_sessions_one_row_per_study_session",
-      "confidence_score": 1.0
+      "target": "specs_spec_sessions_one_row_per_study_session"
     },
     {
       "relation": "contains",
@@ -7230,9 +7872,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L119",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_3_data_model",
-      "target": "specs_spec_session_items_the_heart_of_persistence",
-      "confidence_score": 1.0
+      "target": "specs_spec_session_items_the_heart_of_persistence"
     },
     {
       "relation": "contains",
@@ -7240,9 +7882,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L134",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_3_data_model",
-      "target": "specs_spec_accepted_answers_local_grade_cache",
-      "confidence_score": 1.0
+      "target": "specs_spec_accepted_answers_local_grade_cache"
     },
     {
       "relation": "contains",
@@ -7250,9 +7892,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L148",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_4_session_lifecycle_saving_mechanism_core",
-      "target": "specs_spec_create_new_session",
-      "confidence_score": 1.0
+      "target": "specs_spec_create_new_session"
     },
     {
       "relation": "contains",
@@ -7260,9 +7902,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L157",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_4_session_lifecycle_saving_mechanism_core",
-      "target": "specs_spec_answering",
-      "confidence_score": 1.0
+      "target": "specs_spec_answering"
     },
     {
       "relation": "contains",
@@ -7270,9 +7912,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L170",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_4_session_lifecycle_saving_mechanism_core",
-      "target": "specs_spec_complete",
-      "confidence_score": 1.0
+      "target": "specs_spec_complete"
     },
     {
       "relation": "contains",
@@ -7280,9 +7922,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L173",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_4_session_lifecycle_saving_mechanism_core",
-      "target": "specs_spec_the_three_load_modes",
-      "confidence_score": 1.0
+      "target": "specs_spec_the_three_load_modes"
     },
     {
       "relation": "contains",
@@ -7290,9 +7932,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L210",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_6_lesson_material_schema_most_detailed_section",
-      "target": "specs_spec_card_json_shape",
-      "confidence_score": 1.0
+      "target": "specs_spec_card_json_shape"
     },
     {
       "relation": "contains",
@@ -7300,9 +7942,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L260",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_6_lesson_material_schema_most_detailed_section",
-      "target": "specs_spec_field_rules",
-      "confidence_score": 1.0
+      "target": "specs_spec_field_rules"
     },
     {
       "relation": "contains",
@@ -7310,9 +7952,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L211",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_card_json_shape",
-      "target": "specs_spec_codeblock_2",
-      "confidence_score": 1.0
+      "target": "specs_spec_codeblock_2"
     },
     {
       "relation": "contains",
@@ -7320,9 +7962,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L285",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_7_practice_question_types_typed_mandarin_only",
-      "target": "specs_spec_codeblock_3",
-      "confidence_score": 1.0
+      "target": "specs_spec_codeblock_3"
     },
     {
       "relation": "contains",
@@ -7330,9 +7972,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L289",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_7_practice_question_types_typed_mandarin_only",
-      "target": "specs_spec_grading_llm_as_grader_not_string_matcher",
-      "confidence_score": 1.0
+      "target": "specs_spec_grading_llm_as_grader_not_string_matcher"
     },
     {
       "relation": "contains",
@@ -7340,9 +7982,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L295",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_grading_llm_as_grader_not_string_matcher",
-      "target": "specs_spec_codeblock_4",
-      "confidence_score": 1.0
+      "target": "specs_spec_codeblock_4"
     },
     {
       "relation": "contains",
@@ -7350,9 +7992,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L334",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_9_ui_spec_nicegui_dashboard_sidebar",
-      "target": "specs_spec_layout",
-      "confidence_score": 1.0
+      "target": "specs_spec_layout"
     },
     {
       "relation": "contains",
@@ -7360,9 +8002,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L354",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_9_ui_spec_nicegui_dashboard_sidebar",
-      "target": "specs_spec_sidebar_ui_left_drawer_persistent",
-      "confidence_score": 1.0
+      "target": "specs_spec_sidebar_ui_left_drawer_persistent"
     },
     {
       "relation": "contains",
@@ -7370,9 +8012,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L360",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_9_ui_spec_nicegui_dashboard_sidebar",
-      "target": "specs_spec_home_dashboard",
-      "confidence_score": 1.0
+      "target": "specs_spec_home_dashboard"
     },
     {
       "relation": "contains",
@@ -7380,9 +8022,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L364",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_9_ui_spec_nicegui_dashboard_sidebar",
-      "target": "specs_spec_study_view_two_phases",
-      "confidence_score": 1.0
+      "target": "specs_spec_study_view_two_phases"
     },
     {
       "relation": "contains",
@@ -7390,9 +8032,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L385",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_9_ui_spec_nicegui_dashboard_sidebar",
-      "target": "specs_spec_sessions_view",
-      "confidence_score": 1.0
+      "target": "specs_spec_sessions_view"
     },
     {
       "relation": "contains",
@@ -7400,9 +8042,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L389",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_9_ui_spec_nicegui_dashboard_sidebar",
-      "target": "specs_spec_stats_view",
-      "confidence_score": 1.0
+      "target": "specs_spec_stats_view"
     },
     {
       "relation": "contains",
@@ -7410,9 +8052,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L335",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_layout",
-      "target": "specs_spec_codeblock_5",
-      "confidence_score": 1.0
+      "target": "specs_spec_codeblock_5"
     },
     {
       "relation": "contains",
@@ -7420,9 +8062,9 @@
       "source_file": "specs/spec.md",
       "source_location": "L365",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "specs_spec_study_view_two_phases",
-      "target": "specs_spec_codeblock_6",
-      "confidence_score": 1.0
+      "target": "specs_spec_codeblock_6"
     },
     {
       "relation": "contains",
@@ -7540,5 +8182,6 @@
       "confidence_score": 0.95,
       "source_file": "src/learner/srs.py"
     }
-  ]
+  ],
+  "built_at_commit": "c4261da4b7c0545edb93c0b86007acd601578e32"
 }

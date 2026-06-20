@@ -5,6 +5,7 @@
 progress.db
 progress.db-shm
 progress.db-wal
+data/
 
 # Python
 .venv/

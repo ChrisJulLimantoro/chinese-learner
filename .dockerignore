@@ -1,0 +1,12 @@
+.venv
+__pycache__
+*.pyc
+*.pyo
+.git
+graphify-out/
+specs/
+progress.db
+progress.db-shm
+progress.db-wal
+data/
+.env

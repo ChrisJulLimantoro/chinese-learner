@@ -182,6 +182,34 @@ _THEME_HTML = """
   }
   .btn-ghost.q-btn:hover { border-color: var(--gold) !important; background: rgba(224,179,65,0.06) !important; }
 
+  /* ---- pinyin hint buttons ---- */
+  .hint-btn.q-btn {
+    color: var(--muted) !important;
+    border: 1px dashed var(--border) !important;
+    border-radius: 999px !important;
+    background: transparent !important;
+    font-size: 0.72rem !important;
+    padding: 0.15rem 0.65rem !important;
+    min-height: 0 !important;
+    transition: all .15s ease;
+  }
+  .hint-btn.q-btn:hover {
+    color: var(--gold) !important;
+    border-color: var(--gold) !important;
+    background: rgba(224,179,65,0.05) !important;
+  }
+  .hint-btn.used.q-btn {
+    color: var(--gold) !important;
+    border-color: var(--gold) !important;
+    background: rgba(224,179,65,0.08) !important;
+  }
+  .hint-text {
+    font-family: var(--font-mono);
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+
   /* ---- inputs (drill answer) ---- */
   .answer-input .q-field__control {
     background: var(--surface-2) !important;

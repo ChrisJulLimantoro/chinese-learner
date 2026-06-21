@@ -77,7 +77,7 @@ export interface SessionItem {
   order_index: number;
   word: Word;
   lesson_card: LessonCard | null;
-  question_json: Question;
+  question_json: Question | null;
   user_answer: string | null;
   grader_output_json: GraderOutput | null;
   response_time_ms: number | null;

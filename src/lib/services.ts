@@ -15,7 +15,7 @@ import {
   countDue,
   checkProgression,
 } from "./srs";
-import { generateLessonCard, generateQuestions } from "./llm";
+import { generateLessonCard, safeGenerateQuestion } from "./llm";
 import { DEFAULT_SESSION_SIZE, START_HSK_LEVEL, FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS, SUPER_ADMIN_EMAIL } from "./config";
 import type {
   Word,
@@ -142,39 +142,8 @@ async function createSession(
     throw new Error("No words available for session. Word bank may be empty.");
   }
 
-  // Ensure lesson cards cached
-  const enrichedWords = await Promise.all(words.map((w) => ensureLessonCard(w)));
-
-  // Generate questions (batched, one LLM call)
-  const questions = await generateQuestions(enrichedWords);
-
-  // Pad if LLM returned fewer questions than words
-  while (questions.length < enrichedWords.length) {
-    const idx = questions.length;
-    const w = enrichedWords[idx % enrichedWords.length];
-    const meanings = w.meanings ?? ["something"];
-    questions.push({
-      type: "gloss_to_word",
-      prompt: `What Mandarin word means '${meanings[0] ?? w.simplified}'?`,
-      target_word: w.simplified,
-      context: meanings[0] ?? "",
-    });
-  }
-
-  // Realign questions to words by target_word so review/drill word always matches the question.
-  // The LLM may return questions in a different order than the words list.
-  const usedQIdx = new Set<number>();
-  const alignedQuestions = enrichedWords.map((w, i) => {
-    const matchIdx = questions.findIndex(
-      (q, qi) => !usedQIdx.has(qi) && q.target_word === w.simplified
-    );
-    const pick = matchIdx >= 0 ? matchIdx : i;
-    usedQIdx.add(pick);
-    return questions[pick];
-  });
-
   const nowSeconds = Date.now() / 1000;
-  const config = { kind, size: enrichedWords.length, level };
+  const config = { kind, size: words.length, level };
 
   // Insert session
   const { data: sessionRow, error: sessionError } = await supabase
@@ -196,13 +165,13 @@ async function createSession(
 
   const sessionId = sessionRow.id as number;
 
-  // Insert items + seed SRS
-  const itemInserts = enrichedWords.map((w, i) => ({
+  // Insert items with question: null (lazy generation)
+  const itemInserts = words.map((w, i) => ({
     session_id: sessionId,
     user_id: userId,
     order_index: i,
     word_id: w.id,
-    question: alignedQuestions[i],
+    question: null,
   }));
 
   const { data: itemRows } = await supabase
@@ -210,17 +179,17 @@ async function createSession(
     .insert(itemInserts)
     .select();
 
-  // Seed SRS for all words
+  // Seed SRS for all words (DB-only, cheap)
   await Promise.all(
-    enrichedWords.map((w) => ensureSrsState(supabase, userId, w.id))
+    words.map((w) => ensureSrsState(supabase, userId, w.id))
   );
 
-  const items: SessionItem[] = enrichedWords.map((w, i) => ({
+  const items: SessionItem[] = words.map((w, i) => ({
     item_id: (itemRows ?? [])[i]?.id as number,
     order_index: i,
     word: normalizeWordRow(w as unknown as Record<string, unknown>),
-    lesson_card: w.lesson_card,
-    question_json: alignedQuestions[i],
+    lesson_card: null,
+    question_json: null,
     user_answer: null,
     grader_output_json: null,
     response_time_ms: null,
@@ -238,6 +207,44 @@ async function createSession(
     config,
     items,
   };
+}
+
+// ---------------------------------------------------------------------------
+// ensureItemQuestion
+// ---------------------------------------------------------------------------
+
+export async function ensureItemQuestion(
+  supabase: SupabaseClient,
+  userId: string,
+  itemId: number
+): Promise<Question> {
+  // Load item (verify ownership via user_id filter)
+  const { data: item } = await supabase
+    .from("session_items")
+    .select("*, words(id, simplified, traditional, pinyin, hsk_level, pos, meanings, frequency_rank, lesson_card, readings)")
+    .eq("id", itemId)
+    .eq("user_id", userId)
+    .single();
+
+  if (!item) throw new Error(`session_item ${itemId} not found`);
+
+  // Already generated?
+  if (item.question) return item.question as Question;
+
+  const w = (item.words as Record<string, unknown>) ?? {};
+  const word = normalizeWordRow(w);
+
+  // Generate with stub fallback
+  const question = await safeGenerateQuestion(word);
+
+  // Persist
+  await supabase
+    .from("session_items")
+    .update({ question })
+    .eq("id", itemId)
+    .eq("user_id", userId);
+
+  return question;
 }
 
 // ---------------------------------------------------------------------------
@@ -377,7 +384,12 @@ export async function gradeAnswer(
 
   const wordId = item.word_id as number;
   const sessionId = item.session_id as number;
-  const question = item.question as Question;
+
+  // Lazy-generate question if not yet set
+  let question = item.question as Question | null;
+  if (!question) {
+    question = await ensureItemQuestion(supabase, userId, sessionItemId);
+  }
 
   // Grade
   const graderOut = await gradeAnswerWithCache(supabase, wordId, question, answer);
@@ -487,7 +499,7 @@ export async function loadSession(
       order_index: row.order_index as number,
       word: normalizeWordRow(w),
       lesson_card: (w.lesson_card as import("./types").LessonCard | null) ?? null,
-      question_json: row.question as Question,
+      question_json: (row.question as import("./types").Question | null) ?? null,
       user_answer: (row.user_answer as string | null) ?? null,
       grader_output_json: (row.grader_output as GraderOutput | null) ?? null,
       response_time_ms: (row.response_time_ms as number | null) ?? null,
@@ -557,30 +569,10 @@ export async function redrillSession(
     throw new Error(`Session ${sessionId} is not completed (status=${orig.status})`);
   }
 
-  let questions: Question[];
+  let questions: (Question | null)[];
   if (withVariation) {
-    const wordsForLlm = orig.items.map((it) => it.word);
-    questions = await generateQuestions(wordsForLlm);
-    while (questions.length < orig.items.length) {
-      const w = orig.items[questions.length % orig.items.length].word;
-      const meanings = w.meanings ?? ["something"];
-      questions.push({
-        type: "gloss_to_word",
-        prompt: `What Mandarin word means '${meanings[0] ?? w.simplified}'?`,
-        target_word: w.simplified,
-        context: meanings[0] ?? "",
-      });
-    }
-    // Realign questions to original word order by target_word
-    const usedQIdx = new Set<number>();
-    questions = orig.items.map((it, i) => {
-      const matchIdx = questions.findIndex(
-        (q, qi) => !usedQIdx.has(qi) && q.target_word === it.word.simplified
-      );
-      const pick = matchIdx >= 0 ? matchIdx : i;
-      usedQIdx.add(pick);
-      return questions[pick];
-    });
+    // Lazy: insert null, questions generated on demand as user progresses
+    questions = orig.items.map(() => null);
   } else {
     questions = orig.items.map((it) => it.question_json);
   }

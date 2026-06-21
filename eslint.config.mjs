@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local/generated artifacts that should not be linted as app source.
+    ".venv/**",
+    "graphify-out/**",
+    "linkedin-assets/**",
+    "tsconfig.tsbuildinfo",
   ]),
 ]);
 

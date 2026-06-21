@@ -219,3 +219,33 @@ export function Bento({
     </div>
   );
 }
+
+// ─── Skeleton ──────────────────────────────────────────────────────────────
+
+export function Skeleton({
+  className = "",
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={`animate-shimmer rounded-lg bg-surface-2 ${className}`}
+      aria-hidden="true"
+      {...props}
+    />
+  );
+}
+
+// ─── InkLoader ─────────────────────────────────────────────────────────────
+
+export function InkLoader({ className = "" }: { className?: string }) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 text-faint text-xs font-mono select-none ${className}`}
+      aria-hidden="true"
+    >
+      <span className="animate-ink-pulse inline-block w-1.5 h-1.5 rounded-full bg-seal/60" />
+      <span className="animate-ink-pulse inline-block w-1.5 h-1.5 rounded-full bg-seal/60 [animation-delay:0.2s]" />
+      <span className="animate-ink-pulse inline-block w-1.5 h-1.5 rounded-full bg-seal/60 [animation-delay:0.4s]" />
+    </span>
+  );
+}

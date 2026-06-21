@@ -24,6 +24,8 @@ function getClient(): OpenAI {
     _client = new OpenAI({
       apiKey: process.env.LLM_API_KEY ?? "",
       baseURL: OPENCODE_ZEN_BASE_URL,
+      timeout: 20_000,
+      maxRetries: 0,
     });
   }
   return _client;
@@ -130,7 +132,7 @@ function extractJson<T>(text: string): T {
 // Stub helpers (offline, deterministic)
 // ---------------------------------------------------------------------------
 
-function stubLessonCard(word: {
+export function stubLessonCard(word: {
   simplified: string;
   traditional?: string | null;
   pinyin?: string;
@@ -183,7 +185,7 @@ function stubLessonCard(word: {
   };
 }
 
-function stubQuestions(words: { simplified: string; meanings?: string[]; readings?: Reading[] }[]): Question[] {
+export function stubQuestions(words: { simplified: string; meanings?: string[]; readings?: Reading[] }[]): Question[] {
   const types: Question["type"][] = [
     "en_to_zh",
     "cloze",
@@ -237,6 +239,17 @@ function stubGrade(question: Question, answer: string): GraderOutput {
 // ---------------------------------------------------------------------------
 // Public API
 // ---------------------------------------------------------------------------
+
+export async function safeGenerateQuestion(
+  word: { simplified: string; pinyin?: string; hsk_level?: number; meanings?: string[]; readings?: Reading[] }
+): Promise<Question> {
+  try {
+    const results = await generateQuestions([word]);
+    return results[0];
+  } catch {
+    return stubQuestions([word])[0];
+  }
+}
 
 export async function generateLessonCard(word: {
   simplified: string;

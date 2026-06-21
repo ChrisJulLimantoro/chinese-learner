@@ -167,11 +167,53 @@ body::before {
   100% { opacity: 1; transform: scale(1); }
 }
 
+/* ─── Shimmer skeleton ───────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--surface-2) 25%,
+    var(--surface) 50%,
+    var(--surface-2) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* ─── Ink pulse (dot loader) ─────────────────────────────────────────── */
+@keyframes ink-pulse {
+  0%, 80%, 100% { opacity: 0.25; transform: scale(0.8); }
+  40%            { opacity: 1;    transform: scale(1.1); }
+}
+
+.animate-ink-pulse {
+  animation: ink-pulse 1.2s ease-in-out infinite;
+}
+
+/* ─── Seal pulse (session entry) ─────────────────────────────────────── */
+@keyframes seal-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.06); }
+}
+
+.animate-seal-pulse {
+  animation: seal-pulse 1.5s ease-in-out infinite;
+}
+
 /* ─── Reduced motion overrides ──────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .animate-hanzi-in,
   .animate-seal-stamp,
   .animate-fade-up {
+    animation: none;
+  }
+  .animate-shimmer,
+  .animate-ink-pulse,
+  .animate-seal-pulse {
     animation: none;
   }
   .curve-line,

@@ -10,6 +10,7 @@ import {
   dueReviews,
   getInProgressSession,
   gradeAnswer,
+  ensureItemQuestion,
 } from "@/lib/services";
 
 export async function startSessionAction(kind: string = "mixed", size?: number) {
@@ -55,4 +56,9 @@ export async function gradeAnswerAction(
 ) {
   const { supabase, userId } = await getUserContext();
   return gradeAnswer(supabase, userId, sessionItemId, answer, responseTimeMs, hesitated);
+}
+
+export async function ensureItemQuestionAction(itemId: number) {
+  const { supabase, userId } = await getUserContext();
+  return ensureItemQuestion(supabase, userId, itemId);
 }

@@ -72,7 +72,7 @@
       "source_file": "scripts/wordbank-parse.ts",
       "source_location": "L1",
       "id": "scripts_wordbank_parse_ts",
-      "community": 8,
+      "community": 7,
       "norm_label": "wordbank-parse.ts"
     },
     {
@@ -81,7 +81,7 @@
       "source_file": "scripts/wordbank-parse.ts",
       "source_location": "L15",
       "id": "scripts_wordbank_parse_fetchraw",
-      "community": 8,
+      "community": 7,
       "norm_label": "fetchraw()"
     },
     {
@@ -90,7 +90,7 @@
       "source_file": "scripts/wordbank-parse.ts",
       "source_location": "L29",
       "id": "scripts_wordbank_parse_parselevel",
-      "community": 8,
+      "community": 7,
       "norm_label": "parselevel()"
     },
     {
@@ -99,7 +99,7 @@
       "source_file": "scripts/wordbank-parse.ts",
       "source_location": "L39",
       "id": "scripts_wordbank_parse_reading",
-      "community": 8,
+      "community": 7,
       "norm_label": "reading"
     },
     {
@@ -108,7 +108,7 @@
       "source_file": "scripts/wordbank-parse.ts",
       "source_location": "L45",
       "id": "scripts_wordbank_parse_wordrow",
-      "community": 8,
+      "community": 7,
       "norm_label": "wordrow"
     },
     {
@@ -117,7 +117,7 @@
       "source_file": "scripts/wordbank-parse.ts",
       "source_location": "L58",
       "id": "scripts_wordbank_parse_parserows",
-      "community": 8,
+      "community": 7,
       "norm_label": "parserows()"
     },
     {
@@ -126,7 +126,7 @@
       "source_file": "scripts/backfill-readings.ts",
       "source_location": "L1",
       "id": "scripts_backfill_readings_ts",
-      "community": 8,
+      "community": 7,
       "norm_label": "backfill-readings.ts"
     },
     {
@@ -135,7 +135,7 @@
       "source_file": "scripts/backfill-readings.ts",
       "source_location": "L30",
       "id": "scripts_backfill_readings_main",
-      "community": 8,
+      "community": 7,
       "norm_label": "main()"
     },
     {
@@ -144,7 +144,7 @@
       "source_file": "scripts/seed-wordbank.ts",
       "source_location": "L1",
       "id": "scripts_seed_wordbank_ts",
-      "community": 8,
+      "community": 7,
       "norm_label": "seed-wordbank.ts"
     },
     {
@@ -153,7 +153,7 @@
       "source_file": "scripts/seed-wordbank.ts",
       "source_location": "L25",
       "id": "scripts_seed_wordbank_main",
-      "community": 8,
+      "community": 7,
       "norm_label": "main()"
     },
     {
@@ -315,7 +315,7 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L1",
       "id": "src_app_homeclient_tsx",
-      "community": 12,
+      "community": 13,
       "norm_label": "homeclient.tsx"
     },
     {
@@ -324,7 +324,7 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L9",
       "id": "app_homeclient_fmttime",
-      "community": 12,
+      "community": 13,
       "norm_label": "fmttime()"
     },
     {
@@ -333,7 +333,7 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L19",
       "id": "app_homeclient_statusbadgevariant",
-      "community": 12,
+      "community": 13,
       "norm_label": "statusbadgevariant()"
     },
     {
@@ -342,7 +342,7 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L29",
       "id": "app_homeclient_statuslabel",
-      "community": 12,
+      "community": 13,
       "norm_label": "statuslabel()"
     },
     {
@@ -351,7 +351,7 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L39",
       "id": "app_homeclient_weekdays_cn",
-      "community": 12,
+      "community": 13,
       "norm_label": "weekdays_cn"
     },
     {
@@ -360,7 +360,7 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L41",
       "id": "app_homeclient_nav",
-      "community": 12,
+      "community": 13,
       "norm_label": "nav"
     },
     {
@@ -369,7 +369,7 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L47",
       "id": "app_homeclient_quick",
-      "community": 12,
+      "community": 13,
       "norm_label": "quick"
     },
     {
@@ -378,7 +378,7 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L54",
       "id": "app_homeclient_micell",
-      "community": 12,
+      "community": 13,
       "norm_label": "micell()"
     },
     {
@@ -387,7 +387,7 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L75",
       "id": "app_homeclient_homeclient",
-      "community": 12,
+      "community": 13,
       "norm_label": "homeclient()"
     },
     {
@@ -414,7 +414,7 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L1",
       "id": "src_app_settings_settingsclient_tsx",
-      "community": 4,
+      "community": 5,
       "norm_label": "settingsclient.tsx"
     },
     {
@@ -423,7 +423,7 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L10",
       "id": "settings_settingsclient_hsk_labels",
-      "community": 4,
+      "community": 5,
       "norm_label": "hsk_labels"
     },
     {
@@ -432,7 +432,7 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L19",
       "id": "settings_settingsclient_props",
-      "community": 4,
+      "community": 5,
       "norm_label": "props"
     },
     {
@@ -441,7 +441,7 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L25",
       "id": "settings_settingsclient_settingsclient",
-      "community": 4,
+      "community": 5,
       "norm_label": "settingsclient()"
     },
     {
@@ -468,7 +468,7 @@
       "source_file": "src/app/study/StudyBuilderClient.tsx",
       "source_location": "L1",
       "id": "src_app_study_studybuilderclient_tsx",
-      "community": 15,
+      "community": 5,
       "norm_label": "studybuilderclient.tsx"
     },
     {
@@ -477,7 +477,7 @@
       "source_file": "src/app/study/StudyBuilderClient.tsx",
       "source_location": "L10",
       "id": "study_studybuilderclient_vocabword",
-      "community": 15,
+      "community": 5,
       "norm_label": "vocabword"
     },
     {
@@ -486,7 +486,7 @@
       "source_file": "src/app/study/StudyBuilderClient.tsx",
       "source_location": "L16",
       "id": "study_studybuilderclient_studybuilderclient",
-      "community": 15,
+      "community": 5,
       "norm_label": "studybuilderclient()"
     },
     {
@@ -513,43 +513,70 @@
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
       "source_location": "L1",
       "id": "src_app_study_sessionid_studysessionclient_tsx",
-      "community": 7,
+      "community": 12,
       "norm_label": "studysessionclient.tsx"
     },
     {
       "label": "TYPE_LABELS",
       "file_type": "code",
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
-      "source_location": "L12",
+      "source_location": "L13",
       "id": "sessionid_studysessionclient_type_labels",
-      "community": 7,
+      "community": 12,
       "norm_label": "type_labels"
+    },
+    {
+      "label": "PracticeCell()",
+      "file_type": "code",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L22",
+      "id": "sessionid_studysessionclient_practicecell",
+      "community": 12,
+      "norm_label": "practicecell()"
     },
     {
       "label": "LessonCardView()",
       "file_type": "code",
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
-      "source_location": "L21",
+      "source_location": "L42",
       "id": "sessionid_studysessionclient_lessoncardview",
-      "community": 7,
+      "community": 12,
       "norm_label": "lessoncardview()"
+    },
+    {
+      "label": "CardLoadingSkeleton()",
+      "file_type": "code",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L114",
+      "id": "sessionid_studysessionclient_cardloadingskeleton",
+      "community": 12,
+      "norm_label": "cardloadingskeleton()"
+    },
+    {
+      "label": "QuestionLoadingSkeleton()",
+      "file_type": "code",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L162",
+      "id": "sessionid_studysessionclient_questionloadingskeleton",
+      "community": 12,
+      "norm_label": "questionloadingskeleton()"
     },
     {
       "label": "FeedbackView()",
       "file_type": "code",
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
-      "source_location": "L93",
+      "source_location": "L208",
       "id": "sessionid_studysessionclient_feedbackview",
-      "community": 7,
+      "community": 12,
       "norm_label": "feedbackview()"
     },
     {
       "label": "StudySessionClient()",
       "file_type": "code",
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
-      "source_location": "L132",
+      "source_location": "L240",
       "id": "sessionid_studysessionclient_studysessionclient",
-      "community": 7,
+      "community": 12,
       "norm_label": "studysessionclient()"
     },
     {
@@ -657,7 +684,7 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L1",
       "id": "src_app_sessions_sessionsclient_tsx",
-      "community": 14,
+      "community": 5,
       "norm_label": "sessionsclient.tsx"
     },
     {
@@ -666,7 +693,7 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L9",
       "id": "sessions_sessionsclient_fmttime",
-      "community": 14,
+      "community": 5,
       "norm_label": "fmttime()"
     },
     {
@@ -675,7 +702,7 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L19",
       "id": "sessions_sessionsclient_statusvariant",
-      "community": 14,
+      "community": 5,
       "norm_label": "statusvariant()"
     },
     {
@@ -684,7 +711,7 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L25",
       "id": "sessions_sessionsclient_statuslabel",
-      "community": 14,
+      "community": 5,
       "norm_label": "statuslabel()"
     },
     {
@@ -693,7 +720,7 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L34",
       "id": "sessions_sessionsclient_sessionsclient",
-      "community": 14,
+      "community": 5,
       "norm_label": "sessionsclient()"
     },
     {
@@ -720,7 +747,7 @@
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L1",
       "id": "src_app_sessions_id_sessionreviewclient_tsx",
-      "community": 7,
+      "community": 11,
       "norm_label": "sessionreviewclient.tsx"
     },
     {
@@ -729,7 +756,7 @@
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L8",
       "id": "id_sessionreviewclient_type_labels",
-      "community": 7,
+      "community": 11,
       "norm_label": "type_labels"
     },
     {
@@ -738,7 +765,7 @@
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L15",
       "id": "id_sessionreviewclient_outcomevariant",
-      "community": 7,
+      "community": 11,
       "norm_label": "outcomevariant()"
     },
     {
@@ -747,7 +774,7 @@
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L22",
       "id": "id_sessionreviewclient_sessionreviewclient",
-      "community": 7,
+      "community": 11,
       "norm_label": "sessionreviewclient()"
     },
     {
@@ -801,7 +828,7 @@
       "source_file": "src/app/actions/vocabulary.ts",
       "source_location": "L24",
       "id": "actions_vocabulary_regeneratewordcardaction",
-      "community": 0,
+      "community": 15,
       "norm_label": "regeneratewordcardaction()"
     },
     {
@@ -837,7 +864,7 @@
       "source_file": "src/app/actions/vocabulary.ts",
       "source_location": "L44",
       "id": "actions_vocabulary_getstatsaction",
-      "community": 0,
+      "community": 1,
       "norm_label": "getstatsaction()"
     },
     {
@@ -925,25 +952,25 @@
       "label": "startSessionAction()",
       "file_type": "code",
       "source_file": "src/app/actions/session.ts",
-      "source_location": "L15",
+      "source_location": "L16",
       "id": "actions_session_startsessionaction",
-      "community": 15,
+      "community": 0,
       "norm_label": "startsessionaction()"
     },
     {
       "label": "startSessionWithWordsAction()",
       "file_type": "code",
       "source_file": "src/app/actions/session.ts",
-      "source_location": "L20",
+      "source_location": "L21",
       "id": "actions_session_startsessionwithwordsaction",
-      "community": 15,
+      "community": 0,
       "norm_label": "startsessionwithwordsaction()"
     },
     {
       "label": "loadSessionAction()",
       "file_type": "code",
       "source_file": "src/app/actions/session.ts",
-      "source_location": "L25",
+      "source_location": "L26",
       "id": "actions_session_loadsessionaction",
       "community": 0,
       "norm_label": "loadsessionaction()"
@@ -952,7 +979,7 @@
       "label": "listSessionsAction()",
       "file_type": "code",
       "source_file": "src/app/actions/session.ts",
-      "source_location": "L30",
+      "source_location": "L31",
       "id": "actions_session_listsessionsaction",
       "community": 0,
       "norm_label": "listsessionsaction()"
@@ -961,7 +988,7 @@
       "label": "redrillSessionAction()",
       "file_type": "code",
       "source_file": "src/app/actions/session.ts",
-      "source_location": "L35",
+      "source_location": "L36",
       "id": "actions_session_redrillsessionaction",
       "community": 0,
       "norm_label": "redrillsessionaction()"
@@ -970,7 +997,7 @@
       "label": "dueReviewsAction()",
       "file_type": "code",
       "source_file": "src/app/actions/session.ts",
-      "source_location": "L40",
+      "source_location": "L41",
       "id": "actions_session_duereviewsaction",
       "community": 0,
       "norm_label": "duereviewsaction()"
@@ -979,7 +1006,7 @@
       "label": "getInProgressSessionAction()",
       "file_type": "code",
       "source_file": "src/app/actions/session.ts",
-      "source_location": "L45",
+      "source_location": "L46",
       "id": "actions_session_getinprogresssessionaction",
       "community": 0,
       "norm_label": "getinprogresssessionaction()"
@@ -988,10 +1015,19 @@
       "label": "gradeAnswerAction()",
       "file_type": "code",
       "source_file": "src/app/actions/session.ts",
-      "source_location": "L50",
+      "source_location": "L51",
       "id": "actions_session_gradeansweraction",
-      "community": 7,
+      "community": 0,
       "norm_label": "gradeansweraction()"
+    },
+    {
+      "label": "ensureItemQuestionAction()",
+      "file_type": "code",
+      "source_file": "src/app/actions/session.ts",
+      "source_location": "L61",
+      "id": "actions_session_ensureitemquestionaction",
+      "community": 0,
+      "norm_label": "ensureitemquestionaction()"
     },
     {
       "label": "profile.ts",
@@ -1080,7 +1116,7 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L1",
       "id": "src_app_stats_statsclient_tsx",
-      "community": 4,
+      "community": 8,
       "norm_label": "statsclient.tsx"
     },
     {
@@ -1089,7 +1125,7 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L7",
       "id": "stats_statsclient_masteryring",
-      "community": 4,
+      "community": 8,
       "norm_label": "masteryring()"
     },
     {
@@ -1098,7 +1134,7 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L41",
       "id": "stats_statsclient_statsclient",
-      "community": 4,
+      "community": 8,
       "norm_label": "statsclient()"
     },
     {
@@ -1125,7 +1161,7 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L1",
       "id": "src_app_vocabulary_vocabularyclient_tsx",
-      "community": 11,
+      "community": 9,
       "norm_label": "vocabularyclient.tsx"
     },
     {
@@ -1134,7 +1170,7 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L12",
       "id": "vocabulary_vocabularyclient_vocabword",
-      "community": 11,
+      "community": 9,
       "norm_label": "vocabword"
     },
     {
@@ -1143,7 +1179,7 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L21",
       "id": "vocabulary_vocabularyclient_wordbadgevariant",
-      "community": 11,
+      "community": 9,
       "norm_label": "wordbadgevariant()"
     },
     {
@@ -1152,7 +1188,7 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L27",
       "id": "vocabulary_vocabularyclient_wordbadgelabel",
-      "community": 11,
+      "community": 9,
       "norm_label": "wordbadgelabel()"
     },
     {
@@ -1161,7 +1197,7 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L33",
       "id": "vocabulary_vocabularyclient_hskbadgevariant",
-      "community": 11,
+      "community": 9,
       "norm_label": "hskbadgevariant()"
     },
     {
@@ -1170,7 +1206,7 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L39",
       "id": "vocabulary_vocabularyclient_hsk_filter_labels",
-      "community": 11,
+      "community": 9,
       "norm_label": "hsk_filter_labels"
     },
     {
@@ -1179,7 +1215,7 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L49",
       "id": "vocabulary_vocabularyclient_vocabularyclient",
-      "community": 11,
+      "community": 9,
       "norm_label": "vocabularyclient()"
     },
     {
@@ -1188,7 +1224,7 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L241",
       "id": "vocabulary_vocabularyclient_infinitelist",
-      "community": 11,
+      "community": 9,
       "norm_label": "infinitelist()"
     },
     {
@@ -1197,7 +1233,7 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L284",
       "id": "vocabulary_vocabularyclient_wordrow",
-      "community": 11,
+      "community": 9,
       "norm_label": "wordrow()"
     },
     {
@@ -1224,7 +1260,7 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L1",
       "id": "src_app_vocabulary_wordid_wordcardclient_tsx",
-      "community": 9,
+      "community": 15,
       "norm_label": "wordcardclient.tsx"
     },
     {
@@ -1233,7 +1269,7 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L10",
       "id": "wordid_wordcardclient_fmtnextreview",
-      "community": 9,
+      "community": 15,
       "norm_label": "fmtnextreview()"
     },
     {
@@ -1242,7 +1278,7 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L21",
       "id": "wordid_wordcardclient_section",
-      "community": 9,
+      "community": 15,
       "norm_label": "section()"
     },
     {
@@ -1251,7 +1287,7 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L30",
       "id": "wordid_wordcardclient_regeneratemodal",
-      "community": 9,
+      "community": 15,
       "norm_label": "regeneratemodal()"
     },
     {
@@ -1260,7 +1296,7 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L79",
       "id": "wordid_wordcardclient_wordcardclient",
-      "community": 9,
+      "community": 15,
       "norm_label": "wordcardclient()"
     },
     {
@@ -1269,7 +1305,7 @@
       "source_file": "src/app/vocabulary/[wordId]/page.tsx",
       "source_location": "L1",
       "id": "src_app_vocabulary_wordid_page_tsx",
-      "community": 1,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -1278,7 +1314,7 @@
       "source_file": "src/app/vocabulary/[wordId]/page.tsx",
       "source_location": "L8",
       "id": "wordid_page_worddetailpage",
-      "community": 1,
+      "community": 0,
       "norm_label": "worddetailpage()"
     },
     {
@@ -1359,7 +1395,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L1",
       "id": "src_components_ui_tsx",
-      "community": 4,
+      "community": 8,
       "norm_label": "ui.tsx"
     },
     {
@@ -1368,7 +1404,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L5",
       "id": "components_ui_cardprops",
-      "community": 4,
+      "community": 8,
       "norm_label": "cardprops"
     },
     {
@@ -1377,7 +1413,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L11",
       "id": "components_ui_card",
-      "community": 14,
+      "community": 5,
       "norm_label": "card()"
     },
     {
@@ -1386,7 +1422,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L45",
       "id": "components_ui_buttonvariant",
-      "community": 4,
+      "community": 8,
       "norm_label": "buttonvariant"
     },
     {
@@ -1395,7 +1431,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L46",
       "id": "components_ui_buttonsize",
-      "community": 4,
+      "community": 8,
       "norm_label": "buttonsize"
     },
     {
@@ -1404,7 +1440,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L48",
       "id": "components_ui_buttonprops",
-      "community": 4,
+      "community": 8,
       "norm_label": "buttonprops"
     },
     {
@@ -1413,7 +1449,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L54",
       "id": "components_ui_button",
-      "community": 15,
+      "community": 5,
       "norm_label": "button()"
     },
     {
@@ -1422,7 +1458,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L92",
       "id": "components_ui_badgevariant",
-      "community": 4,
+      "community": 8,
       "norm_label": "badgevariant"
     },
     {
@@ -1431,7 +1467,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L94",
       "id": "components_ui_badge",
-      "community": 4,
+      "community": 15,
       "norm_label": "badge()"
     },
     {
@@ -1440,7 +1476,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L122",
       "id": "components_ui_progressbar",
-      "community": 4,
+      "community": 8,
       "norm_label": "progressbar()"
     },
     {
@@ -1449,7 +1485,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L163",
       "id": "components_ui_pageheader",
-      "community": 4,
+      "community": 5,
       "norm_label": "pageheader()"
     },
     {
@@ -1458,8 +1494,26 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L207",
       "id": "components_ui_bento",
-      "community": 4,
+      "community": 8,
       "norm_label": "bento()"
+    },
+    {
+      "label": "Skeleton()",
+      "file_type": "code",
+      "source_file": "src/components/ui.tsx",
+      "source_location": "L225",
+      "id": "components_ui_skeleton",
+      "community": 12,
+      "norm_label": "skeleton()"
+    },
+    {
+      "label": "InkLoader()",
+      "file_type": "code",
+      "source_file": "src/components/ui.tsx",
+      "source_location": "L240",
+      "id": "components_ui_inkloader",
+      "community": 8,
+      "norm_label": "inkloader()"
     },
     {
       "label": "readings.ts",
@@ -1476,7 +1530,7 @@
       "source_file": "src/lib/readings.ts",
       "source_location": "L4",
       "id": "lib_readings_hasmultiplereadings",
-      "community": 7,
+      "community": 12,
       "norm_label": "hasmultiplereadings()"
     },
     {
@@ -1485,7 +1539,7 @@
       "source_file": "src/lib/readings.ts",
       "source_location": "L9",
       "id": "lib_readings_formatreadingspinyin",
-      "community": 11,
+      "community": 9,
       "norm_label": "formatreadingspinyin()"
     },
     {
@@ -1494,7 +1548,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L1",
       "id": "src_lib_types_ts",
-      "community": 9,
+      "community": 11,
       "norm_label": "types.ts"
     },
     {
@@ -1503,7 +1557,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L4",
       "id": "lib_types_supabase",
-      "community": 9,
+      "community": 11,
       "norm_label": "supabase"
     },
     {
@@ -1521,7 +1575,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L8",
       "id": "lib_types_reading",
-      "community": 9,
+      "community": 1,
       "norm_label": "reading"
     },
     {
@@ -1530,7 +1584,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L14",
       "id": "lib_types_word",
-      "community": 9,
+      "community": 1,
       "norm_label": "word"
     },
     {
@@ -1539,7 +1593,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L28",
       "id": "lib_types_lessoncard",
-      "community": 9,
+      "community": 11,
       "norm_label": "lessoncard"
     },
     {
@@ -1557,7 +1611,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L54",
       "id": "lib_types_graderoutput",
-      "community": 7,
+      "community": 11,
       "norm_label": "graderoutput"
     },
     {
@@ -1566,7 +1620,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L64",
       "id": "lib_types_srsstate",
-      "community": 9,
+      "community": 15,
       "norm_label": "srsstate"
     },
     {
@@ -1575,7 +1629,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L75",
       "id": "lib_types_sessionitem",
-      "community": 7,
+      "community": 11,
       "norm_label": "sessionitem"
     },
     {
@@ -1584,7 +1638,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L87",
       "id": "lib_types_session",
-      "community": 7,
+      "community": 11,
       "norm_label": "session"
     },
     {
@@ -1593,7 +1647,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L99",
       "id": "lib_types_sessionsummary",
-      "community": 14,
+      "community": 5,
       "norm_label": "sessionsummary"
     },
     {
@@ -1602,7 +1656,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L112",
       "id": "lib_types_profile",
-      "community": 4,
+      "community": 5,
       "norm_label": "profile"
     },
     {
@@ -1611,7 +1665,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L123",
       "id": "lib_types_duereviews",
-      "community": 12,
+      "community": 11,
       "norm_label": "duereviews"
     },
     {
@@ -1620,7 +1674,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L128",
       "id": "lib_types_stats",
-      "community": 4,
+      "community": 8,
       "norm_label": "stats"
     },
     {
@@ -1645,7 +1699,7 @@
       "label": "chat()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L34",
+      "source_location": "L36",
       "id": "lib_llm_chat",
       "community": 3,
       "norm_label": "chat()"
@@ -1654,7 +1708,7 @@
       "label": "chatJson()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L54",
+      "source_location": "L56",
       "id": "lib_llm_chatjson",
       "community": 3,
       "norm_label": "chatjson()"
@@ -1663,7 +1717,7 @@
       "label": "extractJson()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L83",
+      "source_location": "L85",
       "id": "lib_llm_extractjson",
       "community": 3,
       "norm_label": "extractjson()"
@@ -1672,7 +1726,7 @@
       "label": "stubLessonCard()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L133",
+      "source_location": "L135",
       "id": "lib_llm_stublessoncard",
       "community": 3,
       "norm_label": "stublessoncard()"
@@ -1681,25 +1735,34 @@
       "label": "stubQuestions()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L186",
+      "source_location": "L188",
       "id": "lib_llm_stubquestions",
-      "community": 3,
+      "community": 1,
       "norm_label": "stubquestions()"
     },
     {
       "label": "stubGrade()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L220",
+      "source_location": "L222",
       "id": "lib_llm_stubgrade",
       "community": 3,
       "norm_label": "stubgrade()"
     },
     {
+      "label": "safeGenerateQuestion()",
+      "file_type": "code",
+      "source_file": "src/lib/llm.ts",
+      "source_location": "L243",
+      "id": "lib_llm_safegeneratequestion",
+      "community": 1,
+      "norm_label": "safegeneratequestion()"
+    },
+    {
       "label": "generateLessonCard()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L241",
+      "source_location": "L254",
       "id": "lib_llm_generatelessoncard",
       "community": 1,
       "norm_label": "generatelessoncard()"
@@ -1708,16 +1771,16 @@
       "label": "generateQuestions()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L318",
+      "source_location": "L331",
       "id": "lib_llm_generatequestions",
-      "community": 3,
+      "community": 1,
       "norm_label": "generatequestions()"
     },
     {
       "label": "grade()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L380",
+      "source_location": "L393",
       "id": "lib_llm_grade",
       "community": 3,
       "norm_label": "grade()"
@@ -1782,7 +1845,7 @@
       "source_file": "src/lib/config.ts",
       "source_location": "L8",
       "id": "lib_config_box_intervals",
-      "community": 1,
+      "community": 3,
       "norm_label": "box_intervals"
     },
     {
@@ -1984,10 +2047,19 @@
       "norm_label": "createsession()"
     },
     {
+      "label": "ensureItemQuestion()",
+      "file_type": "code",
+      "source_file": "src/lib/services.ts",
+      "source_location": "L216",
+      "id": "lib_services_ensureitemquestion",
+      "community": 1,
+      "norm_label": "ensureitemquestion()"
+    },
+    {
       "label": "startSession()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L247",
+      "source_location": "L254",
       "id": "lib_services_startsession",
       "community": 1,
       "norm_label": "startsession()"
@@ -1996,7 +2068,7 @@
       "label": "startSessionWithWords()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L286",
+      "source_location": "L293",
       "id": "lib_services_startsessionwithwords",
       "community": 1,
       "norm_label": "startsessionwithwords()"
@@ -2005,7 +2077,7 @@
       "label": "recordStudyActivity()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L320",
+      "source_location": "L327",
       "id": "lib_services_recordstudyactivity",
       "community": 1,
       "norm_label": "recordstudyactivity()"
@@ -2014,7 +2086,7 @@
       "label": "gradeAnswer()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L354",
+      "source_location": "L361",
       "id": "lib_services_gradeanswer",
       "community": 1,
       "norm_label": "gradeanswer()"
@@ -2023,7 +2095,7 @@
       "label": "loadSession()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L459",
+      "source_location": "L471",
       "id": "lib_services_loadsession",
       "community": 0,
       "norm_label": "loadsession()"
@@ -2032,7 +2104,7 @@
       "label": "listSessions()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L515",
+      "source_location": "L527",
       "id": "lib_services_listsessions",
       "community": 0,
       "norm_label": "listsessions()"
@@ -2041,7 +2113,7 @@
       "label": "redrillSession()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L549",
+      "source_location": "L561",
       "id": "lib_services_redrillsession",
       "community": 0,
       "norm_label": "redrillsession()"
@@ -2050,16 +2122,16 @@
       "label": "dueReviews()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L653",
+      "source_location": "L645",
       "id": "lib_services_duereviews",
-      "community": 1,
+      "community": 0,
       "norm_label": "duereviews()"
     },
     {
       "label": "getStats()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L689",
+      "source_location": "L681",
       "id": "lib_services_getstats",
       "community": 1,
       "norm_label": "getstats()"
@@ -2068,7 +2140,7 @@
       "label": "getInProgressSession()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L753",
+      "source_location": "L745",
       "id": "lib_services_getinprogresssession",
       "community": 0,
       "norm_label": "getinprogresssession()"
@@ -2077,7 +2149,7 @@
       "label": "vocabCount()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L774",
+      "source_location": "L766",
       "id": "lib_services_vocabcount",
       "community": 0,
       "norm_label": "vocabcount()"
@@ -2086,7 +2158,7 @@
       "label": "listVocabulary()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L785",
+      "source_location": "L777",
       "id": "lib_services_listvocabulary",
       "community": 0,
       "norm_label": "listvocabulary()"
@@ -2095,16 +2167,16 @@
       "label": "getWordCard()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L833",
+      "source_location": "L825",
       "id": "lib_services_getwordcard",
-      "community": 1,
+      "community": 0,
       "norm_label": "getwordcard()"
     },
     {
       "label": "regenerateWordCard()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L867",
+      "source_location": "L859",
       "id": "lib_services_regeneratewordcard",
       "community": 1,
       "norm_label": "regeneratewordcard()"
@@ -2113,7 +2185,7 @@
       "label": "addWordsToBank()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L904",
+      "source_location": "L896",
       "id": "lib_services_addwordstobank",
       "community": 1,
       "norm_label": "addwordstobank()"
@@ -2122,7 +2194,7 @@
       "label": "listAddableWords()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L946",
+      "source_location": "L938",
       "id": "lib_services_listaddablewords",
       "community": 0,
       "norm_label": "listaddablewords()"
@@ -2223,7 +2295,7 @@
       "source_file": "README.md",
       "source_location": "L1",
       "id": "readme_md",
-      "community": 5,
+      "community": 4,
       "norm_label": "readme.md"
     },
     {
@@ -2232,7 +2304,7 @@
       "source_file": "README.md",
       "source_location": "L1",
       "id": "chinese_learner_readme_\u4e2d\u6587_chinese_learner",
-      "community": 5,
+      "community": 4,
       "norm_label": "\u4e2d\u6587 chinese learner"
     },
     {
@@ -2241,7 +2313,7 @@
       "source_file": "README.md",
       "source_location": "L3",
       "id": "chinese_learner_readme_what_this_is",
-      "community": 5,
+      "community": 4,
       "norm_label": "what this is"
     },
     {
@@ -2250,7 +2322,7 @@
       "source_file": "README.md",
       "source_location": "L18",
       "id": "chinese_learner_readme_two_ways_to_run_it",
-      "community": 5,
+      "community": 4,
       "norm_label": "two ways to run it"
     },
     {
@@ -2259,7 +2331,7 @@
       "source_file": "README.md",
       "source_location": "L40",
       "id": "chinese_learner_readme_architecture",
-      "community": 5,
+      "community": 4,
       "norm_label": "architecture"
     },
     {
@@ -2268,7 +2340,7 @@
       "source_file": "README.md",
       "source_location": "L61",
       "id": "chinese_learner_readme_prerequisites",
-      "community": 5,
+      "community": 4,
       "norm_label": "prerequisites"
     },
     {
@@ -2277,7 +2349,7 @@
       "source_file": "README.md",
       "source_location": "L70",
       "id": "chinese_learner_readme_quick_start",
-      "community": 5,
+      "community": 4,
       "norm_label": "quick start"
     },
     {
@@ -2286,7 +2358,7 @@
       "source_file": "README.md",
       "source_location": "L72",
       "id": "chinese_learner_readme_codeblock_1",
-      "community": 5,
+      "community": 4,
       "norm_label": "code:bash (# 1. clone)"
     },
     {
@@ -2295,7 +2367,7 @@
       "source_file": "README.md",
       "source_location": "L97",
       "id": "chinese_learner_readme_environment_variables",
-      "community": 5,
+      "community": 4,
       "norm_label": "environment variables"
     },
     {
@@ -2304,7 +2376,7 @@
       "source_file": "README.md",
       "source_location": "L109",
       "id": "chinese_learner_readme_npm_scripts",
-      "community": 5,
+      "community": 4,
       "norm_label": "npm scripts"
     },
     {
@@ -2313,7 +2385,7 @@
       "source_file": "README.md",
       "source_location": "L121",
       "id": "chinese_learner_readme_the_local_branch_zero_cloud_just_docker",
-      "community": 5,
+      "community": 4,
       "norm_label": "the `local` branch \u2014 zero cloud, just docker"
     },
     {
@@ -2322,7 +2394,7 @@
       "source_file": "README.md",
       "source_location": "L128",
       "id": "chinese_learner_readme_codeblock_2",
-      "community": 5,
+      "community": 4,
       "norm_label": "code:bash (git checkout local)"
     },
     {
@@ -2331,7 +2403,7 @@
       "source_file": "README.md",
       "source_location": "L154",
       "id": "chinese_learner_readme_codeblock_3",
-      "community": 5,
+      "community": 4,
       "norm_label": "code:bash (git show local:readme.md)"
     },
     {
@@ -2340,7 +2412,7 @@
       "source_file": "README.md",
       "source_location": "L161",
       "id": "chinese_learner_readme_performance_notes",
-      "community": 5,
+      "community": 4,
       "norm_label": "performance notes"
     },
     {
@@ -2349,7 +2421,7 @@
       "source_file": "README.md",
       "source_location": "L163",
       "id": "chinese_learner_readme_enable_asymmetric_jwt_signing_keys_recommended",
-      "community": 5,
+      "community": 4,
       "norm_label": "enable asymmetric jwt signing keys (recommended)"
     },
     {
@@ -2358,7 +2430,7 @@
       "source_file": "README.md",
       "source_location": "L175",
       "id": "chinese_learner_readme_region_alignment",
-      "community": 5,
+      "community": 4,
       "norm_label": "region alignment"
     },
     {
@@ -2519,7 +2591,7 @@
       "file_type": "code",
       "source_file": "scripts/seed-wordbank.ts",
       "source_location": "L29",
-      "community": 8,
+      "community": 7,
       "norm_label": "fetchraw()",
       "id": "scripts_seed_wordbank_fetchraw"
     },
@@ -2528,7 +2600,7 @@
       "file_type": "code",
       "source_file": "scripts/seed-wordbank.ts",
       "source_location": "L43",
-      "community": 8,
+      "community": 7,
       "norm_label": "parselevel()",
       "id": "scripts_seed_wordbank_parselevel"
     },
@@ -2537,7 +2609,7 @@
       "file_type": "code",
       "source_file": "scripts/seed-wordbank.ts",
       "source_location": "L53",
-      "community": 8,
+      "community": 7,
       "norm_label": "reading",
       "id": "scripts_seed_wordbank_reading"
     },
@@ -2546,7 +2618,7 @@
       "file_type": "code",
       "source_file": "scripts/seed-wordbank.ts",
       "source_location": "L59",
-      "community": 8,
+      "community": 7,
       "norm_label": "wordrow",
       "id": "scripts_seed_wordbank_wordrow"
     },
@@ -2573,7 +2645,7 @@
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L3",
-      "community": 5,
+      "community": 4,
       "norm_label": "getting started",
       "id": "chinese_learner_readme_getting_started"
     },
@@ -2582,7 +2654,7 @@
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L23",
-      "community": 5,
+      "community": 4,
       "norm_label": "learn more",
       "id": "chinese_learner_readme_learn_more"
     },
@@ -2591,7 +2663,7 @@
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L32",
-      "community": 5,
+      "community": 4,
       "norm_label": "deploy on vercel",
       "id": "chinese_learner_readme_deploy_on_vercel"
     },
@@ -2600,7 +2672,7 @@
       "file_type": "code",
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L18",
-      "community": 12,
+      "community": 13,
       "norm_label": "statusbadge()",
       "id": "app_homeclient_statusbadge"
     },
@@ -2609,7 +2681,7 @@
       "file_type": "code",
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L18",
-      "community": 14,
+      "community": 5,
       "norm_label": "statusbadge()",
       "id": "sessions_sessionsclient_statusbadge"
     },
@@ -2618,7 +2690,7 @@
       "file_type": "code",
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L13",
-      "community": 7,
+      "community": 11,
       "norm_label": "outcomebadge()",
       "id": "id_sessionreviewclient_outcomebadge"
     },
@@ -2627,7 +2699,7 @@
       "file_type": "code",
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L17",
-      "community": 11,
+      "community": 9,
       "norm_label": "boxpill()",
       "id": "vocabulary_vocabularyclient_boxpill"
     },
@@ -2675,7 +2747,7 @@
       "label": "Word Bank Seeding Script",
       "file_type": "code",
       "source_file": "scripts/seed-wordbank.ts",
-      "community": 13,
+      "community": 14,
       "norm_label": "word bank seeding script",
       "id": "seed_wordbank_ts_main"
     },
@@ -2699,7 +2771,7 @@
       "label": "Home Client Component",
       "file_type": "code",
       "source_file": "src/app/HomeClient.tsx",
-      "community": 13,
+      "community": 14,
       "norm_label": "home client component",
       "id": "homeclient_tsx_homeclient"
     },
@@ -2707,7 +2779,7 @@
       "label": "Home Page",
       "file_type": "code",
       "source_file": "src/app/page.tsx",
-      "community": 13,
+      "community": 14,
       "norm_label": "home page",
       "id": "page_tsx_homepage"
     },
@@ -2715,7 +2787,7 @@
       "label": "Vocabulary Server Actions",
       "file_type": "code",
       "source_file": "src/app/actions/vocabulary.ts",
-      "community": 13,
+      "community": 14,
       "norm_label": "vocabulary server actions",
       "id": "vocabulary_ts_actions"
     },
@@ -2723,7 +2795,7 @@
       "label": "Session Server Actions",
       "file_type": "code",
       "source_file": "src/app/actions/session.ts",
-      "community": 13,
+      "community": 14,
       "norm_label": "session server actions",
       "id": "session_ts_actions"
     },
@@ -2747,7 +2819,7 @@
       "label": "LLM Client (OpenCode Zen)",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "community": 13,
+      "community": 14,
       "norm_label": "llm client (opencode zen)",
       "id": "llm_ts_client"
     },
@@ -2755,7 +2827,7 @@
       "label": "Grading & Cache Logic",
       "file_type": "code",
       "source_file": "src/lib/grading.ts",
-      "community": 13,
+      "community": 14,
       "norm_label": "grading & cache logic",
       "id": "grading_ts_logic"
     },
@@ -2763,7 +2835,7 @@
       "label": "SRS Leitner Logic",
       "file_type": "code",
       "source_file": "src/lib/srs.ts",
-      "community": 13,
+      "community": 14,
       "norm_label": "srs leitner logic",
       "id": "srs_ts_logic"
     },
@@ -2771,7 +2843,7 @@
       "label": "Service Layer",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "community": 13,
+      "community": 14,
       "norm_label": "service layer",
       "id": "services_ts_layer"
     },
@@ -2787,7 +2859,7 @@
       "label": "Supabase Database Schema",
       "file_type": "code",
       "source_file": "supabase/migrations/001_initial_schema.sql",
-      "community": 13,
+      "community": 14,
       "norm_label": "supabase database schema",
       "id": "initial_schema_sql"
     }
@@ -2829,9 +2901,9 @@
       "source_file": "scripts/wordbank-parse.ts",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_wordbank_parse_ts",
-      "target": "scripts_wordbank_parse_fetchraw",
-      "confidence_score": 1.0
+      "target": "scripts_wordbank_parse_fetchraw"
     },
     {
       "relation": "contains",
@@ -2839,9 +2911,9 @@
       "source_file": "scripts/wordbank-parse.ts",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_wordbank_parse_ts",
-      "target": "scripts_wordbank_parse_parselevel",
-      "confidence_score": 1.0
+      "target": "scripts_wordbank_parse_parselevel"
     },
     {
       "relation": "contains",
@@ -2849,9 +2921,9 @@
       "source_file": "scripts/wordbank-parse.ts",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_wordbank_parse_ts",
-      "target": "scripts_wordbank_parse_reading",
-      "confidence_score": 1.0
+      "target": "scripts_wordbank_parse_reading"
     },
     {
       "relation": "contains",
@@ -2859,9 +2931,9 @@
       "source_file": "scripts/wordbank-parse.ts",
       "source_location": "L45",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_wordbank_parse_ts",
-      "target": "scripts_wordbank_parse_wordrow",
-      "confidence_score": 1.0
+      "target": "scripts_wordbank_parse_wordrow"
     },
     {
       "relation": "contains",
@@ -2869,9 +2941,9 @@
       "source_file": "scripts/wordbank-parse.ts",
       "source_location": "L58",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_wordbank_parse_ts",
-      "target": "scripts_wordbank_parse_parserows",
-      "confidence_score": 1.0
+      "target": "scripts_wordbank_parse_parserows"
     },
     {
       "relation": "imports_from",
@@ -2880,9 +2952,9 @@
       "source_file": "scripts/backfill-readings.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_backfill_readings_ts",
-      "target": "scripts_wordbank_parse_ts",
-      "confidence_score": 1.0
+      "target": "scripts_wordbank_parse_ts"
     },
     {
       "relation": "imports_from",
@@ -2891,9 +2963,9 @@
       "source_file": "scripts/seed-wordbank.ts",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_seed_wordbank_ts",
-      "target": "scripts_wordbank_parse_ts",
-      "confidence_score": 1.0
+      "target": "scripts_wordbank_parse_ts"
     },
     {
       "relation": "imports",
@@ -2902,9 +2974,9 @@
       "source_file": "scripts/backfill-readings.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_backfill_readings_ts",
-      "target": "scripts_wordbank_parse_fetchraw",
-      "confidence_score": 1.0
+      "target": "scripts_wordbank_parse_fetchraw"
     },
     {
       "relation": "imports",
@@ -2913,9 +2985,9 @@
       "source_file": "scripts/seed-wordbank.ts",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_seed_wordbank_ts",
-      "target": "scripts_wordbank_parse_fetchraw",
-      "confidence_score": 1.0
+      "target": "scripts_wordbank_parse_fetchraw"
     },
     {
       "relation": "calls",
@@ -2946,9 +3018,9 @@
       "source_file": "scripts/wordbank-parse.ts",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_wordbank_parse_parserows",
-      "target": "scripts_wordbank_parse_parselevel",
-      "confidence_score": 1.0
+      "target": "scripts_wordbank_parse_parselevel"
     },
     {
       "relation": "imports",
@@ -2957,9 +3029,9 @@
       "source_file": "scripts/backfill-readings.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_backfill_readings_ts",
-      "target": "scripts_wordbank_parse_parserows",
-      "confidence_score": 1.0
+      "target": "scripts_wordbank_parse_parserows"
     },
     {
       "relation": "imports",
@@ -2968,9 +3040,9 @@
       "source_file": "scripts/seed-wordbank.ts",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_seed_wordbank_ts",
-      "target": "scripts_wordbank_parse_parserows",
-      "confidence_score": 1.0
+      "target": "scripts_wordbank_parse_parserows"
     },
     {
       "relation": "calls",
@@ -3000,9 +3072,9 @@
       "source_file": "scripts/backfill-readings.ts",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_backfill_readings_ts",
-      "target": "scripts_backfill_readings_main",
-      "confidence_score": 1.0
+      "target": "scripts_backfill_readings_main"
     },
     {
       "relation": "contains",
@@ -4343,6 +4415,39 @@
       "target": "actions_session_gradeansweraction"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_sessionid_studysessionclient_tsx",
+      "target": "actions_session_ensureitemquestionaction"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_sessionid_studysessionclient_tsx",
+      "target": "src_app_actions_vocabulary_ts"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_sessionid_studysessionclient_tsx",
+      "target": "actions_vocabulary_getwordcardaction"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -4396,6 +4501,17 @@
       "confidence_score": 1.0,
       "source": "src_app_study_sessionid_studysessionclient_tsx",
       "target": "lib_types_outcome"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_sessionid_studysessionclient_tsx",
+      "target": "lib_types_question"
     },
     {
       "relation": "imports_from",
@@ -4475,6 +4591,28 @@
       "target": "components_ui_progressbar"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_sessionid_studysessionclient_tsx",
+      "target": "components_ui_skeleton"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_sessionid_studysessionclient_tsx",
+      "target": "components_ui_inkloader"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -4499,11 +4637,41 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_sessionid_studysessionclient_tsx",
+      "target": "sessionid_studysessionclient_practicecell"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
       "source_location": "L19",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "src_app_study_sessionid_studysessionclient_tsx",
       "target": "sessionid_studysessionclient_lessoncardview"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L114",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_sessionid_studysessionclient_tsx",
+      "target": "sessionid_studysessionclient_cardloadingskeleton"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L162",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_sessionid_studysessionclient_tsx",
+      "target": "sessionid_studysessionclient_questionloadingskeleton"
     },
     {
       "relation": "contains",
@@ -4546,6 +4714,17 @@
       "confidence_score": 1.0,
       "source": "src_app_study_sessionid_studysessionclient_tsx",
       "target": "lib_types_sessionitem"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "sessionid_studysessionclient_cardloadingskeleton",
+      "target": "lib_readings_hasmultiplereadings"
     },
     {
       "relation": "calls",
@@ -6188,6 +6367,17 @@
       "target": "lib_services_gradeanswer"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/actions/session.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_actions_session_ts",
+      "target": "lib_services_ensureitemquestion"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/actions/session.ts",
@@ -6266,6 +6456,16 @@
       "confidence_score": 1.0,
       "source": "src_app_actions_session_ts",
       "target": "actions_session_gradeansweraction"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/actions/session.ts",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_actions_session_ts",
+      "target": "actions_session_ensureitemquestionaction"
     },
     {
       "relation": "calls",
@@ -6431,6 +6631,28 @@
       "weight": 1.0,
       "source": "actions_session_gradeansweraction",
       "target": "lib_services_gradeanswer"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/actions/session.ts",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "actions_session_ensureitemquestionaction",
+      "target": "lib_user_getusercontext"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/actions/session.ts",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "actions_session_ensureitemquestionaction",
+      "target": "lib_services_ensureitemquestion"
     },
     {
       "relation": "imports_from",
@@ -7647,6 +7869,26 @@
       "target": "components_ui_bento"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui.tsx",
+      "source_location": "L225",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_components_ui_tsx",
+      "target": "components_ui_skeleton"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ui.tsx",
+      "source_location": "L240",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_components_ui_tsx",
+      "target": "components_ui_inkloader"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -8272,6 +8514,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/llm.ts",
+      "source_location": "L243",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_lib_llm_ts",
+      "target": "lib_llm_safegeneratequestion"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/llm.ts",
       "source_location": "L233",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -8391,6 +8643,17 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/llm.ts",
+      "source_location": "L250",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_llm_safegeneratequestion",
+      "target": "lib_llm_stubquestions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/llm.ts",
       "source_location": "L293",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -8407,6 +8670,39 @@
       "confidence_score": 1.0,
       "source": "lib_llm_grade",
       "target": "lib_llm_stubgrade"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/llm.ts",
+      "source_location": "L247",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_llm_safegeneratequestion",
+      "target": "lib_llm_generatequestions"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_lib_services_ts",
+      "target": "lib_llm_safegeneratequestion"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/services.ts",
+      "source_location": "L238",
+      "weight": 1.0,
+      "source": "lib_services_ensureitemquestion",
+      "target": "lib_llm_safegeneratequestion"
     },
     {
       "relation": "imports",
@@ -9135,6 +9431,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/services.ts",
+      "source_location": "L216",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_lib_services_ts",
+      "target": "lib_services_ensureitemquestion"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services.ts",
       "source_location": "L198",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -9290,6 +9596,17 @@
       "confidence_score": 1.0,
       "source": "src_lib_services_ts",
       "target": "lib_services_listaddablewords"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services.ts",
+      "source_location": "L235",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_services_ensureitemquestion",
+      "target": "lib_services_normalizewordrow"
     },
     {
       "relation": "calls",
@@ -9510,6 +9827,17 @@
       "confidence_score": 1.0,
       "source": "lib_services_startsessionwithwords",
       "target": "lib_services_createsession"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services.ts",
+      "source_location": "L391",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_services_gradeanswer",
+      "target": "lib_services_ensureitemquestion"
     },
     {
       "relation": "calls",
@@ -10124,5 +10452,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "e08f402110e30994ac3fcc0efca9ccb86be493b1"
+  "built_at_commit": "60dae9981c1e4705966b1b52272cb2c478cbc84d"
 }

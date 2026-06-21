@@ -98,12 +98,16 @@ export default function SessionReviewClient({ session }: { session: Session }) {
                 )}
               </div>
 
-              <p className="text-xs font-semibold uppercase tracking-widest text-faint mb-1">
-                {TYPE_LABELS[item.question_json.type] ?? item.question_json.type}
-              </p>
-              <p className="text-sm text-ink/80 leading-relaxed mb-3">
-                {item.question_json.prompt}
-              </p>
+              {item.question_json && (
+                <>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-faint mb-1">
+                    {TYPE_LABELS[item.question_json.type] ?? item.question_json.type}
+                  </p>
+                  <p className="text-sm text-ink/80 leading-relaxed mb-3">
+                    {item.question_json.prompt}
+                  </p>
+                </>
+              )}
 
               {item.user_answer && (
                 <div className="flex items-baseline gap-2 text-sm">

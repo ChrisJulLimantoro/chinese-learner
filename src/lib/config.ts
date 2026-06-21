@@ -43,7 +43,7 @@ export const MODEL_BY_PURPOSE: Record<string, string> = {
 };
 
 export const LLM_MAX_TOKENS = parseInt(process.env.LLM_MAX_TOKENS ?? "4096", 10);
-export const LLM_MAX_RETRIES = parseInt(process.env.LLM_MAX_RETRIES ?? "3", 10);
+export const LLM_MAX_RETRIES = parseInt(process.env.LLM_MAX_RETRIES ?? "2", 10);
 
 // Per-purpose token budgets. Questions lowered to 4096 (avoids Vercel timeout).
 export const MAX_TOKENS_BY_PURPOSE: Record<string, number> = {

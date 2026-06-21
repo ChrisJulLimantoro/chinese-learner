@@ -1,11 +1,20 @@
-import { getUserContext } from "@/lib/user";
+import { getOptionalUser } from "@/lib/user";
+import { createClient } from "@/lib/supabase/server";
 import { listSessions, dueReviews, getInProgressSession } from "@/lib/services";
 import HomeClient from "./HomeClient";
+import LandingClient from "./LandingClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const { supabase, userId } = await getUserContext();
+  const user = await getOptionalUser();
+
+  if (!user?.sub) {
+    return <LandingClient />;
+  }
+
+  const supabase = await createClient();
+  const userId = user.sub;
 
   const [inProgress, dueData, sessions] = await Promise.allSettled([
     getInProgressSession(supabase, userId),

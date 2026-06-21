@@ -3,6 +3,9 @@ import { Geist, Geist_Mono, Fraunces, Noto_Serif_SC } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import { getOptionalUser } from "@/lib/user";
+import { createClient } from "@/lib/supabase/server";
+import { getProfile } from "@/lib/services";
+import { SUPER_ADMIN_EMAIL } from "@/lib/config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,6 +55,23 @@ export default async function RootLayout({
 }>) {
   const user = await getOptionalUser();
 
+  let isAdmin = false;
+  if (user?.sub) {
+    // Super-admin is keyed off the verified JWT email, not the mirrored
+    // profiles.email column.
+    if (user.email === SUPER_ADMIN_EMAIL) {
+      isAdmin = true;
+    } else {
+      try {
+        const supabase = await createClient();
+        const profile = await getProfile(supabase, user.sub);
+        isAdmin = profile.role === "admin";
+      } catch {
+        // profile load failure should not break layout
+      }
+    }
+  }
+
   return (
     <html
       lang="en"
@@ -64,7 +84,7 @@ export default async function RootLayout({
       <body className="min-h-full bg-paper text-ink">
         {user ? (
           <div className="flex min-h-screen">
-            <Nav />
+            <Nav isAdmin={isAdmin} />
             <main className="flex-1 min-w-0 pb-20 md:pb-0 relative z-10">
               <div className="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-10">
                 {children}

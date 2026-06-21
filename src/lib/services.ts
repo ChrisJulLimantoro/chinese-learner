@@ -16,7 +16,7 @@ import {
   checkProgression,
 } from "./srs";
 import { generateLessonCard, generateQuestions } from "./llm";
-import { DEFAULT_SESSION_SIZE, START_HSK_LEVEL, MASTERY_PERCENT, LEVEL_FLOOR } from "./config";
+import { DEFAULT_SESSION_SIZE, START_HSK_LEVEL, FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS, SUPER_ADMIN_EMAIL } from "./config";
 import type {
   Word,
   Session,
@@ -65,7 +65,7 @@ async function ensureLessonCard(
   return { ...word, lesson_card: card };
 }
 
-async function getProfile(
+export async function getProfile(
   supabase: SupabaseClient,
   userId: string
 ): Promise<Profile> {
@@ -83,9 +83,38 @@ async function getProfile(
     current_hsk_level: START_HSK_LEVEL,
     study_streak_days: 0,
     last_study_date: null,
+    role: "user",
+    email: null,
+    max_vocab_words: 5,
+    max_sessions: 3,
   };
-  await supabase.from("profiles").insert(profile);
+  // Only insert the columns the authenticated role is allowed to write
+  await supabase.from("profiles").insert({
+    user_id: userId,
+    current_hsk_level: START_HSK_LEVEL,
+    study_streak_days: 0,
+    last_study_date: null,
+  });
   return profile;
+}
+
+// ---------------------------------------------------------------------------
+// Limits helpers
+// ---------------------------------------------------------------------------
+
+function isUnlimited(profile: Profile): boolean {
+  // Admins and the super-admin bypass all limits
+  return profile.role === "admin" || profile.email === SUPER_ADMIN_EMAIL;
+}
+
+function getSessionCap(profile: Profile): number | null {
+  if (isUnlimited(profile)) return null;
+  return profile.max_sessions ?? FREE_MAX_SESSIONS;
+}
+
+function getVocabCap(profile: Profile): number | null {
+  if (isUnlimited(profile)) return null;
+  return profile.max_vocab_words ?? FREE_MAX_VOCAB_WORDS;
 }
 
 function sessionScore(items: { outcome: string | null }[]): { correct: number; answered: number } {
@@ -220,6 +249,20 @@ export async function startSession(
   const profile = await getProfile(supabase, userId);
   const level = profile.current_hsk_level ?? START_HSK_LEVEL;
 
+  // Enforce session cap
+  const sessionCap = getSessionCap(profile);
+  if (sessionCap !== null) {
+    const { count: sessionCount } = await supabase
+      .from("sessions")
+      .select("*", { count: "exact", head: true })
+      .eq("user_id", userId);
+    if ((sessionCount ?? 0) >= sessionCap) {
+      throw new Error(
+        `Free plan limit reached (${sessionCap} session${sessionCap === 1 ? "" : "s"}). Ask an admin to raise your limit.`
+      );
+    }
+  }
+
   let words: Word[];
   if (kind === "new_drop") {
     words = await getUnseenWords(supabase, userId, size, level);
@@ -245,6 +288,20 @@ export async function startSessionWithWords(
   if (wordIds.length === 0) throw new Error("No words selected for the session.");
   const profile = await getProfile(supabase, userId);
   const level = profile.current_hsk_level ?? START_HSK_LEVEL;
+
+  // Enforce session cap
+  const sessionCap = getSessionCap(profile);
+  if (sessionCap !== null) {
+    const { count: sessionCount } = await supabase
+      .from("sessions")
+      .select("*", { count: "exact", head: true })
+      .eq("user_id", userId);
+    if ((sessionCount ?? 0) >= sessionCap) {
+      throw new Error(
+        `Free plan limit reached (${sessionCap} session${sessionCap === 1 ? "" : "s"}). Ask an admin to raise your limit.`
+      );
+    }
+  }
 
   const { data } = await supabase.from("words").select("*").in("id", wordIds);
   const words = (data ?? []).map(normalizeWordRow);
@@ -847,6 +904,19 @@ export async function addWordsToBank(
 ): Promise<Word[]> {
   const profile = await getProfile(supabase, userId);
   const level = profile.current_hsk_level ?? START_HSK_LEVEL;
+
+  // Enforce vocab cap
+  const vocabCap = getVocabCap(profile);
+  if (vocabCap !== null) {
+    const current = await vocabCount(supabase, userId);
+    const remaining = vocabCap - current;
+    if (remaining <= 0) {
+      throw new Error(
+        `Free plan limit reached (${vocabCap} word${vocabCap === 1 ? "" : "s"}). Ask an admin to raise your limit.`
+      );
+    }
+    count = Math.min(count, remaining);
+  }
 
   let words = await getUnseenWords(supabase, userId, count, level);
   if (words.length === 0) {

@@ -14,7 +14,7 @@ const NAV_LINKS = [
   { href: "/stats",      label: "Stats",      icon: "◉" },
 ];
 
-export default function Nav() {
+export default function Nav({ isAdmin = false }: { isAdmin?: boolean }) {
   const pathname = usePathname();
 
   const isActive = (href: string) =>
@@ -61,6 +61,30 @@ export default function Nav() {
 
         {/* Pinned footer */}
         <div className="p-3 border-t border-border space-y-1">
+          <Link
+            href="/settings"
+            className={`flex items-center gap-2 w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              pathname.startsWith("/settings")
+                ? "bg-seal/10 text-seal"
+                : "text-muted hover:bg-surface-2 hover:text-ink"
+            }`}
+          >
+            <span className="text-base w-5 text-center" aria-hidden>⚙</span>
+            Settings
+          </Link>
+          {isAdmin && (
+            <Link
+              href="/admin"
+              className={`flex items-center gap-2 w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                pathname.startsWith("/admin")
+                  ? "bg-seal/10 text-seal"
+                  : "text-muted hover:bg-surface-2 hover:text-ink"
+              }`}
+            >
+              <span className="text-base w-5 text-center" aria-hidden>◈</span>
+              Admin
+            </Link>
+          )}
           <ThemeToggle />
           <form action={signOut}>
             <button
@@ -94,6 +118,15 @@ export default function Nav() {
             </Link>
           );
         })}
+        <Link
+          href="/settings"
+          className={`flex-1 flex flex-col items-center justify-center py-2.5 gap-0.5 text-xs font-medium transition-colors min-h-[44px] ${
+            pathname.startsWith("/settings") ? "text-seal" : "text-faint"
+          }`}
+        >
+          <span className="text-lg leading-none" aria-hidden>⚙</span>
+          <span>Settings</span>
+        </Link>
         <form action={signOut} className="flex-1 flex">
           <button
             type="submit"

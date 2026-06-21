@@ -31,7 +31,14 @@ export async function getUserContext() {
   if (!claims?.sub) {
     redirect("/login");
   }
-  return { supabase, userId: claims.sub };
+  // email comes straight from the verified JWT — the authoritative source for
+  // super-admin identity (never the mirrored profiles.email column, which is
+  // app data and could in principle be tampered with).
+  return {
+    supabase,
+    userId: claims.sub,
+    email: (claims.email as string | undefined) ?? null,
+  };
 }
 
 /**

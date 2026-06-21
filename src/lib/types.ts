@@ -107,6 +107,10 @@ export interface Profile {
   current_hsk_level: number;
   study_streak_days: number;
   last_study_date: string | null;
+  role: "user" | "admin";
+  email: string | null;
+  max_vocab_words: number | null;
+  max_sessions: number | null;
 }
 
 export interface DueReviews {

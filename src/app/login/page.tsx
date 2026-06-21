@@ -1,4 +1,5 @@
-import { signIn, signUp } from "@/app/actions/auth";
+import Link from "next/link";
+import { signIn } from "@/app/actions/auth";
 import Seal from "@/components/Seal";
 
 export const dynamic = "force-dynamic";
@@ -85,18 +86,17 @@ export default async function LoginPage({
               >
                 Sign in
               </button>
-              <button
-                type="submit"
-                formAction={signUp}
-                className="w-full px-4 py-3 rounded-xl border border-border bg-surface hover:bg-surface-2 transition-colors font-medium text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-seal"
-              >
-                Create account
-              </button>
             </div>
           </form>
 
           <p className="text-center text-xs text-faint mt-6 leading-relaxed">
             Progress is saved per account and synced across devices.
+          </p>
+          <p className="text-center text-sm text-muted mt-4">
+            New here?{" "}
+            <Link href="/signup" className="text-seal hover:underline font-medium">
+              Create an account
+            </Link>
           </p>
         </div>
       </div>

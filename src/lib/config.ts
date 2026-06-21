@@ -55,6 +55,13 @@ export const MAX_TOKENS_BY_PURPOSE: Record<string, number> = {
 export const USE_STUB = !(process.env.LLM_API_KEY ?? "").trim();
 
 // ---------------------------------------------------------------------------
+// Free-tier limits & admin
+// ---------------------------------------------------------------------------
+export const FREE_MAX_VOCAB_WORDS = 5;
+export const FREE_MAX_SESSIONS = 3;
+export const SUPER_ADMIN_EMAIL = "christopherlimantoro@gmail.com";
+
+// ---------------------------------------------------------------------------
 // Word bank source
 // ---------------------------------------------------------------------------
 export const WORDBANK_URL_MASTER =

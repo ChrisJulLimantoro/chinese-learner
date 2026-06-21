@@ -24,6 +24,7 @@ export default function AdminClient({ users, isSuperAdmin }: Props) {
   return (
     <div>
       <PageHeader
+        rubric="管理"
         eyebrow="Admin"
         title="User Management"
         actions={

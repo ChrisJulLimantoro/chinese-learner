@@ -96,6 +96,7 @@ export default function StudyBuilderClient({
   return (
     <div>
       <PageHeader
+        rubric="练习"
         eyebrow="Practice"
         title="Study"
         actions={

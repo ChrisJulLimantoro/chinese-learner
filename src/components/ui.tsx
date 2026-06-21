@@ -162,11 +162,14 @@ export function ProgressBar({
 
 export function PageHeader({
   eyebrow,
+  rubric,
   title,
   actions,
   className = "",
 }: {
   eyebrow?: string;
+  /** Optional hanzi rubric shown before the eyebrow — the copybook manuscript label */
+  rubric?: string;
   title: string;
   actions?: React.ReactNode;
   className?: string;
@@ -175,8 +178,13 @@ export function PageHeader({
     <div className={`flex items-start justify-between gap-4 mb-8 ${className}`}>
       <div>
         {eyebrow && (
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted mb-1">
-            {eyebrow}
+          <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-faint mb-2">
+            {rubric && (
+              <span className="hanzi text-sm tracking-normal normal-case text-seal/80">
+                {rubric}
+              </span>
+            )}
+            <span>{eyebrow}</span>
           </p>
         )}
         <h1 className="font-display text-3xl font-semibold text-ink leading-tight">

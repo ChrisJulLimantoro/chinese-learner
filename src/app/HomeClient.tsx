@@ -4,8 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { startSessionAction, redrillSessionAction } from "./actions/session";
 import type { Session, SessionSummary, DueReviews } from "@/lib/types";
-import { Card, Button, Badge, PageHeader, Bento } from "@/components/ui";
-import Seal from "@/components/Seal";
+import { Card, Button, Badge } from "@/components/ui";
 
 function fmtTime(ts: number | null): string {
   if (!ts) return "";
@@ -20,9 +19,9 @@ function fmtTime(ts: number | null): string {
 function statusBadgeVariant(status: string) {
   const map: Record<string, "jade" | "ochre" | "muted" | "seal"> = {
     in_progress: "ochre",
-    completed:   "jade",
-    abandoned:   "muted",
-    redrill:     "jade",
+    completed: "jade",
+    abandoned: "muted",
+    redrill: "jade",
   };
   return map[status] ?? "muted";
 }
@@ -30,11 +29,47 @@ function statusBadgeVariant(status: string) {
 function statusLabel(status: string) {
   const map: Record<string, string> = {
     in_progress: "In progress",
-    completed:   "Done",
-    abandoned:   "Abandoned",
-    redrill:     "Re-drill",
+    completed: "Done",
+    abandoned: "Abandoned",
+    redrill: "Re-drill",
   };
   return map[status] ?? status;
+}
+
+const WEEKDAYS_CN = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+
+const NAV = [
+  { cn: "词库", label: "Vocabulary", desc: "Browse the word bank", href: "/vocabulary" },
+  { cn: "进度", label: "Stats", desc: "Mastery & streak", href: "/stats" },
+  { cn: "记录", label: "Sessions", desc: "Full history", href: "/sessions" },
+];
+
+const QUICK = [
+  { kind: "new_drop", cn: "新", label: "New words" },
+  { kind: "review", cn: "复", label: "Review due" },
+  { kind: "mixed", cn: "合", label: "Mixed" },
+];
+
+/* The 米字格 practice cell — holds the character for today's state. */
+function MiCell({ char }: { char: string }) {
+  return (
+    <div className="relative w-36 h-36 sm:w-44 sm:h-44 bg-surface rounded-xl border-2 border-seal/60 shadow-sm">
+      <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full" aria-hidden>
+        <g stroke="var(--seal)" strokeOpacity="0.3" strokeWidth="0.6" strokeDasharray="3 3">
+          <line x1="50" y1="6" x2="50" y2="94" />
+          <line x1="6" y1="50" x2="94" y2="50" />
+          <line x1="12" y1="12" x2="88" y2="88" />
+          <line x1="88" y1="12" x2="12" y2="88" />
+        </g>
+      </svg>
+      <span
+        key={char}
+        className="hanzi animate-hanzi-in absolute inset-0 flex items-center justify-center text-6xl sm:text-7xl font-bold text-ink select-none"
+      >
+        {char}
+      </span>
+    </div>
+  );
 }
 
 export default function HomeClient({
@@ -73,191 +108,168 @@ export default function HomeClient({
     }
   };
 
-  const todayHour = new Date().getHours();
-  const greeting =
-    todayHour < 12 ? "早上好" : todayHour < 18 ? "下午好" : "晚上好";
+  const now = new Date();
+  const hour = now.getHours();
+  const greeting = hour < 12 ? "早上好" : hour < 18 ? "下午好" : "晚上好";
+  const dateLine = `${WEEKDAYS_CN[now.getDay()]} · ${now.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+  })}`;
+
+  const due = dueData.count;
+  const inProgressKind = inProgress?.kind.replace("_", " ") ?? "";
+
+  // The day's state drives the grid character, the caption, and the primary call.
+  const cell = inProgress
+    ? { char: "续", py: "xù", gloss: "continue" }
+    : due > 0
+      ? { char: "复", py: "fù", gloss: "review" }
+      : { char: "学", py: "xué", gloss: "learn" };
+
+  const statusParts = [
+    due > 0 ? `${due} review${due !== 1 ? "s" : ""} due` : null,
+    inProgress ? `${inProgressKind} session in progress` : null,
+  ].filter(Boolean);
+  const statusLine = statusParts.length ? statusParts.join(" · ") : "You're all caught up.";
 
   return (
     <div>
-      <PageHeader eyebrow="Dashboard" title="Good day" />
+      {/* ── Today's page: the masthead ──────────────────────────────── */}
+      <Card variant="elevated" padding="lg" className="mb-6 relative overflow-hidden">
+        <span
+          aria-hidden
+          className="hanzi absolute -right-6 -top-10 text-[11rem] font-bold leading-none select-none pointer-events-none opacity-[0.04] text-ink"
+        >
+          {greeting}
+        </span>
 
-      <Bento className="mb-8">
-        {/* ── Today focus card ── col-span-8 lg */}
-        <div className="col-span-1 sm:col-span-6 lg:col-span-8">
-          <Card variant="elevated" padding="lg" className="h-full relative overflow-hidden">
-            {/* Decorative hanzi watermark */}
-            <span
-              aria-hidden
-              className="hanzi absolute -right-4 -top-8 text-[10rem] font-bold leading-none select-none pointer-events-none opacity-[0.04] text-ink"
-            >
-              {greeting}
-            </span>
+        <div className="relative z-10 grid gap-6 sm:gap-8 sm:grid-cols-[auto_1fr] items-center">
+          {/* Adaptive practice cell */}
+          <div className="flex flex-col items-center gap-2.5 mx-auto sm:mx-0">
+            <MiCell char={cell.char} />
+            <p className="font-mono text-xs text-muted">
+              <span className="text-seal font-semibold">{cell.py}</span> · {cell.gloss}
+            </p>
+          </div>
 
-            <div className="relative z-10 flex flex-col h-full gap-5">
-              <div>
-                <p className="hanzi text-4xl font-bold text-ink mb-1">{greeting}</p>
-                <p className="text-muted text-sm">Ready to study today?</p>
-              </div>
+          {/* Greeting + status + actions */}
+          <div className="text-center sm:text-left">
+            <p className="flex items-center justify-center sm:justify-start gap-2 font-mono text-xs uppercase tracking-[0.2em] text-faint mb-2">
+              <span className="hanzi tracking-normal normal-case text-seal/80">主页</span>
+              <span>{dateLine}</span>
+            </p>
+            <h1 className="hanzi text-4xl sm:text-5xl font-bold text-ink leading-tight mb-2">
+              {greeting}。
+            </h1>
+            <p className="text-muted mb-6">{statusLine}</p>
 
-              {dueData.count > 0 && (
-                <div className="flex items-center gap-3 bg-ochre/10 rounded-xl px-4 py-3 border border-ochre/20">
-                  <span className="text-xl text-ochre" aria-hidden>◷</span>
-                  <div>
-                    <p className="text-sm font-semibold text-ochre">
-                      {dueData.count} review{dueData.count !== 1 ? "s" : ""} due
-                    </p>
-                    <p className="text-xs text-muted">Don&apos;t let them pile up</p>
-                  </div>
+            {/* Primary call — matches the state */}
+            <div className="flex flex-wrap items-center gap-2 justify-center sm:justify-start">
+              {inProgress ? (
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => router.push(`/study/${inProgress.session_id}`)}
+                >
+                  Resume {inProgressKind} · {inProgress.cursor}/{inProgress.items.length} →
+                </Button>
+              ) : due > 0 ? (
+                <Button
+                  variant="seal"
+                  size="lg"
+                  onClick={() => quickStart("review")}
+                  loading={loading === "review"}
+                  disabled={loading !== null}
+                >
+                  Review {due} now →
+                </Button>
+              ) : (
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => quickStart("mixed")}
+                  loading={loading === "mixed"}
+                  disabled={loading !== null}
+                >
+                  Start a mixed session →
+                </Button>
+              )}
+            </div>
+
+            {/* Full session menu */}
+            <div className="mt-5 pt-5 border-t border-border">
+              <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-faint mb-2.5">
+                Or start fresh
+              </p>
+              <div className="flex flex-wrap items-center gap-2 justify-center sm:justify-start">
+                {QUICK.map(({ kind, cn, label }) => (
                   <Button
+                    key={kind}
                     variant="outline"
                     size="sm"
-                    className="ml-auto border-ochre/40 text-ochre hover:bg-ochre/10"
-                    onClick={() => quickStart("review")}
-                    loading={loading === "review"}
+                    onClick={() => quickStart(kind)}
+                    loading={loading === kind}
                     disabled={loading !== null}
                   >
-                    Review now
+                    <span className="hanzi text-seal/80 mr-1.5">{cn}</span>
+                    {label}
                   </Button>
-                </div>
-              )}
-
-              {inProgress ? (
-                <div className="flex items-center justify-between gap-4 bg-jade/10 border border-jade/20 rounded-xl px-4 py-3">
-                  <div>
-                    <p className="text-sm font-semibold text-jade">Resume session</p>
-                    <p className="text-xs text-muted mt-0.5">
-                      {inProgress.kind} · {inProgress.cursor}/{inProgress.items.length} done
-                    </p>
-                  </div>
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    onClick={() => router.push(`/study/${inProgress.session_id}`)}
-                  >
-                    Resume →
-                  </Button>
-                </div>
-              ) : (
-                <div className="flex items-center gap-2 flex-wrap">
-                  <p className="text-sm text-muted mr-1">Quick start:</p>
-                  {[
-                    { kind: "new_drop", label: "New words" },
-                    { kind: "review",   label: "Review due" },
-                    { kind: "mixed",    label: "Mixed" },
-                  ].map(({ kind, label }) => (
-                    <Button
-                      key={kind}
-                      variant={kind === "mixed" ? "primary" : "outline"}
-                      size="sm"
-                      onClick={() => quickStart(kind)}
-                      loading={loading === kind}
-                      disabled={loading !== null}
-                    >
-                      {label}
-                    </Button>
-                  ))}
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => router.push("/study")}
-                    className="ml-auto text-seal"
-                  >
-                    Custom →
-                  </Button>
-                </div>
-              )}
-            </div>
-          </Card>
-        </div>
-
-        {/* ── Quick start tile ── col-span-4 lg */}
-        <div className="col-span-1 sm:col-span-3 lg:col-span-4">
-          <Card variant="paper" padding="md" className="h-full flex flex-col gap-4">
-            <div className="flex items-center gap-2">
-              <Seal size={24} />
-              <p className="font-semibold text-ink text-sm">Start a session</p>
-            </div>
-            <div className="flex flex-col gap-2 flex-1">
-              {[
-                { kind: "new_drop", label: "＋ New words",   desc: "Learn something fresh" },
-                { kind: "review",   label: "↻ Review due",  desc: "Reinforce what you know" },
-                { kind: "mixed",    label: "⚡ Mixed",        desc: "Best of both worlds" },
-              ].map(({ kind, label, desc }) => (
-                <button
-                  key={kind}
-                  onClick={() => quickStart(kind)}
-                  disabled={loading !== null}
-                  className="flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-xl hover:bg-surface-2 transition-colors disabled:opacity-40 group"
+                ))}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-seal"
+                  onClick={() => router.push("/study")}
                 >
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-ink group-hover:text-seal transition-colors">{label}</p>
-                    <p className="text-xs text-muted truncate">{desc}</p>
-                  </div>
-                  {loading === kind && <span className="text-xs text-muted">…</span>}
-                </button>
-              ))}
+                  Pick words →
+                </Button>
+              </div>
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-seal text-xs"
-              onClick={() => router.push("/study")}
+          </div>
+        </div>
+      </Card>
+
+      {/* ── Notebook index ──────────────────────────────────────────── */}
+      <div className="grid sm:grid-cols-3 rounded-2xl border border-border bg-surface overflow-hidden divide-y sm:divide-y-0 sm:divide-x divide-border mb-10">
+        {NAV.map((n) => (
+          <button
+            key={n.href}
+            onClick={() => router.push(n.href)}
+            className="group flex items-center gap-3 text-left px-5 py-4 hover:bg-surface-2 transition-colors"
+          >
+            <span className="hanzi text-2xl text-seal/70 shrink-0 w-9 text-center" aria-hidden>
+              {n.cn}
+            </span>
+            <span className="flex-1 min-w-0">
+              <span className="block font-display font-semibold text-ink group-hover:text-seal transition-colors">
+                {n.label}
+              </span>
+              <span className="block text-xs text-muted truncate">{n.desc}</span>
+            </span>
+            <span
+              className="text-faint group-hover:text-seal transition-colors shrink-0"
+              aria-hidden
             >
-              Pick specific words →
-            </Button>
-          </Card>
+              →
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* ── Practice ledger ─────────────────────────────────────────── */}
+      <section>
+        <div className="flex items-baseline gap-2 mb-4">
+          <span className="hanzi text-seal/80 text-sm" aria-hidden>
+            近期
+          </span>
+          <h2 className="font-display text-xl font-semibold text-ink">Recent practice</h2>
         </div>
 
-        {/* ── Vocabulary shortcut ── col-span-4 */}
-        <button
-          onClick={() => router.push("/vocabulary")}
-          className="col-span-1 sm:col-span-3 lg:col-span-4 text-left group"
-        >
-          <Card variant="paper" padding="md" className="h-full hover:border-seal/40 transition-colors">
-            <p className="text-xs font-semibold uppercase tracking-widest text-faint mb-2">Vocabulary</p>
-            <p className="font-display text-2xl font-semibold text-ink mb-1 group-hover:text-seal transition-colors">
-              Word bank
-            </p>
-            <p className="text-sm text-muted">Browse words, view lesson cards, add new ones.</p>
-            <p className="text-seal text-sm font-medium mt-4">Open →</p>
-          </Card>
-        </button>
-
-        {/* ── Stats shortcut ── col-span-4 */}
-        <button
-          onClick={() => router.push("/stats")}
-          className="col-span-1 sm:col-span-3 lg:col-span-4 text-left group"
-        >
-          <Card variant="paper" padding="md" className="h-full hover:border-jade/40 transition-colors">
-            <p className="text-xs font-semibold uppercase tracking-widest text-faint mb-2">Progress</p>
-            <p className="font-display text-2xl font-semibold text-ink mb-1 group-hover:text-jade transition-colors">
-              Stats
-            </p>
-            <p className="text-sm text-muted">Mastery, streak, weakest words, and level progress.</p>
-            <p className="text-jade text-sm font-medium mt-4">View →</p>
-          </Card>
-        </button>
-
-        {/* ── Sessions shortcut ── col-span-4 */}
-        <button
-          onClick={() => router.push("/sessions")}
-          className="col-span-1 sm:col-span-6 lg:col-span-4 text-left group"
-        >
-          <Card variant="paper" padding="md" className="h-full hover:border-border transition-colors">
-            <p className="text-xs font-semibold uppercase tracking-widest text-faint mb-2">History</p>
-            <p className="font-display text-2xl font-semibold text-ink mb-1">Sessions</p>
-            <p className="text-sm text-muted">Review past sessions, re-drill, and track progress.</p>
-            <p className="text-muted text-sm font-medium mt-4">View all →</p>
-          </Card>
-        </button>
-      </Bento>
-
-      {/* ── Recent sessions list ──────────────────────────────────── */}
-      <section>
-        <h2 className="font-display text-xl font-semibold text-ink mb-4">Recent sessions</h2>
         {sessions.length === 0 ? (
-          <Card variant="paper" padding="md">
-            <p className="text-muted text-sm text-center py-4">No sessions yet. Start one above!</p>
+          <Card variant="paper" padding="lg">
+            <p className="text-muted text-sm text-center">
+              No sessions yet — your first one shows up here once you study. Start one above.
+            </p>
           </Card>
         ) : (
           <Card variant="paper" padding="none">
@@ -267,12 +279,14 @@ export default function HomeClient({
                   key={s.id}
                   className="flex items-center gap-3 px-5 py-3.5 hover:bg-surface-2 transition-colors"
                 >
-                  <Badge variant={statusBadgeVariant(s.status)}>
-                    {statusLabel(s.status)}
-                  </Badge>
-                  <span className="text-sm font-medium text-ink capitalize">{s.kind.replace("_", " ")}</span>
+                  <Badge variant={statusBadgeVariant(s.status)}>{statusLabel(s.status)}</Badge>
+                  <span className="text-sm font-medium text-ink capitalize">
+                    {s.kind.replace("_", " ")}
+                  </span>
                   <span className="font-mono text-xs text-muted">{s.score}</span>
-                  <span className="text-xs text-faint hidden sm:block ml-auto">{fmtTime(s.created_at)}</span>
+                  <span className="text-xs text-faint hidden sm:block ml-auto">
+                    {fmtTime(s.created_at)}
+                  </span>
                   <div className="flex gap-1 shrink-0 sm:ml-0 ml-auto">
                     {s.status === "in_progress" && (
                       <Button

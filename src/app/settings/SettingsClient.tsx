@@ -51,7 +51,7 @@ export default function SettingsClient({ profile, wordCount, sessionCount }: Pro
 
   return (
     <div className="max-w-2xl">
-      <PageHeader eyebrow="Account" title="Settings" />
+      <PageHeader rubric="设置" eyebrow="Account" title="Settings" />
 
       {/* Plan / limits panel */}
       <Card variant="paper" padding="md" className="mb-6">

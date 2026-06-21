@@ -50,6 +50,7 @@ export default function SessionsClient({ sessions }: { sessions: SessionSummary[
   return (
     <div>
       <PageHeader
+        rubric="记录"
         eyebrow="History"
         title="Sessions"
         actions={

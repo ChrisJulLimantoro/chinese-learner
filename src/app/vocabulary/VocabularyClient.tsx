@@ -102,6 +102,7 @@ export default function VocabularyClient({ vocab }: { vocab: VocabWord[] }) {
   return (
     <div>
       <PageHeader
+        rubric="词库"
         eyebrow="Learning"
         title="Vocabulary"
         actions={

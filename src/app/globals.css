@@ -131,12 +131,59 @@ body::before {
   animation: fade-up 0.3s ease-out both;
 }
 
+/* ─── Manuscript utilities (vertical rubric labels) ─────────────────── */
+.v-rl {
+  writing-mode: vertical-rl;
+}
+.v-upright {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.18em;
+}
+
+/* ─── Forgetting-curve draw-on (scroll-triggered via .is-drawn) ──────── */
+.curve-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.curve-line.is-drawn {
+  animation: draw-line 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+.curve-dot {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.curve-dot.is-drawn {
+  animation: dot-pop 0.45s ease-out forwards;
+}
+@keyframes dot-pop {
+  0%   { opacity: 0; transform: scale(0); }
+  70%  { transform: scale(1.35); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
 /* ─── Reduced motion overrides ──────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .animate-hanzi-in,
   .animate-seal-stamp,
   .animate-fade-up {
     animation: none;
+  }
+  .curve-line,
+  .curve-line.is-drawn {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .curve-dot,
+  .curve-dot.is-drawn {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
 

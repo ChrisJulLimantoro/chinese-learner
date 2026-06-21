@@ -42,7 +42,7 @@ export default function StatsClient({ stats }: { stats: Stats | null }) {
   if (!stats) {
     return (
       <div>
-        <PageHeader eyebrow="Your progress" title="Stats" />
+        <PageHeader rubric="进度" eyebrow="Your progress" title="Stats" />
         <Card variant="paper" padding="lg" className="text-center">
           <p className="text-muted">No data yet. Start studying to see your stats!</p>
         </Card>
@@ -60,7 +60,7 @@ export default function StatsClient({ stats }: { stats: Stats | null }) {
 
   return (
     <div>
-      <PageHeader eyebrow="Your progress" title="Stats" />
+      <PageHeader rubric="进度" eyebrow="Your progress" title="Stats" />
 
       <Bento className="mb-6">
         {/* ── Mastery hero ── */}

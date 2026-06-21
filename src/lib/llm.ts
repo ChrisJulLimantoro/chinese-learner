@@ -188,8 +188,9 @@ export function stubLessonCard(word: {
 
 function stubContextHelpers(simplified: string): ContextHelper[] {
   return [
-    { word: "我", gloss: "I / me" },
-    { word: "很", gloss: "very" },
+    { word: "你", pinyin: "nǐ", gloss: "you" },
+    { word: "马上", pinyin: "mǎshàng", gloss: "right away / immediately" },
+    { word: "离开", pinyin: "líkāi", gloss: "to leave / depart" },
   ].filter((h) => h.word !== simplified);
 }
 
@@ -385,7 +386,7 @@ Each question JSON must match:
   "target_word": string,
   "context": string,
   "target_hint": string,
-  "context_helpers": [{"word": string, "gloss": string}]
+  "context_helpers": [{"word": string, "pinyin": string, "gloss": string}]
 }
 
 Rules:
@@ -401,7 +402,7 @@ Rules:
 - Never write prompts like "use X", "using X", or "in the sense of X (pinyin)". The learner should infer the tested word from meaning + context only.
 - If a word has multiple readings, disambiguate using meaning/context only (semantic constraint), without revealing pinyin or the target hanzi in the prompt.
 - "target_hint": one short line for the TARGET word only — include hanzi, pinyin, and the intended sense. This is shown only when the learner requests a penalized hint; it must NOT appear in "prompt".
-- "context_helpers": array of glosses for OTHER words that appear in the prompt sentence (not the target word). Each entry: {"word": "<hanzi>", "gloss": "<English meaning>"}. Include 2–5 helpers when the prompt uses vocabulary beyond the target word. Empty array if the prompt is a single-word gloss question.
+- "context_helpers": array of glosses for OTHER words that appear in the prompt sentence (not the target word). Each entry: {"word": "<hanzi>", "pinyin": "<marked pinyin>", "gloss": "<English meaning>"}. Include 2–5 helpers when the prompt uses vocabulary beyond the target word. Empty array if the prompt is a single-word gloss question.
 
 Return a JSON array of exactly ${words.length} question objects.
 `;

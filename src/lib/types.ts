@@ -46,6 +46,7 @@ export interface LessonCard {
 
 export interface ContextHelper {
   word: string;
+  pinyin?: string;
   gloss: string;
 }
 

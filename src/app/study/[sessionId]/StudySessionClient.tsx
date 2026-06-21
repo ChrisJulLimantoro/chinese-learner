@@ -692,8 +692,11 @@ export default function StudySessionClient({ session: initialSession }: { sessio
                       </p>
                       <ul className="space-y-1.5 text-sm">
                         {question.context_helpers!.map((h, idx) => (
-                          <li key={idx} className="flex gap-2">
-                            <span className="hanzi font-semibold text-ink shrink-0">{h.word}</span>
+                          <li key={idx} className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                            <span className="hanzi font-semibold text-ink">{h.word}</span>
+                            {h.pinyin && (
+                              <span className="text-jade text-sm">{h.pinyin}</span>
+                            )}
                             <span className="text-muted">{h.gloss}</span>
                           </li>
                         ))}

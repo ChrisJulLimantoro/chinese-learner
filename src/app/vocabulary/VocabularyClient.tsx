@@ -4,6 +4,7 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { addWordsToBankAction } from "../actions/vocabulary";
 import type { Word } from "@/lib/types";
+import { formatReadingsPinyin, hasMultipleReadings } from "@/lib/readings";
 import { Card, Button, Badge, PageHeader } from "@/components/ui";
 
 const PAGE_SIZE = 20;
@@ -62,7 +63,11 @@ export default function VocabularyClient({ vocab }: { vocab: VocabWord[] }) {
     const matchesQuery =
       w.simplified.includes(query) ||
       w.pinyin.toLowerCase().includes(query.toLowerCase()) ||
-      (w.meanings ?? []).some((m) => m.toLowerCase().includes(query.toLowerCase()));
+      (w.meanings ?? []).some((m) => m.toLowerCase().includes(query.toLowerCase())) ||
+      (w.readings ?? []).some((r) =>
+        r.pinyin.toLowerCase().includes(query.toLowerCase()) ||
+        r.meanings.some((m) => m.toLowerCase().includes(query.toLowerCase()))
+      );
     return matchesLevel && matchesQuery;
   });
 
@@ -291,9 +296,13 @@ function WordRow({
       <span className="hanzi text-2xl font-bold text-ink shrink-0 w-10">
         {w.simplified}
       </span>
-      <span className="text-sm text-muted shrink-0 w-24">{w.pinyin}</span>
+      <span className="text-sm text-muted shrink-0 w-24">
+        {hasMultipleReadings(w.readings) ? formatReadingsPinyin(w.readings) : w.pinyin}
+      </span>
       <span className="text-sm text-faint truncate flex-1 hidden sm:block">
-        {(w.meanings ?? []).slice(0, 2).join(", ")}
+        {hasMultipleReadings(w.readings)
+          ? w.readings.map(r => r.meanings[0]).filter(Boolean).join("; ")
+          : (w.meanings ?? []).slice(0, 2).join(", ")}
       </span>
       <div className="shrink-0 ml-auto flex items-center gap-1.5">
         <Badge variant={hskBadgeVariant(w.hsk_level)}>HSK {w.hsk_level}</Badge>

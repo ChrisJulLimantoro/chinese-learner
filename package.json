@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed": "tsx scripts/seed-wordbank.ts"
+    "seed": "tsx scripts/seed-wordbank.ts",
+    "backfill-readings": "tsx scripts/backfill-readings.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

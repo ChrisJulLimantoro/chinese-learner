@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { startSessionAction, startSessionWithWordsAction } from "../actions/session";
 import type { Word } from "@/lib/types";
+import { formatReadingsPinyin, hasMultipleReadings } from "@/lib/readings";
 import { Card, Button, Badge, PageHeader } from "@/components/ui";
 
 type VocabWord = Word & {
@@ -78,7 +79,9 @@ export default function StudyBuilderClient({
           className="w-4 h-4 shrink-0 accent-jade rounded"
         />
         <span className="hanzi text-lg font-semibold text-ink">{word.simplified}</span>
-        <span className="text-sm text-muted">{word.pinyin}</span>
+        <span className="text-sm text-muted">
+          {hasMultipleReadings(word.readings) ? formatReadingsPinyin(word.readings) : word.pinyin}
+        </span>
         <span className="text-xs text-faint truncate flex-1 hidden sm:block">{gloss}</span>
         <div className="flex gap-1.5 shrink-0">
           {isNew && <Badge variant="ochre">new</Badge>}

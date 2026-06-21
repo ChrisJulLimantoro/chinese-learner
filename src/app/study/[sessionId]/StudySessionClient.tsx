@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { gradeAnswerAction } from "../../actions/session";
 import type { Session, LessonCard, GraderOutput, Outcome } from "@/lib/types";
+import { hasMultipleReadings } from "@/lib/readings";
 import { Card, Button, Badge, ProgressBar } from "@/components/ui";
 import Seal from "@/components/Seal";
 
@@ -74,7 +75,7 @@ function LessonCardView({ card }: { card: LessonCard; word?: unknown }) {
             {card.character_breakdown.map((c, i) => (
               <div
                 key={i}
-                className="bg-surface-2 rounded-xl px-3 py-2.5 text-center min-w-[64px] border border-border"
+                className="bg-surface-2 rounded-xl px-3 py-2.5 text-center min-w-full border border-border"
               >
                 <div className="hanzi text-2xl font-bold text-ink">{c.char}</div>
                 <div className="text-xs text-muted mt-1">{c.meaning}</div>
@@ -210,10 +211,23 @@ export default function StudySessionClient({ session: initialSession }: { sessio
               <div className="hanzi text-7xl font-bold text-ink mb-3 leading-none">
                 {learnItem.word.simplified}
               </div>
-              <div className="text-jade text-lg mt-1">{learnItem.word.pinyin}</div>
-              <div className="text-muted text-sm mt-2">
-                {learnItem.word.meanings?.join(", ")}
-              </div>
+              {hasMultipleReadings(learnItem.word.readings) ? (
+                <div className="mt-2 space-y-1">
+                  {learnItem.word.readings.map((r, i) => (
+                    <div key={i}>
+                      <span className="text-jade text-base">{r.pinyin}</span>
+                      <span className="text-muted text-sm ml-2">{r.meanings.slice(0, 2).join(", ")}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <>
+                  <div className="text-jade text-lg mt-1">{learnItem.word.pinyin}</div>
+                  <div className="text-muted text-sm mt-2">
+                    {learnItem.word.meanings?.join(", ")}
+                  </div>
+                </>
+              )}
             </div>
           )}
         </Card>

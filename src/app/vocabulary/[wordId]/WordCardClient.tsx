@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Word, LessonCard, SrsState } from "@/lib/types";
+import { hasMultipleReadings } from "@/lib/readings";
 import { Card, Button, Badge } from "@/components/ui";
 import { regenerateWordCardAction } from "@/app/actions/vocabulary";
 
@@ -131,9 +132,20 @@ export default function WordCardClient({
           {word.traditional && word.traditional !== word.simplified && (
             <div className="hanzi text-2xl text-muted mb-1">{word.traditional}</div>
           )}
-          <div className="text-jade text-lg font-medium mt-1">
-            {card ? card.pinyin_marked : word.pinyin}
-          </div>
+          {hasMultipleReadings(word.readings) ? (
+            <div className="mt-2 space-y-1">
+              {word.readings.map((r, i) => (
+                <div key={i} className="text-center">
+                  <span className="text-jade text-base font-medium">{r.pinyin}</span>
+                  <span className="text-faint text-xs ml-2">{r.meanings.slice(0, 2).join(", ")}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-jade text-lg font-medium mt-1">
+              {card ? card.pinyin_marked : word.pinyin}
+            </div>
+          )}
           <div className="flex items-center justify-center gap-2 mt-2">
             <span className="text-xs text-faint font-mono">HSK {word.hsk_level}</span>
             {srs?.mastered && <Badge variant="jade">Mastered</Badge>}
@@ -176,7 +188,7 @@ export default function WordCardClient({
                   {card.character_breakdown.map((c, i) => (
                     <div
                       key={i}
-                      className="bg-surface-2 rounded-xl px-3 py-2.5 text-center min-w-[64px] border border-border"
+                      className="bg-surface-2 rounded-xl px-3 py-2.5 text-center min-w-full border border-border"
                     >
                       <div className="hanzi text-2xl font-bold text-ink">{c.char}</div>
                       <div className="text-xs text-muted mt-1">{c.meaning}</div>
@@ -217,10 +229,21 @@ export default function WordCardClient({
             )}
           </div>
         ) : (
-          <div className="flex flex-wrap gap-2">
-            {(word.meanings ?? []).map((m, i) => (
-              <Badge key={i} variant="muted">{m}</Badge>
-            ))}
+          <div className="space-y-2">
+            {hasMultipleReadings(word.readings) ? (
+              word.readings.map((r, i) => (
+                <div key={i} className="flex flex-wrap items-center gap-2">
+                  <span className="text-jade text-sm font-medium shrink-0">{r.pinyin}</span>
+                  {r.meanings.map((m, j) => (
+                    <Badge key={j} variant="muted">{m}</Badge>
+                  ))}
+                </div>
+              ))
+            ) : (
+              (word.meanings ?? []).map((m, i) => (
+                <Badge key={i} variant="muted">{m}</Badge>
+              ))
+            )}
           </div>
         )}
       </Card>

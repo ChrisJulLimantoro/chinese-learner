@@ -19,6 +19,7 @@ import { generateLessonCard, generateQuestions } from "./llm";
 import { DEFAULT_SESSION_SIZE, START_HSK_LEVEL, FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS, SUPER_ADMIN_EMAIL } from "./config";
 import type {
   Word,
+  Reading,
   Session,
   SessionItem,
   SessionSummary,
@@ -46,6 +47,9 @@ function normalizeWordRow(row: Record<string, unknown>): Word {
     meanings: Array.isArray(row.meanings) ? (row.meanings as string[]) : [],
     measure_word: (row.measure_word as { mw: string; pinyin: string } | null) ?? null,
     lesson_card: (row.lesson_card as import("./types").LessonCard | null) ?? null,
+    readings: Array.isArray(row.readings) ? (row.readings as Reading[]) : [
+      { pinyin: row.pinyin as string, traditional: (row.traditional as string | null) ?? null, meanings: Array.isArray(row.meanings) ? (row.meanings as string[]) : [] }
+    ],
   };
 }
 

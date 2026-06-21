@@ -12,7 +12,7 @@ import {
   LLM_MAX_RETRIES,
   MAX_TOKENS_BY_PURPOSE,
 } from "./config";
-import type { LessonCard, Question, GraderOutput } from "./types";
+import type { LessonCard, Question, GraderOutput, Reading } from "./types";
 
 // ---------------------------------------------------------------------------
 // OpenAI client (lazy)
@@ -138,10 +138,14 @@ function stubLessonCard(word: {
   frequency_rank?: number | null;
   pos?: string[];
   meanings?: string[];
+  readings?: Reading[];
 }): LessonCard {
   const simplified = word.simplified ?? "?";
   const pinyin = word.pinyin ?? "";
-  const meanings = word.meanings ?? ["(meaning)"];
+  const readings = word.readings;
+  const meanings = (readings && readings.length > 1)
+    ? Array.from(new Set(readings.flatMap((r) => r.meanings)))
+    : (word.meanings ?? ["(meaning)"]);
   const pos = word.pos ?? ["word"];
 
   return {
@@ -179,7 +183,7 @@ function stubLessonCard(word: {
   };
 }
 
-function stubQuestions(words: { simplified: string; meanings?: string[] }[]): Question[] {
+function stubQuestions(words: { simplified: string; meanings?: string[]; readings?: Reading[] }[]): Question[] {
   const types: Question["type"][] = [
     "en_to_zh",
     "cloze",
@@ -188,21 +192,25 @@ function stubQuestions(words: { simplified: string; meanings?: string[] }[]): Qu
   ];
   return words.map((w, i) => {
     const simplified = w.simplified ?? "?";
+    const readings = w.readings;
     const meanings = w.meanings ?? ["something"];
     const gloss = meanings[0] ?? "something";
     const qtype = types[i % types.length];
+    // Pick a target reading for multi-reading words
+    const targetReading = readings && readings.length > 1 ? readings[i % readings.length] : null;
+    const readingHint = targetReading ? ` (intended reading: ${targetReading.pinyin})` : "";
 
     let prompt: string;
     if (qtype === "en_to_zh") {
-      prompt = `Translate into Mandarin: '${gloss}'`;
+      prompt = `Translate into Mandarin: '${gloss}'${readingHint}`;
     } else if (qtype === "cloze") {
-      prompt = `Fill in the blank: 我___ (using '${simplified}')`;
+      prompt = `Fill in the blank: 我___ (using '${simplified}'${readingHint})`;
     } else if (qtype === "synonym_discrim") {
       prompt =
-        `Choose the word that fits better in context (habitual action): ` +
+        `Choose the word that fits better in context (habitual action)${readingHint}: ` +
         `Option A: ${simplified} | Option B: [near synonym]. Type your answer in hanzi.`;
     } else {
-      prompt = `What Mandarin word means '${gloss}'? (Enter the hanzi)`;
+      prompt = `What Mandarin word means '${gloss}'?${readingHint} (Enter the hanzi)`;
     }
 
     return { type: qtype, prompt, target_word: simplified, context: gloss };
@@ -238,6 +246,7 @@ export async function generateLessonCard(word: {
   frequency_rank?: number | null;
   pos?: string[];
   meanings?: string[];
+  readings?: Reading[];
 }, reason?: string): Promise<LessonCard> {
   if (USE_STUB) return stubLessonCard(word);
 
@@ -245,6 +254,8 @@ export async function generateLessonCard(word: {
   const pinyin = word.pinyin ?? "";
   const meanings = word.meanings ?? [];
   const hsk = word.hsk_level ?? 2;
+  const readings = word.readings;
+  const hasMultipleReadings = readings && readings.length > 1;
 
   const system =
     "You are a Chinese-language pedagogy expert. " +
@@ -257,12 +268,20 @@ export async function generateLessonCard(word: {
     ? `\n\nThe previous version of this card was reported as INCORRECT for the following reason:\n"${reason.trim()}"\nFix this specifically and ensure the new card is accurate.`
     : "";
 
+  const multiReadingBlock = hasMultipleReadings
+    ? `\nThis word has multiple readings:\n${readings!.map((r) => `- ${r.pinyin}: ${r.meanings.join(", ")}`).join("\n")}\n\nDocument EVERY reading in this lesson card — each with its own pinyin headline and meanings. The examples, nuance, and character_breakdown must cover all readings.\n`
+    : "";
+
+  const pinyinGrounding = hasMultipleReadings
+    ? readings!.map((r) => r.pinyin).join(" / ")
+    : pinyin;
+
   const user = `Create a detailed HSK lesson card for the Mandarin word:
 Simplified: ${simplified}
 Pinyin: ${pinyin}
 HSK Level: ${hsk}
 Base meanings: ${meanings.join(", ")}
-
+${multiReadingBlock}
 Return JSON matching EXACTLY this schema (all fields required unless marked nullable):
 {
   "simplified": string,
@@ -282,25 +301,35 @@ Return JSON matching EXACTLY this schema (all fields required unless marked null
   "common_mistakes": [string],
   "character_breakdown": [{"char": string, "meaning": string, "mnemonic": string}]
 }
-Provide 2-3 examples, near_synonyms if any exist, and character_breakdown for each character.${correction}
+Provide 2-3 examples, near_synonyms if any exist, and character_breakdown for each character.
+
+Grounding rules (critical for accuracy):
+- Describe ONLY "${simplified}" (${pinyinGrounding}). Do NOT confuse it with a similar-looking or similar-sounding character (e.g. a homophone or a different-tone reading). The pinyin you output must match "${pinyinGrounding}".
+- Base every field on the "Base meanings" above. Do NOT invent senses, surnames, or proper-noun readings that the Base meanings do not support. "core_meanings" must stay consistent with the Base meanings — you may refine or reorder them, but not replace them with an unrelated meaning.
+- "character_breakdown" must contain exactly the characters of "${simplified}", in order, and explain those exact characters and nothing else.${correction}
 `;
 
   return chatJson<LessonCard>("lesson", [
     { role: "system", content: system },
     { role: "user", content: user },
-  ]);
+  ], 0.2);
 }
 
 export async function generateQuestions(
-  words: { simplified: string; pinyin?: string; hsk_level?: number; meanings?: string[] }[]
+  words: { simplified: string; pinyin?: string; hsk_level?: number; meanings?: string[]; readings?: Reading[] }[]
 ): Promise<Question[]> {
   if (USE_STUB) return stubQuestions(words);
 
   const wordsStr = words
-    .map(
-      (w) =>
-        `- ${w.simplified} (${w.pinyin ?? ""}) hsk${w.hsk_level ?? "?"}: ${(w.meanings ?? []).join(", ")}`
-    )
+    .map((w) => {
+      const allMeanings = (w.meanings ?? []).join(", ");
+      const base = `- ${w.simplified} (${w.pinyin ?? ""}) hsk${w.hsk_level ?? "?"}: ${allMeanings}`;
+      if (w.readings && w.readings.length > 1) {
+        const readingLines = w.readings.map((r) => `  Readings: ${r.pinyin} = ${r.meanings.join(", ")}`).join("\n");
+        return `${base}\n${readingLines}`;
+      }
+      return base;
+    })
     .join("\n");
 
   const system =
@@ -331,6 +360,9 @@ Rules:
 - gloss_to_word: give the English gloss + a usage context; ask learner to type the hanzi
 - NO multiple choice — learner types the answer in Mandarin
 - Vary types; don't use the same type more than twice in a row
+- GROUND each question in the meanings listed for that exact word. The gloss/context MUST come from those meanings — do NOT invent a meaning, surname, or proper noun that is not listed, and do NOT confuse a word with a similar-looking or similar-sounding character.
+- "target_word" MUST be the exact simplified word from the list, and the prompt's meaning MUST be the meaning of that word (not a homophone or near-homophone).
+- If a word has multiple readings, VARY questions across readings — target different readings across the set. State the intended reading in the prompt text (e.g., "Using 还 in the sense of 'to return' (huán)...").
 
 Return a JSON array of exactly ${words.length} question objects.
 `;
@@ -338,7 +370,7 @@ Return a JSON array of exactly ${words.length} question objects.
   const result = await chatJson<Question[] | Record<string, Question>>("question", [
     { role: "system", content: system },
     { role: "user", content: user },
-  ]);
+  ], 0.2);
 
   if (Array.isArray(result)) return result;
   // coerce dict → values (as Python does)

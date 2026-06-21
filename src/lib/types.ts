@@ -5,6 +5,12 @@ export type Supabase = SupabaseClient;
 
 export type Outcome = "correct" | "wrong" | "hesitated";
 
+export interface Reading {
+  pinyin: string;
+  traditional: string | null;
+  meanings: string[];
+}
+
 export interface Word {
   id: number;
   simplified: string;
@@ -16,6 +22,7 @@ export interface Word {
   meanings: string[];
   measure_word: { mw: string; pinyin: string } | null;
   lesson_card: LessonCard | null;
+  readings: Reading[];
 }
 
 export interface LessonCard {

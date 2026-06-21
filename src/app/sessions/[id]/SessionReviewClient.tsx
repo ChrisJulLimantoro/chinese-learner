@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import type { Session, GraderOutput } from "@/lib/types";
+import { formatReadingsPinyin, hasMultipleReadings } from "@/lib/readings";
 import { Card, Button, Badge, ProgressBar } from "@/components/ui";
 
 const TYPE_LABELS: Record<string, string> = {
@@ -84,7 +85,11 @@ export default function SessionReviewClient({ session }: { session: Session }) {
                   <span className="hanzi text-2xl font-bold text-ink">
                     {item.word.simplified}
                   </span>
-                  <span className="text-sm text-muted">{item.word.pinyin}</span>
+                  <span className="text-sm text-muted">
+                    {hasMultipleReadings(item.word.readings)
+                      ? formatReadingsPinyin(item.word.readings)
+                      : item.word.pinyin}
+                  </span>
                 </div>
                 {item.outcome && (
                   <Badge variant={outcomeVariant(item.outcome)}>

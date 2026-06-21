@@ -12,7 +12,7 @@ import {
   MASTERY_PERCENT,
   LEVEL_FLOOR,
 } from "./config";
-import type { Outcome, SrsState, Word } from "./types";
+import type { Outcome, SrsState, Word, Reading } from "./types";
 
 // ---------------------------------------------------------------------------
 // Core SRS update
@@ -234,5 +234,8 @@ function normalizeWord(row: Record<string, unknown>): Word {
     meanings: Array.isArray(row.meanings) ? row.meanings as string[] : [],
     measure_word: row.measure_word as { mw: string; pinyin: string } | null,
     lesson_card: row.lesson_card as null,
+    readings: Array.isArray(row.readings) ? row.readings as Reading[] : [
+      { pinyin: row.pinyin as string, traditional: row.traditional as string | null, meanings: Array.isArray(row.meanings) ? row.meanings as string[] : [] }
+    ],
   };
 }

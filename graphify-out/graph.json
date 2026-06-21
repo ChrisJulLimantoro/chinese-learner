@@ -9,7 +9,7 @@
       "source_file": "postcss.config.mjs",
       "source_location": "L1",
       "id": "postcss_config_mjs",
-      "community": 13,
+      "community": 19,
       "norm_label": "postcss.config.mjs"
     },
     {
@@ -18,7 +18,7 @@
       "source_file": "postcss.config.mjs",
       "source_location": "L1",
       "id": "chinese_learner_postcss_config_config",
-      "community": 13,
+      "community": 19,
       "norm_label": "config"
     },
     {
@@ -27,7 +27,7 @@
       "source_file": "next-env.d.ts",
       "source_location": "L1",
       "id": "next_env_d_ts",
-      "community": 17,
+      "community": 23,
       "norm_label": "next-env.d.ts"
     },
     {
@@ -36,7 +36,7 @@
       "source_file": "eslint.config.mjs",
       "source_location": "L1",
       "id": "eslint_config_mjs",
-      "community": 14,
+      "community": 20,
       "norm_label": "eslint.config.mjs"
     },
     {
@@ -45,7 +45,7 @@
       "source_file": "eslint.config.mjs",
       "source_location": "L5",
       "id": "chinese_learner_eslint_config_eslintconfig",
-      "community": 14,
+      "community": 20,
       "norm_label": "eslintconfig"
     },
     {
@@ -54,7 +54,7 @@
       "source_file": "next.config.ts",
       "source_location": "L1",
       "id": "next_config_ts",
-      "community": 15,
+      "community": 21,
       "norm_label": "next.config.ts"
     },
     {
@@ -63,8 +63,80 @@
       "source_file": "next.config.ts",
       "source_location": "L3",
       "id": "chinese_learner_next_config_nextconfig",
-      "community": 15,
+      "community": 21,
       "norm_label": "nextconfig"
+    },
+    {
+      "label": "wordbank-parse.ts",
+      "file_type": "code",
+      "source_file": "scripts/wordbank-parse.ts",
+      "source_location": "L1",
+      "id": "scripts_wordbank_parse_ts",
+      "community": 8,
+      "norm_label": "wordbank-parse.ts"
+    },
+    {
+      "label": "fetchRaw()",
+      "file_type": "code",
+      "source_file": "scripts/wordbank-parse.ts",
+      "source_location": "L15",
+      "id": "scripts_wordbank_parse_fetchraw",
+      "community": 8,
+      "norm_label": "fetchraw()"
+    },
+    {
+      "label": "parseLevel()",
+      "file_type": "code",
+      "source_file": "scripts/wordbank-parse.ts",
+      "source_location": "L29",
+      "id": "scripts_wordbank_parse_parselevel",
+      "community": 8,
+      "norm_label": "parselevel()"
+    },
+    {
+      "label": "Reading",
+      "file_type": "code",
+      "source_file": "scripts/wordbank-parse.ts",
+      "source_location": "L39",
+      "id": "scripts_wordbank_parse_reading",
+      "community": 8,
+      "norm_label": "reading"
+    },
+    {
+      "label": "WordRow",
+      "file_type": "code",
+      "source_file": "scripts/wordbank-parse.ts",
+      "source_location": "L45",
+      "id": "scripts_wordbank_parse_wordrow",
+      "community": 8,
+      "norm_label": "wordrow"
+    },
+    {
+      "label": "parseRows()",
+      "file_type": "code",
+      "source_file": "scripts/wordbank-parse.ts",
+      "source_location": "L58",
+      "id": "scripts_wordbank_parse_parserows",
+      "community": 8,
+      "norm_label": "parserows()"
+    },
+    {
+      "label": "backfill-readings.ts",
+      "file_type": "code",
+      "source_file": "scripts/backfill-readings.ts",
+      "source_location": "L1",
+      "id": "scripts_backfill_readings_ts",
+      "community": 8,
+      "norm_label": "backfill-readings.ts"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "scripts/backfill-readings.ts",
+      "source_location": "L30",
+      "id": "scripts_backfill_readings_main",
+      "community": 8,
+      "norm_label": "main()"
     },
     {
       "label": "seed-wordbank.ts",
@@ -72,43 +144,16 @@
       "source_file": "scripts/seed-wordbank.ts",
       "source_location": "L1",
       "id": "scripts_seed_wordbank_ts",
-      "community": 9,
+      "community": 8,
       "norm_label": "seed-wordbank.ts"
-    },
-    {
-      "label": "fetchRaw()",
-      "file_type": "code",
-      "source_file": "scripts/seed-wordbank.ts",
-      "source_location": "L29",
-      "id": "scripts_seed_wordbank_fetchraw",
-      "community": 9,
-      "norm_label": "fetchraw()"
-    },
-    {
-      "label": "parseLevel()",
-      "file_type": "code",
-      "source_file": "scripts/seed-wordbank.ts",
-      "source_location": "L43",
-      "id": "scripts_seed_wordbank_parselevel",
-      "community": 9,
-      "norm_label": "parselevel()"
-    },
-    {
-      "label": "WordRow",
-      "file_type": "code",
-      "source_file": "scripts/seed-wordbank.ts",
-      "source_location": "L53",
-      "id": "scripts_seed_wordbank_wordrow",
-      "community": 9,
-      "norm_label": "wordrow"
     },
     {
       "label": "main()",
       "file_type": "code",
       "source_file": "scripts/seed-wordbank.ts",
-      "source_location": "L64",
+      "source_location": "L25",
       "id": "scripts_seed_wordbank_main",
-      "community": 9,
+      "community": 8,
       "norm_label": "main()"
     },
     {
@@ -117,7 +162,7 @@
       "source_file": "src/proxy.ts",
       "source_location": "L1",
       "id": "src_proxy_ts",
-      "community": 11,
+      "community": 17,
       "norm_label": "proxy.ts"
     },
     {
@@ -126,7 +171,7 @@
       "source_file": "src/proxy.ts",
       "source_location": "L9",
       "id": "src_proxy_proxy",
-      "community": 11,
+      "community": 17,
       "norm_label": "proxy()"
     },
     {
@@ -135,7 +180,7 @@
       "source_file": "src/proxy.ts",
       "source_location": "L41",
       "id": "src_proxy_config",
-      "community": 11,
+      "community": 17,
       "norm_label": "config"
     },
     {
@@ -144,34 +189,61 @@
       "source_file": "src/app/LandingClient.tsx",
       "source_location": "L1",
       "id": "src_app_landingclient_tsx",
-      "community": 3,
+      "community": 2,
       "norm_label": "landingclient.tsx"
     },
     {
       "label": "LandingClient()",
       "file_type": "code",
       "source_file": "src/app/LandingClient.tsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "id": "app_landingclient_landingclient",
-      "community": 3,
+      "community": 2,
       "norm_label": "landingclient()"
     },
     {
-      "label": "FEATURES",
+      "label": "PracticeCell()",
       "file_type": "code",
       "source_file": "src/app/LandingClient.tsx",
-      "source_location": "L158",
-      "id": "app_landingclient_features",
-      "community": 3,
-      "norm_label": "features"
+      "source_location": "L345",
+      "id": "app_landingclient_practicecell",
+      "community": 2,
+      "norm_label": "practicecell()"
+    },
+    {
+      "label": "ForgettingCurve()",
+      "file_type": "code",
+      "source_file": "src/app/LandingClient.tsx",
+      "source_location": "L368",
+      "id": "app_landingclient_forgettingcurve",
+      "community": 2,
+      "norm_label": "forgettingcurve()"
+    },
+    {
+      "label": "STEPS",
+      "file_type": "code",
+      "source_file": "src/app/LandingClient.tsx",
+      "source_location": "L447",
+      "id": "app_landingclient_steps",
+      "community": 2,
+      "norm_label": "steps"
+    },
+    {
+      "label": "EXTRAS",
+      "file_type": "code",
+      "source_file": "src/app/LandingClient.tsx",
+      "source_location": "L475",
+      "id": "app_landingclient_extras",
+      "community": 2,
+      "norm_label": "extras"
     },
     {
       "label": "HSK_LEVELS",
       "file_type": "code",
       "source_file": "src/app/LandingClient.tsx",
-      "source_location": "L197",
+      "source_location": "L493",
       "id": "app_landingclient_hsk_levels",
-      "community": 3,
+      "community": 2,
       "norm_label": "hsk_levels"
     },
     {
@@ -180,7 +252,7 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L1",
       "id": "src_app_layout_tsx",
-      "community": 1,
+      "community": 0,
       "norm_label": "layout.tsx"
     },
     {
@@ -189,7 +261,7 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L10",
       "id": "app_layout_geistsans",
-      "community": 1,
+      "community": 0,
       "norm_label": "geistsans"
     },
     {
@@ -198,7 +270,7 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L15",
       "id": "app_layout_geistmono",
-      "community": 1,
+      "community": 0,
       "norm_label": "geistmono"
     },
     {
@@ -207,7 +279,7 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L20",
       "id": "app_layout_fraunces",
-      "community": 1,
+      "community": 0,
       "norm_label": "fraunces"
     },
     {
@@ -216,7 +288,7 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L27",
       "id": "app_layout_notoserifsc",
-      "community": 1,
+      "community": 0,
       "norm_label": "notoserifsc"
     },
     {
@@ -225,7 +297,7 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L34",
       "id": "app_layout_metadata",
-      "community": 1,
+      "community": 0,
       "norm_label": "metadata"
     },
     {
@@ -234,7 +306,7 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L51",
       "id": "app_layout_rootlayout",
-      "community": 1,
+      "community": 0,
       "norm_label": "rootlayout()"
     },
     {
@@ -243,43 +315,79 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L1",
       "id": "src_app_homeclient_tsx",
-      "community": 0,
+      "community": 12,
       "norm_label": "homeclient.tsx"
     },
     {
       "label": "fmtTime()",
       "file_type": "code",
       "source_file": "src/app/HomeClient.tsx",
-      "source_location": "L10",
+      "source_location": "L9",
       "id": "app_homeclient_fmttime",
-      "community": 0,
+      "community": 12,
       "norm_label": "fmttime()"
     },
     {
       "label": "statusBadgeVariant()",
       "file_type": "code",
       "source_file": "src/app/HomeClient.tsx",
-      "source_location": "L20",
+      "source_location": "L19",
       "id": "app_homeclient_statusbadgevariant",
-      "community": 0,
+      "community": 12,
       "norm_label": "statusbadgevariant()"
     },
     {
       "label": "statusLabel()",
       "file_type": "code",
       "source_file": "src/app/HomeClient.tsx",
-      "source_location": "L30",
+      "source_location": "L29",
       "id": "app_homeclient_statuslabel",
-      "community": 0,
+      "community": 12,
       "norm_label": "statuslabel()"
+    },
+    {
+      "label": "WEEKDAYS_CN",
+      "file_type": "code",
+      "source_file": "src/app/HomeClient.tsx",
+      "source_location": "L39",
+      "id": "app_homeclient_weekdays_cn",
+      "community": 12,
+      "norm_label": "weekdays_cn"
+    },
+    {
+      "label": "NAV",
+      "file_type": "code",
+      "source_file": "src/app/HomeClient.tsx",
+      "source_location": "L41",
+      "id": "app_homeclient_nav",
+      "community": 12,
+      "norm_label": "nav"
+    },
+    {
+      "label": "QUICK",
+      "file_type": "code",
+      "source_file": "src/app/HomeClient.tsx",
+      "source_location": "L47",
+      "id": "app_homeclient_quick",
+      "community": 12,
+      "norm_label": "quick"
+    },
+    {
+      "label": "MiCell()",
+      "file_type": "code",
+      "source_file": "src/app/HomeClient.tsx",
+      "source_location": "L54",
+      "id": "app_homeclient_micell",
+      "community": 12,
+      "norm_label": "micell()"
     },
     {
       "label": "HomeClient()",
       "file_type": "code",
       "source_file": "src/app/HomeClient.tsx",
-      "source_location": "L40",
+      "source_location": "L75",
       "id": "app_homeclient_homeclient",
-      "community": 0,
+      "community": 12,
       "norm_label": "homeclient()"
     },
     {
@@ -288,7 +396,7 @@
       "source_file": "src/app/page.tsx",
       "source_location": "L1",
       "id": "src_app_page_tsx",
-      "community": 1,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -297,7 +405,7 @@
       "source_file": "src/app/page.tsx",
       "source_location": "L9",
       "id": "app_page_homepage",
-      "community": 1,
+      "community": 0,
       "norm_label": "homepage()"
     },
     {
@@ -306,7 +414,7 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L1",
       "id": "src_app_settings_settingsclient_tsx",
-      "community": 0,
+      "community": 4,
       "norm_label": "settingsclient.tsx"
     },
     {
@@ -315,7 +423,7 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L10",
       "id": "settings_settingsclient_hsk_labels",
-      "community": 0,
+      "community": 4,
       "norm_label": "hsk_labels"
     },
     {
@@ -324,7 +432,7 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L19",
       "id": "settings_settingsclient_props",
-      "community": 0,
+      "community": 4,
       "norm_label": "props"
     },
     {
@@ -333,7 +441,7 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L25",
       "id": "settings_settingsclient_settingsclient",
-      "community": 0,
+      "community": 4,
       "norm_label": "settingsclient()"
     },
     {
@@ -342,7 +450,7 @@
       "source_file": "src/app/settings/page.tsx",
       "source_location": "L1",
       "id": "src_app_settings_page_tsx",
-      "community": 1,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -351,7 +459,7 @@
       "source_file": "src/app/settings/page.tsx",
       "source_location": "L7",
       "id": "settings_page_settingspage",
-      "community": 1,
+      "community": 0,
       "norm_label": "settingspage()"
     },
     {
@@ -360,25 +468,25 @@
       "source_file": "src/app/study/StudyBuilderClient.tsx",
       "source_location": "L1",
       "id": "src_app_study_studybuilderclient_tsx",
-      "community": 0,
+      "community": 15,
       "norm_label": "studybuilderclient.tsx"
     },
     {
       "label": "VocabWord",
       "file_type": "code",
       "source_file": "src/app/study/StudyBuilderClient.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "id": "study_studybuilderclient_vocabword",
-      "community": 0,
+      "community": 15,
       "norm_label": "vocabword"
     },
     {
       "label": "StudyBuilderClient()",
       "file_type": "code",
       "source_file": "src/app/study/StudyBuilderClient.tsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "id": "study_studybuilderclient_studybuilderclient",
-      "community": 0,
+      "community": 15,
       "norm_label": "studybuilderclient()"
     },
     {
@@ -387,7 +495,7 @@
       "source_file": "src/app/study/page.tsx",
       "source_location": "L1",
       "id": "src_app_study_page_tsx",
-      "community": 1,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -396,7 +504,7 @@
       "source_file": "src/app/study/page.tsx",
       "source_location": "L9",
       "id": "study_page_studypage",
-      "community": 1,
+      "community": 0,
       "norm_label": "studypage()"
     },
     {
@@ -405,43 +513,43 @@
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
       "source_location": "L1",
       "id": "src_app_study_sessionid_studysessionclient_tsx",
-      "community": 0,
+      "community": 7,
       "norm_label": "studysessionclient.tsx"
     },
     {
       "label": "TYPE_LABELS",
       "file_type": "code",
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "id": "sessionid_studysessionclient_type_labels",
-      "community": 0,
+      "community": 7,
       "norm_label": "type_labels"
     },
     {
       "label": "LessonCardView()",
       "file_type": "code",
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "id": "sessionid_studysessionclient_lessoncardview",
-      "community": 0,
+      "community": 7,
       "norm_label": "lessoncardview()"
     },
     {
       "label": "FeedbackView()",
       "file_type": "code",
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
-      "source_location": "L92",
+      "source_location": "L93",
       "id": "sessionid_studysessionclient_feedbackview",
-      "community": 0,
+      "community": 7,
       "norm_label": "feedbackview()"
     },
     {
       "label": "StudySessionClient()",
       "file_type": "code",
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
-      "source_location": "L131",
+      "source_location": "L132",
       "id": "sessionid_studysessionclient_studysessionclient",
-      "community": 0,
+      "community": 7,
       "norm_label": "studysessionclient()"
     },
     {
@@ -450,7 +558,7 @@
       "source_file": "src/app/study/[sessionId]/page.tsx",
       "source_location": "L1",
       "id": "src_app_study_sessionid_page_tsx",
-      "community": 1,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -459,7 +567,7 @@
       "source_file": "src/app/study/[sessionId]/page.tsx",
       "source_location": "L10",
       "id": "sessionid_page_studysessionpage",
-      "community": 1,
+      "community": 0,
       "norm_label": "studysessionpage()"
     },
     {
@@ -468,7 +576,7 @@
       "source_file": "src/app/signup/page.tsx",
       "source_location": "L1",
       "id": "src_app_signup_page_tsx",
-      "community": 3,
+      "community": 2,
       "norm_label": "page.tsx"
     },
     {
@@ -477,7 +585,7 @@
       "source_file": "src/app/signup/page.tsx",
       "source_location": "L7",
       "id": "signup_page_hsk_levels",
-      "community": 3,
+      "community": 2,
       "norm_label": "hsk_levels"
     },
     {
@@ -486,7 +594,7 @@
       "source_file": "src/app/signup/page.tsx",
       "source_location": "L16",
       "id": "signup_page_signuppage",
-      "community": 3,
+      "community": 2,
       "norm_label": "signuppage()"
     },
     {
@@ -495,7 +603,7 @@
       "source_file": "src/app/admin/page.tsx",
       "source_location": "L1",
       "id": "src_app_admin_page_tsx",
-      "community": 5,
+      "community": 6,
       "norm_label": "page.tsx"
     },
     {
@@ -504,7 +612,7 @@
       "source_file": "src/app/admin/page.tsx",
       "source_location": "L6",
       "id": "admin_page_adminpage",
-      "community": 5,
+      "community": 6,
       "norm_label": "adminpage()"
     },
     {
@@ -513,7 +621,7 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L1",
       "id": "src_app_admin_adminclient_tsx",
-      "community": 5,
+      "community": 6,
       "norm_label": "adminclient.tsx"
     },
     {
@@ -522,7 +630,7 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L15",
       "id": "admin_adminclient_props",
-      "community": 5,
+      "community": 6,
       "norm_label": "props"
     },
     {
@@ -531,16 +639,16 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L20",
       "id": "admin_adminclient_adminclient",
-      "community": 5,
+      "community": 6,
       "norm_label": "adminclient()"
     },
     {
       "label": "UserRow()",
       "file_type": "code",
       "source_file": "src/app/admin/AdminClient.tsx",
-      "source_location": "L62",
+      "source_location": "L63",
       "id": "admin_adminclient_userrow",
-      "community": 5,
+      "community": 6,
       "norm_label": "userrow()"
     },
     {
@@ -549,7 +657,7 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L1",
       "id": "src_app_sessions_sessionsclient_tsx",
-      "community": 0,
+      "community": 14,
       "norm_label": "sessionsclient.tsx"
     },
     {
@@ -558,7 +666,7 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L9",
       "id": "sessions_sessionsclient_fmttime",
-      "community": 0,
+      "community": 14,
       "norm_label": "fmttime()"
     },
     {
@@ -567,7 +675,7 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L19",
       "id": "sessions_sessionsclient_statusvariant",
-      "community": 0,
+      "community": 14,
       "norm_label": "statusvariant()"
     },
     {
@@ -576,7 +684,7 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L25",
       "id": "sessions_sessionsclient_statuslabel",
-      "community": 0,
+      "community": 14,
       "norm_label": "statuslabel()"
     },
     {
@@ -585,7 +693,7 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L34",
       "id": "sessions_sessionsclient_sessionsclient",
-      "community": 0,
+      "community": 14,
       "norm_label": "sessionsclient()"
     },
     {
@@ -594,7 +702,7 @@
       "source_file": "src/app/sessions/page.tsx",
       "source_location": "L1",
       "id": "src_app_sessions_page_tsx",
-      "community": 1,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -603,7 +711,7 @@
       "source_file": "src/app/sessions/page.tsx",
       "source_location": "L7",
       "id": "sessions_page_sessionspage",
-      "community": 1,
+      "community": 0,
       "norm_label": "sessionspage()"
     },
     {
@@ -612,34 +720,34 @@
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L1",
       "id": "src_app_sessions_id_sessionreviewclient_tsx",
-      "community": 0,
+      "community": 7,
       "norm_label": "sessionreviewclient.tsx"
     },
     {
       "label": "TYPE_LABELS",
       "file_type": "code",
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "id": "id_sessionreviewclient_type_labels",
-      "community": 0,
+      "community": 7,
       "norm_label": "type_labels"
     },
     {
       "label": "outcomeVariant()",
       "file_type": "code",
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "id": "id_sessionreviewclient_outcomevariant",
-      "community": 0,
+      "community": 7,
       "norm_label": "outcomevariant()"
     },
     {
       "label": "SessionReviewClient()",
       "file_type": "code",
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
-      "source_location": "L21",
+      "source_location": "L22",
       "id": "id_sessionreviewclient_sessionreviewclient",
-      "community": 0,
+      "community": 7,
       "norm_label": "sessionreviewclient()"
     },
     {
@@ -648,7 +756,7 @@
       "source_file": "src/app/sessions/[id]/page.tsx",
       "source_location": "L1",
       "id": "src_app_sessions_id_page_tsx",
-      "community": 1,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -657,7 +765,7 @@
       "source_file": "src/app/sessions/[id]/page.tsx",
       "source_location": "L8",
       "id": "id_page_sessiondetailpage",
-      "community": 1,
+      "community": 0,
       "norm_label": "sessiondetailpage()"
     },
     {
@@ -666,7 +774,7 @@
       "source_file": "src/app/actions/vocabulary.ts",
       "source_location": "L1",
       "id": "src_app_actions_vocabulary_ts",
-      "community": 2,
+      "community": 0,
       "norm_label": "vocabulary.ts"
     },
     {
@@ -675,7 +783,7 @@
       "source_file": "src/app/actions/vocabulary.ts",
       "source_location": "L14",
       "id": "actions_vocabulary_listvocabularyaction",
-      "community": 1,
+      "community": 0,
       "norm_label": "listvocabularyaction()"
     },
     {
@@ -684,7 +792,7 @@
       "source_file": "src/app/actions/vocabulary.ts",
       "source_location": "L19",
       "id": "actions_vocabulary_getwordcardaction",
-      "community": 2,
+      "community": 0,
       "norm_label": "getwordcardaction()"
     },
     {
@@ -702,7 +810,7 @@
       "source_file": "src/app/actions/vocabulary.ts",
       "source_location": "L29",
       "id": "actions_vocabulary_addwordstobankaction",
-      "community": 2,
+      "community": 0,
       "norm_label": "addwordstobankaction()"
     },
     {
@@ -711,7 +819,7 @@
       "source_file": "src/app/actions/vocabulary.ts",
       "source_location": "L34",
       "id": "actions_vocabulary_listaddablewordsaction",
-      "community": 1,
+      "community": 0,
       "norm_label": "listaddablewordsaction()"
     },
     {
@@ -720,7 +828,7 @@
       "source_file": "src/app/actions/vocabulary.ts",
       "source_location": "L39",
       "id": "actions_vocabulary_vocabcountaction",
-      "community": 2,
+      "community": 0,
       "norm_label": "vocabcountaction()"
     },
     {
@@ -729,7 +837,7 @@
       "source_file": "src/app/actions/vocabulary.ts",
       "source_location": "L44",
       "id": "actions_vocabulary_getstatsaction",
-      "community": 2,
+      "community": 0,
       "norm_label": "getstatsaction()"
     },
     {
@@ -738,7 +846,7 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L1",
       "id": "src_app_actions_admin_ts",
-      "community": 5,
+      "community": 6,
       "norm_label": "admin.ts"
     },
     {
@@ -747,61 +855,61 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L13",
       "id": "actions_admin_requireadmin",
-      "community": 5,
+      "community": 6,
       "norm_label": "requireadmin()"
     },
     {
       "label": "AdminUser",
       "file_type": "code",
       "source_file": "src/app/actions/admin.ts",
-      "source_location": "L29",
+      "source_location": "L32",
       "id": "actions_admin_adminuser",
-      "community": 5,
+      "community": 6,
       "norm_label": "adminuser"
     },
     {
       "label": "listUsersAction()",
       "file_type": "code",
       "source_file": "src/app/actions/admin.ts",
-      "source_location": "L40",
+      "source_location": "L43",
       "id": "actions_admin_listusersaction",
-      "community": 5,
+      "community": 6,
       "norm_label": "listusersaction()"
     },
     {
       "label": "setUserLimitsAction()",
       "file_type": "code",
       "source_file": "src/app/actions/admin.ts",
-      "source_location": "L88",
+      "source_location": "L91",
       "id": "actions_admin_setuserlimitsaction",
-      "community": 5,
+      "community": 6,
       "norm_label": "setuserlimitsaction()"
     },
     {
       "label": "setUserUnlimitedAction()",
       "file_type": "code",
       "source_file": "src/app/actions/admin.ts",
-      "source_location": "L111",
+      "source_location": "L114",
       "id": "actions_admin_setuserunlimitedaction",
-      "community": 5,
+      "community": 6,
       "norm_label": "setuserunlimitedaction()"
     },
     {
       "label": "setUserRoleAction()",
       "file_type": "code",
       "source_file": "src/app/actions/admin.ts",
-      "source_location": "L127",
+      "source_location": "L130",
       "id": "actions_admin_setuserroleaction",
-      "community": 5,
+      "community": 6,
       "norm_label": "setuserroleaction()"
     },
     {
       "label": "deleteUserAction()",
       "file_type": "code",
       "source_file": "src/app/actions/admin.ts",
-      "source_location": "L147",
+      "source_location": "L150",
       "id": "actions_admin_deleteuseraction",
-      "community": 5,
+      "community": 6,
       "norm_label": "deleteuseraction()"
     },
     {
@@ -810,7 +918,7 @@
       "source_file": "src/app/actions/session.ts",
       "source_location": "L1",
       "id": "src_app_actions_session_ts",
-      "community": 1,
+      "community": 0,
       "norm_label": "session.ts"
     },
     {
@@ -819,7 +927,7 @@
       "source_file": "src/app/actions/session.ts",
       "source_location": "L15",
       "id": "actions_session_startsessionaction",
-      "community": 2,
+      "community": 15,
       "norm_label": "startsessionaction()"
     },
     {
@@ -828,7 +936,7 @@
       "source_file": "src/app/actions/session.ts",
       "source_location": "L20",
       "id": "actions_session_startsessionwithwordsaction",
-      "community": 0,
+      "community": 15,
       "norm_label": "startsessionwithwordsaction()"
     },
     {
@@ -837,7 +945,7 @@
       "source_file": "src/app/actions/session.ts",
       "source_location": "L25",
       "id": "actions_session_loadsessionaction",
-      "community": 1,
+      "community": 0,
       "norm_label": "loadsessionaction()"
     },
     {
@@ -846,7 +954,7 @@
       "source_file": "src/app/actions/session.ts",
       "source_location": "L30",
       "id": "actions_session_listsessionsaction",
-      "community": 1,
+      "community": 0,
       "norm_label": "listsessionsaction()"
     },
     {
@@ -855,7 +963,7 @@
       "source_file": "src/app/actions/session.ts",
       "source_location": "L35",
       "id": "actions_session_redrillsessionaction",
-      "community": 1,
+      "community": 0,
       "norm_label": "redrillsessionaction()"
     },
     {
@@ -864,7 +972,7 @@
       "source_file": "src/app/actions/session.ts",
       "source_location": "L40",
       "id": "actions_session_duereviewsaction",
-      "community": 1,
+      "community": 0,
       "norm_label": "duereviewsaction()"
     },
     {
@@ -873,7 +981,7 @@
       "source_file": "src/app/actions/session.ts",
       "source_location": "L45",
       "id": "actions_session_getinprogresssessionaction",
-      "community": 1,
+      "community": 0,
       "norm_label": "getinprogresssessionaction()"
     },
     {
@@ -882,7 +990,7 @@
       "source_file": "src/app/actions/session.ts",
       "source_location": "L50",
       "id": "actions_session_gradeansweraction",
-      "community": 1,
+      "community": 7,
       "norm_label": "gradeansweraction()"
     },
     {
@@ -891,7 +999,7 @@
       "source_file": "src/app/actions/profile.ts",
       "source_location": "L1",
       "id": "src_app_actions_profile_ts",
-      "community": 1,
+      "community": 0,
       "norm_label": "profile.ts"
     },
     {
@@ -900,7 +1008,7 @@
       "source_file": "src/app/actions/profile.ts",
       "source_location": "L7",
       "id": "actions_profile_getprofileaction",
-      "community": 1,
+      "community": 0,
       "norm_label": "getprofileaction()"
     },
     {
@@ -909,7 +1017,7 @@
       "source_file": "src/app/actions/profile.ts",
       "source_location": "L12",
       "id": "actions_profile_updatehsklevelaction",
-      "community": 1,
+      "community": 0,
       "norm_label": "updatehsklevelaction()"
     },
     {
@@ -918,7 +1026,7 @@
       "source_file": "src/app/actions/auth.ts",
       "source_location": "L1",
       "id": "src_app_actions_auth_ts",
-      "community": 3,
+      "community": 2,
       "norm_label": "auth.ts"
     },
     {
@@ -927,7 +1035,7 @@
       "source_file": "src/app/actions/auth.ts",
       "source_location": "L6",
       "id": "actions_auth_signin",
-      "community": 3,
+      "community": 2,
       "norm_label": "signin()"
     },
     {
@@ -936,7 +1044,7 @@
       "source_file": "src/app/actions/auth.ts",
       "source_location": "L22",
       "id": "actions_auth_signup",
-      "community": 3,
+      "community": 2,
       "norm_label": "signup()"
     },
     {
@@ -945,7 +1053,7 @@
       "source_file": "src/app/actions/auth.ts",
       "source_location": "L54",
       "id": "actions_auth_signout",
-      "community": 3,
+      "community": 2,
       "norm_label": "signout()"
     },
     {
@@ -954,7 +1062,7 @@
       "source_file": "src/app/login/page.tsx",
       "source_location": "L1",
       "id": "src_app_login_page_tsx",
-      "community": 3,
+      "community": 2,
       "norm_label": "page.tsx"
     },
     {
@@ -963,7 +1071,7 @@
       "source_file": "src/app/login/page.tsx",
       "source_location": "L7",
       "id": "login_page_loginpage",
-      "community": 3,
+      "community": 2,
       "norm_label": "loginpage()"
     },
     {
@@ -972,7 +1080,7 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L1",
       "id": "src_app_stats_statsclient_tsx",
-      "community": 0,
+      "community": 4,
       "norm_label": "statsclient.tsx"
     },
     {
@@ -981,7 +1089,7 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L7",
       "id": "stats_statsclient_masteryring",
-      "community": 0,
+      "community": 4,
       "norm_label": "masteryring()"
     },
     {
@@ -990,7 +1098,7 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L41",
       "id": "stats_statsclient_statsclient",
-      "community": 0,
+      "community": 4,
       "norm_label": "statsclient()"
     },
     {
@@ -999,7 +1107,7 @@
       "source_file": "src/app/stats/page.tsx",
       "source_location": "L1",
       "id": "src_app_stats_page_tsx",
-      "community": 2,
+      "community": 1,
       "norm_label": "page.tsx"
     },
     {
@@ -1008,7 +1116,7 @@
       "source_file": "src/app/stats/page.tsx",
       "source_location": "L7",
       "id": "stats_page_statspage",
-      "community": 2,
+      "community": 1,
       "norm_label": "statspage()"
     },
     {
@@ -1017,79 +1125,79 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L1",
       "id": "src_app_vocabulary_vocabularyclient_tsx",
-      "community": 7,
+      "community": 11,
       "norm_label": "vocabularyclient.tsx"
     },
     {
       "label": "VocabWord",
       "file_type": "code",
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "id": "vocabulary_vocabularyclient_vocabword",
-      "community": 7,
+      "community": 11,
       "norm_label": "vocabword"
     },
     {
       "label": "wordBadgeVariant()",
       "file_type": "code",
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "id": "vocabulary_vocabularyclient_wordbadgevariant",
-      "community": 7,
+      "community": 11,
       "norm_label": "wordbadgevariant()"
     },
     {
       "label": "wordBadgeLabel()",
       "file_type": "code",
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
-      "source_location": "L26",
+      "source_location": "L27",
       "id": "vocabulary_vocabularyclient_wordbadgelabel",
-      "community": 7,
+      "community": 11,
       "norm_label": "wordbadgelabel()"
     },
     {
       "label": "hskBadgeVariant()",
       "file_type": "code",
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
-      "source_location": "L32",
+      "source_location": "L33",
       "id": "vocabulary_vocabularyclient_hskbadgevariant",
-      "community": 7,
+      "community": 11,
       "norm_label": "hskbadgevariant()"
     },
     {
       "label": "HSK_FILTER_LABELS",
       "file_type": "code",
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
-      "source_location": "L38",
+      "source_location": "L39",
       "id": "vocabulary_vocabularyclient_hsk_filter_labels",
-      "community": 7,
+      "community": 11,
       "norm_label": "hsk_filter_labels"
     },
     {
       "label": "VocabularyClient()",
       "file_type": "code",
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
-      "source_location": "L48",
+      "source_location": "L49",
       "id": "vocabulary_vocabularyclient_vocabularyclient",
-      "community": 7,
+      "community": 11,
       "norm_label": "vocabularyclient()"
     },
     {
       "label": "InfiniteList()",
       "file_type": "code",
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
-      "source_location": "L235",
+      "source_location": "L241",
       "id": "vocabulary_vocabularyclient_infinitelist",
-      "community": 7,
+      "community": 11,
       "norm_label": "infinitelist()"
     },
     {
       "label": "WordRow()",
       "file_type": "code",
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
-      "source_location": "L278",
+      "source_location": "L284",
       "id": "vocabulary_vocabularyclient_wordrow",
-      "community": 7,
+      "community": 11,
       "norm_label": "wordrow()"
     },
     {
@@ -1098,7 +1206,7 @@
       "source_file": "src/app/vocabulary/page.tsx",
       "source_location": "L1",
       "id": "src_app_vocabulary_page_tsx",
-      "community": 1,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -1107,7 +1215,7 @@
       "source_file": "src/app/vocabulary/page.tsx",
       "source_location": "L7",
       "id": "vocabulary_page_vocabularypage",
-      "community": 1,
+      "community": 0,
       "norm_label": "vocabularypage()"
     },
     {
@@ -1116,43 +1224,43 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L1",
       "id": "src_app_vocabulary_wordid_wordcardclient_tsx",
-      "community": 0,
+      "community": 9,
       "norm_label": "wordcardclient.tsx"
     },
     {
       "label": "fmtNextReview()",
       "file_type": "code",
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "id": "wordid_wordcardclient_fmtnextreview",
-      "community": 0,
+      "community": 9,
       "norm_label": "fmtnextreview()"
     },
     {
       "label": "Section()",
       "file_type": "code",
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "id": "wordid_wordcardclient_section",
-      "community": 0,
+      "community": 9,
       "norm_label": "section()"
     },
     {
       "label": "RegenerateModal()",
       "file_type": "code",
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
-      "source_location": "L29",
+      "source_location": "L30",
       "id": "wordid_wordcardclient_regeneratemodal",
-      "community": 0,
+      "community": 9,
       "norm_label": "regeneratemodal()"
     },
     {
       "label": "WordCardClient()",
       "file_type": "code",
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
-      "source_location": "L78",
+      "source_location": "L79",
       "id": "wordid_wordcardclient_wordcardclient",
-      "community": 0,
+      "community": 9,
       "norm_label": "wordcardclient()"
     },
     {
@@ -1161,7 +1269,7 @@
       "source_file": "src/app/vocabulary/[wordId]/page.tsx",
       "source_location": "L1",
       "id": "src_app_vocabulary_wordid_page_tsx",
-      "community": 2,
+      "community": 1,
       "norm_label": "page.tsx"
     },
     {
@@ -1170,7 +1278,7 @@
       "source_file": "src/app/vocabulary/[wordId]/page.tsx",
       "source_location": "L8",
       "id": "wordid_page_worddetailpage",
-      "community": 2,
+      "community": 1,
       "norm_label": "worddetailpage()"
     },
     {
@@ -1179,7 +1287,7 @@
       "source_file": "src/components/Nav.tsx",
       "source_location": "L1",
       "id": "src_components_nav_tsx",
-      "community": 3,
+      "community": 2,
       "norm_label": "nav.tsx"
     },
     {
@@ -1188,7 +1296,7 @@
       "source_file": "src/components/Nav.tsx",
       "source_location": "L9",
       "id": "components_nav_nav_links",
-      "community": 3,
+      "community": 2,
       "norm_label": "nav_links"
     },
     {
@@ -1197,7 +1305,7 @@
       "source_file": "src/components/Nav.tsx",
       "source_location": "L17",
       "id": "components_nav_nav",
-      "community": 3,
+      "community": 2,
       "norm_label": "nav()"
     },
     {
@@ -1206,7 +1314,7 @@
       "source_file": "src/components/ThemeToggle.tsx",
       "source_location": "L1",
       "id": "src_components_themetoggle_tsx",
-      "community": 3,
+      "community": 2,
       "norm_label": "themetoggle.tsx"
     },
     {
@@ -1215,7 +1323,7 @@
       "source_file": "src/components/ThemeToggle.tsx",
       "source_location": "L5",
       "id": "components_themetoggle_themetoggle",
-      "community": 3,
+      "community": 2,
       "norm_label": "themetoggle()"
     },
     {
@@ -1224,7 +1332,7 @@
       "source_file": "src/components/Seal.tsx",
       "source_location": "L1",
       "id": "src_components_seal_tsx",
-      "community": 3,
+      "community": 2,
       "norm_label": "seal.tsx"
     },
     {
@@ -1233,7 +1341,7 @@
       "source_file": "src/components/Seal.tsx",
       "source_location": "L3",
       "id": "components_seal_sealprops",
-      "community": 3,
+      "community": 2,
       "norm_label": "sealprops"
     },
     {
@@ -1242,7 +1350,7 @@
       "source_file": "src/components/Seal.tsx",
       "source_location": "L11",
       "id": "components_seal_seal",
-      "community": 3,
+      "community": 2,
       "norm_label": "seal()"
     },
     {
@@ -1251,7 +1359,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L1",
       "id": "src_components_ui_tsx",
-      "community": 0,
+      "community": 4,
       "norm_label": "ui.tsx"
     },
     {
@@ -1260,7 +1368,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L5",
       "id": "components_ui_cardprops",
-      "community": 0,
+      "community": 4,
       "norm_label": "cardprops"
     },
     {
@@ -1269,7 +1377,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L11",
       "id": "components_ui_card",
-      "community": 0,
+      "community": 14,
       "norm_label": "card()"
     },
     {
@@ -1278,7 +1386,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L45",
       "id": "components_ui_buttonvariant",
-      "community": 0,
+      "community": 4,
       "norm_label": "buttonvariant"
     },
     {
@@ -1287,7 +1395,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L46",
       "id": "components_ui_buttonsize",
-      "community": 0,
+      "community": 4,
       "norm_label": "buttonsize"
     },
     {
@@ -1296,7 +1404,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L48",
       "id": "components_ui_buttonprops",
-      "community": 0,
+      "community": 4,
       "norm_label": "buttonprops"
     },
     {
@@ -1305,7 +1413,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L54",
       "id": "components_ui_button",
-      "community": 0,
+      "community": 15,
       "norm_label": "button()"
     },
     {
@@ -1314,7 +1422,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L92",
       "id": "components_ui_badgevariant",
-      "community": 0,
+      "community": 4,
       "norm_label": "badgevariant"
     },
     {
@@ -1323,7 +1431,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L94",
       "id": "components_ui_badge",
-      "community": 0,
+      "community": 4,
       "norm_label": "badge()"
     },
     {
@@ -1332,7 +1440,7 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L122",
       "id": "components_ui_progressbar",
-      "community": 0,
+      "community": 4,
       "norm_label": "progressbar()"
     },
     {
@@ -1341,17 +1449,44 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L163",
       "id": "components_ui_pageheader",
-      "community": 0,
+      "community": 4,
       "norm_label": "pageheader()"
     },
     {
       "label": "Bento()",
       "file_type": "code",
       "source_file": "src/components/ui.tsx",
-      "source_location": "L199",
+      "source_location": "L207",
       "id": "components_ui_bento",
-      "community": 0,
+      "community": 4,
       "norm_label": "bento()"
+    },
+    {
+      "label": "readings.ts",
+      "file_type": "code",
+      "source_file": "src/lib/readings.ts",
+      "source_location": "L1",
+      "id": "src_lib_readings_ts",
+      "community": 9,
+      "norm_label": "readings.ts"
+    },
+    {
+      "label": "hasMultipleReadings()",
+      "file_type": "code",
+      "source_file": "src/lib/readings.ts",
+      "source_location": "L4",
+      "id": "lib_readings_hasmultiplereadings",
+      "community": 7,
+      "norm_label": "hasmultiplereadings()"
+    },
+    {
+      "label": "formatReadingsPinyin()",
+      "file_type": "code",
+      "source_file": "src/lib/readings.ts",
+      "source_location": "L9",
+      "id": "lib_readings_formatreadingspinyin",
+      "community": 11,
+      "norm_label": "formatreadingspinyin()"
     },
     {
       "label": "types.ts",
@@ -1359,7 +1494,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L1",
       "id": "src_lib_types_ts",
-      "community": 0,
+      "community": 9,
       "norm_label": "types.ts"
     },
     {
@@ -1368,7 +1503,7 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L4",
       "id": "lib_types_supabase",
-      "community": 0,
+      "community": 9,
       "norm_label": "supabase"
     },
     {
@@ -1377,106 +1512,115 @@
       "source_file": "src/lib/types.ts",
       "source_location": "L6",
       "id": "lib_types_outcome",
-      "community": 0,
+      "community": 1,
       "norm_label": "outcome"
+    },
+    {
+      "label": "Reading",
+      "file_type": "code",
+      "source_file": "src/lib/types.ts",
+      "source_location": "L8",
+      "id": "lib_types_reading",
+      "community": 9,
+      "norm_label": "reading"
     },
     {
       "label": "Word",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L8",
+      "source_location": "L14",
       "id": "lib_types_word",
-      "community": 0,
+      "community": 9,
       "norm_label": "word"
     },
     {
       "label": "LessonCard",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L21",
+      "source_location": "L28",
       "id": "lib_types_lessoncard",
-      "community": 0,
+      "community": 9,
       "norm_label": "lessoncard"
     },
     {
       "label": "Question",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L40",
+      "source_location": "L47",
       "id": "lib_types_question",
-      "community": 4,
+      "community": 3,
       "norm_label": "question"
     },
     {
       "label": "GraderOutput",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L47",
+      "source_location": "L54",
       "id": "lib_types_graderoutput",
-      "community": 0,
+      "community": 7,
       "norm_label": "graderoutput"
     },
     {
       "label": "SrsState",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L57",
+      "source_location": "L64",
       "id": "lib_types_srsstate",
-      "community": 0,
+      "community": 9,
       "norm_label": "srsstate"
     },
     {
       "label": "SessionItem",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L68",
+      "source_location": "L75",
       "id": "lib_types_sessionitem",
-      "community": 0,
+      "community": 7,
       "norm_label": "sessionitem"
     },
     {
       "label": "Session",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L80",
+      "source_location": "L87",
       "id": "lib_types_session",
-      "community": 0,
+      "community": 7,
       "norm_label": "session"
     },
     {
       "label": "SessionSummary",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L92",
+      "source_location": "L99",
       "id": "lib_types_sessionsummary",
-      "community": 0,
+      "community": 14,
       "norm_label": "sessionsummary"
     },
     {
       "label": "Profile",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L105",
+      "source_location": "L112",
       "id": "lib_types_profile",
-      "community": 0,
+      "community": 4,
       "norm_label": "profile"
     },
     {
       "label": "DueReviews",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L116",
+      "source_location": "L123",
       "id": "lib_types_duereviews",
-      "community": 0,
+      "community": 12,
       "norm_label": "duereviews"
     },
     {
       "label": "Stats",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L121",
+      "source_location": "L128",
       "id": "lib_types_stats",
-      "community": 0,
+      "community": 4,
       "norm_label": "stats"
     },
     {
@@ -1485,7 +1629,7 @@
       "source_file": "src/lib/llm.ts",
       "source_location": "L1",
       "id": "src_lib_llm_ts",
-      "community": 4,
+      "community": 3,
       "norm_label": "llm.ts"
     },
     {
@@ -1494,7 +1638,7 @@
       "source_file": "src/lib/llm.ts",
       "source_location": "L22",
       "id": "lib_llm_getclient",
-      "community": 4,
+      "community": 3,
       "norm_label": "getclient()"
     },
     {
@@ -1503,7 +1647,7 @@
       "source_file": "src/lib/llm.ts",
       "source_location": "L34",
       "id": "lib_llm_chat",
-      "community": 4,
+      "community": 3,
       "norm_label": "chat()"
     },
     {
@@ -1512,7 +1656,7 @@
       "source_file": "src/lib/llm.ts",
       "source_location": "L54",
       "id": "lib_llm_chatjson",
-      "community": 4,
+      "community": 3,
       "norm_label": "chatjson()"
     },
     {
@@ -1521,7 +1665,7 @@
       "source_file": "src/lib/llm.ts",
       "source_location": "L83",
       "id": "lib_llm_extractjson",
-      "community": 4,
+      "community": 3,
       "norm_label": "extractjson()"
     },
     {
@@ -1530,52 +1674,52 @@
       "source_file": "src/lib/llm.ts",
       "source_location": "L133",
       "id": "lib_llm_stublessoncard",
-      "community": 2,
+      "community": 3,
       "norm_label": "stublessoncard()"
     },
     {
       "label": "stubQuestions()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L182",
+      "source_location": "L186",
       "id": "lib_llm_stubquestions",
-      "community": 4,
+      "community": 3,
       "norm_label": "stubquestions()"
     },
     {
       "label": "stubGrade()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L212",
+      "source_location": "L220",
       "id": "lib_llm_stubgrade",
-      "community": 4,
+      "community": 3,
       "norm_label": "stubgrade()"
     },
     {
       "label": "generateLessonCard()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L233",
+      "source_location": "L241",
       "id": "lib_llm_generatelessoncard",
-      "community": 2,
+      "community": 1,
       "norm_label": "generatelessoncard()"
     },
     {
       "label": "generateQuestions()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L294",
+      "source_location": "L318",
       "id": "lib_llm_generatequestions",
-      "community": 4,
+      "community": 3,
       "norm_label": "generatequestions()"
     },
     {
       "label": "grade()",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "source_location": "L348",
+      "source_location": "L380",
       "id": "lib_llm_grade",
-      "community": 4,
+      "community": 3,
       "norm_label": "grade()"
     },
     {
@@ -1584,7 +1728,7 @@
       "source_file": "src/lib/grading.ts",
       "source_location": "L1",
       "id": "src_lib_grading_ts",
-      "community": 4,
+      "community": 3,
       "norm_label": "grading.ts"
     },
     {
@@ -1593,7 +1737,7 @@
       "source_file": "src/lib/grading.ts",
       "source_location": "L13",
       "id": "lib_grading_normalize",
-      "community": 4,
+      "community": 3,
       "norm_label": "normalize()"
     },
     {
@@ -1602,7 +1746,7 @@
       "source_file": "src/lib/grading.ts",
       "source_location": "L17",
       "id": "lib_grading_checkcache",
-      "community": 4,
+      "community": 3,
       "norm_label": "checkcache()"
     },
     {
@@ -1611,7 +1755,7 @@
       "source_file": "src/lib/grading.ts",
       "source_location": "L41",
       "id": "lib_grading_storecache",
-      "community": 4,
+      "community": 3,
       "norm_label": "storecache()"
     },
     {
@@ -1620,7 +1764,7 @@
       "source_file": "src/lib/grading.ts",
       "source_location": "L60",
       "id": "lib_grading_gradeanswerwithcache",
-      "community": 4,
+      "community": 3,
       "norm_label": "gradeanswerwithcache()"
     },
     {
@@ -1629,7 +1773,7 @@
       "source_file": "src/lib/config.ts",
       "source_location": "L1",
       "id": "src_lib_config_ts",
-      "community": 4,
+      "community": 3,
       "norm_label": "config.ts"
     },
     {
@@ -1638,7 +1782,7 @@
       "source_file": "src/lib/config.ts",
       "source_location": "L8",
       "id": "lib_config_box_intervals",
-      "community": 4,
+      "community": 1,
       "norm_label": "box_intervals"
     },
     {
@@ -1647,7 +1791,7 @@
       "source_file": "src/lib/config.ts",
       "source_location": "L39",
       "id": "lib_config_model_by_purpose",
-      "community": 4,
+      "community": 3,
       "norm_label": "model_by_purpose"
     },
     {
@@ -1656,7 +1800,7 @@
       "source_file": "src/lib/config.ts",
       "source_location": "L45",
       "id": "lib_config_llm_max_tokens",
-      "community": 4,
+      "community": 3,
       "norm_label": "llm_max_tokens"
     },
     {
@@ -1665,7 +1809,7 @@
       "source_file": "src/lib/config.ts",
       "source_location": "L46",
       "id": "lib_config_llm_max_retries",
-      "community": 4,
+      "community": 3,
       "norm_label": "llm_max_retries"
     },
     {
@@ -1674,7 +1818,7 @@
       "source_file": "src/lib/config.ts",
       "source_location": "L49",
       "id": "lib_config_max_tokens_by_purpose",
-      "community": 4,
+      "community": 3,
       "norm_label": "max_tokens_by_purpose"
     },
     {
@@ -1683,7 +1827,7 @@
       "source_file": "src/lib/srs.ts",
       "source_location": "L1",
       "id": "src_lib_srs_ts",
-      "community": 0,
+      "community": 1,
       "norm_label": "srs.ts"
     },
     {
@@ -1692,7 +1836,7 @@
       "source_file": "src/lib/srs.ts",
       "source_location": "L21",
       "id": "lib_srs_ensuresrsstate",
-      "community": 2,
+      "community": 1,
       "norm_label": "ensuresrsstate()"
     },
     {
@@ -1701,7 +1845,7 @@
       "source_file": "src/lib/srs.ts",
       "source_location": "L33",
       "id": "lib_srs_updatesrs",
-      "community": 2,
+      "community": 1,
       "norm_label": "updatesrs()"
     },
     {
@@ -1710,7 +1854,7 @@
       "source_file": "src/lib/srs.ts",
       "source_location": "L109",
       "id": "lib_srs_getunseenwords",
-      "community": 2,
+      "community": 1,
       "norm_label": "getunseenwords()"
     },
     {
@@ -1719,7 +1863,7 @@
       "source_file": "src/lib/srs.ts",
       "source_location": "L131",
       "id": "lib_srs_getduewords",
-      "community": 2,
+      "community": 1,
       "norm_label": "getduewords()"
     },
     {
@@ -1728,7 +1872,7 @@
       "source_file": "src/lib/srs.ts",
       "source_location": "L170",
       "id": "lib_srs_getmixedwords",
-      "community": 2,
+      "community": 1,
       "norm_label": "getmixedwords()"
     },
     {
@@ -1737,7 +1881,7 @@
       "source_file": "src/lib/srs.ts",
       "source_location": "L183",
       "id": "lib_srs_countdue",
-      "community": 2,
+      "community": 1,
       "norm_label": "countdue()"
     },
     {
@@ -1746,7 +1890,7 @@
       "source_file": "src/lib/srs.ts",
       "source_location": "L197",
       "id": "lib_srs_checkprogression",
-      "community": 2,
+      "community": 1,
       "norm_label": "checkprogression()"
     },
     {
@@ -1755,7 +1899,7 @@
       "source_file": "src/lib/srs.ts",
       "source_location": "L225",
       "id": "lib_srs_normalizeword",
-      "community": 0,
+      "community": 1,
       "norm_label": "normalizeword()"
     },
     {
@@ -1764,32 +1908,32 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L1",
       "id": "src_lib_services_ts",
-      "community": 2,
+      "community": 1,
       "norm_label": "services.ts"
     },
     {
       "label": "normalizeWordRow()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L37",
+      "source_location": "L38",
       "id": "lib_services_normalizewordrow",
-      "community": 2,
+      "community": 1,
       "norm_label": "normalizewordrow()"
     },
     {
       "label": "ensureLessonCard()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L52",
+      "source_location": "L56",
       "id": "lib_services_ensurelessoncard",
-      "community": 2,
+      "community": 1,
       "norm_label": "ensurelessoncard()"
     },
     {
       "label": "getProfile()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L68",
+      "source_location": "L72",
       "id": "lib_services_getprofile",
       "community": 1,
       "norm_label": "getprofile()"
@@ -1798,70 +1942,70 @@
       "label": "isUnlimited()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L105",
+      "source_location": "L109",
       "id": "lib_services_isunlimited",
-      "community": 2,
+      "community": 1,
       "norm_label": "isunlimited()"
     },
     {
       "label": "getSessionCap()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L110",
+      "source_location": "L114",
       "id": "lib_services_getsessioncap",
-      "community": 2,
+      "community": 1,
       "norm_label": "getsessioncap()"
     },
     {
       "label": "getVocabCap()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L115",
+      "source_location": "L119",
       "id": "lib_services_getvocabcap",
-      "community": 2,
+      "community": 1,
       "norm_label": "getvocabcap()"
     },
     {
       "label": "sessionScore()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L120",
+      "source_location": "L124",
       "id": "lib_services_sessionscore",
-      "community": 2,
+      "community": 1,
       "norm_label": "sessionscore()"
     },
     {
       "label": "createSession()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L130",
+      "source_location": "L134",
       "id": "lib_services_createsession",
-      "community": 2,
+      "community": 1,
       "norm_label": "createsession()"
     },
     {
       "label": "startSession()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L243",
+      "source_location": "L247",
       "id": "lib_services_startsession",
-      "community": 2,
+      "community": 1,
       "norm_label": "startsession()"
     },
     {
       "label": "startSessionWithWords()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L282",
+      "source_location": "L286",
       "id": "lib_services_startsessionwithwords",
-      "community": 2,
+      "community": 1,
       "norm_label": "startsessionwithwords()"
     },
     {
       "label": "recordStudyActivity()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L316",
+      "source_location": "L320",
       "id": "lib_services_recordstudyactivity",
       "community": 1,
       "norm_label": "recordstudyactivity()"
@@ -1870,7 +2014,7 @@
       "label": "gradeAnswer()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L350",
+      "source_location": "L354",
       "id": "lib_services_gradeanswer",
       "community": 1,
       "norm_label": "gradeanswer()"
@@ -1879,108 +2023,108 @@
       "label": "loadSession()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L455",
+      "source_location": "L459",
       "id": "lib_services_loadsession",
-      "community": 1,
+      "community": 0,
       "norm_label": "loadsession()"
     },
     {
       "label": "listSessions()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L511",
+      "source_location": "L515",
       "id": "lib_services_listsessions",
-      "community": 1,
+      "community": 0,
       "norm_label": "listsessions()"
     },
     {
       "label": "redrillSession()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L545",
+      "source_location": "L549",
       "id": "lib_services_redrillsession",
-      "community": 1,
+      "community": 0,
       "norm_label": "redrillsession()"
     },
     {
       "label": "dueReviews()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L649",
+      "source_location": "L653",
       "id": "lib_services_duereviews",
-      "community": 2,
+      "community": 1,
       "norm_label": "duereviews()"
     },
     {
       "label": "getStats()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L685",
+      "source_location": "L689",
       "id": "lib_services_getstats",
-      "community": 2,
+      "community": 1,
       "norm_label": "getstats()"
     },
     {
       "label": "getInProgressSession()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L749",
+      "source_location": "L753",
       "id": "lib_services_getinprogresssession",
-      "community": 1,
+      "community": 0,
       "norm_label": "getinprogresssession()"
     },
     {
       "label": "vocabCount()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L770",
+      "source_location": "L774",
       "id": "lib_services_vocabcount",
-      "community": 2,
+      "community": 0,
       "norm_label": "vocabcount()"
     },
     {
       "label": "listVocabulary()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L781",
+      "source_location": "L785",
       "id": "lib_services_listvocabulary",
-      "community": 1,
+      "community": 0,
       "norm_label": "listvocabulary()"
     },
     {
       "label": "getWordCard()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L829",
+      "source_location": "L833",
       "id": "lib_services_getwordcard",
-      "community": 2,
+      "community": 1,
       "norm_label": "getwordcard()"
     },
     {
       "label": "regenerateWordCard()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L863",
+      "source_location": "L867",
       "id": "lib_services_regeneratewordcard",
-      "community": 2,
+      "community": 1,
       "norm_label": "regeneratewordcard()"
     },
     {
       "label": "addWordsToBank()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L900",
+      "source_location": "L904",
       "id": "lib_services_addwordstobank",
-      "community": 2,
+      "community": 1,
       "norm_label": "addwordstobank()"
     },
     {
       "label": "listAddableWords()",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "source_location": "L942",
+      "source_location": "L946",
       "id": "lib_services_listaddablewords",
-      "community": 1,
+      "community": 0,
       "norm_label": "listaddablewords()"
     },
     {
@@ -1989,7 +2133,7 @@
       "source_file": "src/lib/user.ts",
       "source_location": "L1",
       "id": "src_lib_user_ts",
-      "community": 1,
+      "community": 0,
       "norm_label": "user.ts"
     },
     {
@@ -1998,7 +2142,7 @@
       "source_file": "src/lib/user.ts",
       "source_location": "L15",
       "id": "lib_user_getcachedclaims",
-      "community": 1,
+      "community": 0,
       "norm_label": "getcachedclaims"
     },
     {
@@ -2007,16 +2151,16 @@
       "source_file": "src/lib/user.ts",
       "source_location": "L29",
       "id": "lib_user_getusercontext",
-      "community": 1,
+      "community": 0,
       "norm_label": "getusercontext()"
     },
     {
       "label": "getOptionalUser()",
       "file_type": "code",
       "source_file": "src/lib/user.ts",
-      "source_location": "L42",
+      "source_location": "L49",
       "id": "lib_user_getoptionaluser",
-      "community": 1,
+      "community": 0,
       "norm_label": "getoptionaluser()"
     },
     {
@@ -2025,7 +2169,7 @@
       "source_file": "src/lib/supabase/admin.ts",
       "source_location": "L1",
       "id": "src_lib_supabase_admin_ts",
-      "community": 5,
+      "community": 6,
       "norm_label": "admin.ts"
     },
     {
@@ -2034,7 +2178,7 @@
       "source_file": "src/lib/supabase/admin.ts",
       "source_location": "L6",
       "id": "supabase_admin_createadminclient",
-      "community": 5,
+      "community": 6,
       "norm_label": "createadminclient()"
     },
     {
@@ -2043,7 +2187,7 @@
       "source_file": "src/lib/supabase/client.ts",
       "source_location": "L1",
       "id": "src_lib_supabase_client_ts",
-      "community": 16,
+      "community": 22,
       "norm_label": "client.ts"
     },
     {
@@ -2052,7 +2196,7 @@
       "source_file": "src/lib/supabase/client.ts",
       "source_location": "L3",
       "id": "supabase_client_createclient",
-      "community": 16,
+      "community": 22,
       "norm_label": "createclient()"
     },
     {
@@ -2061,7 +2205,7 @@
       "source_file": "src/lib/supabase/server.ts",
       "source_location": "L1",
       "id": "src_lib_supabase_server_ts",
-      "community": 1,
+      "community": 0,
       "norm_label": "server.ts"
     },
     {
@@ -2070,7 +2214,7 @@
       "source_file": "src/lib/supabase/server.ts",
       "source_location": "L4",
       "id": "supabase_server_createclient",
-      "community": 1,
+      "community": 0,
       "norm_label": "createclient()"
     },
     {
@@ -2079,44 +2223,143 @@
       "source_file": "README.md",
       "source_location": "L1",
       "id": "readme_md",
-      "community": 10,
+      "community": 5,
       "norm_label": "readme.md"
     },
     {
-      "label": "Getting Started",
+      "label": "\u4e2d\u6587 Chinese Learner",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "chinese_learner_readme_\u4e2d\u6587_chinese_learner",
+      "community": 5,
+      "norm_label": "\u4e2d\u6587 chinese learner"
+    },
+    {
+      "label": "What this is",
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L3",
-      "id": "chinese_learner_readme_getting_started",
-      "community": 10,
-      "norm_label": "getting started"
+      "id": "chinese_learner_readme_what_this_is",
+      "community": 5,
+      "norm_label": "what this is"
     },
     {
-      "label": "code:bash (npm run dev)",
+      "label": "Two ways to run it",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L7",
+      "source_location": "L18",
+      "id": "chinese_learner_readme_two_ways_to_run_it",
+      "community": 5,
+      "norm_label": "two ways to run it"
+    },
+    {
+      "label": "Architecture",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L40",
+      "id": "chinese_learner_readme_architecture",
+      "community": 5,
+      "norm_label": "architecture"
+    },
+    {
+      "label": "Prerequisites",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L61",
+      "id": "chinese_learner_readme_prerequisites",
+      "community": 5,
+      "norm_label": "prerequisites"
+    },
+    {
+      "label": "Quick start",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L70",
+      "id": "chinese_learner_readme_quick_start",
+      "community": 5,
+      "norm_label": "quick start"
+    },
+    {
+      "label": "code:bash (# 1. Clone)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L72",
       "id": "chinese_learner_readme_codeblock_1",
-      "community": 10,
-      "norm_label": "code:bash (npm run dev)"
+      "community": 5,
+      "norm_label": "code:bash (# 1. clone)"
     },
     {
-      "label": "Learn More",
+      "label": "Environment variables",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L23",
-      "id": "chinese_learner_readme_learn_more",
-      "community": 10,
-      "norm_label": "learn more"
+      "source_location": "L97",
+      "id": "chinese_learner_readme_environment_variables",
+      "community": 5,
+      "norm_label": "environment variables"
     },
     {
-      "label": "Deploy on Vercel",
+      "label": "npm scripts",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L32",
-      "id": "chinese_learner_readme_deploy_on_vercel",
-      "community": 10,
-      "norm_label": "deploy on vercel"
+      "source_location": "L109",
+      "id": "chinese_learner_readme_npm_scripts",
+      "community": 5,
+      "norm_label": "npm scripts"
+    },
+    {
+      "label": "The `local` branch \u2014 zero cloud, just Docker",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L121",
+      "id": "chinese_learner_readme_the_local_branch_zero_cloud_just_docker",
+      "community": 5,
+      "norm_label": "the `local` branch \u2014 zero cloud, just docker"
+    },
+    {
+      "label": "code:bash (git checkout local)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L128",
+      "id": "chinese_learner_readme_codeblock_2",
+      "community": 5,
+      "norm_label": "code:bash (git checkout local)"
+    },
+    {
+      "label": "code:bash (git show local:README.md)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L154",
+      "id": "chinese_learner_readme_codeblock_3",
+      "community": 5,
+      "norm_label": "code:bash (git show local:readme.md)"
+    },
+    {
+      "label": "Performance notes",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L161",
+      "id": "chinese_learner_readme_performance_notes",
+      "community": 5,
+      "norm_label": "performance notes"
+    },
+    {
+      "label": "Enable asymmetric JWT signing keys (recommended)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L163",
+      "id": "chinese_learner_readme_enable_asymmetric_jwt_signing_keys_recommended",
+      "community": 5,
+      "norm_label": "enable asymmetric jwt signing keys (recommended)"
+    },
+    {
+      "label": "Region alignment",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L175",
+      "id": "chinese_learner_readme_region_alignment",
+      "community": 5,
+      "norm_label": "region alignment"
     },
     {
       "label": "CLAUDE.md",
@@ -2124,7 +2367,7 @@
       "source_file": "CLAUDE.md",
       "source_location": "L1",
       "id": "claude_md",
-      "community": 6,
+      "community": 10,
       "norm_label": "claude.md"
     },
     {
@@ -2133,7 +2376,7 @@
       "source_file": "CLAUDE.md",
       "source_location": "L1",
       "id": "chinese_learner_claude_chinese_learner_next_js_on_vercel",
-      "community": 6,
+      "community": 10,
       "norm_label": "chinese learner \u2014 next.js on vercel"
     },
     {
@@ -2142,7 +2385,7 @@
       "source_file": "CLAUDE.md",
       "source_location": "L5",
       "id": "chinese_learner_claude_stack",
-      "community": 6,
+      "community": 10,
       "norm_label": "stack"
     },
     {
@@ -2151,7 +2394,7 @@
       "source_file": "CLAUDE.md",
       "source_location": "L11",
       "id": "chinese_learner_claude_key_directories",
-      "community": 6,
+      "community": 10,
       "norm_label": "key directories"
     },
     {
@@ -2160,7 +2403,7 @@
       "source_file": "CLAUDE.md",
       "source_location": "L20",
       "id": "chinese_learner_claude_environment",
-      "community": 6,
+      "community": 10,
       "norm_label": "environment"
     },
     {
@@ -2169,7 +2412,7 @@
       "source_file": "CLAUDE.md",
       "source_location": "L23",
       "id": "chinese_learner_claude_dev",
-      "community": 6,
+      "community": 10,
       "norm_label": "dev"
     },
     {
@@ -2178,7 +2421,7 @@
       "source_file": "CLAUDE.md",
       "source_location": "L24",
       "id": "chinese_learner_claude_codeblock_1",
-      "community": 6,
+      "community": 10,
       "norm_label": "code:block1 (npm install)"
     },
     {
@@ -2187,7 +2430,7 @@
       "source_file": "CLAUDE.md",
       "source_location": "L29",
       "id": "chinese_learner_claude_performance_notes",
-      "community": 6,
+      "community": 10,
       "norm_label": "performance notes"
     },
     {
@@ -2196,7 +2439,7 @@
       "source_file": "CLAUDE.md",
       "source_location": "L31",
       "id": "chinese_learner_claude_manual_step_enable_asymmetric_jwt_signing_keys",
-      "community": 6,
+      "community": 10,
       "norm_label": "manual step \u2014 enable asymmetric jwt signing keys"
     },
     {
@@ -2205,7 +2448,7 @@
       "source_file": "CLAUDE.md",
       "source_location": "L39",
       "id": "chinese_learner_claude_region_alignment",
-      "community": 6,
+      "community": 10,
       "norm_label": "region alignment"
     },
     {
@@ -2214,7 +2457,7 @@
       "source_file": "CLAUDE.md",
       "source_location": "L45",
       "id": "chinese_learner_claude_original_python_app",
-      "community": 6,
+      "community": 10,
       "norm_label": "original python app"
     },
     {
@@ -2223,7 +2466,7 @@
       "source_file": "CLAUDE.md",
       "source_location": "L47",
       "id": "chinese_learner_claude_codeblock_2",
-      "community": 6,
+      "community": 10,
       "norm_label": "code:block2 (git show local:src/learner/<file>.py)"
     },
     {
@@ -2232,15 +2475,132 @@
       "source_file": "CLAUDE.md",
       "source_location": "L51",
       "id": "chinese_learner_claude_graphify",
-      "community": 6,
+      "community": 10,
       "norm_label": "graphify"
+    },
+    {
+      "label": "post.md",
+      "file_type": "document",
+      "source_file": "linkedin-assets/post.md",
+      "source_location": "L1",
+      "id": "linkedin_assets_post_md",
+      "community": 16,
+      "norm_label": "post.md"
+    },
+    {
+      "label": "LinkedIn Post \u2014 \u6c49\u5b57 Chinese Learner",
+      "file_type": "document",
+      "source_file": "linkedin-assets/post.md",
+      "source_location": "L1",
+      "id": "linkedin_assets_post_linkedin_post_\u6c49\u5b57_chinese_learner",
+      "community": 16,
+      "norm_label": "linkedin post \u2014 \u6c49\u5b57 chinese learner"
+    },
+    {
+      "label": "Assets (in this folder)",
+      "file_type": "document",
+      "source_file": "linkedin-assets/post.md",
+      "source_location": "L3",
+      "id": "linkedin_assets_post_assets_in_this_folder",
+      "community": 16,
+      "norm_label": "assets (in this folder)"
+    },
+    {
+      "label": "Post",
+      "file_type": "document",
+      "source_file": "linkedin-assets/post.md",
+      "source_location": "L12",
+      "id": "linkedin_assets_post_post",
+      "community": 16,
+      "norm_label": "post"
+    },
+    {
+      "label": "fetchRaw()",
+      "file_type": "code",
+      "source_file": "scripts/seed-wordbank.ts",
+      "source_location": "L29",
+      "community": 8,
+      "norm_label": "fetchraw()",
+      "id": "scripts_seed_wordbank_fetchraw"
+    },
+    {
+      "label": "parseLevel()",
+      "file_type": "code",
+      "source_file": "scripts/seed-wordbank.ts",
+      "source_location": "L43",
+      "community": 8,
+      "norm_label": "parselevel()",
+      "id": "scripts_seed_wordbank_parselevel"
+    },
+    {
+      "label": "Reading",
+      "file_type": "code",
+      "source_file": "scripts/seed-wordbank.ts",
+      "source_location": "L53",
+      "community": 8,
+      "norm_label": "reading",
+      "id": "scripts_seed_wordbank_reading"
+    },
+    {
+      "label": "WordRow",
+      "file_type": "code",
+      "source_file": "scripts/seed-wordbank.ts",
+      "source_location": "L59",
+      "community": 8,
+      "norm_label": "wordrow",
+      "id": "scripts_seed_wordbank_wordrow"
+    },
+    {
+      "label": "formatReadingsMeanings()",
+      "file_type": "code",
+      "source_file": "src/lib/readings.ts",
+      "source_location": "L9",
+      "community": 9,
+      "norm_label": "formatreadingsmeanings()",
+      "id": "lib_readings_formatreadingsmeanings"
+    },
+    {
+      "label": "FEATURES",
+      "file_type": "code",
+      "source_file": "src/app/LandingClient.tsx",
+      "source_location": "L158",
+      "community": 2,
+      "norm_label": "features",
+      "id": "app_landingclient_features"
+    },
+    {
+      "label": "Getting Started",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L3",
+      "community": 5,
+      "norm_label": "getting started",
+      "id": "chinese_learner_readme_getting_started"
+    },
+    {
+      "label": "Learn More",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L23",
+      "community": 5,
+      "norm_label": "learn more",
+      "id": "chinese_learner_readme_learn_more"
+    },
+    {
+      "label": "Deploy on Vercel",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L32",
+      "community": 5,
+      "norm_label": "deploy on vercel",
+      "id": "chinese_learner_readme_deploy_on_vercel"
     },
     {
       "label": "StatusBadge()",
       "file_type": "code",
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L18",
-      "community": 0,
+      "community": 12,
       "norm_label": "statusbadge()",
       "id": "app_homeclient_statusbadge"
     },
@@ -2249,7 +2609,7 @@
       "file_type": "code",
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L18",
-      "community": 0,
+      "community": 14,
       "norm_label": "statusbadge()",
       "id": "sessions_sessionsclient_statusbadge"
     },
@@ -2258,7 +2618,7 @@
       "file_type": "code",
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L13",
-      "community": 0,
+      "community": 7,
       "norm_label": "outcomebadge()",
       "id": "id_sessionreviewclient_outcomebadge"
     },
@@ -2267,7 +2627,7 @@
       "file_type": "code",
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L17",
-      "community": 7,
+      "community": 11,
       "norm_label": "boxpill()",
       "id": "vocabulary_vocabularyclient_boxpill"
     },
@@ -2275,7 +2635,7 @@
       "label": "PostCSS Configuration",
       "file_type": "code",
       "source_file": "postcss.config.mjs",
-      "community": 18,
+      "community": 24,
       "norm_label": "postcss configuration",
       "id": "postcss_config_mjs_config"
     },
@@ -2283,7 +2643,7 @@
       "label": "ESLint Configuration",
       "file_type": "code",
       "source_file": "eslint.config.mjs",
-      "community": 19,
+      "community": 25,
       "norm_label": "eslint configuration",
       "id": "eslint_config_mjs_eslintconfig"
     },
@@ -2291,7 +2651,7 @@
       "label": "Next.js Configuration",
       "file_type": "code",
       "source_file": "next.config.ts",
-      "community": 20,
+      "community": 26,
       "norm_label": "next.js configuration",
       "id": "next_config_ts_nextconfig"
     },
@@ -2299,7 +2659,7 @@
       "label": "Chinese Learner README",
       "file_type": "document",
       "source_file": "README.md",
-      "community": 21,
+      "community": 27,
       "norm_label": "chinese learner readme",
       "id": "readme_md_project"
     },
@@ -2307,7 +2667,7 @@
       "label": "Project Overview & Stack",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "community": 22,
+      "community": 28,
       "norm_label": "project overview & stack",
       "id": "claude_md_project_overview"
     },
@@ -2315,7 +2675,7 @@
       "label": "Word Bank Seeding Script",
       "file_type": "code",
       "source_file": "scripts/seed-wordbank.ts",
-      "community": 8,
+      "community": 13,
       "norm_label": "word bank seeding script",
       "id": "seed_wordbank_ts_main"
     },
@@ -2323,7 +2683,7 @@
       "label": "Auth Session Proxy",
       "file_type": "code",
       "source_file": "src/proxy.ts",
-      "community": 23,
+      "community": 29,
       "norm_label": "auth session proxy",
       "id": "proxy_ts_proxy"
     },
@@ -2331,7 +2691,7 @@
       "label": "Root Layout",
       "file_type": "code",
       "source_file": "src/app/layout.tsx",
-      "community": 12,
+      "community": 18,
       "norm_label": "root layout",
       "id": "layout_tsx_rootlayout"
     },
@@ -2339,7 +2699,7 @@
       "label": "Home Client Component",
       "file_type": "code",
       "source_file": "src/app/HomeClient.tsx",
-      "community": 8,
+      "community": 13,
       "norm_label": "home client component",
       "id": "homeclient_tsx_homeclient"
     },
@@ -2347,7 +2707,7 @@
       "label": "Home Page",
       "file_type": "code",
       "source_file": "src/app/page.tsx",
-      "community": 8,
+      "community": 13,
       "norm_label": "home page",
       "id": "page_tsx_homepage"
     },
@@ -2355,7 +2715,7 @@
       "label": "Vocabulary Server Actions",
       "file_type": "code",
       "source_file": "src/app/actions/vocabulary.ts",
-      "community": 8,
+      "community": 13,
       "norm_label": "vocabulary server actions",
       "id": "vocabulary_ts_actions"
     },
@@ -2363,7 +2723,7 @@
       "label": "Session Server Actions",
       "file_type": "code",
       "source_file": "src/app/actions/session.ts",
-      "community": 8,
+      "community": 13,
       "norm_label": "session server actions",
       "id": "session_ts_actions"
     },
@@ -2371,7 +2731,7 @@
       "label": "Auth Server Actions",
       "file_type": "code",
       "source_file": "src/app/actions/auth.ts",
-      "community": 12,
+      "community": 18,
       "norm_label": "auth server actions",
       "id": "auth_ts_actions"
     },
@@ -2379,7 +2739,7 @@
       "label": "Domain Types",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "community": 24,
+      "community": 30,
       "norm_label": "domain types",
       "id": "types_ts_interfaces"
     },
@@ -2387,7 +2747,7 @@
       "label": "LLM Client (OpenCode Zen)",
       "file_type": "code",
       "source_file": "src/lib/llm.ts",
-      "community": 8,
+      "community": 13,
       "norm_label": "llm client (opencode zen)",
       "id": "llm_ts_client"
     },
@@ -2395,7 +2755,7 @@
       "label": "Grading & Cache Logic",
       "file_type": "code",
       "source_file": "src/lib/grading.ts",
-      "community": 8,
+      "community": 13,
       "norm_label": "grading & cache logic",
       "id": "grading_ts_logic"
     },
@@ -2403,7 +2763,7 @@
       "label": "SRS Leitner Logic",
       "file_type": "code",
       "source_file": "src/lib/srs.ts",
-      "community": 8,
+      "community": 13,
       "norm_label": "srs leitner logic",
       "id": "srs_ts_logic"
     },
@@ -2411,7 +2771,7 @@
       "label": "Service Layer",
       "file_type": "code",
       "source_file": "src/lib/services.ts",
-      "community": 8,
+      "community": 13,
       "norm_label": "service layer",
       "id": "services_ts_layer"
     },
@@ -2419,7 +2779,7 @@
       "label": "User Context Helper",
       "file_type": "code",
       "source_file": "src/lib/user.ts",
-      "community": 12,
+      "community": 18,
       "norm_label": "user context helper",
       "id": "user_ts_context"
     },
@@ -2427,7 +2787,7 @@
       "label": "Supabase Database Schema",
       "file_type": "code",
       "source_file": "supabase/migrations/001_initial_schema.sql",
-      "community": 8,
+      "community": 13,
       "norm_label": "supabase database schema",
       "id": "initial_schema_sql"
     }
@@ -2466,6 +2826,197 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "scripts/wordbank-parse.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "scripts_wordbank_parse_ts",
+      "target": "scripts_wordbank_parse_fetchraw",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/wordbank-parse.ts",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "scripts_wordbank_parse_ts",
+      "target": "scripts_wordbank_parse_parselevel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/wordbank-parse.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "scripts_wordbank_parse_ts",
+      "target": "scripts_wordbank_parse_reading",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/wordbank-parse.ts",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "scripts_wordbank_parse_ts",
+      "target": "scripts_wordbank_parse_wordrow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/wordbank-parse.ts",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "scripts_wordbank_parse_ts",
+      "target": "scripts_wordbank_parse_parserows",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/backfill-readings.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "scripts_backfill_readings_ts",
+      "target": "scripts_wordbank_parse_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-wordbank.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "scripts_seed_wordbank_ts",
+      "target": "scripts_wordbank_parse_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/backfill-readings.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "scripts_backfill_readings_ts",
+      "target": "scripts_wordbank_parse_fetchraw",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-wordbank.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "scripts_seed_wordbank_ts",
+      "target": "scripts_wordbank_parse_fetchraw",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/backfill-readings.ts",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "scripts_backfill_readings_main",
+      "target": "scripts_wordbank_parse_fetchraw"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/seed-wordbank.ts",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "scripts_seed_wordbank_main",
+      "target": "scripts_wordbank_parse_fetchraw"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/wordbank-parse.ts",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "scripts_wordbank_parse_parserows",
+      "target": "scripts_wordbank_parse_parselevel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/backfill-readings.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "scripts_backfill_readings_ts",
+      "target": "scripts_wordbank_parse_parserows",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-wordbank.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "scripts_seed_wordbank_ts",
+      "target": "scripts_wordbank_parse_parserows",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/backfill-readings.ts",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "scripts_backfill_readings_main",
+      "target": "scripts_wordbank_parse_parserows"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/seed-wordbank.ts",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "scripts_seed_wordbank_main",
+      "target": "scripts_wordbank_parse_parserows"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/backfill-readings.ts",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "scripts_backfill_readings_ts",
+      "target": "scripts_backfill_readings_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-wordbank.ts",
+      "source_location": "L64",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_seed_wordbank_ts",
+      "target": "scripts_seed_wordbank_main"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "scripts/seed-wordbank.ts",
       "source_location": "L29",
       "weight": 1.0,
@@ -2491,17 +3042,17 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "scripts_seed_wordbank_ts",
-      "target": "scripts_seed_wordbank_wordrow"
+      "target": "scripts_seed_wordbank_reading"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "scripts/seed-wordbank.ts",
-      "source_location": "L64",
+      "source_location": "L53",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "scripts_seed_wordbank_ts",
-      "target": "scripts_seed_wordbank_main"
+      "target": "scripts_seed_wordbank_wordrow"
     },
     {
       "relation": "calls",
@@ -2552,9 +3103,9 @@
       "source_file": "src/app/LandingClient.tsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_landingclient_tsx",
-      "target": "src_components_seal_tsx",
-      "confidence_score": 1.0
+      "target": "src_components_seal_tsx"
     },
     {
       "relation": "imports_from",
@@ -2563,9 +3114,9 @@
       "source_file": "src/app/LandingClient.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_landingclient_tsx",
-      "target": "src_lib_config_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_config_ts"
     },
     {
       "relation": "contains",
@@ -2573,19 +3124,49 @@
       "source_file": "src/app/LandingClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_landingclient_tsx",
-      "target": "app_landingclient_landingclient",
-      "confidence_score": 1.0
+      "target": "app_landingclient_landingclient"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/app/LandingClient.tsx",
-      "source_location": "L158",
+      "source_location": "L345",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_landingclient_tsx",
-      "target": "app_landingclient_features",
-      "confidence_score": 1.0
+      "target": "app_landingclient_practicecell"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/LandingClient.tsx",
+      "source_location": "L368",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_landingclient_tsx",
+      "target": "app_landingclient_forgettingcurve"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/LandingClient.tsx",
+      "source_location": "L447",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_landingclient_tsx",
+      "target": "app_landingclient_steps"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/LandingClient.tsx",
+      "source_location": "L475",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_landingclient_tsx",
+      "target": "app_landingclient_extras"
     },
     {
       "relation": "contains",
@@ -2593,9 +3174,9 @@
       "source_file": "src/app/LandingClient.tsx",
       "source_location": "L197",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_landingclient_tsx",
-      "target": "app_landingclient_hsk_levels",
-      "confidence_score": 1.0
+      "target": "app_landingclient_hsk_levels"
     },
     {
       "relation": "imports_from",
@@ -2604,9 +3185,19 @@
       "source_file": "src/app/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_page_tsx",
-      "target": "src_app_landingclient_tsx",
-      "confidence_score": 1.0
+      "target": "src_app_landingclient_tsx"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/LandingClient.tsx",
+      "source_location": "L158",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_landingclient_tsx",
+      "target": "app_landingclient_features"
     },
     {
       "relation": "imports_from",
@@ -2626,9 +3217,9 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_layout_tsx",
-      "target": "src_lib_user_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_user_ts"
     },
     {
       "relation": "imports",
@@ -2637,9 +3228,9 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_layout_tsx",
-      "target": "lib_user_getoptionaluser",
-      "confidence_score": 1.0
+      "target": "lib_user_getoptionaluser"
     },
     {
       "relation": "imports_from",
@@ -2670,9 +3261,9 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_layout_tsx",
-      "target": "src_lib_services_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_services_ts"
     },
     {
       "relation": "imports",
@@ -2681,9 +3272,9 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_layout_tsx",
-      "target": "lib_services_getprofile",
-      "confidence_score": 1.0
+      "target": "lib_services_getprofile"
     },
     {
       "relation": "imports_from",
@@ -2692,9 +3283,9 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_layout_tsx",
-      "target": "src_lib_config_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_config_ts"
     },
     {
       "relation": "contains",
@@ -2722,9 +3313,9 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_layout_tsx",
-      "target": "app_layout_fraunces",
-      "confidence_score": 1.0
+      "target": "app_layout_fraunces"
     },
     {
       "relation": "contains",
@@ -2732,9 +3323,9 @@
       "source_file": "src/app/layout.tsx",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_layout_tsx",
-      "target": "app_layout_notoserifsc",
-      "confidence_score": 1.0
+      "target": "app_layout_notoserifsc"
     },
     {
       "relation": "contains",
@@ -2862,9 +3453,9 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_homeclient_tsx",
-      "target": "src_components_ui_tsx",
-      "confidence_score": 1.0
+      "target": "src_components_ui_tsx"
     },
     {
       "relation": "imports",
@@ -2873,9 +3464,9 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_homeclient_tsx",
-      "target": "components_ui_card",
-      "confidence_score": 1.0
+      "target": "components_ui_card"
     },
     {
       "relation": "imports",
@@ -2884,9 +3475,9 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_homeclient_tsx",
-      "target": "components_ui_button",
-      "confidence_score": 1.0
+      "target": "components_ui_button"
     },
     {
       "relation": "imports",
@@ -2895,42 +3486,9 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_homeclient_tsx",
-      "target": "components_ui_badge",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/HomeClient.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "src_app_homeclient_tsx",
-      "target": "components_ui_pageheader",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/HomeClient.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "src_app_homeclient_tsx",
-      "target": "components_ui_bento",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/app/HomeClient.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "src_app_homeclient_tsx",
-      "target": "src_components_seal_tsx",
-      "confidence_score": 1.0
+      "target": "components_ui_badge"
     },
     {
       "relation": "contains",
@@ -2948,9 +3506,9 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_homeclient_tsx",
-      "target": "app_homeclient_statusbadgevariant",
-      "confidence_score": 1.0
+      "target": "app_homeclient_statusbadgevariant"
     },
     {
       "relation": "contains",
@@ -2958,9 +3516,49 @@
       "source_file": "src/app/HomeClient.tsx",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_homeclient_tsx",
-      "target": "app_homeclient_statuslabel",
-      "confidence_score": 1.0
+      "target": "app_homeclient_statuslabel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/HomeClient.tsx",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_homeclient_tsx",
+      "target": "app_homeclient_weekdays_cn"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/HomeClient.tsx",
+      "source_location": "L41",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_homeclient_tsx",
+      "target": "app_homeclient_nav"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/HomeClient.tsx",
+      "source_location": "L47",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_homeclient_tsx",
+      "target": "app_homeclient_quick"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/HomeClient.tsx",
+      "source_location": "L54",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_homeclient_tsx",
+      "target": "app_homeclient_micell"
     },
     {
       "relation": "contains",
@@ -2982,6 +3580,39 @@
       "confidence_score": 1.0,
       "source": "src_app_page_tsx",
       "target": "src_app_homeclient_tsx"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/HomeClient.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_homeclient_tsx",
+      "target": "components_ui_pageheader"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/HomeClient.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_homeclient_tsx",
+      "target": "components_ui_bento"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/HomeClient.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_homeclient_tsx",
+      "target": "src_components_seal_tsx"
     },
     {
       "relation": "contains",
@@ -3011,9 +3642,9 @@
       "source_file": "src/app/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_page_tsx",
-      "target": "lib_user_getoptionaluser",
-      "confidence_score": 1.0
+      "target": "lib_user_getoptionaluser"
     },
     {
       "relation": "imports_from",
@@ -3022,9 +3653,9 @@
       "source_file": "src/app/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_page_tsx",
-      "target": "src_lib_supabase_server_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_supabase_server_ts"
     },
     {
       "relation": "imports",
@@ -3033,9 +3664,9 @@
       "source_file": "src/app/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_page_tsx",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "imports_from",
@@ -3153,9 +3784,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "src_app_actions_profile_ts",
-      "confidence_score": 1.0
+      "target": "src_app_actions_profile_ts"
     },
     {
       "relation": "imports",
@@ -3164,9 +3795,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "actions_profile_updatehsklevelaction",
-      "confidence_score": 1.0
+      "target": "actions_profile_updatehsklevelaction"
     },
     {
       "relation": "imports_from",
@@ -3175,9 +3806,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "src_lib_types_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_types_ts"
     },
     {
       "relation": "imports",
@@ -3186,9 +3817,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "lib_types_profile",
-      "confidence_score": 1.0
+      "target": "lib_types_profile"
     },
     {
       "relation": "imports_from",
@@ -3197,9 +3828,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "src_components_ui_tsx",
-      "confidence_score": 1.0
+      "target": "src_components_ui_tsx"
     },
     {
       "relation": "imports",
@@ -3208,9 +3839,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "components_ui_card",
-      "confidence_score": 1.0
+      "target": "components_ui_card"
     },
     {
       "relation": "imports",
@@ -3219,9 +3850,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "components_ui_button",
-      "confidence_score": 1.0
+      "target": "components_ui_button"
     },
     {
       "relation": "imports",
@@ -3230,9 +3861,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "components_ui_badge",
-      "confidence_score": 1.0
+      "target": "components_ui_badge"
     },
     {
       "relation": "imports",
@@ -3241,9 +3872,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "components_ui_pageheader",
-      "confidence_score": 1.0
+      "target": "components_ui_pageheader"
     },
     {
       "relation": "imports_from",
@@ -3252,9 +3883,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "src_lib_config_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_config_ts"
     },
     {
       "relation": "contains",
@@ -3262,9 +3893,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "settings_settingsclient_hsk_labels",
-      "confidence_score": 1.0
+      "target": "settings_settingsclient_hsk_labels"
     },
     {
       "relation": "contains",
@@ -3272,9 +3903,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "settings_settingsclient_props",
-      "confidence_score": 1.0
+      "target": "settings_settingsclient_props"
     },
     {
       "relation": "contains",
@@ -3282,9 +3913,9 @@
       "source_file": "src/app/settings/SettingsClient.tsx",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_settingsclient_tsx",
-      "target": "settings_settingsclient_settingsclient",
-      "confidence_score": 1.0
+      "target": "settings_settingsclient_settingsclient"
     },
     {
       "relation": "imports_from",
@@ -3293,9 +3924,9 @@
       "source_file": "src/app/settings/page.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_page_tsx",
-      "target": "src_app_settings_settingsclient_tsx",
-      "confidence_score": 1.0
+      "target": "src_app_settings_settingsclient_tsx"
     },
     {
       "relation": "imports_from",
@@ -3304,9 +3935,9 @@
       "source_file": "src/app/settings/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_page_tsx",
-      "target": "src_lib_user_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_user_ts"
     },
     {
       "relation": "imports",
@@ -3315,9 +3946,9 @@
       "source_file": "src/app/settings/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_page_tsx",
-      "target": "lib_user_getusercontext",
-      "confidence_score": 1.0
+      "target": "lib_user_getusercontext"
     },
     {
       "relation": "imports_from",
@@ -3326,9 +3957,9 @@
       "source_file": "src/app/settings/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_page_tsx",
-      "target": "src_lib_services_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_services_ts"
     },
     {
       "relation": "imports",
@@ -3337,9 +3968,9 @@
       "source_file": "src/app/settings/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_page_tsx",
-      "target": "lib_services_getprofile",
-      "confidence_score": 1.0
+      "target": "lib_services_getprofile"
     },
     {
       "relation": "imports",
@@ -3348,9 +3979,9 @@
       "source_file": "src/app/settings/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_page_tsx",
-      "target": "lib_services_vocabcount",
-      "confidence_score": 1.0
+      "target": "lib_services_vocabcount"
     },
     {
       "relation": "imports",
@@ -3359,9 +3990,9 @@
       "source_file": "src/app/settings/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_page_tsx",
-      "target": "lib_services_listsessions",
-      "confidence_score": 1.0
+      "target": "lib_services_listsessions"
     },
     {
       "relation": "contains",
@@ -3369,9 +4000,9 @@
       "source_file": "src/app/settings/page.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_settings_page_tsx",
-      "target": "settings_page_settingspage",
-      "confidence_score": 1.0
+      "target": "settings_page_settingspage"
     },
     {
       "relation": "calls",
@@ -3479,9 +4110,9 @@
       "source_file": "src/app/study/StudyBuilderClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_study_studybuilderclient_tsx",
-      "target": "src_components_ui_tsx",
-      "confidence_score": 1.0
+      "target": "src_lib_readings_ts"
     },
     {
       "relation": "imports",
@@ -3490,9 +4121,9 @@
       "source_file": "src/app/study/StudyBuilderClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_study_studybuilderclient_tsx",
-      "target": "components_ui_card",
-      "confidence_score": 1.0
+      "target": "lib_readings_formatreadingspinyin"
     },
     {
       "relation": "imports",
@@ -3501,9 +4132,20 @@
       "source_file": "src/app/study/StudyBuilderClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_study_studybuilderclient_tsx",
-      "target": "components_ui_button",
-      "confidence_score": 1.0
+      "target": "lib_readings_hasmultiplereadings"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/StudyBuilderClient.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_studybuilderclient_tsx",
+      "target": "src_components_ui_tsx"
     },
     {
       "relation": "imports",
@@ -3512,9 +4154,9 @@
       "source_file": "src/app/study/StudyBuilderClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_study_studybuilderclient_tsx",
-      "target": "components_ui_badge",
-      "confidence_score": 1.0
+      "target": "components_ui_card"
     },
     {
       "relation": "imports",
@@ -3523,9 +4165,31 @@
       "source_file": "src/app/study/StudyBuilderClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_study_studybuilderclient_tsx",
-      "target": "components_ui_pageheader",
-      "confidence_score": 1.0
+      "target": "components_ui_button"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/StudyBuilderClient.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_studybuilderclient_tsx",
+      "target": "components_ui_badge"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/StudyBuilderClient.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_studybuilderclient_tsx",
+      "target": "components_ui_pageheader"
     },
     {
       "relation": "contains",
@@ -3729,9 +4393,9 @@
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_study_sessionid_studysessionclient_tsx",
-      "target": "lib_types_outcome",
-      "confidence_score": 1.0
+      "target": "lib_types_outcome"
     },
     {
       "relation": "imports_from",
@@ -3740,9 +4404,9 @@
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_study_sessionid_studysessionclient_tsx",
-      "target": "src_components_ui_tsx",
-      "confidence_score": 1.0
+      "target": "src_lib_readings_ts"
     },
     {
       "relation": "imports",
@@ -3751,9 +4415,20 @@
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_study_sessionid_studysessionclient_tsx",
-      "target": "components_ui_card",
-      "confidence_score": 1.0
+      "target": "lib_readings_hasmultiplereadings"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_sessionid_studysessionclient_tsx",
+      "target": "src_components_ui_tsx"
     },
     {
       "relation": "imports",
@@ -3762,9 +4437,9 @@
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_study_sessionid_studysessionclient_tsx",
-      "target": "components_ui_button",
-      "confidence_score": 1.0
+      "target": "components_ui_card"
     },
     {
       "relation": "imports",
@@ -3773,9 +4448,9 @@
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_study_sessionid_studysessionclient_tsx",
-      "target": "components_ui_badge",
-      "confidence_score": 1.0
+      "target": "components_ui_button"
     },
     {
       "relation": "imports",
@@ -3784,9 +4459,20 @@
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_study_sessionid_studysessionclient_tsx",
-      "target": "components_ui_progressbar",
-      "confidence_score": 1.0
+      "target": "components_ui_badge"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_study_sessionid_studysessionclient_tsx",
+      "target": "components_ui_progressbar"
     },
     {
       "relation": "imports_from",
@@ -3795,9 +4481,9 @@
       "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_study_sessionid_studysessionclient_tsx",
-      "target": "src_components_seal_tsx",
-      "confidence_score": 1.0
+      "target": "src_components_seal_tsx"
     },
     {
       "relation": "contains",
@@ -3860,6 +4546,17 @@
       "confidence_score": 1.0,
       "source": "src_app_study_sessionid_studysessionclient_tsx",
       "target": "lib_types_sessionitem"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/study/[sessionId]/StudySessionClient.tsx",
+      "source_location": "L214",
+      "weight": 1.0,
+      "source": "sessionid_studysessionclient_studysessionclient",
+      "target": "lib_readings_hasmultiplereadings"
     },
     {
       "relation": "imports_from",
@@ -3944,9 +4641,9 @@
       "source_file": "src/app/signup/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_signup_page_tsx",
-      "target": "src_app_actions_auth_ts",
-      "confidence_score": 1.0
+      "target": "src_app_actions_auth_ts"
     },
     {
       "relation": "imports",
@@ -3955,9 +4652,9 @@
       "source_file": "src/app/signup/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_signup_page_tsx",
-      "target": "actions_auth_signup",
-      "confidence_score": 1.0
+      "target": "actions_auth_signup"
     },
     {
       "relation": "imports_from",
@@ -3966,9 +4663,9 @@
       "source_file": "src/app/signup/page.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_signup_page_tsx",
-      "target": "src_components_seal_tsx",
-      "confidence_score": 1.0
+      "target": "src_components_seal_tsx"
     },
     {
       "relation": "contains",
@@ -3976,9 +4673,9 @@
       "source_file": "src/app/signup/page.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_signup_page_tsx",
-      "target": "signup_page_hsk_levels",
-      "confidence_score": 1.0
+      "target": "signup_page_hsk_levels"
     },
     {
       "relation": "contains",
@@ -3986,9 +4683,9 @@
       "source_file": "src/app/signup/page.tsx",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_signup_page_tsx",
-      "target": "signup_page_signuppage",
-      "confidence_score": 1.0
+      "target": "signup_page_signuppage"
     },
     {
       "relation": "imports_from",
@@ -3997,9 +4694,9 @@
       "source_file": "src/app/admin/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_page_tsx",
-      "target": "src_app_actions_admin_ts",
-      "confidence_score": 1.0
+      "target": "src_app_actions_admin_ts"
     },
     {
       "relation": "imports",
@@ -4008,9 +4705,9 @@
       "source_file": "src/app/admin/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_page_tsx",
-      "target": "actions_admin_requireadmin",
-      "confidence_score": 1.0
+      "target": "actions_admin_requireadmin"
     },
     {
       "relation": "imports",
@@ -4019,9 +4716,9 @@
       "source_file": "src/app/admin/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_page_tsx",
-      "target": "actions_admin_listusersaction",
-      "confidence_score": 1.0
+      "target": "actions_admin_listusersaction"
     },
     {
       "relation": "imports_from",
@@ -4030,9 +4727,9 @@
       "source_file": "src/app/admin/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_page_tsx",
-      "target": "src_app_admin_adminclient_tsx",
-      "confidence_score": 1.0
+      "target": "src_app_admin_adminclient_tsx"
     },
     {
       "relation": "contains",
@@ -4040,9 +4737,9 @@
       "source_file": "src/app/admin/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_page_tsx",
-      "target": "admin_page_adminpage",
-      "confidence_score": 1.0
+      "target": "admin_page_adminpage"
     },
     {
       "relation": "calls",
@@ -4073,9 +4770,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "src_app_actions_admin_ts",
-      "confidence_score": 1.0
+      "target": "src_app_actions_admin_ts"
     },
     {
       "relation": "imports",
@@ -4084,9 +4781,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "actions_admin_adminuser",
-      "confidence_score": 1.0
+      "target": "actions_admin_adminuser"
     },
     {
       "relation": "imports",
@@ -4095,9 +4792,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "actions_admin_setuserlimitsaction",
-      "confidence_score": 1.0
+      "target": "actions_admin_setuserlimitsaction"
     },
     {
       "relation": "imports",
@@ -4106,9 +4803,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "actions_admin_setuserunlimitedaction",
-      "confidence_score": 1.0
+      "target": "actions_admin_setuserunlimitedaction"
     },
     {
       "relation": "imports",
@@ -4117,9 +4814,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "actions_admin_setuserroleaction",
-      "confidence_score": 1.0
+      "target": "actions_admin_setuserroleaction"
     },
     {
       "relation": "imports",
@@ -4128,9 +4825,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "actions_admin_deleteuseraction",
-      "confidence_score": 1.0
+      "target": "actions_admin_deleteuseraction"
     },
     {
       "relation": "imports_from",
@@ -4139,9 +4836,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "src_components_ui_tsx",
-      "confidence_score": 1.0
+      "target": "src_components_ui_tsx"
     },
     {
       "relation": "imports",
@@ -4150,9 +4847,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "components_ui_card",
-      "confidence_score": 1.0
+      "target": "components_ui_card"
     },
     {
       "relation": "imports",
@@ -4161,9 +4858,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "components_ui_button",
-      "confidence_score": 1.0
+      "target": "components_ui_button"
     },
     {
       "relation": "imports",
@@ -4172,9 +4869,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "components_ui_badge",
-      "confidence_score": 1.0
+      "target": "components_ui_badge"
     },
     {
       "relation": "imports",
@@ -4183,9 +4880,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "components_ui_pageheader",
-      "confidence_score": 1.0
+      "target": "components_ui_pageheader"
     },
     {
       "relation": "imports_from",
@@ -4194,9 +4891,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "src_lib_config_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_config_ts"
     },
     {
       "relation": "contains",
@@ -4204,9 +4901,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "admin_adminclient_props",
-      "confidence_score": 1.0
+      "target": "admin_adminclient_props"
     },
     {
       "relation": "contains",
@@ -4214,9 +4911,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "admin_adminclient_adminclient",
-      "confidence_score": 1.0
+      "target": "admin_adminclient_adminclient"
     },
     {
       "relation": "contains",
@@ -4224,9 +4921,9 @@
       "source_file": "src/app/admin/AdminClient.tsx",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_admin_adminclient_tsx",
-      "target": "admin_adminclient_userrow",
-      "confidence_score": 1.0
+      "target": "admin_adminclient_userrow"
     },
     {
       "relation": "imports_from",
@@ -4279,9 +4976,9 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_sessionsclient_tsx",
-      "target": "src_components_ui_tsx",
-      "confidence_score": 1.0
+      "target": "src_components_ui_tsx"
     },
     {
       "relation": "imports",
@@ -4290,9 +4987,9 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_sessionsclient_tsx",
-      "target": "components_ui_card",
-      "confidence_score": 1.0
+      "target": "components_ui_card"
     },
     {
       "relation": "imports",
@@ -4301,9 +4998,9 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_sessionsclient_tsx",
-      "target": "components_ui_button",
-      "confidence_score": 1.0
+      "target": "components_ui_button"
     },
     {
       "relation": "imports",
@@ -4312,9 +5009,9 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_sessionsclient_tsx",
-      "target": "components_ui_badge",
-      "confidence_score": 1.0
+      "target": "components_ui_badge"
     },
     {
       "relation": "imports",
@@ -4323,9 +5020,9 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_sessionsclient_tsx",
-      "target": "components_ui_pageheader",
-      "confidence_score": 1.0
+      "target": "components_ui_pageheader"
     },
     {
       "relation": "contains",
@@ -4343,9 +5040,9 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_sessionsclient_tsx",
-      "target": "sessions_sessionsclient_statusvariant",
-      "confidence_score": 1.0
+      "target": "sessions_sessionsclient_statusvariant"
     },
     {
       "relation": "contains",
@@ -4353,9 +5050,9 @@
       "source_file": "src/app/sessions/SessionsClient.tsx",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_sessionsclient_tsx",
-      "target": "sessions_sessionsclient_statuslabel",
-      "confidence_score": 1.0
+      "target": "sessions_sessionsclient_statuslabel"
     },
     {
       "relation": "contains",
@@ -4504,9 +5201,9 @@
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_id_sessionreviewclient_tsx",
-      "target": "src_components_ui_tsx",
-      "confidence_score": 1.0
+      "target": "src_lib_readings_ts"
     },
     {
       "relation": "imports",
@@ -4515,9 +5212,9 @@
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_id_sessionreviewclient_tsx",
-      "target": "components_ui_card",
-      "confidence_score": 1.0
+      "target": "lib_readings_formatreadingspinyin"
     },
     {
       "relation": "imports",
@@ -4526,9 +5223,20 @@
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_id_sessionreviewclient_tsx",
-      "target": "components_ui_button",
-      "confidence_score": 1.0
+      "target": "lib_readings_hasmultiplereadings"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_sessions_id_sessionreviewclient_tsx",
+      "target": "src_components_ui_tsx"
     },
     {
       "relation": "imports",
@@ -4537,9 +5245,9 @@
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_id_sessionreviewclient_tsx",
-      "target": "components_ui_badge",
-      "confidence_score": 1.0
+      "target": "components_ui_card"
     },
     {
       "relation": "imports",
@@ -4548,9 +5256,31 @@
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_id_sessionreviewclient_tsx",
-      "target": "components_ui_progressbar",
-      "confidence_score": 1.0
+      "target": "components_ui_button"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_sessions_id_sessionreviewclient_tsx",
+      "target": "components_ui_badge"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_sessions_id_sessionreviewclient_tsx",
+      "target": "components_ui_progressbar"
     },
     {
       "relation": "contains",
@@ -4568,9 +5298,9 @@
       "source_file": "src/app/sessions/[id]/SessionReviewClient.tsx",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_sessions_id_sessionreviewclient_tsx",
-      "target": "id_sessionreviewclient_outcomevariant",
-      "confidence_score": 1.0
+      "target": "id_sessionreviewclient_outcomevariant"
     },
     {
       "relation": "contains",
@@ -4741,9 +5471,9 @@
       "source_file": "src/app/actions/vocabulary.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_vocabulary_ts",
-      "target": "lib_services_regeneratewordcard",
-      "confidence_score": 1.0
+      "target": "lib_services_regeneratewordcard"
     },
     {
       "relation": "imports",
@@ -4815,9 +5545,9 @@
       "source_file": "src/app/actions/vocabulary.ts",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_vocabulary_ts",
-      "target": "actions_vocabulary_regeneratewordcardaction",
-      "confidence_score": 1.0
+      "target": "actions_vocabulary_regeneratewordcardaction"
     },
     {
       "relation": "contains",
@@ -4877,9 +5607,9 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_wordid_wordcardclient_tsx",
-      "target": "src_app_actions_vocabulary_ts",
-      "confidence_score": 1.0
+      "target": "src_app_actions_vocabulary_ts"
     },
     {
       "relation": "calls",
@@ -4932,9 +5662,9 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_wordid_wordcardclient_tsx",
-      "target": "actions_vocabulary_regeneratewordcardaction",
-      "confidence_score": 1.0
+      "target": "actions_vocabulary_regeneratewordcardaction"
     },
     {
       "relation": "calls",
@@ -5064,9 +5794,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "src_lib_user_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_user_ts"
     },
     {
       "relation": "imports",
@@ -5075,9 +5805,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "lib_user_getusercontext",
-      "confidence_score": 1.0
+      "target": "lib_user_getusercontext"
     },
     {
       "relation": "imports_from",
@@ -5086,9 +5816,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "src_lib_services_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_services_ts"
     },
     {
       "relation": "imports",
@@ -5097,9 +5827,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "lib_services_getprofile",
-      "confidence_score": 1.0
+      "target": "lib_services_getprofile"
     },
     {
       "relation": "imports_from",
@@ -5108,9 +5838,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "src_lib_supabase_admin_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_supabase_admin_ts"
     },
     {
       "relation": "imports",
@@ -5119,9 +5849,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "supabase_admin_createadminclient",
-      "confidence_score": 1.0
+      "target": "supabase_admin_createadminclient"
     },
     {
       "relation": "imports_from",
@@ -5130,9 +5860,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "src_lib_config_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_config_ts"
     },
     {
       "relation": "contains",
@@ -5140,9 +5870,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "actions_admin_requireadmin",
-      "confidence_score": 1.0
+      "target": "actions_admin_requireadmin"
     },
     {
       "relation": "contains",
@@ -5150,9 +5880,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "actions_admin_adminuser",
-      "confidence_score": 1.0
+      "target": "actions_admin_adminuser"
     },
     {
       "relation": "contains",
@@ -5160,9 +5890,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L40",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "actions_admin_listusersaction",
-      "confidence_score": 1.0
+      "target": "actions_admin_listusersaction"
     },
     {
       "relation": "contains",
@@ -5170,9 +5900,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L88",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "actions_admin_setuserlimitsaction",
-      "confidence_score": 1.0
+      "target": "actions_admin_setuserlimitsaction"
     },
     {
       "relation": "contains",
@@ -5180,9 +5910,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L111",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "actions_admin_setuserunlimitedaction",
-      "confidence_score": 1.0
+      "target": "actions_admin_setuserunlimitedaction"
     },
     {
       "relation": "contains",
@@ -5190,9 +5920,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L127",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "actions_admin_setuserroleaction",
-      "confidence_score": 1.0
+      "target": "actions_admin_setuserroleaction"
     },
     {
       "relation": "contains",
@@ -5200,9 +5930,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L147",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_admin_ts",
-      "target": "actions_admin_deleteuseraction",
-      "confidence_score": 1.0
+      "target": "actions_admin_deleteuseraction"
     },
     {
       "relation": "calls",
@@ -5211,9 +5941,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L41",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "actions_admin_listusersaction",
-      "target": "actions_admin_requireadmin",
-      "confidence_score": 1.0
+      "target": "actions_admin_requireadmin"
     },
     {
       "relation": "calls",
@@ -5222,9 +5952,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L93",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "actions_admin_setuserlimitsaction",
-      "target": "actions_admin_requireadmin",
-      "confidence_score": 1.0
+      "target": "actions_admin_requireadmin"
     },
     {
       "relation": "calls",
@@ -5233,9 +5963,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L112",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "actions_admin_setuserunlimitedaction",
-      "target": "actions_admin_requireadmin",
-      "confidence_score": 1.0
+      "target": "actions_admin_requireadmin"
     },
     {
       "relation": "calls",
@@ -5244,9 +5974,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L131",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "actions_admin_setuserroleaction",
-      "target": "actions_admin_requireadmin",
-      "confidence_score": 1.0
+      "target": "actions_admin_requireadmin"
     },
     {
       "relation": "calls",
@@ -5255,9 +5985,9 @@
       "source_file": "src/app/actions/admin.ts",
       "source_location": "L148",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "actions_admin_deleteuseraction",
-      "target": "actions_admin_requireadmin",
-      "confidence_score": 1.0
+      "target": "actions_admin_requireadmin"
     },
     {
       "relation": "calls",
@@ -5709,9 +6439,9 @@
       "source_file": "src/app/actions/profile.ts",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_profile_ts",
-      "target": "src_lib_user_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_user_ts"
     },
     {
       "relation": "imports",
@@ -5720,9 +6450,9 @@
       "source_file": "src/app/actions/profile.ts",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_profile_ts",
-      "target": "lib_user_getusercontext",
-      "confidence_score": 1.0
+      "target": "lib_user_getusercontext"
     },
     {
       "relation": "imports_from",
@@ -5731,9 +6461,9 @@
       "source_file": "src/app/actions/profile.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_profile_ts",
-      "target": "src_lib_services_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_services_ts"
     },
     {
       "relation": "imports",
@@ -5742,9 +6472,9 @@
       "source_file": "src/app/actions/profile.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_profile_ts",
-      "target": "lib_services_getprofile",
-      "confidence_score": 1.0
+      "target": "lib_services_getprofile"
     },
     {
       "relation": "imports_from",
@@ -5753,9 +6483,9 @@
       "source_file": "src/app/actions/profile.ts",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_profile_ts",
-      "target": "src_lib_config_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_config_ts"
     },
     {
       "relation": "contains",
@@ -5763,9 +6493,9 @@
       "source_file": "src/app/actions/profile.ts",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_profile_ts",
-      "target": "actions_profile_getprofileaction",
-      "confidence_score": 1.0
+      "target": "actions_profile_getprofileaction"
     },
     {
       "relation": "contains",
@@ -5773,9 +6503,9 @@
       "source_file": "src/app/actions/profile.ts",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_actions_profile_ts",
-      "target": "actions_profile_updatehsklevelaction",
-      "confidence_score": 1.0
+      "target": "actions_profile_updatehsklevelaction"
     },
     {
       "relation": "calls",
@@ -5924,9 +6654,9 @@
       "source_file": "src/app/login/page.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_login_page_tsx",
-      "target": "src_components_seal_tsx",
-      "confidence_score": 1.0
+      "target": "src_components_seal_tsx"
     },
     {
       "relation": "contains",
@@ -5967,9 +6697,9 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_stats_statsclient_tsx",
-      "target": "src_components_ui_tsx",
-      "confidence_score": 1.0
+      "target": "src_components_ui_tsx"
     },
     {
       "relation": "imports",
@@ -5978,9 +6708,9 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_stats_statsclient_tsx",
-      "target": "components_ui_card",
-      "confidence_score": 1.0
+      "target": "components_ui_card"
     },
     {
       "relation": "imports",
@@ -5989,9 +6719,9 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_stats_statsclient_tsx",
-      "target": "components_ui_badge",
-      "confidence_score": 1.0
+      "target": "components_ui_badge"
     },
     {
       "relation": "imports",
@@ -6000,9 +6730,9 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_stats_statsclient_tsx",
-      "target": "components_ui_progressbar",
-      "confidence_score": 1.0
+      "target": "components_ui_progressbar"
     },
     {
       "relation": "imports",
@@ -6011,9 +6741,9 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_stats_statsclient_tsx",
-      "target": "components_ui_pageheader",
-      "confidence_score": 1.0
+      "target": "components_ui_pageheader"
     },
     {
       "relation": "imports",
@@ -6022,9 +6752,9 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_stats_statsclient_tsx",
-      "target": "components_ui_bento",
-      "confidence_score": 1.0
+      "target": "components_ui_bento"
     },
     {
       "relation": "contains",
@@ -6032,9 +6762,9 @@
       "source_file": "src/app/stats/StatsClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_stats_statsclient_tsx",
-      "target": "stats_statsclient_masteryring",
-      "confidence_score": 1.0
+      "target": "stats_statsclient_masteryring"
     },
     {
       "relation": "contains",
@@ -6162,9 +6892,9 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_vocabularyclient_tsx",
-      "target": "src_components_ui_tsx",
-      "confidence_score": 1.0
+      "target": "src_lib_readings_ts"
     },
     {
       "relation": "imports",
@@ -6173,9 +6903,9 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_vocabularyclient_tsx",
-      "target": "components_ui_card",
-      "confidence_score": 1.0
+      "target": "lib_readings_formatreadingspinyin"
     },
     {
       "relation": "imports",
@@ -6184,9 +6914,20 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_vocabularyclient_tsx",
-      "target": "components_ui_button",
-      "confidence_score": 1.0
+      "target": "lib_readings_hasmultiplereadings"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/vocabulary/VocabularyClient.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_vocabulary_vocabularyclient_tsx",
+      "target": "src_components_ui_tsx"
     },
     {
       "relation": "imports",
@@ -6195,9 +6936,9 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_vocabularyclient_tsx",
-      "target": "components_ui_badge",
-      "confidence_score": 1.0
+      "target": "components_ui_card"
     },
     {
       "relation": "imports",
@@ -6206,9 +6947,31 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_vocabularyclient_tsx",
-      "target": "components_ui_pageheader",
-      "confidence_score": 1.0
+      "target": "components_ui_button"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/vocabulary/VocabularyClient.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_vocabulary_vocabularyclient_tsx",
+      "target": "components_ui_badge"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/vocabulary/VocabularyClient.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_vocabulary_vocabularyclient_tsx",
+      "target": "components_ui_pageheader"
     },
     {
       "relation": "contains",
@@ -6226,9 +6989,9 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_vocabularyclient_tsx",
-      "target": "vocabulary_vocabularyclient_wordbadgevariant",
-      "confidence_score": 1.0
+      "target": "vocabulary_vocabularyclient_wordbadgevariant"
     },
     {
       "relation": "contains",
@@ -6236,9 +6999,9 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_vocabularyclient_tsx",
-      "target": "vocabulary_vocabularyclient_wordbadgelabel",
-      "confidence_score": 1.0
+      "target": "vocabulary_vocabularyclient_wordbadgelabel"
     },
     {
       "relation": "contains",
@@ -6246,9 +7009,9 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_vocabularyclient_tsx",
-      "target": "vocabulary_vocabularyclient_hskbadgevariant",
-      "confidence_score": 1.0
+      "target": "vocabulary_vocabularyclient_hskbadgevariant"
     },
     {
       "relation": "contains",
@@ -6256,9 +7019,9 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_vocabularyclient_tsx",
-      "target": "vocabulary_vocabularyclient_hsk_filter_labels",
-      "confidence_score": 1.0
+      "target": "vocabulary_vocabularyclient_hsk_filter_labels"
     },
     {
       "relation": "contains",
@@ -6276,9 +7039,9 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L235",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_vocabularyclient_tsx",
-      "target": "vocabulary_vocabularyclient_infinitelist",
-      "confidence_score": 1.0
+      "target": "vocabulary_vocabularyclient_infinitelist"
     },
     {
       "relation": "contains",
@@ -6286,9 +7049,9 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L278",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_vocabularyclient_tsx",
-      "target": "vocabulary_vocabularyclient_wordrow",
-      "confidence_score": 1.0
+      "target": "vocabulary_vocabularyclient_wordrow"
     },
     {
       "relation": "imports_from",
@@ -6318,9 +7081,9 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L299",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "vocabulary_vocabularyclient_wordrow",
-      "target": "vocabulary_vocabularyclient_wordbadgevariant",
-      "confidence_score": 1.0
+      "target": "vocabulary_vocabularyclient_wordbadgevariant"
     },
     {
       "relation": "calls",
@@ -6329,9 +7092,9 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L299",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "vocabulary_vocabularyclient_wordrow",
-      "target": "vocabulary_vocabularyclient_wordbadgelabel",
-      "confidence_score": 1.0
+      "target": "vocabulary_vocabularyclient_wordbadgelabel"
     },
     {
       "relation": "calls",
@@ -6340,9 +7103,31 @@
       "source_file": "src/app/vocabulary/VocabularyClient.tsx",
       "source_location": "L298",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "vocabulary_vocabularyclient_wordrow",
-      "target": "vocabulary_vocabularyclient_hskbadgevariant",
-      "confidence_score": 1.0
+      "target": "vocabulary_vocabularyclient_hskbadgevariant"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/vocabulary/VocabularyClient.tsx",
+      "source_location": "L300",
+      "weight": 1.0,
+      "source": "vocabulary_vocabularyclient_wordrow",
+      "target": "lib_readings_hasmultiplereadings"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/vocabulary/VocabularyClient.tsx",
+      "source_location": "L300",
+      "weight": 1.0,
+      "source": "vocabulary_vocabularyclient_wordrow",
+      "target": "lib_readings_formatreadingspinyin"
     },
     {
       "relation": "imports_from",
@@ -6471,9 +7256,9 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_wordid_wordcardclient_tsx",
-      "target": "src_components_ui_tsx",
-      "confidence_score": 1.0
+      "target": "src_lib_readings_ts"
     },
     {
       "relation": "imports",
@@ -6482,9 +7267,20 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_wordid_wordcardclient_tsx",
-      "target": "components_ui_card",
-      "confidence_score": 1.0
+      "target": "lib_readings_hasmultiplereadings"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_vocabulary_wordid_wordcardclient_tsx",
+      "target": "src_components_ui_tsx"
     },
     {
       "relation": "imports",
@@ -6493,9 +7289,9 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_wordid_wordcardclient_tsx",
-      "target": "components_ui_button",
-      "confidence_score": 1.0
+      "target": "components_ui_card"
     },
     {
       "relation": "imports",
@@ -6504,9 +7300,20 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_wordid_wordcardclient_tsx",
-      "target": "components_ui_badge",
-      "confidence_score": 1.0
+      "target": "components_ui_button"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app_vocabulary_wordid_wordcardclient_tsx",
+      "target": "components_ui_badge"
     },
     {
       "relation": "contains",
@@ -6524,9 +7331,9 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_wordid_wordcardclient_tsx",
-      "target": "wordid_wordcardclient_section",
-      "confidence_score": 1.0
+      "target": "wordid_wordcardclient_section"
     },
     {
       "relation": "contains",
@@ -6534,9 +7341,9 @@
       "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_vocabulary_wordid_wordcardclient_tsx",
-      "target": "wordid_wordcardclient_regeneratemodal",
-      "confidence_score": 1.0
+      "target": "wordid_wordcardclient_regeneratemodal"
     },
     {
       "relation": "contains",
@@ -6569,6 +7376,17 @@
       "confidence_score": 1.0,
       "source": "wordid_wordcardclient_wordcardclient",
       "target": "wordid_wordcardclient_fmtnextreview"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/vocabulary/[wordId]/WordCardClient.tsx",
+      "source_location": "L135",
+      "weight": 1.0,
+      "source": "wordid_wordcardclient_wordcardclient",
+      "target": "lib_readings_hasmultiplereadings"
     },
     {
       "relation": "imports_from",
@@ -6653,9 +7471,9 @@
       "source_file": "src/components/Nav.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_nav_tsx",
-      "target": "src_components_seal_tsx",
-      "confidence_score": 1.0
+      "target": "src_components_seal_tsx"
     },
     {
       "relation": "imports_from",
@@ -6664,9 +7482,9 @@
       "source_file": "src/components/Nav.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_nav_tsx",
-      "target": "src_components_themetoggle_tsx",
-      "confidence_score": 1.0
+      "target": "src_components_themetoggle_tsx"
     },
     {
       "relation": "contains",
@@ -6694,9 +7512,9 @@
       "source_file": "src/components/ThemeToggle.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_themetoggle_tsx",
-      "target": "components_themetoggle_themetoggle",
-      "confidence_score": 1.0
+      "target": "components_themetoggle_themetoggle"
     },
     {
       "relation": "contains",
@@ -6704,9 +7522,9 @@
       "source_file": "src/components/Seal.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_seal_tsx",
-      "target": "components_seal_sealprops",
-      "confidence_score": 1.0
+      "target": "components_seal_sealprops"
     },
     {
       "relation": "contains",
@@ -6714,9 +7532,9 @@
       "source_file": "src/components/Seal.tsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_seal_tsx",
-      "target": "components_seal_seal",
-      "confidence_score": 1.0
+      "target": "components_seal_seal"
     },
     {
       "relation": "contains",
@@ -6724,9 +7542,9 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_ui_tsx",
-      "target": "components_ui_cardprops",
-      "confidence_score": 1.0
+      "target": "components_ui_cardprops"
     },
     {
       "relation": "contains",
@@ -6734,9 +7552,9 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_ui_tsx",
-      "target": "components_ui_card",
-      "confidence_score": 1.0
+      "target": "components_ui_card"
     },
     {
       "relation": "contains",
@@ -6744,9 +7562,9 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L45",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_ui_tsx",
-      "target": "components_ui_buttonvariant",
-      "confidence_score": 1.0
+      "target": "components_ui_buttonvariant"
     },
     {
       "relation": "contains",
@@ -6754,9 +7572,9 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L46",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_ui_tsx",
-      "target": "components_ui_buttonsize",
-      "confidence_score": 1.0
+      "target": "components_ui_buttonsize"
     },
     {
       "relation": "contains",
@@ -6764,9 +7582,9 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L48",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_ui_tsx",
-      "target": "components_ui_buttonprops",
-      "confidence_score": 1.0
+      "target": "components_ui_buttonprops"
     },
     {
       "relation": "contains",
@@ -6774,9 +7592,9 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L54",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_ui_tsx",
-      "target": "components_ui_button",
-      "confidence_score": 1.0
+      "target": "components_ui_button"
     },
     {
       "relation": "contains",
@@ -6784,9 +7602,9 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L92",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_ui_tsx",
-      "target": "components_ui_badgevariant",
-      "confidence_score": 1.0
+      "target": "components_ui_badgevariant"
     },
     {
       "relation": "contains",
@@ -6794,9 +7612,9 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L94",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_ui_tsx",
-      "target": "components_ui_badge",
-      "confidence_score": 1.0
+      "target": "components_ui_badge"
     },
     {
       "relation": "contains",
@@ -6804,9 +7622,9 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L122",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_ui_tsx",
-      "target": "components_ui_progressbar",
-      "confidence_score": 1.0
+      "target": "components_ui_progressbar"
     },
     {
       "relation": "contains",
@@ -6814,9 +7632,9 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L163",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_ui_tsx",
-      "target": "components_ui_pageheader",
-      "confidence_score": 1.0
+      "target": "components_ui_pageheader"
     },
     {
       "relation": "contains",
@@ -6824,9 +7642,61 @@
       "source_file": "src/components/ui.tsx",
       "source_location": "L199",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_components_ui_tsx",
-      "target": "components_ui_bento",
-      "confidence_score": 1.0
+      "target": "components_ui_bento"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/readings.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_lib_readings_ts",
+      "target": "src_lib_types_ts"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/readings.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_lib_readings_ts",
+      "target": "lib_types_reading"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/readings.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_lib_readings_ts",
+      "target": "lib_readings_hasmultiplereadings"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/readings.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_lib_readings_ts",
+      "target": "lib_readings_formatreadingspinyin"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/readings.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_lib_readings_ts",
+      "target": "lib_readings_formatreadingsmeanings"
     },
     {
       "relation": "contains",
@@ -6847,6 +7717,16 @@
       "confidence_score": 1.0,
       "source": "src_lib_types_ts",
       "target": "lib_types_outcome"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_lib_types_ts",
+      "target": "lib_types_reading"
     },
     {
       "relation": "contains",
@@ -7028,9 +7908,9 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L896",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_services_regeneratewordcard",
-      "target": "src_lib_types_ts",
-      "confidence_score": 1.0
+      "target": "src_lib_types_ts"
     },
     {
       "relation": "imports",
@@ -7053,6 +7933,39 @@
       "confidence_score": 1.0,
       "source": "src_lib_services_ts",
       "target": "lib_types_outcome"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/llm.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_lib_llm_ts",
+      "target": "lib_types_reading"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/srs.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_lib_srs_ts",
+      "target": "lib_types_reading"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_lib_services_ts",
+      "target": "lib_types_reading"
     },
     {
       "relation": "imports",
@@ -8174,9 +9087,9 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L105",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_services_ts",
-      "target": "lib_services_isunlimited",
-      "confidence_score": 1.0
+      "target": "lib_services_isunlimited"
     },
     {
       "relation": "contains",
@@ -8184,9 +9097,9 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L110",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_services_ts",
-      "target": "lib_services_getsessioncap",
-      "confidence_score": 1.0
+      "target": "lib_services_getsessioncap"
     },
     {
       "relation": "contains",
@@ -8194,9 +9107,9 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L115",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_services_ts",
-      "target": "lib_services_getvocabcap",
-      "confidence_score": 1.0
+      "target": "lib_services_getvocabcap"
     },
     {
       "relation": "contains",
@@ -8354,9 +9267,9 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L863",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_services_ts",
-      "target": "lib_services_regeneratewordcard",
-      "confidence_score": 1.0
+      "target": "lib_services_regeneratewordcard"
     },
     {
       "relation": "contains",
@@ -8396,9 +9309,9 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L880",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_services_regeneratewordcard",
-      "target": "lib_services_normalizewordrow",
-      "confidence_score": 1.0
+      "target": "lib_services_normalizewordrow"
     },
     {
       "relation": "calls",
@@ -8528,9 +9441,9 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L111",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_services_getsessioncap",
-      "target": "lib_services_isunlimited",
-      "confidence_score": 1.0
+      "target": "lib_services_isunlimited"
     },
     {
       "relation": "calls",
@@ -8539,9 +9452,9 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L116",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_services_getvocabcap",
-      "target": "lib_services_isunlimited",
-      "confidence_score": 1.0
+      "target": "lib_services_isunlimited"
     },
     {
       "relation": "calls",
@@ -8550,9 +9463,9 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L253",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_services_startsession",
-      "target": "lib_services_getsessioncap",
-      "confidence_score": 1.0
+      "target": "lib_services_getsessioncap"
     },
     {
       "relation": "calls",
@@ -8561,9 +9474,9 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L293",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_services_startsessionwithwords",
-      "target": "lib_services_getsessioncap",
-      "confidence_score": 1.0
+      "target": "lib_services_getsessioncap"
     },
     {
       "relation": "calls",
@@ -8572,9 +9485,9 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L909",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_services_addwordstobank",
-      "target": "lib_services_getvocabcap",
-      "confidence_score": 1.0
+      "target": "lib_services_getvocabcap"
     },
     {
       "relation": "calls",
@@ -8638,9 +9551,9 @@
       "source_file": "src/lib/services.ts",
       "source_location": "L911",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_services_addwordstobank",
-      "target": "lib_services_vocabcount",
-      "confidence_score": 1.0
+      "target": "lib_services_vocabcount"
     },
     {
       "relation": "calls",
@@ -8681,9 +9594,9 @@
       "source_file": "src/lib/user.ts",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_user_ts",
-      "target": "lib_user_getcachedclaims",
-      "confidence_score": 1.0
+      "target": "lib_user_getcachedclaims"
     },
     {
       "relation": "contains",
@@ -8701,9 +9614,9 @@
       "source_file": "src/lib/user.ts",
       "source_location": "L42",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_lib_user_ts",
-      "target": "lib_user_getoptionaluser",
-      "confidence_score": 1.0
+      "target": "lib_user_getoptionaluser"
     },
     {
       "relation": "calls",
@@ -8712,9 +9625,9 @@
       "source_file": "src/lib/user.ts",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_user_getusercontext",
-      "target": "lib_user_getcachedclaims",
-      "confidence_score": 1.0
+      "target": "lib_user_getcachedclaims"
     },
     {
       "relation": "calls",
@@ -8723,9 +9636,9 @@
       "source_file": "src/lib/user.ts",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_user_getoptionaluser",
-      "target": "lib_user_getcachedclaims",
-      "confidence_score": 1.0
+      "target": "lib_user_getcachedclaims"
     },
     {
       "relation": "contains",
@@ -8761,11 +9674,21 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "readme_md",
+      "target": "chinese_learner_readme_\u4e2d\u6587_chinese_learner"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_md",
-      "target": "chinese_learner_readme_getting_started",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_getting_started"
     },
     {
       "relation": "contains",
@@ -8773,9 +9696,9 @@
       "source_file": "README.md",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_md",
-      "target": "chinese_learner_readme_learn_more",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_learn_more"
     },
     {
       "relation": "contains",
@@ -8783,9 +9706,109 @@
       "source_file": "README.md",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_md",
-      "target": "chinese_learner_readme_deploy_on_vercel",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_deploy_on_vercel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_\u4e2d\u6587_chinese_learner",
+      "target": "chinese_learner_readme_what_this_is"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_\u4e2d\u6587_chinese_learner",
+      "target": "chinese_learner_readme_two_ways_to_run_it"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_\u4e2d\u6587_chinese_learner",
+      "target": "chinese_learner_readme_architecture"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_\u4e2d\u6587_chinese_learner",
+      "target": "chinese_learner_readme_prerequisites"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L70",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_\u4e2d\u6587_chinese_learner",
+      "target": "chinese_learner_readme_quick_start"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L121",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_\u4e2d\u6587_chinese_learner",
+      "target": "chinese_learner_readme_the_local_branch_zero_cloud_just_docker"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L161",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_\u4e2d\u6587_chinese_learner",
+      "target": "chinese_learner_readme_performance_notes"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_quick_start",
+      "target": "chinese_learner_readme_codeblock_1"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L97",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_quick_start",
+      "target": "chinese_learner_readme_environment_variables"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L109",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_quick_start",
+      "target": "chinese_learner_readme_npm_scripts"
     },
     {
       "relation": "contains",
@@ -8793,9 +9816,49 @@
       "source_file": "README.md",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_readme_getting_started",
-      "target": "chinese_learner_readme_codeblock_1",
-      "confidence_score": 1.0
+      "target": "chinese_learner_readme_codeblock_1"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L128",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_the_local_branch_zero_cloud_just_docker",
+      "target": "chinese_learner_readme_codeblock_2"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L154",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_the_local_branch_zero_cloud_just_docker",
+      "target": "chinese_learner_readme_codeblock_3"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L163",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_performance_notes",
+      "target": "chinese_learner_readme_enable_asymmetric_jwt_signing_keys_recommended"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L175",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "chinese_learner_readme_performance_notes",
+      "target": "chinese_learner_readme_region_alignment"
     },
     {
       "relation": "contains",
@@ -8803,9 +9866,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "claude_md",
-      "target": "chinese_learner_claude_chinese_learner_next_js_on_vercel",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_chinese_learner_next_js_on_vercel"
     },
     {
       "relation": "contains",
@@ -8813,9 +9876,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_claude_chinese_learner_next_js_on_vercel",
-      "target": "chinese_learner_claude_stack",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_stack"
     },
     {
       "relation": "contains",
@@ -8823,9 +9886,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_claude_chinese_learner_next_js_on_vercel",
-      "target": "chinese_learner_claude_key_directories",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_key_directories"
     },
     {
       "relation": "contains",
@@ -8833,9 +9896,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_claude_chinese_learner_next_js_on_vercel",
-      "target": "chinese_learner_claude_environment",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_environment"
     },
     {
       "relation": "contains",
@@ -8843,9 +9906,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_claude_chinese_learner_next_js_on_vercel",
-      "target": "chinese_learner_claude_dev",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_dev"
     },
     {
       "relation": "contains",
@@ -8853,9 +9916,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_claude_chinese_learner_next_js_on_vercel",
-      "target": "chinese_learner_claude_performance_notes",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_performance_notes"
     },
     {
       "relation": "contains",
@@ -8863,9 +9926,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L45",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_claude_chinese_learner_next_js_on_vercel",
-      "target": "chinese_learner_claude_original_python_app",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_original_python_app"
     },
     {
       "relation": "contains",
@@ -8873,9 +9936,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L51",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_claude_chinese_learner_next_js_on_vercel",
-      "target": "chinese_learner_claude_graphify",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_graphify"
     },
     {
       "relation": "contains",
@@ -8883,9 +9946,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_claude_dev",
-      "target": "chinese_learner_claude_codeblock_1",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_codeblock_1"
     },
     {
       "relation": "contains",
@@ -8893,9 +9956,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_claude_performance_notes",
-      "target": "chinese_learner_claude_manual_step_enable_asymmetric_jwt_signing_keys",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_manual_step_enable_asymmetric_jwt_signing_keys"
     },
     {
       "relation": "contains",
@@ -8903,9 +9966,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_claude_performance_notes",
-      "target": "chinese_learner_claude_region_alignment",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_region_alignment"
     },
     {
       "relation": "contains",
@@ -8913,9 +9976,39 @@
       "source_file": "CLAUDE.md",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "chinese_learner_claude_original_python_app",
-      "target": "chinese_learner_claude_codeblock_2",
-      "confidence_score": 1.0
+      "target": "chinese_learner_claude_codeblock_2"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "linkedin-assets/post.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "linkedin_assets_post_md",
+      "target": "linkedin_assets_post_linkedin_post_\u6c49\u5b57_chinese_learner"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "linkedin-assets/post.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "linkedin_assets_post_linkedin_post_\u6c49\u5b57_chinese_learner",
+      "target": "linkedin_assets_post_assets_in_this_folder"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "linkedin-assets/post.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "linkedin_assets_post_linkedin_post_\u6c49\u5b57_chinese_learner",
+      "target": "linkedin_assets_post_post"
     },
     {
       "relation": "references",
@@ -9031,5 +10124,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "93e371226dff3018c38584367e9efcdb78a5dedb"
+  "built_at_commit": "e08f402110e30994ac3fcc0efca9ccb86be493b1"
 }

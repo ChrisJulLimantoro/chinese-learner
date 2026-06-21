@@ -15,9 +15,11 @@ export default async function StudyPage() {
   ]);
 
   return (
-    <StudyBuilderClient
-      bank={bank.status === "fulfilled" ? bank.value : []}
-      addableWords={addable.status === "fulfilled" ? addable.value : []}
-    />
+    <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <StudyBuilderClient
+        bank={bank.status === "fulfilled" ? bank.value : []}
+        addableWords={addable.status === "fulfilled" ? addable.value : []}
+      />
+    </main>
   );
 }

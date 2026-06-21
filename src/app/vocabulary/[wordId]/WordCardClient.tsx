@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Word, LessonCard, SrsState } from "@/lib/types";
 import { hasMultipleReadings } from "@/lib/readings";
-import { Card, Button, Badge } from "@/components/ui";
+import { Card, Button, Badge, ProgressBar } from "@/components/ui";
 import { regenerateWordCardAction } from "@/app/actions/vocabulary";
 
 function fmtNextReview(ts: number | null): string {
@@ -20,8 +20,8 @@ function fmtNextReview(ts: number | null): string {
 
 function Section({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div>
-      <p className="text-xs font-semibold uppercase tracking-widest text-faint mb-2">{label}</p>
+    <div className="space-y-2.5">
+      <p className="text-[10px] font-mono uppercase tracking-widest text-faint">{label}</p>
       {children}
     </div>
   );
@@ -106,186 +106,194 @@ export default function WordCardClient({
 
   return (
     <>
-    <RegenerateModal
-      open={showModal}
-      regenerating={regenerating}
-      reason={reason}
-      onReasonChange={setReason}
-      onConfirm={handleRegenerate}
-      onCancel={closeModal}
-    />
-    <div className="max-w-2xl mx-auto space-y-5">
-      <div className="flex items-center justify-between -ml-2">
-        <Button variant="ghost" size="sm" onClick={() => router.back()} className="text-muted">
-          ← Back
-        </Button>
-        <Button variant="outline" size="sm" onClick={openModal}>
-          Regenerate card
-        </Button>
-      </div>
+      <RegenerateModal
+        open={showModal}
+        regenerating={regenerating}
+        reason={reason}
+        onReasonChange={setReason}
+        onConfirm={handleRegenerate}
+        onCancel={closeModal}
+      />
+      <div className="max-w-3xl mx-auto space-y-5">
+        <div className="flex items-center justify-between -ml-2">
+          <Button variant="ghost" size="sm" onClick={() => router.back()} className="text-muted">
+            ← Back
+          </Button>
+          <Button variant="outline" size="sm" onClick={openModal}>
+            Regenerate card
+          </Button>
+        </div>
 
-      {/* Hero card */}
-      <Card variant="elevated" padding="lg">
-        {/* Character hero */}
-        <div className="text-center py-6 bg-paper rounded-xl border border-border mb-6 animate-hanzi-in">
-          <div className="hanzi text-7xl font-bold text-ink leading-none mb-2">{word.simplified}</div>
-          {word.traditional && word.traditional !== word.simplified && (
-            <div className="hanzi text-2xl text-muted mb-1">{word.traditional}</div>
-          )}
-          {hasMultipleReadings(word.readings) ? (
-            <div className="mt-2 space-y-1">
-              {word.readings.map((r, i) => (
-                <div key={i} className="text-center">
-                  <span className="text-jade text-base font-medium">{r.pinyin}</span>
-                  <span className="text-faint text-xs ml-2">{r.meanings.slice(0, 2).join(", ")}</span>
+        {/* Word card folio */}
+        <div className="flex rounded-2xl border border-border shadow-sm bg-surface overflow-hidden">
+          <div className="w-10 flex-shrink-0 border-r border-border bg-surface-2/50 flex flex-col items-center py-6">
+            <span className="hanzi v-rl text-seal/25 text-2xl font-bold select-none leading-none">词</span>
+            <span className="v-rl text-faint text-[10px] font-mono mt-auto tracking-widest">
+              HSK {word.hsk_level}
+            </span>
+          </div>
+
+          <div className="flex-1 min-w-0 p-6 space-y-5">
+            {/* Character hero */}
+            <div className="text-center pb-5 border-b border-border/50 animate-hanzi-in">
+              <div className="hanzi text-8xl font-bold text-ink leading-none mb-2">{word.simplified}</div>
+              {word.traditional && word.traditional !== word.simplified && (
+                <div className="hanzi text-xl text-muted mb-1">{word.traditional}</div>
+              )}
+              {hasMultipleReadings(word.readings) ? (
+                <div className="mt-2 space-y-1">
+                  {word.readings.map((r, i) => (
+                    <div key={i} className="text-center">
+                      <span className="text-jade text-base font-medium">{r.pinyin}</span>
+                      <span className="text-faint text-xs ml-2">{r.meanings.slice(0, 2).join(", ")}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              ) : (
+                <div className="text-jade text-lg font-medium mt-1">
+                  {card ? card.pinyin_marked : word.pinyin}
+                </div>
+              )}
+              <div className="flex items-center justify-center gap-2 mt-2">
+                {srs?.mastered && <Badge variant="jade">mastered</Badge>}
+              </div>
             </div>
-          ) : (
-            <div className="text-jade text-lg font-medium mt-1">
-              {card ? card.pinyin_marked : word.pinyin}
-            </div>
-          )}
-          <div className="flex items-center justify-center gap-2 mt-2">
-            <span className="text-xs text-faint font-mono">HSK {word.hsk_level}</span>
-            {srs?.mastered && <Badge variant="jade">Mastered</Badge>}
+
+            {card ? (
+              <div className="space-y-5">
+                <Section label="Meanings">
+                  <div className="flex flex-wrap gap-2">
+                    {card.core_meanings.map((m, i) => (
+                      <Badge key={i} variant="muted">{m}</Badge>
+                    ))}
+                  </div>
+                </Section>
+
+                {card.nuance && (
+                  <Section label="Nuance">
+                    <p className="text-sm text-ink/80 leading-relaxed border-l-2 border-seal/35 pl-3 italic">
+                      {card.nuance}
+                    </p>
+                  </Section>
+                )}
+
+                {card.examples.length > 0 && (
+                  <Section label="Examples">
+                    <div className="space-y-2.5">
+                      {card.examples.map((ex, i) => (
+                        <div key={i} className="bg-paper rounded-xl p-3.5 border border-border/70">
+                          <p className="hanzi text-base font-semibold text-ink">{ex.hanzi}</p>
+                          <p className="text-jade text-sm mt-0.5">{ex.pinyin}</p>
+                          <p className="text-muted text-sm mt-0.5">{ex.gloss}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </Section>
+                )}
+
+                {card.character_breakdown.length > 0 && (
+                  <Section label="Character breakdown">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {card.character_breakdown.map((c, i) => (
+                        <div
+                          key={i}
+                          className="bg-paper rounded-xl px-3 py-3 text-center border border-border/70"
+                        >
+                          <div className="hanzi text-2xl font-bold text-ink">{c.char}</div>
+                          <div className="text-xs text-muted mt-1">{c.meaning}</div>
+                          {c.mnemonic && c.mnemonic !== "(stub)" && (
+                            <div className="text-xs text-faint mt-1 italic">{c.mnemonic}</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </Section>
+                )}
+
+                {card.near_synonyms.length > 0 && (
+                  <Section label="Near synonyms">
+                    <div className="space-y-2">
+                      {card.near_synonyms.map((s, i) => (
+                        <div key={i} className="rounded-xl border border-border/70 bg-paper px-3 py-2.5">
+                          <div className="flex items-center gap-2 text-sm mb-1">
+                            <span className="hanzi font-semibold text-ink shrink-0">{s.word}</span>
+                            <span className="text-muted">{s.pinyin}</span>
+                          </div>
+                          <p className="text-xs text-faint leading-relaxed">{s.distinction}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </Section>
+                )}
+
+                {card.common_mistakes.length > 0 && (
+                  <Section label="Common mistakes">
+                    <ul className="space-y-1.5">
+                      {card.common_mistakes.map((m, i) => (
+                        <li key={i} className="text-sm text-ink/80 flex gap-2 leading-relaxed">
+                          <span className="text-seal shrink-0">•</span>
+                          {m}
+                        </li>
+                      ))}
+                    </ul>
+                  </Section>
+                )}
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {hasMultipleReadings(word.readings) ? (
+                  word.readings.map((r, i) => (
+                    <div key={i} className="flex flex-wrap items-center gap-2">
+                      <span className="text-jade text-sm font-medium shrink-0">{r.pinyin}</span>
+                      {r.meanings.map((m, j) => (
+                        <Badge key={j} variant="muted">{m}</Badge>
+                      ))}
+                    </div>
+                  ))
+                ) : (
+                  (word.meanings ?? []).map((m, i) => (
+                    <Badge key={i} variant="muted">{m}</Badge>
+                  ))
+                )}
+              </div>
+            )}
           </div>
         </div>
 
-        {card ? (
-          <div className="space-y-5">
-            <Section label="Meanings">
-              <div className="flex flex-wrap gap-2">
-                {card.core_meanings.map((m, i) => (
-                  <Badge key={i} variant="muted">{m}</Badge>
-                ))}
+        {/* SRS status folio */}
+        {srs && (
+          <div className="flex rounded-2xl border border-border shadow-sm bg-surface overflow-hidden">
+            <div className="w-10 flex-shrink-0 border-r border-border bg-surface-2/50 flex flex-col items-center py-6">
+              <span className="hanzi v-rl text-seal/25 text-2xl font-bold select-none leading-none">记</span>
+              <span className="v-rl text-faint text-[10px] font-mono mt-auto tracking-widest">MEMORY</span>
+            </div>
+            <div className="flex-1 min-w-0 p-5 space-y-4">
+              <p className="text-[10px] font-mono uppercase tracking-widest text-faint">
+                Memory status
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div>
+                  <p className="text-[10px] text-faint uppercase tracking-wide font-mono">Box</p>
+                  <p className="font-display text-2xl font-semibold text-ink mt-1">{srs.box} / 5</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-faint uppercase tracking-wide font-mono">Correct</p>
+                  <p className="font-display text-2xl font-semibold text-jade mt-1">{srs.correct_count}</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-faint uppercase tracking-wide font-mono">Wrong</p>
+                  <p className="font-display text-2xl font-semibold text-seal mt-1">{srs.wrong_count}</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-faint uppercase tracking-wide font-mono">Next review</p>
+                  <p className="text-sm font-medium text-ink mt-1">{fmtNextReview(srs.next_review_at)}</p>
+                </div>
               </div>
-            </Section>
-
-            {card.nuance && (
-              <Section label="Nuance">
-                <p className="text-sm text-ink/80 leading-relaxed">{card.nuance}</p>
-              </Section>
-            )}
-
-            {card.examples.length > 0 && (
-              <Section label="Examples">
-                <div className="space-y-2.5">
-                  {card.examples.map((ex, i) => (
-                    <div key={i} className="bg-surface-2 rounded-xl p-3.5 border border-border">
-                      <p className="hanzi text-base font-semibold text-ink">{ex.hanzi}</p>
-                      <p className="text-jade text-sm mt-0.5">{ex.pinyin}</p>
-                      <p className="text-muted text-sm mt-0.5">{ex.gloss}</p>
-                    </div>
-                  ))}
-                </div>
-              </Section>
-            )}
-
-            {card.character_breakdown.length > 0 && (
-              <Section label="Character breakdown">
-                <div className="flex flex-wrap gap-3">
-                  {card.character_breakdown.map((c, i) => (
-                    <div
-                      key={i}
-                      className="bg-surface-2 rounded-xl px-3 py-2.5 text-center min-w-full border border-border"
-                    >
-                      <div className="hanzi text-2xl font-bold text-ink">{c.char}</div>
-                      <div className="text-xs text-muted mt-1">{c.meaning}</div>
-                      {c.mnemonic && c.mnemonic !== "(stub)" && (
-                        <div className="text-xs text-faint mt-0.5 italic">{c.mnemonic}</div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </Section>
-            )}
-
-            {card.near_synonyms.length > 0 && (
-              <Section label="Near synonyms">
-                <div className="space-y-2">
-                  {card.near_synonyms.map((s, i) => (
-                    <div key={i} className="flex items-start gap-3 text-sm">
-                      <span className="hanzi font-semibold text-ink shrink-0">{s.word}</span>
-                      <span className="text-muted">{s.pinyin}</span>
-                      <span className="text-faint text-xs leading-relaxed">{s.distinction}</span>
-                    </div>
-                  ))}
-                </div>
-              </Section>
-            )}
-
-            {card.common_mistakes.length > 0 && (
-              <Section label="Common mistakes">
-                <ul className="space-y-1.5">
-                  {card.common_mistakes.map((m, i) => (
-                    <li key={i} className="text-sm text-ink/80 flex gap-2 leading-relaxed">
-                      <span className="text-seal shrink-0">•</span>
-                      {m}
-                    </li>
-                  ))}
-                </ul>
-              </Section>
-            )}
-          </div>
-        ) : (
-          <div className="space-y-2">
-            {hasMultipleReadings(word.readings) ? (
-              word.readings.map((r, i) => (
-                <div key={i} className="flex flex-wrap items-center gap-2">
-                  <span className="text-jade text-sm font-medium shrink-0">{r.pinyin}</span>
-                  {r.meanings.map((m, j) => (
-                    <Badge key={j} variant="muted">{m}</Badge>
-                  ))}
-                </div>
-              ))
-            ) : (
-              (word.meanings ?? []).map((m, i) => (
-                <Badge key={i} variant="muted">{m}</Badge>
-              ))
-            )}
+              <ProgressBar value={srs.box} max={5} color="jade" height="xs" />
+            </div>
           </div>
         )}
-      </Card>
-
-      {/* SRS status */}
-      {srs && (
-        <Card variant="paper" padding="md">
-          <p className="text-xs font-semibold uppercase tracking-widest text-faint mb-4">
-            Memory status
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div>
-              <p className="text-xs text-faint uppercase tracking-wide">Box</p>
-              <p className="font-display text-2xl font-semibold text-ink mt-1">{srs.box} / 5</p>
-            </div>
-            <div>
-              <p className="text-xs text-faint uppercase tracking-wide">Correct</p>
-              <p className="font-display text-2xl font-semibold text-jade mt-1">{srs.correct_count}</p>
-            </div>
-            <div>
-              <p className="text-xs text-faint uppercase tracking-wide">Wrong</p>
-              <p className="font-display text-2xl font-semibold text-seal mt-1">{srs.wrong_count}</p>
-            </div>
-            <div>
-              <p className="text-xs text-faint uppercase tracking-wide">Next review</p>
-              <p className="text-sm font-medium text-ink mt-1">{fmtNextReview(srs.next_review_at)}</p>
-            </div>
-          </div>
-          {/* Box progress */}
-          <div className="mt-4 flex gap-1.5">
-            {Array.from({ length: 5 }, (_, i) => (
-              <div
-                key={i}
-                className={`h-1.5 flex-1 rounded-full transition-colors ${
-                  i < srs.box ? "bg-jade" : "bg-surface-2"
-                }`}
-              />
-            ))}
-          </div>
-        </Card>
-      )}
-    </div>
+      </div>
     </>
   );
 }

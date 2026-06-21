@@ -1,7 +1,7 @@
 "use client";
 
 import type { Stats } from "@/lib/types";
-import { Card, Badge, ProgressBar, PageHeader, Bento } from "@/components/ui";
+import { Card, Badge, ProgressBar, PageHeader } from "@/components/ui";
 
 /** SVG ring — strokeDashoffset trick */
 function MasteryRing({ pct }: { pct: number }) {
@@ -41,7 +41,7 @@ function MasteryRing({ pct }: { pct: number }) {
 export default function StatsClient({ stats }: { stats: Stats | null }) {
   if (!stats) {
     return (
-      <div>
+      <div className="space-y-6">
         <PageHeader rubric="进度" eyebrow="Your progress" title="Stats" />
         <Card variant="paper" padding="lg" className="text-center">
           <p className="text-muted">No data yet. Start studying to see your stats!</p>
@@ -59,85 +59,82 @@ export default function StatsClient({ stats }: { stats: Stats | null }) {
   );
 
   return (
-    <div>
-      <PageHeader rubric="进度" eyebrow="Your progress" title="Stats" />
+    <div className="space-y-6">
+      <PageHeader rubric="进度" eyebrow="Your progress" title="Progress Atlas" />
 
-      <Bento className="mb-6">
-        {/* ── Mastery hero ── */}
-        <div className="col-span-1 sm:col-span-2 lg:col-span-4">
-          <Card variant="elevated" padding="lg" className="h-full flex flex-col items-center justify-center gap-3 text-center">
-            <MasteryRing pct={masteryPct} />
-            <div>
-              <p className="font-display text-lg font-semibold text-ink">
-                HSK {stats.level} Mastery
-              </p>
-              <p className="text-sm text-muted mt-0.5">
-                {stats.mastered} / {stats.total} words mastered
-              </p>
-            </div>
-          </Card>
+      {/* Mastery atlas card */}
+      <div className="flex rounded-2xl border border-border shadow-sm bg-surface overflow-hidden">
+        <div className="w-10 flex-shrink-0 border-r border-border bg-surface-2/50 flex flex-col items-center py-6">
+          <span className="hanzi v-rl text-seal/25 text-2xl font-bold select-none leading-none">势</span>
+          <span className="v-rl text-faint text-[10px] font-mono mt-auto tracking-widest">ATLAS</span>
         </div>
+        <div className="flex-1 min-w-0 p-5">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-center">
+            <div className="flex justify-center lg:justify-start">
+              <MasteryRing pct={masteryPct} />
+            </div>
 
-        {/* ── Stat tiles ── */}
-        <div className="col-span-1 sm:col-span-4 lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <Card variant="paper" padding="md" className="flex flex-col gap-1">
-            <p className="text-xs font-semibold uppercase tracking-widest text-faint">Due</p>
-            <p className="font-display text-4xl font-semibold text-ochre mt-1">{stats.due_count}</p>
-            <p className="text-xs text-muted">reviews waiting</p>
-          </Card>
+            <div className="lg:col-span-2 grid grid-cols-3 gap-3">
+              <div className="rounded-xl border border-border/70 bg-paper px-3 py-3 text-center">
+                <p className="text-[10px] font-mono uppercase tracking-widest text-faint">Due</p>
+                <p className="font-display text-3xl text-ochre mt-1">{stats.due_count}</p>
+              </div>
+              <div className="rounded-xl border border-border/70 bg-paper px-3 py-3 text-center">
+                <p className="text-[10px] font-mono uppercase tracking-widest text-faint">Streak</p>
+                <p className="font-display text-3xl text-jade mt-1">{stats.streak_days}d</p>
+              </div>
+              <div className="rounded-xl border border-border/70 bg-paper px-3 py-3 text-center">
+                <p className="text-[10px] font-mono uppercase tracking-widest text-faint">Level</p>
+                <p className="font-display text-3xl text-ink mt-1">HSK {stats.level}</p>
+              </div>
+            </div>
+          </div>
 
-          <Card variant="paper" padding="md" className="flex flex-col gap-1">
-            <p className="text-xs font-semibold uppercase tracking-widest text-faint">Streak</p>
-            <p className="font-display text-4xl font-semibold text-jade mt-1">{stats.streak_days}d</p>
-            <p className="text-xs text-muted">days in a row</p>
-          </Card>
-
-          <Card variant="paper" padding="md" className="flex flex-col gap-1">
-            <p className="text-xs font-semibold uppercase tracking-widest text-faint">Level</p>
-            <p className="font-display text-4xl font-semibold text-ink mt-1">HSK {stats.level}</p>
-            <p className="text-xs text-muted">current level</p>
-          </Card>
-
-          {/* Progress to next level — spans full width of this 3-col sub-grid */}
-          <Card variant="paper" padding="md" className="sm:col-span-3">
+          <div className="mt-4 rounded-xl border border-border/70 bg-paper px-4 py-3">
             <div className="flex items-center justify-between mb-2">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-faint">
-                  Progress to HSK {stats.level + 1}
+                <p className="text-[10px] font-mono uppercase tracking-widest text-faint">
+                  Toward HSK {stats.level + 1}
                 </p>
                 <p className="text-sm text-muted mt-0.5">
-                  {stats.next_level_progress.mastered} mastered · need 150+
+                  {stats.next_level_progress.mastered} mastered, 150 needed
                 </p>
               </div>
               {stats.next_level_progress.can_advance && (
-                <Badge variant="jade">Ready!</Badge>
+                <Badge variant="jade">Ready</Badge>
               )}
             </div>
             <ProgressBar value={progressPct} max={100} color="jade" height="sm" />
-          </Card>
+          </div>
         </div>
-      </Bento>
+      </div>
 
-      {/* ── Weakest words ── */}
+      {/* Weakest words ledger */}
       {stats.weakest.length > 0 && (
-        <Card variant="paper" padding="none">
-          <div className="px-5 py-4 border-b border-border">
-            <p className="text-xs font-semibold uppercase tracking-widest text-faint">Weakest words</p>
+        <div className="flex rounded-2xl border border-border shadow-sm bg-surface overflow-hidden">
+          <div className="w-10 flex-shrink-0 border-r border-border bg-surface-2/50 flex flex-col items-center py-6">
+            <span className="hanzi v-rl text-seal/25 text-2xl font-bold select-none leading-none">弱</span>
+            <span className="v-rl text-faint text-[10px] font-mono mt-auto tracking-widest">WEAK</span>
           </div>
-          <div className="divide-y divide-border">
-            {stats.weakest.map((w, i) => (
-              <div key={i} className="flex items-center gap-4 px-5 py-3.5">
-                <span className="font-mono text-xs text-faint w-4">{i + 1}</span>
-                <span className="hanzi text-xl font-bold text-ink">{w.simplified}</span>
-                <span className="text-sm text-muted">{w.pinyin}</span>
-                <div className="ml-auto flex items-center gap-3">
-                  <span className="text-xs text-faint font-mono">box {w.box}</span>
-                  <Badge variant="seal">{w.wrong_count} wrong</Badge>
+          <div className="flex-1 min-w-0">
+            <div className="px-4 py-3 border-b border-border">
+              <p className="text-[10px] font-mono uppercase tracking-widest text-faint">Weakest words</p>
+            </div>
+            <div className="divide-y divide-border">
+              {stats.weakest.map((w, i) => (
+                <div key={i} className="flex items-center gap-3 px-4 py-3.5">
+                  <span className="font-mono text-xs text-faint w-4">{i + 1}</span>
+                  <span className="hanzi text-xl font-bold text-ink">{w.simplified}</span>
+                  <span className="text-sm text-muted">{w.pinyin}</span>
+                  <div className="ml-auto flex items-center gap-2">
+                    <span className="text-xs text-faint font-mono">box {w.box}</span>
+                    <Badge variant="seal">{w.wrong_count} wrong</Badge>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </Card>
+        </div>
       )}
     </div>
   );

@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ThemeToggle({ className = "" }: { className?: string }) {
-  const [dark, setDark] = useState(() => {
-    if (typeof document === "undefined") return false;
-    return document.documentElement.classList.contains("dark");
-  });
+  // Keep first render deterministic to avoid hydration mismatch.
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    setDark(document.documentElement.classList.contains("dark"));
+  }, []);
 
   const toggle = () => {
     const next = !dark;

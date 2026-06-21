@@ -55,18 +55,24 @@ function normalizeWordRow(row: Record<string, unknown>): Word {
 
 async function ensureLessonCard(
   word: Word
-): Promise<Word & { lesson_card: NonNullable<Word["lesson_card"]> }> {
-  if (word.lesson_card) return word as Word & { lesson_card: NonNullable<Word["lesson_card"]> };
+): Promise<Word> {
+  if (word.lesson_card) return word;
 
-  const card = await generateLessonCard(word);
-  // Write via service role (shared cache — same card for all users)
-  const admin = createAdminClient();
-  await admin
-    .from("words")
-    .update({ lesson_card: card })
-    .eq("id", word.id);
+  try {
+    const card = await generateLessonCard(word);
+    // Write via service role (shared cache — same card for all users)
+    const admin = createAdminClient();
+    await admin
+      .from("words")
+      .update({ lesson_card: card })
+      .eq("id", word.id);
 
-  return { ...word, lesson_card: card };
+    return { ...word, lesson_card: card };
+  } catch (error) {
+    // Keep session flow resilient when LLM times out, but do not invent card content.
+    console.warn(`[lesson-card] failed to generate for word ${word.id}:`, error);
+    return word;
+  }
 }
 
 export async function getProfile(

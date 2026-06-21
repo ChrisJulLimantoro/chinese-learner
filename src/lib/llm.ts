@@ -10,9 +10,10 @@ import {
   MODEL_BY_PURPOSE,
   LLM_MAX_TOKENS,
   LLM_MAX_RETRIES,
+  LLM_TIMEOUT_MS,
   MAX_TOKENS_BY_PURPOSE,
 } from "./config";
-import type { LessonCard, Question, GraderOutput, Reading } from "./types";
+import type { ContextHelper, LessonCard, Question, GraderOutput, Reading } from "./types";
 
 // ---------------------------------------------------------------------------
 // OpenAI client (lazy)
@@ -24,7 +25,7 @@ function getClient(): OpenAI {
     _client = new OpenAI({
       apiKey: process.env.LLM_API_KEY ?? "",
       baseURL: OPENCODE_ZEN_BASE_URL,
-      timeout: 20_000,
+      timeout: LLM_TIMEOUT_MS,
       maxRetries: 0,
     });
   }
@@ -185,7 +186,16 @@ export function stubLessonCard(word: {
   };
 }
 
-export function stubQuestions(words: { simplified: string; meanings?: string[]; readings?: Reading[] }[]): Question[] {
+function stubContextHelpers(simplified: string): ContextHelper[] {
+  return [
+    { word: "我", gloss: "I / me" },
+    { word: "很", gloss: "very" },
+  ].filter((h) => h.word !== simplified);
+}
+
+export function stubQuestions(
+  words: { simplified: string; pinyin?: string; meanings?: string[]; readings?: Reading[] }[]
+): Question[] {
   const types: Question["type"][] = [
     "en_to_zh",
     "cloze",
@@ -194,28 +204,38 @@ export function stubQuestions(words: { simplified: string; meanings?: string[]; 
   ];
   return words.map((w, i) => {
     const simplified = w.simplified ?? "?";
+    const pinyin = w.pinyin ?? "";
     const readings = w.readings;
     const meanings = w.meanings ?? ["something"];
     const gloss = meanings[0] ?? "something";
     const qtype = types[i % types.length];
-    // Pick a target reading for multi-reading words
-    const targetReading = readings && readings.length > 1 ? readings[i % readings.length] : null;
-    const readingHint = targetReading ? ` (intended reading: ${targetReading.pinyin})` : "";
+    const targetReading =
+      readings && readings.length > 1 ? readings[i % readings.length] : null;
+    const targetHint = targetReading
+      ? `${simplified} (${targetReading.pinyin}) — ${targetReading.meanings.slice(0, 2).join(", ")}`
+      : `${simplified} (${pinyin}) — ${meanings.slice(0, 2).join(", ")}`;
 
     let prompt: string;
     if (qtype === "en_to_zh") {
-      prompt = `Translate into Mandarin: '${gloss}'${readingHint}`;
+      prompt = `Translate into natural Mandarin: "This factory supplies raw materials to the company."`;
     } else if (qtype === "cloze") {
-      prompt = `Fill in the blank: 我___ (using '${simplified}'${readingHint})`;
+      prompt = `Fill in the blank: 你___马上离开。`;
     } else if (qtype === "synonym_discrim") {
       prompt =
-        `Choose the word that fits better in context (habitual action)${readingHint}: ` +
-        `Option A: ${simplified} | Option B: [near synonym]. Type your answer in hanzi.`;
+        "Choose the better Mandarin word for this context and type it in hanzi: " +
+        "Context: habitual action. Option A: habitual/regularly. Option B: temporary/at-the-moment.";
     } else {
-      prompt = `What Mandarin word means '${gloss}'?${readingHint} (Enter the hanzi)`;
+      prompt = `What Mandarin word fits this meaning in context: '${gloss}'? (Enter hanzi only.)`;
     }
 
-    return { type: qtype, prompt, target_word: simplified, context: gloss };
+    return {
+      type: qtype,
+      prompt,
+      target_word: simplified,
+      context: gloss,
+      target_hint: targetHint,
+      context_helpers: stubContextHelpers(simplified),
+    };
   });
 }
 
@@ -363,7 +383,9 @@ Each question JSON must match:
   "type": "en_to_zh" | "cloze" | "synonym_discrim" | "gloss_to_word",
   "prompt": string,
   "target_word": string,
-  "context": string
+  "context": string,
+  "target_hint": string,
+  "context_helpers": [{"word": string, "gloss": string}]
 }
 
 Rules:
@@ -375,7 +397,11 @@ Rules:
 - Vary types; don't use the same type more than twice in a row
 - GROUND each question in the meanings listed for that exact word. The gloss/context MUST come from those meanings — do NOT invent a meaning, surname, or proper noun that is not listed, and do NOT confuse a word with a similar-looking or similar-sounding character.
 - "target_word" MUST be the exact simplified word from the list, and the prompt's meaning MUST be the meaning of that word (not a homophone or near-homophone).
-- If a word has multiple readings, VARY questions across readings — target different readings across the set. State the intended reading in the prompt text (e.g., "Using 还 in the sense of 'to return' (huán)...").
+- Never leak the answer in "prompt". Do NOT include the target hanzi, pinyin, tone marks/numbers, pronunciation notes, or parenthetical reading hints in the prompt.
+- Never write prompts like "use X", "using X", or "in the sense of X (pinyin)". The learner should infer the tested word from meaning + context only.
+- If a word has multiple readings, disambiguate using meaning/context only (semantic constraint), without revealing pinyin or the target hanzi in the prompt.
+- "target_hint": one short line for the TARGET word only — include hanzi, pinyin, and the intended sense. This is shown only when the learner requests a penalized hint; it must NOT appear in "prompt".
+- "context_helpers": array of glosses for OTHER words that appear in the prompt sentence (not the target word). Each entry: {"word": "<hanzi>", "gloss": "<English meaning>"}. Include 2–5 helpers when the prompt uses vocabulary beyond the target word. Empty array if the prompt is a single-word gloss question.
 
 Return a JSON array of exactly ${words.length} question objects.
 `;

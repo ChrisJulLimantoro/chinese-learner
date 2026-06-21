@@ -44,11 +44,20 @@ export interface LessonCard {
   character_breakdown: { char: string; meaning: string; mnemonic: string }[];
 }
 
+export interface ContextHelper {
+  word: string;
+  gloss: string;
+}
+
 export interface Question {
   type: "en_to_zh" | "cloze" | "synonym_discrim" | "gloss_to_word";
   prompt: string;
   target_word: string;
   context: string;
+  /** Penalized hint — target word reading/sense; revealed on demand, marks answer assisted. */
+  target_hint?: string;
+  /** Free helpers — glosses for other words in the prompt sentence. */
+  context_helpers?: ContextHelper[];
 }
 
 export interface GraderOutput {

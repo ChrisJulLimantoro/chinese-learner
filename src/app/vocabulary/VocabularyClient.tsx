@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { addWordsToBankAction } from "../actions/vocabulary";
 import type { Word } from "@/lib/types";
 import { formatReadingsPinyin, hasMultipleReadings } from "@/lib/readings";
-import { Card, Button, Badge, PageHeader } from "@/components/ui";
+import { Card, Button, Badge, PageHeader, ProgressBar } from "@/components/ui";
 
 const PAGE_SIZE = 20;
 
@@ -90,6 +90,7 @@ export default function VocabularyClient({ vocab }: { vocab: VocabWord[] }) {
 
   const masteredCount = vocab.filter((w) => w.mastered).length;
   const dueCount = vocab.filter((w) => w.due).length;
+  const masteredPct = vocab.length > 0 ? Math.round((masteredCount / vocab.length) * 100) : 0;
 
   // Group by HSK level when showing all (no text search active)
   const showGrouped = hskFilter === "all" && !query;
@@ -105,11 +106,11 @@ export default function VocabularyClient({ vocab }: { vocab: VocabWord[] }) {
 
 
   return (
-    <div>
+    <div className="space-y-6">
       <PageHeader
         rubric="词库"
         eyebrow="Learning"
-        title="Vocabulary"
+        title="Vocabulary Ledger"
         actions={
           <div className="flex gap-2">
             <Button
@@ -140,49 +141,64 @@ export default function VocabularyClient({ vocab }: { vocab: VocabWord[] }) {
         </div>
       )}
 
-      {/* Summary stats */}
-      <div className="grid grid-cols-3 gap-3 mb-6">
-        <Card variant="paper" padding="sm" className="text-center">
-          <p className="text-xs text-faint uppercase tracking-widest">Total</p>
-          <p className="font-display text-2xl font-semibold text-ink mt-1">{vocab.length}</p>
-        </Card>
-        <Card variant="paper" padding="sm" className="text-center">
-          <p className="text-xs text-faint uppercase tracking-widest">Mastered</p>
-          <p className="font-display text-2xl font-semibold text-jade mt-1">{masteredCount}</p>
-        </Card>
-        <Card variant="paper" padding="sm" className="text-center">
-          <p className="text-xs text-faint uppercase tracking-widest">Due</p>
-          <p className="font-display text-2xl font-semibold text-ochre mt-1">{dueCount}</p>
-        </Card>
+      {/* Summary folio */}
+      <div className="rounded-2xl border border-border bg-surface shadow-sm p-4 space-y-3">
+        <div className="grid grid-cols-3 gap-3">
+          <div className="text-center rounded-xl border border-border/70 bg-paper px-3 py-2.5">
+            <p className="text-[10px] text-faint uppercase tracking-widest font-mono">Total</p>
+            <p className="font-display text-2xl font-semibold text-ink mt-1">{vocab.length}</p>
+          </div>
+          <div className="text-center rounded-xl border border-border/70 bg-paper px-3 py-2.5">
+            <p className="text-[10px] text-faint uppercase tracking-widest font-mono">Mastered</p>
+            <p className="font-display text-2xl font-semibold text-jade mt-1">{masteredCount}</p>
+          </div>
+          <div className="text-center rounded-xl border border-border/70 bg-paper px-3 py-2.5">
+            <p className="text-[10px] text-faint uppercase tracking-widest font-mono">Due</p>
+            <p className="font-display text-2xl font-semibold text-ochre mt-1">{dueCount}</p>
+          </div>
+        </div>
+        <div>
+          <div className="flex items-center justify-between mb-1.5">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-faint font-mono">Mastery</p>
+            <p className="text-xs text-muted">{masteredPct}%</p>
+          </div>
+          <ProgressBar value={masteredPct} max={100} color="jade" height="xs" />
+        </div>
       </div>
 
-      {/* Sticky search + HSK filter */}
-      <div className="sticky top-0 z-10 bg-paper/90 backdrop-blur-sm -mx-4 px-4 py-3 mb-4 border-b border-border/50 flex flex-col gap-2">
-        <input
-          type="text"
-          placeholder="Search by hanzi, pinyin, or meaning…"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="w-full border border-border rounded-xl px-4 py-2.5 text-sm text-ink bg-surface focus:outline-none focus:ring-2 focus:ring-seal focus:border-transparent transition-colors placeholder:text-faint"
-        />
-        {/* HSK level filter row */}
-        {presentLevels.length > 1 && (
-          <div className="flex gap-1.5 flex-wrap">
-            {(["all", ...presentLevels] as (number | "all")[]).map((lvl) => (
-              <button
-                key={lvl}
-                onClick={() => setHskFilter(lvl)}
-                className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
-                  hskFilter === lvl
-                    ? "bg-seal text-paper"
-                    : "bg-surface-2 text-muted hover:bg-border hover:text-ink"
-                }`}
-              >
-                {HSK_FILTER_LABELS[lvl]}
-              </button>
-            ))}
-          </div>
-        )}
+      {/* Search + filter folio */}
+      <div className="flex rounded-2xl border border-border shadow-sm bg-surface overflow-hidden">
+        <div className="w-10 flex-shrink-0 border-r border-border bg-surface-2/50 flex flex-col items-center py-5">
+          <span className="hanzi v-rl text-seal/25 text-2xl font-bold select-none leading-none">索</span>
+          <span className="v-rl text-faint text-[10px] font-mono mt-auto tracking-widest">FILTER</span>
+        </div>
+        <div className="flex-1 min-w-0 p-4 space-y-3">
+          <input
+            type="text"
+            placeholder="Search by hanzi, pinyin, or meaning..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="w-full border border-border rounded-xl px-4 py-2.5 text-sm text-ink bg-surface focus:outline-none focus:ring-2 focus:ring-seal focus:border-transparent transition-colors placeholder:text-faint"
+          />
+          {/* HSK level filter row */}
+          {presentLevels.length > 1 && (
+            <div className="flex gap-1.5 flex-wrap">
+              {(["all", ...presentLevels] as (number | "all")[]).map((lvl) => (
+                <button
+                  key={lvl}
+                  onClick={() => setHskFilter(lvl)}
+                  className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
+                    hskFilter === lvl
+                      ? "bg-seal text-paper"
+                      : "bg-surface-2 text-muted hover:bg-border hover:text-ink"
+                  }`}
+                >
+                  {HSK_FILTER_LABELS[lvl]}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* List */}
@@ -202,36 +218,48 @@ export default function VocabularyClient({ vocab }: { vocab: VocabWord[] }) {
           No words match your filter
           {query ? <> &ldquo;{query}&rdquo;</> : null}.
         </p>
-      ) : showGrouped ? (
-        /* Grouped by HSK level */
-        <div className="flex flex-col gap-6">
-          {levelGroups
-            .filter((g) => g.words.length > 0)
-            .map(({ level, words: groupWords }) => (
-              <div key={level}>
-                <div className="flex items-center gap-2 mb-2">
-                  <Badge variant={hskBadgeVariant(level)}>HSK {level}</Badge>
-                  <span className="text-xs text-faint">{groupWords.length} word{groupWords.length !== 1 ? "s" : ""}</span>
-                </div>
-                <Card variant="paper" padding="none">
-                  <InfiniteList
-                    key={`${listKey}::${level}`}
-                    words={groupWords}
-                    onNavigate={(id) => router.push(`/vocabulary/${id}`)}
-                  />
-                </Card>
-              </div>
-            ))}
-        </div>
       ) : (
-        /* Flat filtered list */
-        <Card variant="paper" padding="none">
-          <InfiniteList
-            key={listKey}
-            words={filtered}
-            onNavigate={(id) => router.push(`/vocabulary/${id}`)}
-          />
-        </Card>
+        <div className="flex rounded-2xl border border-border shadow-sm bg-surface overflow-hidden">
+          <div className="w-10 flex-shrink-0 border-r border-border bg-surface-2/50 flex flex-col items-center py-5">
+            <span className="hanzi v-rl text-seal/25 text-2xl font-bold select-none leading-none">词</span>
+            <span className="v-rl text-faint text-[10px] font-mono mt-auto tracking-widest">WORDS</span>
+          </div>
+          <div className="flex-1 min-w-0 p-3 sm:p-4">
+            {showGrouped ? (
+              /* Grouped by HSK level */
+              <div className="flex flex-col gap-5">
+                {levelGroups
+                  .filter((g) => g.words.length > 0)
+                  .map(({ level, words: groupWords }) => (
+                    <div key={level}>
+                      <div className="flex items-center gap-2 mb-2">
+                        <Badge variant={hskBadgeVariant(level)}>HSK {level}</Badge>
+                        <span className="text-xs text-faint">
+                          {groupWords.length} word{groupWords.length !== 1 ? "s" : ""}
+                        </span>
+                      </div>
+                      <Card variant="paper" padding="none" className="border-border/70">
+                        <InfiniteList
+                          key={`${listKey}::${level}`}
+                          words={groupWords}
+                          onNavigate={(id) => router.push(`/vocabulary/${id}`)}
+                        />
+                      </Card>
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              /* Flat filtered list */
+              <Card variant="paper" padding="none" className="border-border/70">
+                <InfiniteList
+                  key={listKey}
+                  words={filtered}
+                  onNavigate={(id) => router.push(`/vocabulary/${id}`)}
+                />
+              </Card>
+            )}
+          </div>
+        </div>
       )}
     </div>
   );
@@ -291,7 +319,7 @@ function WordRow({
   return (
     <button
       onClick={() => onNavigate(w.id)}
-      className="w-full flex items-center gap-4 px-5 py-3.5 hover:bg-surface-2 transition-colors text-left group min-h-[52px]"
+      className="w-full flex items-center gap-4 px-4 sm:px-5 py-3.5 hover:bg-surface-2 transition-colors text-left group min-h-[52px]"
     >
       <span className="hanzi text-2xl font-bold text-ink shrink-0 w-10">
         {w.simplified}

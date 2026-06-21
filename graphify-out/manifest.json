@@ -76,16 +76,16 @@
     "hash": "b8e4d48f45f74ce296f34264015a6087"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/study/StudyBuilderClient.tsx": {
-    "mtime": 1782043013.5087533,
-    "hash": "f47bf991dd5d92a675801789cefd5f72"
+    "mtime": 1782053665.3287828,
+    "hash": "2cdc6e69d4373057432f8326f05029ec"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/study/page.tsx": {
-    "mtime": 1781971518.7159283,
-    "hash": "eaf472322ddbb42d2296687531b7027f"
+    "mtime": 1782053670.1775587,
+    "hash": "8b6465563a7800666edc9cf6a116c0e7"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/study/[sessionId]/StudySessionClient.tsx": {
-    "mtime": 1782046216.5800762,
-    "hash": "c042f350f3755844e7c0afb06c9e3448"
+    "mtime": 1782052135.9681902,
+    "hash": "e92ba144d3232c78824fc0df03ddc190"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/study/[sessionId]/page.tsx": {
     "mtime": 1781971518.715795,
@@ -104,20 +104,20 @@
     "hash": "dc203e75992178930231c9f4ca7574b0"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/sessions/SessionsClient.tsx": {
-    "mtime": 1782024967.6730046,
-    "hash": "406b23fad4128fcd936ed2e4810d62a1"
+    "mtime": 1782054146.0382557,
+    "hash": "a2708ccf93312d9f801566b82c615679"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/sessions/page.tsx": {
-    "mtime": 1781971518.714782,
-    "hash": "c6ac78dcb98255039edaa3d4489644ce"
+    "mtime": 1782054119.7576287,
+    "hash": "b22caa4e7561f1401de67adc5ce06b7e"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/sessions/[id]/SessionReviewClient.tsx": {
-    "mtime": 1782045973.4508195,
-    "hash": "efd0c19f5f337c1ec6152fa8df172aef"
+    "mtime": 1782054167.8300657,
+    "hash": "fbbecf317234f84ee9647d1612236cf6"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/sessions/[id]/page.tsx": {
-    "mtime": 1781971518.7146633,
-    "hash": "7328bab253ad4a9d72563512165f1653"
+    "mtime": 1782054122.5300615,
+    "hash": "e0d9eed40f12a835afadd7deb4096d94"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/actions/vocabulary.ts": {
     "mtime": 1781972332.6111088,
@@ -144,28 +144,28 @@
     "hash": "86d93011564de5e3cd17f4b0fce9ee50"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/stats/StatsClient.tsx": {
-    "mtime": 1782024979.8038325,
-    "hash": "c6072dd2962e5505ff242292bb845d81"
+    "mtime": 1782054192.9155474,
+    "hash": "b059b0be7ed9aa5fac7d16f475669059"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/stats/page.tsx": {
-    "mtime": 1781971518.7151012,
-    "hash": "edf3ec2a22090ebdfc147f525be927b4"
+    "mtime": 1782054127.8512115,
+    "hash": "e1f3a0e5111b4b6ba282dfda7eccd7c6"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/VocabularyClient.tsx": {
-    "mtime": 1782042994.7650204,
-    "hash": "11c93f21cebe34f9999cc986ca5429d7"
+    "mtime": 1782053889.649137,
+    "hash": "b391df129a8f3a7f53bf29c62683667c"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/page.tsx": {
-    "mtime": 1781971518.7167475,
-    "hash": "f28d1282fcbeaf610449964ae97147a6"
+    "mtime": 1782053892.717167,
+    "hash": "2e45461fa459921ef9a3775c489bfc2b"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/WordCardClient.tsx": {
-    "mtime": 1782044237.136098,
-    "hash": "a925c5fd555c0711a032f017e9312449"
+    "mtime": 1782053932.6348417,
+    "hash": "0159506c8d1db0c26965bd5220ce62e8"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/page.tsx": {
-    "mtime": 1781971518.7166178,
-    "hash": "cef77ff646a1eeaa2f4c6bbbf6e38c65"
+    "mtime": 1782053936.9876642,
+    "hash": "26f36d62a49e837da81ff36bd1a67d99"
   },
   "/Users/ceje/development/personal/chinese-learner/src/components/Nav.tsx": {
     "mtime": 1782022555.6445656,

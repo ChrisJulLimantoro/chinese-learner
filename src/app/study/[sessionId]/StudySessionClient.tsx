@@ -646,6 +646,11 @@ export default function StudySessionClient({ session: initialSession }: { sessio
                 {question.prompt}
               </p>
 
+              {/* Free cue for cloze — full English sentence translation so the blank is answerable */}
+              {question.type === "cloze" && question.sentence_translation && (
+                <p className="text-sm text-muted">{question.sentence_translation}</p>
+              )}
+
               {/* Helper hints — separate from prompt, optional reveal */}
               {!feedback && (question.target_hint || (question.context_helpers?.length ?? 0) > 0) && (
                 <div className="space-y-2 pt-1 border-t border-border/50">

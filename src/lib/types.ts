@@ -55,6 +55,8 @@ export interface Question {
   prompt: string;
   target_word: string;
   context: string;
+  /** Full English translation of the prompt sentence. Shown for free on cloze so the blank is answerable. */
+  sentence_translation?: string;
   /** Penalized hint — target word reading/sense; revealed on demand, marks answer assisted. */
   target_hint?: string;
   /** Free helpers — glosses for other words in the prompt sentence. */

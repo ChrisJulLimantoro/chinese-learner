@@ -217,16 +217,21 @@ export function stubQuestions(
       : `${simplified} (${pinyin}) — ${meanings.slice(0, 2).join(", ")}`;
 
     let prompt: string;
+    let sentenceTranslation: string;
     if (qtype === "en_to_zh") {
       prompt = `Translate into natural Mandarin: "This factory supplies raw materials to the company."`;
+      sentenceTranslation = "";
     } else if (qtype === "cloze") {
       prompt = `Fill in the blank: 你___马上离开。`;
+      sentenceTranslation = "You should leave right away.";
     } else if (qtype === "synonym_discrim") {
       prompt =
         "Choose the better Mandarin word for this context and type it in hanzi: " +
         "Context: habitual action. Option A: habitual/regularly. Option B: temporary/at-the-moment.";
+      sentenceTranslation = "";
     } else {
       prompt = `What Mandarin word fits this meaning in context: '${gloss}'? (Enter hanzi only.)`;
+      sentenceTranslation = "";
     }
 
     return {
@@ -234,6 +239,7 @@ export function stubQuestions(
       prompt,
       target_word: simplified,
       context: gloss,
+      sentence_translation: sentenceTranslation,
       target_hint: targetHint,
       context_helpers: stubContextHelpers(simplified),
     };
@@ -385,6 +391,7 @@ Each question JSON must match:
   "prompt": string,
   "target_word": string,
   "context": string,
+  "sentence_translation": string,
   "target_hint": string,
   "context_helpers": [{"word": string, "pinyin": string, "gloss": string}]
 }
@@ -401,6 +408,8 @@ Rules:
 - Never leak the answer in "prompt". Do NOT include the target hanzi, pinyin, tone marks/numbers, pronunciation notes, or parenthetical reading hints in the prompt.
 - Never write prompts like "use X", "using X", or "in the sense of X (pinyin)". The learner should infer the tested word from meaning + context only.
 - If a word has multiple readings, disambiguate using meaning/context only (semantic constraint), without revealing pinyin or the target hanzi in the prompt.
+- cloze SELF-CONSTRAINT RULE: the sentence's context must make only ONE word the natural fill for ___. If multiple different words could plausibly fill the blank, rewrite the sentence (add more context, change surrounding words, add adverbials or subject/object) until the intended target word is the uniquely natural answer. A cloze that accepts many fills is a bad cloze — reject it and rewrite.
+- "sentence_translation": for cloze type ONLY, provide the full English translation of the COMPLETE sentence with the target word restored (e.g. 小心！房子着火了！ → "Careful! The house caught fire!"). This is shown to the learner as a free cue so they can answer the blank — it is deliberately informative, NOT a prompt leak. For en_to_zh, synonym_discrim, and gloss_to_word, set "sentence_translation" to "".
 - "target_hint": one short line for the TARGET word only — include hanzi, pinyin, and the intended sense. This is shown only when the learner requests a penalized hint; it must NOT appear in "prompt".
 - "context_helpers": array of glosses for OTHER words that appear in the prompt sentence (not the target word). Each entry: {"word": "<hanzi>", "pinyin": "<marked pinyin>", "gloss": "<English meaning>"}. Include 2–5 helpers when the prompt uses vocabulary beyond the target word. Empty array if the prompt is a single-word gloss question.
 
@@ -433,6 +442,7 @@ Question type: ${question.type}
 Prompt: ${question.prompt}
 Target word: ${question.target_word}
 Context: ${question.context ?? ""}
+Intended meaning (sentence): ${question.sentence_translation ?? ""}
 Learner's answer: ${answer}
 
 Return JSON matching EXACTLY:
@@ -448,6 +458,7 @@ Return JSON matching EXACTLY:
 
 Rules:
 - "correct": true if the answer is semantically acceptable (synonyms OK, punctuation ignored)
+- When grading cloze questions, "target_word" is the canonical intended answer. Accept a synonym only if it also fits the intended sentence meaning given in "Intended meaning (sentence)" — do not accept a word that would change the sentence's meaning.
 - "naturalness": 5=perfect native, 4=natural learner, 3=understandable, 2=unnatural, 1=wrong
 - "feedback": WRITE IN ENGLISH. Explain what was right or wrong so a beginner can learn from it.
   When you show the correct answer or a corrected phrase, give it in Mandarin hanzi with pinyin in

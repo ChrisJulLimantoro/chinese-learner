@@ -8,7 +8,7 @@ import { createAdminClient } from "./supabase/admin";
 import { gradeAnswerWithCache } from "./grading";
 import {
   ensureSrsState,
-  advanceSrsState,
+  applyAnswer,
   emptySrsState,
   getUnseenWords,
   getDueWords,
@@ -446,7 +446,7 @@ async function finalizeGrade(
   fields: Record<string, unknown>
 ): Promise<FinalizedGrade> {
   const flags = { outcome, overTimer: responseTimeMs > OVER_TIMER_MS, hesitated: outcome === "hesitated" };
-  const srs = advanceSrsState(currentSrsState(userId, item), flags);
+  const srs = applyAnswer(currentSrsState(userId, item), flags);
   const params = finalizeParams(item, outcome, responseTimeMs, fields, srs);
   const [finalized] = await Promise.all([finalizeSessionItem(supabase, params), recordQuestionResult(item, fields)]);
   return { srs_summary: srs, session_complete: finalized.session_complete, new_cursor: finalized.new_cursor };

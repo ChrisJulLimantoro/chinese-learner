@@ -112,6 +112,19 @@ function nextReviewFromRecognition(row: SrsState, correct: boolean, now: number)
   return soon < row.next_review_at ? soon : null;
 }
 
+function isDue(row: SrsState, now: number): boolean {
+  return row.next_review_at <= now;
+}
+
+function rescheduledOffSchedule(row: SrsState, flags: SrsOutcomeFlags, now: number): SrsState {
+  const nextReviewAt = nextReviewFromRecognition(row, flags.outcome !== "wrong", now);
+  return nextReviewAt === null ? row : { ...row, next_review_at: nextReviewAt };
+}
+
+export function applyAnswer(row: SrsState, flags: SrsOutcomeFlags, now: number = Date.now() / 1000): SrsState {
+  return isDue(row, now) ? advanceSrsState(row, flags) : rescheduledOffSchedule(row, flags, now);
+}
+
 function rescheduledRow(row: SrsState | undefined, correct: boolean, now: number): SrsState | null {
   const nextReviewAt = row ? nextReviewFromRecognition(row, correct, now) : null;
   return row && nextReviewAt !== null ? { ...row, next_review_at: nextReviewAt } : null;

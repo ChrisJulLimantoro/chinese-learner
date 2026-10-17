@@ -1,4 +1,5 @@
 // config.ts — constants, SRS settings, model config.
+import type { Question } from "./types";
 // Ported from config.py.
 
 // ---------------------------------------------------------------------------
@@ -26,6 +27,14 @@ export const DRILL_TIMER_SECONDS = 120;
 // ---------------------------------------------------------------------------
 export const DEFAULT_SESSION_SIZE = 10;
 export const QUESTIONS_PER_WORD = 6;
+export const UNSEEN_BOX = 1;
+export const PREFERRED_TYPES_BY_BOX: Record<number, Question["type"][]> = {
+  1: ["gloss_to_word", "synonym_discrim"],
+  2: ["gloss_to_word", "synonym_discrim"],
+  3: ["cloze"],
+  4: ["cloze"],
+  5: ["en_to_zh"],
+};
 export const MAX_HSK_LEVEL = 6;
 export const MIN_HSK_LEVEL = 1;
 export const START_HSK_LEVEL = 2;

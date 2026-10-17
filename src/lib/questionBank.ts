@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { QUESTIONS_PER_WORD, USE_STUB } from "./config";
+import { PREFERRED_TYPES_BY_BOX, QUESTIONS_PER_WORD, UNSEEN_BOX, USE_STUB } from "./config";
 import { generateQuestions, isUsableQuestion, QUESTION_TYPES } from "./llm";
 import type { QuestionWordInput } from "./llm";
 import type { Question, Word } from "./types";
@@ -9,6 +9,8 @@ const BANK_COLUMNS = "id, word_id, question, accepted_answers, reference_answer"
 
 export type BankQuestion = { id: number; question: Question };
 export type QuestionBank = Map<number, BankQuestion[]>;
+export type BoxByWord = Map<number, number>;
+type QuestionType = Question["type"];
 
 type BankRow = {
   id: number;
@@ -48,8 +50,26 @@ export function wordsNeedingQuestions(bank: QuestionBank, words: Word[]): Word[]
   return words.filter((w) => bankSize(bank, w) < QUESTIONS_PER_WORD);
 }
 
-function withRequiredType(bank: QuestionBank, word: Word): QuestionWordInput {
-  return { ...word, required_type: QUESTION_TYPES[bankSize(bank, word) % QUESTION_TYPES.length] };
+export function preferredTypes(boxes: BoxByWord, wordId: number): QuestionType[] {
+  return PREFERRED_TYPES_BY_BOX[boxes.get(wordId) ?? UNSEEN_BOX];
+}
+
+function rotatingType(bank: QuestionBank, word: Word): QuestionType {
+  return QUESTION_TYPES[bankSize(bank, word) % QUESTION_TYPES.length];
+}
+
+function requiredType(bank: QuestionBank, boxes: BoxByWord, word: Word): QuestionType {
+  const present = new Set((bank.get(word.id) ?? []).map((b) => b.question.type));
+  return preferredTypes(boxes, word.id).find((t) => !present.has(t)) ?? rotatingType(bank, word);
+}
+
+function withRequiredType(bank: QuestionBank, boxes: BoxByWord, word: Word): QuestionWordInput {
+  return { ...word, required_type: requiredType(bank, boxes, word) };
+}
+
+export async function loadBoxes(supabase: SupabaseClient, userId: string, wordIds: number[]): Promise<BoxByWord> {
+  const { data } = await supabase.from("srs_state").select("word_id, box").eq("user_id", userId).in("word_id", wordIds);
+  return new Map((data ?? []).map((r) => [r.word_id as number, r.box as number]));
 }
 
 function cleanAnswers(question: Question): string[] {
@@ -77,10 +97,15 @@ async function insertRows(admin: SupabaseClient, bank: QuestionBank, rows: objec
   return addRows(bank, (data ?? []) as BankRow[]);
 }
 
-export async function fillBank(admin: SupabaseClient, bank: QuestionBank, words: Word[]): Promise<QuestionBank> {
+export async function fillBank(
+  admin: SupabaseClient,
+  bank: QuestionBank,
+  words: Word[],
+  boxes: BoxByWord = new Map()
+): Promise<QuestionBank> {
   const missing = wordsNeedingQuestions(bank, words);
   if (USE_STUB || missing.length === 0) return bank;
-  const generated = await generateQuestions(missing.map((w) => withRequiredType(bank, w)));
+  const generated = await generateQuestions(missing.map((w) => withRequiredType(bank, boxes, w)));
   return insertRows(admin, bank, usableInsertRows(missing, generated));
 }
 
@@ -103,14 +128,28 @@ async function recentRanks(supabase: SupabaseClient, userId: string, wordIds: nu
   return rankIds(rows.filter((r) => r.bank_id).map((r) => Number(r.bank_id)));
 }
 
-export function pickQuestion(candidates: BankQuestion[], recentRanks: Map<number, number>): Question {
-  const age = (c: BankQuestion) => recentRanks.get(c.id) ?? Infinity;
-  return candidates.reduce((best, c) => (age(c) > age(best) ? c : best)).question;
+function ofPreferredTypes(candidates: BankQuestion[], preferred: QuestionType[]): BankQuestion[] {
+  const matching = candidates.filter((c) => preferred.includes(c.question.type));
+  return matching.length > 0 ? matching : candidates;
 }
 
-async function fillBankQuietly(admin: SupabaseClient, bank: QuestionBank, words: Word[]): Promise<void> {
+export function pickQuestion(
+  candidates: BankQuestion[],
+  recentRanks: Map<number, number>,
+  preferred: QuestionType[] = []
+): Question {
+  const age = (c: BankQuestion) => recentRanks.get(c.id) ?? Infinity;
+  return ofPreferredTypes(candidates, preferred).reduce((best, c) => (age(c) > age(best) ? c : best)).question;
+}
+
+async function fillBankQuietly(
+  admin: SupabaseClient,
+  bank: QuestionBank,
+  words: Word[],
+  boxes: BoxByWord
+): Promise<void> {
   try {
-    await fillBank(admin, bank, words);
+    await fillBank(admin, bank, words, boxes);
   } catch (error) {
     console.warn("[question-bank] fill failed:", error);
   }
@@ -123,9 +162,9 @@ export async function assignQuestions(
   words: Word[]
 ): Promise<Map<number, Question>> {
   const ids = words.map((w) => w.id);
-  const bank = await loadBank(supabase, ids);
-  await fillBankQuietly(admin, bank, words);
+  const [bank, boxes] = await Promise.all([loadBank(supabase, ids), loadBoxes(supabase, userId, ids)]);
+  await fillBankQuietly(admin, bank, words, boxes);
   const ranks = await recentRanks(supabase, userId, ids);
   const filled = words.filter((w) => bank.has(w.id));
-  return new Map(filled.map((w) => [w.id, pickQuestion(bank.get(w.id)!, ranks)]));
+  return new Map(filled.map((w) => [w.id, pickQuestion(bank.get(w.id)!, ranks, preferredTypes(boxes, w.id))]));
 }

@@ -3,6 +3,7 @@
  * Faithful port of services.py with per-user scoping via Supabase + RLS.
  * Functions that touch the DB take (supabase, userId, ...).
  */
+import { after } from "next/server";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createAdminClient } from "./supabase/admin";
 import { gradeAnswerWithCache } from "./grading";
@@ -176,7 +177,8 @@ async function createSession(
 
   const sessionId = sessionRow.id as number;
 
-  const assigned = await assignQuestions(supabase, createAdminClient(), userId, words);
+  const { questions: assigned, refillBank } = await assignQuestions(supabase, createAdminClient(), userId, words);
+  after(refillBank);
   const itemInserts = words.map((w, i) => ({
     session_id: sessionId,
     user_id: userId,
@@ -245,8 +247,9 @@ export async function ensureItemQuestion(
   const w = (item.words as Record<string, unknown>) ?? {};
   const word = normalizeWordRow(w);
 
-  const assigned = await assignQuestions(supabase, createAdminClient(), userId, [word]);
-  const question = assigned.get(word.id) ?? fallbackQuestion(word);
+  const { questions, refillBank } = await assignQuestions(supabase, createAdminClient(), userId, [word]);
+  after(refillBank);
+  const question = questions.get(word.id) ?? fallbackQuestion(word);
 
   // Persist
   await supabase

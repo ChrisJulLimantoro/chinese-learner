@@ -422,7 +422,7 @@ export async function generateQuestions(
     "Begin your response with '[' and end with ']'. " +
     "The entire response must be valid for JSON.parse().";
 
-  const user = `Generate one practice question for each of these Mandarin words.
+  const user = `Generate one practice question for each line below (a word may repeat on several lines).
 Use a variety of types: en_to_zh, cloze, synonym_discrim, gloss_to_word.
 
 Words:
@@ -458,11 +458,12 @@ Rules:
 - "target_hint": one short line for the TARGET word only — include hanzi, pinyin, and the intended sense. This is shown only when the learner requests a penalized hint; it must NOT appear in "prompt".
 - "context_helpers": array of glosses for OTHER words that appear in the prompt sentence (not the target word). Each entry: {"word": "<hanzi>", "pinyin": "<marked pinyin>", "gloss": "<English meaning>"}. Include 2–5 helpers when the prompt uses vocabulary beyond the target word. Empty array if the prompt is a single-word gloss question.
 
-- When a word line has "[required type: X]", that word's question type MUST be X.
+- When a word line has "[required type: X]", that line's question type MUST be X.
+- A word may appear on several lines: each line is a separate question, so use a different sentence and scenario for every line of the same word.
 - "accepted_answers": for cloze, synonym_discrim and gloss_to_word, list OTHER hanzi words (not the target) that would also be fully correct for the blank / meaning, so the answer can be checked without AI. Use [] when only the target fits.
 - "reference_answer": for en_to_zh ONLY, one natural model Mandarin translation of the prompt sentence that uses the target word. For other types set it to "".
 
-Return a JSON array of exactly ${words.length} question objects.
+Return a JSON array of exactly ${words.length} question objects, in the same order as the lines.
 `;
 
   const result = await chatJson<Question[] | Record<string, Question>>("question", [

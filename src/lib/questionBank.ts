@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { MIN_PER_PREFERRED_TYPE, PREFERRED_TYPES_BY_BOX, QUESTIONS_PER_WORD, TONE_PICK_SHARE, UNSEEN_BOX, USE_STUB } from "./config";
+import { MAX_QUESTIONS_PER_LLM_CALL, MIN_PER_PREFERRED_TYPE, PREFERRED_TYPES_BY_BOX, QUESTIONS_PER_FILL, QUESTIONS_PER_WORD, TONE_PICK_SHARE, UNSEEN_BOX, USE_STUB } from "./config";
 import { generateQuestions, isUsableQuestion, QUESTION_TYPES } from "./llm";
 import type { QuestionWordInput } from "./llm";
 import { fallbackQuestion } from "./fallbackQuestion";
@@ -13,6 +13,7 @@ export type BankQuestion = { id: number; question: Question };
 export type QuestionBank = Map<number, BankQuestion[]>;
 export type BoxByWord = Map<number, number>;
 type QuestionType = Question["type"];
+type QuestionRequest = QuestionWordInput & Word;
 const LLM_TYPES = new Set<QuestionType>(QUESTION_TYPES);
 
 type BankRow = {
@@ -62,8 +63,9 @@ export function preferredTypes(boxes: BoxByWord, wordId: number): QuestionType[]
   return PREFERRED_TYPES_BY_BOX[boxes.get(wordId) ?? UNSEEN_BOX];
 }
 
-function rotatingType(bank: QuestionBank, word: Word): QuestionType {
-  return QUESTION_TYPES[bankSize(bank, word) % QUESTION_TYPES.length];
+function nextRequiredType(counts: Map<QuestionType, number>, size: number, preferred: QuestionType[]): QuestionType {
+  const lacking = (t: QuestionType) => LLM_TYPES.has(t) && (counts.get(t) ?? 0) < MIN_PER_PREFERRED_TYPE;
+  return preferred.find(lacking) ?? QUESTION_TYPES[size % QUESTION_TYPES.length];
 }
 
 function countByType(bank: QuestionBank, word: Word): Map<QuestionType, number> {
@@ -72,14 +74,19 @@ function countByType(bank: QuestionBank, word: Word): Map<QuestionType, number> 
   return counts;
 }
 
-function requiredType(bank: QuestionBank, boxes: BoxByWord, word: Word): QuestionType {
+function requiredTypes(bank: QuestionBank, boxes: BoxByWord, word: Word, n: number): QuestionType[] {
   const counts = countByType(bank, word);
-  const lacking = (t: QuestionType) => LLM_TYPES.has(t) && (counts.get(t) ?? 0) < MIN_PER_PREFERRED_TYPE;
-  return preferredTypes(boxes, word.id).find(lacking) ?? rotatingType(bank, word);
+  const preferred = preferredTypes(boxes, word.id);
+  return Array.from({ length: n }, (_, i) => {
+    const type = nextRequiredType(counts, bankSize(bank, word) + i, preferred);
+    counts.set(type, (counts.get(type) ?? 0) + 1);
+    return type;
+  });
 }
 
-function withRequiredType(bank: QuestionBank, boxes: BoxByWord, word: Word): QuestionWordInput {
-  return { ...word, required_type: requiredType(bank, boxes, word) };
+function requestsFor(bank: QuestionBank, boxes: BoxByWord, word: Word): QuestionRequest[] {
+  const wanted = Math.min(QUESTIONS_PER_FILL, QUESTIONS_PER_WORD - bankSize(bank, word));
+  return requiredTypes(bank, boxes, word, wanted).map((required_type) => ({ ...word, required_type }));
 }
 
 export async function loadBoxes(supabase: SupabaseClient, userId: string, wordIds: number[]): Promise<BoxByWord> {
@@ -102,8 +109,8 @@ function toInsertRow(word: Word, question: Question) {
   };
 }
 
-function usableInsertRows(words: Word[], generated: Question[]) {
-  return words.flatMap((w, i) => (isUsableQuestion(generated[i], w) ? [toInsertRow(w, generated[i])] : []));
+function usableInsertRows(requests: QuestionRequest[], generated: Question[]) {
+  return requests.flatMap((w, i) => (isUsableQuestion(generated[i], w) ? [toInsertRow(w, generated[i])] : []));
 }
 
 async function insertRows(admin: SupabaseClient, bank: QuestionBank, rows: object[]): Promise<QuestionBank> {
@@ -115,6 +122,15 @@ async function insertRows(admin: SupabaseClient, bank: QuestionBank, rows: objec
   return addRows(bank, (data ?? []) as BankRow[]);
 }
 
+function chunked<T>(items: T[], size: number): T[][] {
+  return Array.from({ length: Math.ceil(items.length / size) }, (_, i) => items.slice(i * size, (i + 1) * size));
+}
+
+async function generateInto(admin: SupabaseClient, bank: QuestionBank, requests: QuestionRequest[]): Promise<void> {
+  const generated = await generateQuestions(requests);
+  await insertRows(admin, bank, usableInsertRows(requests, generated));
+}
+
 export async function fillBank(
   admin: SupabaseClient,
   bank: QuestionBank,
@@ -123,8 +139,9 @@ export async function fillBank(
 ): Promise<QuestionBank> {
   const missing = wordsNeedingQuestions(bank, words);
   if (USE_STUB || missing.length === 0) return bank;
-  const generated = await generateQuestions(missing.map((w) => withRequiredType(bank, boxes, w)));
-  return insertRows(admin, bank, usableInsertRows(missing, generated));
+  const requests = missing.flatMap((w) => requestsFor(bank, boxes, w));
+  await Promise.all(chunked(requests, MAX_QUESTIONS_PER_LLM_CALL).map((c) => generateInto(admin, bank, c)));
+  return bank;
 }
 
 function rankIds(ids: number[]): Map<number, number> {
@@ -194,16 +211,17 @@ function questionFor(
   return tone ?? bankedQuestion(bank, boxes, ranks, word) ?? fallbackQuestion(word, random);
 }
 
+export type Assignment = { questions: Map<number, Question>; refillBank: () => Promise<void> };
+
 export async function assignQuestions(
   supabase: SupabaseClient,
   admin: SupabaseClient,
   userId: string,
   words: Word[],
   random: () => number = Math.random
-): Promise<Map<number, Question>> {
+): Promise<Assignment> {
   const ids = words.map((w) => w.id);
-  const [bank, boxes] = await Promise.all([loadBank(supabase, ids), loadBoxes(supabase, userId, ids)]);
-  await fillBankQuietly(admin, bank, words, boxes);
-  const ranks = await recentRanks(supabase, userId, ids);
-  return new Map(words.map((w) => [w.id, questionFor(bank, boxes, ranks, w, random)]));
+  const [bank, boxes, ranks] = await Promise.all([loadBank(supabase, ids), loadBoxes(supabase, userId, ids), recentRanks(supabase, userId, ids)]);
+  const questions = new Map(words.map((w) => [w.id, questionFor(bank, boxes, ranks, w, random)]));
+  return { questions, refillBank: () => fillBankQuietly(admin, bank, words, boxes) };
 }

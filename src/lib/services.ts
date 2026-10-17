@@ -485,6 +485,7 @@ export async function gradeAnswer(
   new_cursor: number | null;
 }> {
   const item = await loadOwnedItem(supabase, userId, sessionItemId);
+  if (item.outcome) throw new Error(`session_item ${sessionItemId} is already graded`);
   const question = (item.question as Question | null) ?? (await ensureItemQuestion(supabase, userId, sessionItemId));
   const graderOut = await gradeAnswerWithCache(supabase, item.words as WordRow, question, answer);
   const fields = { user_answer: answer, grader_output: graderOut };

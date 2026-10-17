@@ -80,14 +80,40 @@ function applyChanges(parsed: ParsedPinyin, changes: ToneChange[]): string {
   return joinPinyin({ ...parsed, nuclei });
 }
 
+const BU = "不";
+const YI = "一";
+
+function sandhiToneAt(chars: string[], tones: number[], i: number): number {
+  const next = tones[i + 1];
+  if (next === undefined) return tones[i];
+  if (chars[i] === BU && tones[i] === 4 && next === 4) return 2;
+  if (chars[i] === YI && tones[i] === 1) return next === 4 ? 2 : 4;
+  return tones[i] === 3 && next === 3 ? 2 : tones[i];
+}
+
+export function sandhiForm(pinyin: string, hanzi: string): string | null {
+  const parsed = parsePinyin(pinyin);
+  const chars = Array.from(hanzi);
+  if (chars.length !== parsed.nuclei.length) return null;
+  const tones = parsed.nuclei.map(toneOf);
+  const changes = tones.map((tone, i): ToneChange => [i, sandhiToneAt(chars, tones, i)]).filter(([i, tone]) => tone !== tones[i]);
+  return changes.length > 0 ? applyChanges(parsed, changes) : null;
+}
+
+function excludedKeys(pinyin: string, readings: string[], hanzi: string): Set<string> {
+  const spoken = sandhiForm(pinyin, hanzi);
+  return new Set([pinyin, ...readings, ...(spoken ? [spoken] : [])].map(pinyinKey));
+}
+
 export function toneDistractors(
   pinyin: string,
   readings: string[],
   random: () => number = Math.random,
-  count: number = 3
+  count: number = 3,
+  hanzi: string = ""
 ): string[] {
   const parsed = parsePinyin(pinyin);
-  const excluded = new Set([pinyin, ...readings].map(pinyinKey));
+  const excluded = excludedKeys(pinyin, readings, hanzi);
   const changes = [...shuffle(singleChanges(parsed), random), ...shuffle(pairChanges(parsed), random)];
   const unique = new Map(changes.map((c) => applyChanges(parsed, c)).map((p) => [pinyinKey(p), p]));
   return [...unique].filter(([key]) => !excluded.has(key)).slice(0, count).map(([, p]) => p);

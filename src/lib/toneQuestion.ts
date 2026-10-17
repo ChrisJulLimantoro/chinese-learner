@@ -6,7 +6,7 @@ const OPTION_COUNT = 4;
 
 export function buildToneQuestion(word: Word, random: () => number = Math.random): Question | null {
   const readings = word.readings.map((r) => r.pinyin);
-  const distractors = toneDistractors(word.pinyin, readings, random, OPTION_COUNT - 1);
+  const distractors = toneDistractors(word.pinyin, readings, random, OPTION_COUNT - 1, word.simplified);
   if (distractors.length < OPTION_COUNT - 1) return null;
   return toneQuestionOf(word, shuffle([word.pinyin, ...distractors], random));
 }

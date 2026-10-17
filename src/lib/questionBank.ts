@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { PREFERRED_TYPES_BY_BOX, QUESTIONS_PER_WORD, TONE_PICK_SHARE, UNSEEN_BOX, USE_STUB } from "./config";
+import { MIN_PER_PREFERRED_TYPE, PREFERRED_TYPES_BY_BOX, QUESTIONS_PER_WORD, TONE_PICK_SHARE, UNSEEN_BOX, USE_STUB } from "./config";
 import { generateQuestions, isUsableQuestion, QUESTION_TYPES } from "./llm";
 import type { QuestionWordInput } from "./llm";
 import { buildToneQuestion } from "./toneQuestion";
@@ -65,9 +65,16 @@ function rotatingType(bank: QuestionBank, word: Word): QuestionType {
   return QUESTION_TYPES[bankSize(bank, word) % QUESTION_TYPES.length];
 }
 
+function countByType(bank: QuestionBank, word: Word): Map<QuestionType, number> {
+  const counts = new Map<QuestionType, number>();
+  (bank.get(word.id) ?? []).forEach((b) => counts.set(b.question.type, (counts.get(b.question.type) ?? 0) + 1));
+  return counts;
+}
+
 function requiredType(bank: QuestionBank, boxes: BoxByWord, word: Word): QuestionType {
-  const present = new Set((bank.get(word.id) ?? []).map((b) => b.question.type));
-  return preferredTypes(boxes, word.id).find((t) => LLM_TYPES.has(t) && !present.has(t)) ?? rotatingType(bank, word);
+  const counts = countByType(bank, word);
+  const lacking = (t: QuestionType) => LLM_TYPES.has(t) && (counts.get(t) ?? 0) < MIN_PER_PREFERRED_TYPE;
+  return preferredTypes(boxes, word.id).find(lacking) ?? rotatingType(bank, word);
 }
 
 function withRequiredType(bank: QuestionBank, boxes: BoxByWord, word: Word): QuestionWordInput {

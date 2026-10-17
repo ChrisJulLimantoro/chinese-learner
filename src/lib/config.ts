@@ -27,7 +27,8 @@ export const DRILL_TIMER_SECONDS = 120;
 // Session defaults
 // ---------------------------------------------------------------------------
 export const DEFAULT_SESSION_SIZE = 10;
-export const QUESTIONS_PER_WORD = 6;
+export const QUESTIONS_PER_WORD = 10;
+export const MIN_PER_PREFERRED_TYPE = 3;
 export const UNSEEN_BOX = 1;
 export const TONE_PICK_SHARE = 1 / 3;
 export const PREFERRED_TYPES_BY_BOX: Record<number, Question["type"][]> = {

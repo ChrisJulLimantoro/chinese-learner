@@ -6,17 +6,13 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { createAdminClient } from "./supabase/admin";
 import { grade } from "./llm";
 import { USE_STUB } from "./config";
+import { normalize } from "./normalize";
 import { SKIPPED_ANSWER } from "./skippedAnswer";
 import { selfGradeVerdict, templateVerdict } from "./gradeVerdicts";
 import type { WordFacts } from "./gradeVerdicts";
 import type { GraderOutput, Question } from "./types";
 
-// Punctuation to strip when normalizing (CJK + ASCII)
-const PUNCT = /[。，、！？,.!?；;：:「」『』【】《》\s]+/g;
-
-export function normalize(answer: string): string {
-  return answer.trim().replace(PUNCT, "").toLowerCase();
-}
+export { normalize };
 
 export async function checkCache(
   supabase: SupabaseClient,

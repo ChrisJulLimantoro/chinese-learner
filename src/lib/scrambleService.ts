@@ -1,9 +1,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { getProfile, recordStudyActivity } from "./services";
-import { updateSrs } from "./srs";
+import { rescheduleFromRecognition } from "./srs";
 import {
   BOARD_SIZE,
-  isDueRow,
   isScrambleLength,
   orderCandidates,
   pickSeedWords,
@@ -78,24 +77,6 @@ async function fetchScopeWords(supabase: SupabaseClient, wordIds: number[], leve
   return new Map(rows.map((w) => [w.id, w]));
 }
 
-async function applyResult(
-  supabase: SupabaseClient,
-  userId: string,
-  result: WordResult,
-  due: boolean
-): Promise<void> {
-  const outcome = result.correct ? "correct" : "wrong";
-  await updateSrs(supabase, userId, result.wordId, outcome, false, !due);
-}
-
-async function applyResults(supabase: SupabaseClient, userId: string, results: WordResult[]): Promise<void> {
-  const snapshots = await fetchSrsSnapshots(supabase, userId, results.map((r) => r.wordId));
-  const byWord = new Map(snapshots.map((s) => [s.word_id, s]));
-  const now = Date.now() / 1000;
-  const seen = results.filter((r) => byWord.has(r.wordId));
-  await Promise.all(seen.map((r) => applyResult(supabase, userId, r, isDueRow(byWord.get(r.wordId), now))));
-}
-
 function scoreOf(results: WordResult[], words: Map<number, WordRow>): number {
   return results.reduce((sum, r) => sum + (r.correct ? pointsFor(words.get(r.wordId)!.simplified) : 0), 0);
 }
@@ -109,7 +90,7 @@ export async function submitScramble(
   const unique = firstResultPerWord(submitted);
   const words = await fetchScopeWords(supabase, unique.map((r) => r.wordId), profile.current_hsk_level);
   const results = unique.filter((r) => words.has(r.wordId));
-  await applyResults(supabase, userId, results);
+  await rescheduleFromRecognition(supabase, userId, results);
   await recordStudyActivity(supabase, userId);
   const score = scoreOf(results, words);
   await supabase.from("scramble_runs").insert({ user_id: userId, score, found: results });

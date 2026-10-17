@@ -91,6 +91,36 @@ export async function updateSrs(
   return updated as SrsState;
 }
 
+export type RecognitionResult = { wordId: number; correct: boolean };
+
+function nextReviewFromRecognition(row: SrsState, correct: boolean, now: number): number | null {
+  if (row.mastered) return null;
+  if (correct) return row.next_review_at <= now ? now + BOX_INTERVALS[row.box] : null;
+  const soon = now + BOX_INTERVALS[1];
+  return soon < row.next_review_at ? soon : null;
+}
+
+function rescheduledRow(row: SrsState | undefined, correct: boolean, now: number): SrsState | null {
+  const nextReviewAt = row ? nextReviewFromRecognition(row, correct, now) : null;
+  return row && nextReviewAt !== null ? { ...row, next_review_at: nextReviewAt } : null;
+}
+
+async function fetchSrsRows(supabase: SupabaseClient, userId: string, wordIds: number[]): Promise<Map<number, SrsState>> {
+  const { data } = await supabase.from("srs_state").select("*").eq("user_id", userId).in("word_id", wordIds);
+  return new Map(((data ?? []) as SrsState[]).map((row) => [row.word_id, row]));
+}
+
+export async function rescheduleFromRecognition(
+  supabase: SupabaseClient,
+  userId: string,
+  results: RecognitionResult[]
+): Promise<void> {
+  const rows = await fetchSrsRows(supabase, userId, results.map((r) => r.wordId));
+  const now = Date.now() / 1000;
+  const changed = results.flatMap((r) => rescheduledRow(rows.get(r.wordId), r.correct, now) ?? []);
+  if (changed.length > 0) await supabase.from("srs_state").upsert(changed, { onConflict: "user_id,word_id" });
+}
+
 // ---------------------------------------------------------------------------
 // Word selection
 // ---------------------------------------------------------------------------

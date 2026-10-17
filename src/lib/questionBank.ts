@@ -225,3 +225,15 @@ export async function assignQuestions(
   const questions = new Map(words.map((w) => [w.id, questionFor(bank, boxes, ranks, w, random)]));
   return { questions, refillBank: () => fillBankQuietly(admin, bank, words, boxes) };
 }
+
+export async function pickRequeueQuestion(
+  supabase: SupabaseClient,
+  userId: string,
+  wordId: number,
+  original: Question | null
+): Promise<Question | null> {
+  const bank = await loadBank(supabase, [wordId]);
+  const others = (bank.get(wordId) ?? []).filter((b) => b.id !== original?.bank_id);
+  if (others.length === 0) return original;
+  return pickQuestion(others, await recentRanks(supabase, userId, [wordId]));
+}

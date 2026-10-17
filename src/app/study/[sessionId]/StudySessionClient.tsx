@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { gradeAnswerAction, ensureItemQuestionAction, selfGradeAction } from "../../actions/session";
 import { getWordCardAction } from "../../actions/vocabulary";
-import type { Session, LessonCard, GraderOutput, Outcome, Question } from "@/lib/types";
+import type { Session, SessionItem, LessonCard, GraderOutput, Outcome, Question } from "@/lib/types";
 import { hasMultipleReadings } from "@/lib/readings";
 import { Button, Badge, ProgressBar, Skeleton, InkLoader } from "@/components/ui";
 import Seal from "@/components/Seal";
@@ -546,7 +546,12 @@ export default function StudySessionClient({ session: initialSession }: { sessio
 
   // ── DRILL phase ───────────────────────────────────────────────────────
 
-  const applyFinalOutcome = (outcome: Outcome, complete: boolean) => {
+  const appendRequeued = (requeued: SessionItem | null) => {
+    if (requeued) setItems((prev) => [...prev, requeued]);
+  };
+
+  const applyFinalOutcome = (outcome: Outcome, complete: boolean, requeued: SessionItem | null) => {
+    appendRequeued(requeued);
     setOutcomes((o) => ({ ...o, [currentItem.item_id]: outcome }));
     if (outcome === "correct") setShowStamp(true);
     if (complete) setSessionComplete(true);
@@ -569,7 +574,7 @@ export default function StudySessionClient({ session: initialSession }: { sessio
         assisted
       );
       setFeedback({ graderOut: result.grader_output, outcome: result.outcome, userAnswer: given });
-      if (result.outcome) applyFinalOutcome(result.outcome, result.session_complete);
+      if (result.outcome) applyFinalOutcome(result.outcome, result.session_complete, result.requeued_item);
     } catch (e) {
       alert(String(e));
     } finally {
@@ -584,7 +589,7 @@ export default function StudySessionClient({ session: initialSession }: { sessio
       const result = await selfGradeAction(currentItem.item_id, gotIt);
       const graderOut = { ...feedback.graderOut, correct: gotIt, naturalness: gotIt ? 5 : 1, self_grade: false };
       setFeedback({ ...feedback, graderOut, outcome: result.outcome });
-      applyFinalOutcome(result.outcome, result.session_complete);
+      applyFinalOutcome(result.outcome, result.session_complete, result.requeued_item);
     } catch (e) {
       alert(String(e));
     } finally {
@@ -663,6 +668,7 @@ export default function StudySessionClient({ session: initialSession }: { sessio
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-mono uppercase tracking-widest text-faint">
                   {TYPE_LABELS[question.type] ?? question.type}
+                  {currentItem.is_requeue && " · retry"}
                 </span>
                 {showStamp && <Seal size={30} stamp />}
               </div>

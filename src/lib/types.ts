@@ -105,6 +105,7 @@ export interface SessionItem {
   grader_output_json: GraderOutput | null;
   response_time_ms: number | null;
   outcome: Outcome | null;
+  is_requeue: boolean;
 }
 
 export interface Session {

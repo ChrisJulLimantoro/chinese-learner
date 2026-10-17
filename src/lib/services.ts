@@ -19,7 +19,7 @@ import {
 } from "./srs";
 import { generateLessonCard } from "./llm";
 import { fallbackQuestion } from "./fallbackQuestion";
-import { assignQuestions } from "./questionBank";
+import { assignQuestions, pickRequeueQuestion } from "./questionBank";
 import { SKIPPED_ANSWER } from "./skippedAnswer";
 import { DEFAULT_OVER_TIMER_MS, OVER_TIMER_MS_BY_TYPE, DEFAULT_SESSION_SIZE, START_HSK_LEVEL, FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS, SUPER_ADMIN_EMAIL } from "./config";
 import type {
@@ -207,6 +207,7 @@ async function createSession(
     grader_output_json: null,
     response_time_ms: null,
     outcome: null,
+    is_requeue: false,
   }));
 
   return {
@@ -378,15 +379,21 @@ type ItemRef = {
   id: number;
   session_id: number;
   word_id: number;
+  is_requeue?: boolean;
   question: Question | null;
   words?: { srs_state?: SrsState[] } | null;
 };
+
+type ItemWithWord = ItemRef & { words: Record<string, unknown> };
 
 type FinalizedGrade = {
   srs_summary: import("./types").SrsState;
   session_complete: boolean;
   new_cursor: number;
+  requeued_item: SessionItem | null;
 };
+
+type FinalizeResult = { new_cursor: number; session_complete: boolean; requeue_item_id: number | null; requeue_order_index: number | null };
 
 function overTimerMsFor(item: ItemRef): number {
   return OVER_TIMER_MS_BY_TYPE[item.question?.type as Question["type"]] ?? DEFAULT_OVER_TIMER_MS;
@@ -419,7 +426,7 @@ function currentSrsState(userId: string, item: ItemRef): SrsState {
   return item.words?.srs_state?.[0] ?? emptySrsState(userId, item.word_id);
 }
 
-function finalizeParams(item: ItemRef, outcome: Outcome, responseTimeMs: number, fields: Record<string, unknown>, srs: SrsState) {
+function finalizeParams(item: ItemRef, outcome: Outcome, responseTimeMs: number, fields: Record<string, unknown>, srs: SrsState, requeueQuestion: Question | null) {
   return {
     p_item_id: item.id,
     p_user_answer: (fields.user_answer as string | undefined) ?? null,
@@ -434,13 +441,46 @@ function finalizeParams(item: ItemRef, outcome: Outcome, responseTimeMs: number,
     p_lapse_streak: srs.lapse_streak,
     p_mastered: srs.mastered,
     p_box5_correct: srs.box5_correct,
+    p_requeue_question: requeueQuestion,
   };
 }
 
 async function finalizeSessionItem(supabase: SupabaseClient, params: ReturnType<typeof finalizeParams>) {
   const { data, error } = await supabase.rpc("finalize_session_item", params).single();
   if (error) throw new Error(`Failed to finalize item: ${error.message}`);
-  return data as { new_cursor: number; session_complete: boolean };
+  return data as FinalizeResult;
+}
+
+function shouldRequeue(item: ItemRef, outcome: Outcome): boolean {
+  return outcome === "wrong" && !item.is_requeue;
+}
+
+async function requeueQuestionFor(supabase: SupabaseClient, userId: string, item: ItemRef, outcome: Outcome): Promise<Question | null> {
+  if (!shouldRequeue(item, outcome)) return null;
+  return pickRequeueQuestion(supabase, userId, item.word_id, item.question);
+}
+
+function nextSrsState(userId: string, item: ItemRef, outcome: Outcome, responseTimeMs: number): SrsState {
+  const current = currentSrsState(userId, item);
+  if (item.is_requeue) return current;
+  return applyAnswer(current, { outcome, overTimer: responseTimeMs > overTimerMsFor(item), hesitated: outcome === "hesitated" });
+}
+
+function requeuedItemOf(item: ItemRef, finalized: FinalizeResult, question: Question | null): SessionItem | null {
+  if (!finalized.requeue_item_id) return null;
+  const word = normalizeWordRow((item as ItemWithWord).words as Record<string, unknown>);
+  return {
+    item_id: finalized.requeue_item_id,
+    order_index: finalized.requeue_order_index!,
+    word,
+    lesson_card: null,
+    question_json: question,
+    user_answer: null,
+    grader_output_json: null,
+    response_time_ms: null,
+    outcome: null,
+    is_requeue: true,
+  };
 }
 
 async function finalizeGrade(
@@ -451,11 +491,12 @@ async function finalizeGrade(
   responseTimeMs: number,
   fields: Record<string, unknown>
 ): Promise<FinalizedGrade> {
-  const flags = { outcome, overTimer: responseTimeMs > overTimerMsFor(item), hesitated: outcome === "hesitated" };
-  const srs = applyAnswer(currentSrsState(userId, item), flags);
-  const params = finalizeParams(item, outcome, responseTimeMs, fields, srs);
+  const srs = nextSrsState(userId, item, outcome, responseTimeMs);
+  const requeueQuestion = await requeueQuestionFor(supabase, userId, item, outcome);
+  const params = finalizeParams(item, outcome, responseTimeMs, fields, srs, requeueQuestion);
   const [finalized] = await Promise.all([finalizeSessionItem(supabase, params), recordQuestionResult(item, fields)]);
-  return { srs_summary: srs, session_complete: finalized.session_complete, new_cursor: finalized.new_cursor };
+  const requeued_item = requeuedItemOf(item, finalized, requeueQuestion);
+  return { srs_summary: srs, session_complete: finalized.session_complete, new_cursor: finalized.new_cursor, requeued_item };
 }
 
 function outcomeFor(graderOut: GraderOutput, hesitated: boolean): Outcome {
@@ -467,7 +508,7 @@ function outcomeFor(graderOut: GraderOutput, hesitated: boolean): Outcome {
 async function loadOwnedItem(supabase: SupabaseClient, userId: string, itemId: number) {
   const { data: item } = await supabase
     .from("session_items")
-    .select("*, words(id, simplified, traditional, pinyin, meanings, lesson_card, srs_state(*))")
+    .select("*, words(id, simplified, traditional, pinyin, hsk_level, pos, meanings, frequency_rank, readings, lesson_card, srs_state(*))")
     .eq("words.srs_state.user_id", userId)
     .eq("id", itemId)
     .eq("user_id", userId)
@@ -489,6 +530,7 @@ export async function gradeAnswer(
   session_complete: boolean;
   outcome: Outcome | null;
   new_cursor: number | null;
+  requeued_item: SessionItem | null;
 }> {
   const item = await loadOwnedItem(supabase, userId, sessionItemId);
   if (item.outcome) throw new Error(`session_item ${sessionItemId} is already graded`);
@@ -497,7 +539,7 @@ export async function gradeAnswer(
   const fields = { user_answer: answer, grader_output: graderOut };
   if (graderOut.self_grade && !hesitated) {
     await saveItemFields(supabase, userId, sessionItemId, { ...fields, response_time_ms: responseTimeMs });
-    return { grader_output: graderOut, srs_summary: null, session_complete: false, outcome: null, new_cursor: null };
+    return { grader_output: graderOut, srs_summary: null, session_complete: false, outcome: null, new_cursor: null, requeued_item: null };
   }
   const outcome = outcomeFor(graderOut, hesitated);
   const finalized = await finalizeGrade(supabase, userId, item, outcome, responseTimeMs, fields);
@@ -519,6 +561,7 @@ export async function selfGrade(
   session_complete: boolean;
   outcome: Outcome;
   new_cursor: number;
+  requeued_item: SessionItem | null;
 }> {
   const item = await loadOwnedItem(supabase, userId, sessionItemId);
   const graderOut = item.grader_output as GraderOutput | null;
@@ -569,6 +612,7 @@ export async function loadSession(
       grader_output_json: (row.grader_output as GraderOutput | null) ?? null,
       response_time_ms: (row.response_time_ms as number | null) ?? null,
       outcome: (row.outcome as Outcome | null) ?? null,
+      is_requeue: Boolean(row.is_requeue),
     };
   });
 
@@ -634,12 +678,13 @@ export async function redrillSession(
     throw new Error(`Session ${sessionId} is not completed (status=${orig.status})`);
   }
 
+  const origItems = orig.items.filter((it) => !it.is_requeue);
   let questions: (Question | null)[];
   if (withVariation) {
     // Lazy: insert null, questions generated on demand as user progresses
-    questions = orig.items.map(() => null);
+    questions = origItems.map(() => null);
   } else {
-    questions = orig.items.map((it) => it.question_json);
+    questions = origItems.map((it) => it.question_json);
   }
 
   const nowSeconds = Date.now() / 1000;
@@ -665,7 +710,7 @@ export async function redrillSession(
 
   const newSessionId = newSession.id as number;
 
-  const itemInserts = orig.items.map((origItem, i) => ({
+  const itemInserts = origItems.map((origItem, i) => ({
     session_id: newSessionId,
     user_id: userId,
     order_index: i,
@@ -678,7 +723,7 @@ export async function redrillSession(
     .insert(itemInserts)
     .select();
 
-  const items: SessionItem[] = orig.items.map((origItem, i) => ({
+  const items: SessionItem[] = origItems.map((origItem, i) => ({
     item_id: (itemRows ?? [])[i]?.id as number,
     order_index: i,
     word: origItem.word,
@@ -688,6 +733,7 @@ export async function redrillSession(
     grader_output_json: null,
     response_time_ms: null,
     outcome: null,
+    is_requeue: false,
   }));
 
   return {

@@ -1,6 +1,6 @@
 import { shuffle } from "./scramble";
 
-const TONE_MARKS: Record<string, string> = {
+const LOWER_TONE_MARKS: Record<string, string> = {
   a: "āáǎà",
   e: "ēéěè",
   i: "īíǐì",
@@ -8,9 +8,13 @@ const TONE_MARKS: Record<string, string> = {
   u: "ūúǔù",
   ü: "ǖǘǚǜ",
 };
+const UPPER_TONE_MARKS = Object.fromEntries(
+  Object.entries(LOWER_TONE_MARKS).map(([base, marks]) => [base.toUpperCase(), marks.toUpperCase()])
+);
+const TONE_MARKS: Record<string, string> = { ...LOWER_TONE_MARKS, ...UPPER_TONE_MARKS };
 const NEUTRAL_TONE = 5;
 const TONES = [1, 2, 3, 4, NEUTRAL_TONE];
-const VOWEL_RUN = new RegExp(`([aeiouü${Object.values(TONE_MARKS).join("")}]+)`);
+const VOWEL_RUN = new RegExp(`([${Object.keys(TONE_MARKS).join("")}${Object.values(TONE_MARKS).join("")}]+)`);
 const MARKED = new Map(
   Object.entries(TONE_MARKS).flatMap(([base, marks]) =>
     Array.from(marks).map((mark, i) => [mark, { base, tone: i + 1 }] as const)
@@ -39,9 +43,10 @@ export function toneOf(nucleus: string): number {
 }
 
 function markIndex(plain: string): number {
-  if (plain.includes("a")) return plain.indexOf("a");
-  if (plain.includes("e")) return plain.indexOf("e");
-  if (plain.includes("ou")) return plain.indexOf("o");
+  const lower = plain.toLowerCase();
+  if (lower.includes("a")) return lower.indexOf("a");
+  if (lower.includes("e")) return lower.indexOf("e");
+  if (lower.includes("ou")) return lower.indexOf("o");
   return plain.length - 1;
 }
 

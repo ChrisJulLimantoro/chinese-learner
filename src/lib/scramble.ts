@@ -4,11 +4,11 @@ export const BOARD_SIZE = 50;
 export const MAX_WORD_LENGTH = 3;
 export const SCRAMBLE_SECONDS = DRILL_TIMER_SECONDS;
 const OPTION_COUNT = 4;
-const POINTS_PER_CHAR = 10;
+const POINTS_BY_LENGTH = [0, 5, 20, 40];
 
 export type IndexedWord = { id: number; simplified: string; pinyin: string; meaning: string; level: number; pos: string[] };
 export type Tile = { id: number; char: string };
-export type ScrambleBoard = { tiles: Tile[]; index: IndexedWord[] };
+export type ScrambleBoard = { tiles: Tile[]; index: IndexedWord[]; seeded: number[] };
 export type WordResult = { wordId: number; correct: boolean };
 export type SrsSnapshot = { word_id: number; next_review_at: number; mastered: boolean };
 
@@ -21,7 +21,7 @@ export function shortMeaning(meanings: string[]): string {
 }
 
 export function pointsFor(simplified: string): number {
-  return simplified.length * POINTS_PER_CHAR;
+  return POINTS_BY_LENGTH[simplified.length] ?? 0;
 }
 
 function swap<T>(items: T[], i: number, j: number): void {

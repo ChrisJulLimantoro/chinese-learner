@@ -4,11 +4,13 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { startScrambleAction, submitScrambleAction } from "../actions/scramble";
 import { MAX_WORD_LENGTH, meaningOptions, pointsFor } from "@/lib/scramble";
 import type { IndexedWord, ScrambleBoard, WordResult } from "@/lib/scramble";
-import { makeLookups, selectionText } from "./scrambleLookups";
+import { isRejectedSingleChar, makeLookups, selectionText } from "./scrambleLookups";
 import type { FoundWord } from "./ScrambleSummary";
 
 export type Phase = "intro" | "loading" | "playing" | "done";
 export type PickerState = { word: IndexedWord; options: string[]; tileIds: number[] };
+
+const SINGLE_CHAR_REJECTION = "Single characters only count if they're on the board as words";
 
 function toggleIn(selected: number[], tileId: number): number[] {
   if (selected.includes(tileId)) return selected.filter((id) => id !== tileId);
@@ -73,13 +75,18 @@ export function useScrambleGame() {
     setSelected([]);
   };
 
+  const rejectionFor = (word: IndexedWord | undefined): string | null => {
+    if (!word) return "Not a word in your list";
+    if (isRejectedSingleChar(lookups!, word)) return SINGLE_CHAR_REJECTION;
+    return results.some((r) => r.wordId === word.id) ? "Already tried that word" : null;
+  };
+
   const checkSelection = () => {
     if (!lookups) return;
     const word = lookups.byText.get(selectionText(lookups, selected));
-    if (!word) return rejectSelection("Not a word in your list");
-    if (results.some((r) => r.wordId === word.id)) return rejectSelection("Already tried that word");
-    const options = meaningOptions(word, lookups.pools);
-    setPicker({ word, options, tileIds: selected });
+    const rejection = rejectionFor(word);
+    if (rejection) return rejectSelection(rejection);
+    setPicker({ word: word!, options: meaningOptions(word!, lookups.pools), tileIds: selected });
   };
 
   const resolvePicker = (correct: boolean) => {

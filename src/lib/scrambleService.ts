@@ -63,7 +63,8 @@ export async function startScramble(supabase: SupabaseClient, userId: string): P
     fetchSrsSnapshots(supabase, userId),
   ]);
   const ordered = orderCandidates(index, srs, Date.now() / 1000, profile.current_hsk_level);
-  return { tiles: shuffleTiles(pickSeedWords(ordered, BOARD_SIZE)), index };
+  const seededWords = pickSeedWords(ordered, BOARD_SIZE);
+  return { tiles: shuffleTiles(seededWords), index, seeded: seededWords.map((w) => w.id) };
 }
 
 function firstResultPerWord(results: WordResult[]): WordResult[] {

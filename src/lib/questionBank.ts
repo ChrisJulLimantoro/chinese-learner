@@ -34,7 +34,7 @@ function toBankQuestion(row: BankRow): BankQuestion {
 
 function addRows(bank: QuestionBank, rows: BankRow[]): QuestionBank {
   for (const row of rows) {
-    bank.set(row.word_id, [...(bank.get(row.word_id) ?? []), toBankQuestion(row)]);
+    bank.set(row.word_id, [...(bank.get(row.word_id) ?? []), toBankQuestion(row)].slice(0, QUESTIONS_PER_WORD));
   }
   return bank;
 }
@@ -44,7 +44,8 @@ export async function loadBank(supabase: SupabaseClient, wordIds: number[]): Pro
     .from("word_questions")
     .select(BANK_COLUMNS)
     .in("word_id", wordIds)
-    .eq("retired", false);
+    .eq("retired", false)
+    .order("id");
   return addRows(new Map(), (data ?? []) as BankRow[]);
 }
 
@@ -99,7 +100,10 @@ function usableInsertRows(words: Word[], generated: Question[]) {
 
 async function insertRows(admin: SupabaseClient, bank: QuestionBank, rows: object[]): Promise<QuestionBank> {
   if (rows.length === 0) return bank;
-  const { data } = await admin.from("word_questions").insert(rows).select(BANK_COLUMNS);
+  const { data } = await admin
+    .from("word_questions")
+    .upsert(rows, { onConflict: "word_id,prompt_hash", ignoreDuplicates: true })
+    .select(BANK_COLUMNS);
   return addRows(bank, (data ?? []) as BankRow[]);
 }
 

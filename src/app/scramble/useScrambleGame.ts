@@ -2,15 +2,13 @@
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import { startScrambleAction, submitScrambleAction } from "../actions/scramble";
-import { MAX_WORD_LENGTH, meaningOptions, pointsFor } from "@/lib/scramble";
-import type { IndexedWord, ScrambleBoard, WordResult } from "@/lib/scramble";
-import { isRejectedSingleChar, makeLookups, selectionText } from "./scrambleLookups";
+import { MAX_WORD_LENGTH, pointsFor } from "@/lib/scramble";
+import type { BoardWord, ScrambleBoard, WordResult } from "@/lib/scramble";
+import { makeLookups, selectionText } from "./scrambleLookups";
 import type { FoundWord } from "./ScrambleSummary";
 
 export type Phase = "intro" | "loading" | "playing" | "done";
-export type PickerState = { word: IndexedWord; options: string[]; tileIds: number[] };
-
-const SINGLE_CHAR_REJECTION = "Single characters only count if they're on the board as words";
+export type PickerState = { word: BoardWord; options: string[]; tileIds: number[] };
 
 function toggleIn(selected: number[], tileId: number): number[] {
   if (selected.includes(tileId)) return selected.filter((id) => id !== tileId);
@@ -20,7 +18,6 @@ function toggleIn(selected: number[], tileId: number): number[] {
 export function useScrambleGame() {
   const [phase, setPhase] = useState<Phase>("intro");
   const [board, setBoard] = useState<ScrambleBoard | null>(null);
-  const [runId, setRunId] = useState(0);
   const [selected, setSelected] = useState<number[]>([]);
   const [removed, setRemoved] = useState<Set<number>>(new Set());
   const [picker, setPicker] = useState<PickerState | null>(null);
@@ -34,7 +31,6 @@ export function useScrambleGame() {
   const beginRun = (next: ScrambleBoard) => {
     finishedRef.current = false;
     setBoard(next);
-    setRunId((id) => id + 1);
     setSelected([]);
     setRemoved(new Set());
     setPicker(null);
@@ -55,12 +51,12 @@ export function useScrambleGame() {
     }
   };
 
-  const finish = useCallback((finalResults: WordResult[]) => {
+  const finish = useCallback((runId: number, finalResults: WordResult[]) => {
     if (finishedRef.current) return;
     finishedRef.current = true;
     setPicker(null);
     setPhase("done");
-    submitScrambleAction(finalResults)
+    submitScrambleAction(runId, finalResults)
       .then(() => setSaved(true))
       .catch(() => setMessage("Could not save this run."));
   }, []);
@@ -75,9 +71,8 @@ export function useScrambleGame() {
     setSelected([]);
   };
 
-  const rejectionFor = (word: IndexedWord | undefined): string | null => {
+  const rejectionFor = (word: BoardWord | undefined): string | null => {
     if (!word) return "Not a word in your list";
-    if (isRejectedSingleChar(lookups!, word)) return SINGLE_CHAR_REJECTION;
     return results.some((r) => r.wordId === word.id) ? "Already tried that word" : null;
   };
 
@@ -86,7 +81,7 @@ export function useScrambleGame() {
     const word = lookups.byText.get(selectionText(lookups, selected));
     const rejection = rejectionFor(word);
     if (rejection) return rejectSelection(rejection);
-    setPicker({ word: word!, options: meaningOptions(word!, lookups.pools), tileIds: selected });
+    setPicker({ word: word!, options: word!.options, tileIds: selected });
   };
 
   const resolvePicker = (correct: boolean) => {
@@ -98,7 +93,7 @@ export function useScrambleGame() {
     setSelected([]);
     setPicker(null);
     if (correct) setScore((s) => s + pointsFor(picker.word.simplified));
-    if (nextRemoved.size === board.tiles.length) finish(nextResults);
+    if (nextRemoved.size === board.tiles.length) finish(board.runId, nextResults);
   };
 
   const found: FoundWord[] = results.flatMap((r) => {
@@ -106,10 +101,10 @@ export function useScrambleGame() {
     return word ? [{ word, correct: r.correct }] : [];
   });
 
-  const expire = useCallback(() => finish(results), [finish, results]);
+  const expire = useCallback(() => board && finish(board.runId, results), [board, finish, results]);
 
   return {
-    phase, board, lookups, runId, selected, removed, picker, score, saved, message, found,
+    phase, board, lookups, selected, removed, picker, score, saved, message, found,
     start, toggleTile, checkSelection, resolvePicker, expire,
     clearSelection: () => setSelected([]),
   };

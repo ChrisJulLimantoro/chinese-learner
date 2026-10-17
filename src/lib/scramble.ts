@@ -8,7 +8,8 @@ const POINTS_BY_LENGTH = [0, 5, 20, 40];
 
 export type IndexedWord = { id: number; simplified: string; pinyin: string; meaning: string; level: number; pos: string[] };
 export type Tile = { id: number; char: string };
-export type ScrambleBoard = { tiles: Tile[]; index: IndexedWord[]; seeded: number[] };
+export type BoardWord = IndexedWord & { options: string[] };
+export type ScrambleBoard = { runId: number; tiles: Tile[]; seeded: number[]; words: BoardWord[] };
 export type WordResult = { wordId: number; correct: boolean };
 export type SrsSnapshot = { word_id: number; next_review_at: number; mastered: boolean };
 
@@ -140,4 +141,37 @@ function collectDistractors(word: IndexedWord, pools: DistractorPools, random: (
 
 export function meaningOptions(word: IndexedWord, pools: DistractorPools, random: () => number = Math.random): string[] {
   return shuffle([...collectDistractors(word, pools, random)], random);
+}
+
+function charCounts(chars: string[]): Map<string, number> {
+  const counts = new Map<string, number>();
+  chars.forEach((c) => counts.set(c, (counts.get(c) ?? 0) + 1));
+  return counts;
+}
+
+function fitsBoard(word: IndexedWord, board: Map<string, number>): boolean {
+  const needed = charCounts(Array.from(word.simplified));
+  return [...needed].every(([char, count]) => (board.get(char) ?? 0) >= count);
+}
+
+function isEligible(word: IndexedWord, seeded: Set<number>): boolean {
+  return word.simplified.length > 1 || seeded.has(word.id);
+}
+
+function indexByFirstChar(words: IndexedWord[]): Map<string, IndexedWord[]> {
+  const byFirstChar = new Map<string, IndexedWord[]>();
+  words.forEach((w) => pushTo(byFirstChar, Array.from(w.simplified)[0], w));
+  return byFirstChar;
+}
+
+export function formableWords(index: IndexedWord[], tiles: Tile[], seeded: Set<number>): IndexedWord[] {
+  const board = charCounts(tiles.map((t) => t.char));
+  const unique = [...buildWordIndex(index.filter((w) => isEligible(w, seeded))).values()];
+  const byFirstChar = indexByFirstChar(unique);
+  return [...board.keys()].flatMap((char) => (byFirstChar.get(char) ?? []).filter((w) => fitsBoard(w, board)));
+}
+
+export function withMeaningOptions(words: IndexedWord[], index: IndexedWord[], random: () => number = Math.random): BoardWord[] {
+  const pools = buildDistractorPools(index);
+  return words.map((w) => ({ ...w, options: meaningOptions(w, pools, random) }));
 }

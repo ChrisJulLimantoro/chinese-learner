@@ -9,7 +9,7 @@ export async function startScrambleAction() {
   return startScramble(supabase, userId);
 }
 
-export async function submitScrambleAction(results: WordResult[]) {
+export async function submitScrambleAction(runId: number, results: WordResult[]) {
   const { supabase, userId } = await getUserContext();
-  return submitScramble(supabase, userId, results);
+  return submitScramble(supabase, userId, runId, results);
 }

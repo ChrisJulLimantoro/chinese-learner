@@ -64,7 +64,7 @@ export default function ScrambleClient() {
         <>
           <div className="flex items-center gap-4">
             <div className="flex-1">
-              <ScrambleTimer key={game.runId} seconds={SCRAMBLE_SECONDS} running onExpire={game.expire} />
+              <ScrambleTimer key={game.board!.runId} seconds={SCRAMBLE_SECONDS} running onExpire={game.expire} />
             </div>
             <span className="font-mono text-sm tabular-nums text-ink">{game.score} pts</span>
           </div>

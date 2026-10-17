@@ -15,7 +15,8 @@ import {
   countDue,
   checkProgression,
 } from "./srs";
-import { generateLessonCard, safeGenerateQuestion } from "./llm";
+import { generateLessonCard, stubQuestions } from "./llm";
+import { assignQuestions } from "./questionBank";
 import { DEFAULT_SESSION_SIZE, START_HSK_LEVEL, FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS, SUPER_ADMIN_EMAIL } from "./config";
 import type {
   Word,
@@ -171,13 +172,13 @@ async function createSession(
 
   const sessionId = sessionRow.id as number;
 
-  // Insert items with question: null (lazy generation)
+  const assigned = await assignQuestions(supabase, createAdminClient(), userId, words);
   const itemInserts = words.map((w, i) => ({
     session_id: sessionId,
     user_id: userId,
     order_index: i,
     word_id: w.id,
-    question: null,
+    question: assigned.get(w.id) ?? null,
   }));
 
   const { data: itemRows } = await supabase
@@ -195,7 +196,7 @@ async function createSession(
     order_index: i,
     word: normalizeWordRow(w as unknown as Record<string, unknown>),
     lesson_card: null,
-    question_json: null,
+    question_json: assigned.get(w.id) ?? null,
     user_answer: null,
     grader_output_json: null,
     response_time_ms: null,
@@ -240,8 +241,8 @@ export async function ensureItemQuestion(
   const w = (item.words as Record<string, unknown>) ?? {};
   const word = normalizeWordRow(w);
 
-  // Generate with stub fallback
-  const question = await safeGenerateQuestion(word);
+  const assigned = await assignQuestions(supabase, createAdminClient(), userId, [word]);
+  const question = assigned.get(word.id) ?? stubQuestions([word])[0];
 
   // Persist
   await supabase

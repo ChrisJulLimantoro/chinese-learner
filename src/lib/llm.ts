@@ -267,6 +267,15 @@ function stubGrade(question: Question, answer: string): GraderOutput {
 // Public API
 // ---------------------------------------------------------------------------
 
+export type QuestionWordInput = {
+  simplified: string;
+  pinyin?: string;
+  hsk_level?: number;
+  meanings?: string[];
+  readings?: Reading[];
+  required_type?: Question["type"];
+};
+
 export async function safeGenerateQuestion(
   word: { simplified: string; pinyin?: string; hsk_level?: number; meanings?: string[]; readings?: Reading[] }
 ): Promise<Question> {
@@ -355,15 +364,28 @@ Grounding rules (critical for accuracy):
   ], 0.2);
 }
 
+export const QUESTION_TYPES: Question["type"][] = ["en_to_zh", "cloze", "synonym_discrim", "gloss_to_word"];
+
+function hasUsableFields(q: Question): boolean {
+  if (!QUESTION_TYPES.includes(q.type) || !q.prompt?.trim()) return false;
+  return q.type !== "en_to_zh" || Boolean(q.reference_answer?.trim());
+}
+
+export function isUsableQuestion(q: Question | undefined, word: { simplified: string }): q is Question {
+  if (!q || !hasUsableFields(q)) return false;
+  return q.target_word === word.simplified && !q.prompt.includes(word.simplified);
+}
+
 export async function generateQuestions(
-  words: { simplified: string; pinyin?: string; hsk_level?: number; meanings?: string[]; readings?: Reading[] }[]
+  words: QuestionWordInput[]
 ): Promise<Question[]> {
   if (USE_STUB) return stubQuestions(words);
 
   const wordsStr = words
     .map((w) => {
       const allMeanings = (w.meanings ?? []).join(", ");
-      const base = `- ${w.simplified} (${w.pinyin ?? ""}) hsk${w.hsk_level ?? "?"}: ${allMeanings}`;
+      const typeTag = w.required_type ? ` [required type: ${w.required_type}]` : "";
+      const base = `- ${w.simplified} (${w.pinyin ?? ""}) hsk${w.hsk_level ?? "?"}${typeTag}: ${allMeanings}`;
       if (w.readings && w.readings.length > 1) {
         const readingLines = w.readings.map((r) => `  Readings: ${r.pinyin} = ${r.meanings.join(", ")}`).join("\n");
         return `${base}\n${readingLines}`;
@@ -393,7 +415,9 @@ Each question JSON must match:
   "context": string,
   "sentence_translation": string,
   "target_hint": string,
-  "context_helpers": [{"word": string, "pinyin": string, "gloss": string}]
+  "context_helpers": [{"word": string, "pinyin": string, "gloss": string}],
+  "accepted_answers": [string],
+  "reference_answer": string
 }
 
 Rules:
@@ -412,6 +436,10 @@ Rules:
 - "sentence_translation": for cloze type ONLY, provide the full English translation of the COMPLETE sentence with the target word restored (e.g. 小心！房子着火了！ → "Careful! The house caught fire!"). This is shown to the learner as a free cue so they can answer the blank — it is deliberately informative, NOT a prompt leak. For en_to_zh, synonym_discrim, and gloss_to_word, set "sentence_translation" to "".
 - "target_hint": one short line for the TARGET word only — include hanzi, pinyin, and the intended sense. This is shown only when the learner requests a penalized hint; it must NOT appear in "prompt".
 - "context_helpers": array of glosses for OTHER words that appear in the prompt sentence (not the target word). Each entry: {"word": "<hanzi>", "pinyin": "<marked pinyin>", "gloss": "<English meaning>"}. Include 2–5 helpers when the prompt uses vocabulary beyond the target word. Empty array if the prompt is a single-word gloss question.
+
+- When a word line has "[required type: X]", that word's question type MUST be X.
+- "accepted_answers": for cloze, synonym_discrim and gloss_to_word, list OTHER hanzi words (not the target) that would also be fully correct for the blank / meaning, so the answer can be checked without AI. Use [] when only the target fits.
+- "reference_answer": for en_to_zh ONLY, one natural model Mandarin translation of the prompt sentence that uses the target word. For other types set it to "".
 
 Return a JSON array of exactly ${words.length} question objects.
 `;

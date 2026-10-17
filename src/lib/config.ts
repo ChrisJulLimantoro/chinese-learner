@@ -25,6 +25,7 @@ export const DRILL_TIMER_SECONDS = 120;
 // Session defaults
 // ---------------------------------------------------------------------------
 export const DEFAULT_SESSION_SIZE = 10;
+export const QUESTIONS_PER_WORD = 6;
 export const MAX_HSK_LEVEL = 6;
 export const MIN_HSK_LEVEL = 1;
 export const START_HSK_LEVEL = 2;

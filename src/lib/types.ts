@@ -61,6 +61,11 @@ export interface Question {
   target_hint?: string;
   /** Free helpers — glosses for other words in the prompt sentence. */
   context_helpers?: ContextHelper[];
+  bank_id?: number;
+  /** Other hanzi that are valid for the blank / answer. */
+  accepted_answers?: string[];
+  /** Model translation for en_to_zh, used for self-grading. */
+  reference_answer?: string;
 }
 
 export interface GraderOutput {

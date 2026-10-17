@@ -57,14 +57,15 @@ export async function storeCache(
   );
 }
 
-export function matchesTarget(question: Question, normalized: string): boolean {
+export function matchesTarget(question: Question, normalized: string, traditional?: string | null): boolean {
   if (question.type === "en_to_zh") return false;
-  return acceptedTargets(question).some((a) => normalize(a) === normalized);
+  return acceptedTargets(question, traditional).some((a) => normalize(a) === normalized);
 }
 
-function acceptedTargets(question: Question): string[] {
+function acceptedTargets(question: Question, traditional?: string | null): string[] {
   const accepted = question.accepted_answers ?? [];
-  return question.type === "tone_pick" ? accepted : [question.target_word, ...accepted];
+  if (question.type === "tone_pick") return accepted;
+  return [question.target_word, ...accepted, ...(traditional ? [traditional] : [])];
 }
 
 async function gradeWithModel(
@@ -84,10 +85,10 @@ function gradeWithoutModel(word: WordFacts, question: Question, normalized: stri
   return templateVerdict(word, false, normalized);
 }
 
-function resolveDeterministic(word: WordFacts, question: Question, normalized: string): GraderOutput | null {
+export function resolveDeterministic(word: WordFacts, question: Question, normalized: string): GraderOutput | null {
   if (normalized === SKIPPED_ANSWER) return templateVerdict(word, false, normalized);
-  if (question.type === "tone_pick") return templateVerdict(word, matchesTarget(question, normalized), normalized);
-  if (matchesTarget(question, normalized)) return templateVerdict(word, true, normalized);
+  if (question.type === "tone_pick") return templateVerdict(word, matchesTarget(question, normalized, word.traditional), normalized);
+  if (matchesTarget(question, normalized, word.traditional)) return templateVerdict(word, true, normalized);
   return null;
 }
 

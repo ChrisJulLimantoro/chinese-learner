@@ -1,7 +1,7 @@
 import { correctExtras, findNearSynonym, synonymExplanation, wrongExtras } from "./lessonFeedback";
 import type { GraderOutput, LessonCard, Question, Word } from "./types";
 
-export type WordFacts = Pick<Word, "simplified" | "pinyin" | "meanings"> & { lesson_card?: LessonCard | null };
+export type WordFacts = Pick<Word, "simplified" | "pinyin" | "meanings"> & { traditional?: string | null; lesson_card?: LessonCard | null };
 
 function describeWord(word: WordFacts): string {
   return `${word.simplified} (${word.pinyin}) — ${word.meanings.slice(0, 2).join("; ")}`;

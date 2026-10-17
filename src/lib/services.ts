@@ -461,7 +461,7 @@ function outcomeFor(graderOut: GraderOutput, hesitated: boolean): Outcome {
 async function loadOwnedItem(supabase: SupabaseClient, userId: string, itemId: number) {
   const { data: item } = await supabase
     .from("session_items")
-    .select("*, words(id, simplified, pinyin, meanings, lesson_card, srs_state(*))")
+    .select("*, words(id, simplified, traditional, pinyin, meanings, lesson_card, srs_state(*))")
     .eq("words.srs_state.user_id", userId)
     .eq("id", itemId)
     .eq("user_id", userId)

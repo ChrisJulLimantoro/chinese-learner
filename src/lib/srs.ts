@@ -30,6 +30,51 @@ export async function ensureSrsState(
   );
 }
 
+type SrsOutcomeFlags = { outcome: Outcome; overTimer: boolean; hesitated: boolean };
+type SrsProgress = Pick<SrsState, "box" | "correct_count" | "wrong_count" | "hesitated_count" | "lapse_streak">;
+
+function isCleanCorrect({ outcome, overTimer, hesitated }: SrsOutcomeFlags): boolean {
+  return outcome === "correct" && !overTimer && !hesitated;
+}
+
+function nextCounts(row: SrsProgress, flags: SrsOutcomeFlags): SrsProgress {
+  const counted = flags.outcome !== "wrong" && (flags.outcome === "hesitated" || !flags.hesitated);
+  return {
+    box: row.box,
+    correct_count: row.correct_count + (counted ? 1 : 0),
+    wrong_count: row.wrong_count + (flags.outcome === "wrong" ? 1 : 0),
+    hesitated_count: row.hesitated_count + (flags.outcome === "hesitated" ? 1 : 0),
+    lapse_streak: row.lapse_streak + (flags.outcome === "wrong" ? 1 : 0),
+  };
+}
+
+function nextBox(box: number, flags: SrsOutcomeFlags): number {
+  if (flags.outcome === "wrong") return Math.max(1, box - 1);
+  return isCleanCorrect(flags) ? Math.min(5, box + 1) : box;
+}
+
+function applyLeakPlugger(progress: SrsProgress): SrsProgress {
+  if (progress.lapse_streak < LEAK_PLUGGER_THRESHOLD) return progress;
+  return { ...progress, box: 1, lapse_streak: 0 };
+}
+
+function resetStreakOnSolidRecall(row: SrsProgress, flags: SrsOutcomeFlags): SrsProgress {
+  return isCleanCorrect(flags) && row.box >= 3 ? { ...row, lapse_streak: 0 } : row;
+}
+
+export function computeProgress(row: SrsProgress, flags: SrsOutcomeFlags): SrsProgress {
+  const counted = resetStreakOnSolidRecall(nextCounts(row, flags), flags);
+  return applyLeakPlugger({ ...counted, box: nextBox(row.box, flags) });
+}
+
+function isMastered(progress: SrsProgress): boolean {
+  return progress.box === MASTERY_BOX && progress.correct_count >= MASTERY_EXTRA_CORRECT;
+}
+
+function nextReviewAfter(box: number): number {
+  return Date.now() / 1000 + (BOX_INTERVALS[box] ?? BOX_INTERVALS[5]);
+}
+
 export async function updateSrs(
   supabase: SupabaseClient,
   userId: string,
@@ -39,66 +84,10 @@ export async function updateSrs(
   hesitated: boolean = false
 ): Promise<SrsState> {
   await ensureSrsState(supabase, userId, wordId);
-
-  const { data: row } = await supabase
-    .from("srs_state")
-    .select("*")
-    .eq("user_id", userId)
-    .eq("word_id", wordId)
-    .single();
-
-  let box: number = row.box;
-  let correctCount: number = row.correct_count;
-  let wrongCount: number = row.wrong_count;
-  let hesitatedCount: number = row.hesitated_count;
-
-  // Determine new counts
-  if (outcome === "correct" && !hesitated) {
-    correctCount += 1;
-  } else if (outcome === "wrong") {
-    wrongCount += 1;
-  } else if (outcome === "hesitated") {
-    hesitatedCount += 1;
-    correctCount += 1; // counts as correct, no promotion
-  }
-
-  // Determine new box
-  const noPromote = overTimer || hesitated || outcome === "hesitated";
-
-  if (outcome === "wrong") {
-    box = Math.max(1, box - 1);
-  } else if (outcome === "correct" && !noPromote) {
-    box = Math.min(5, box + 1);
-  }
-  // else: stay
-
-  // Leak-plugger: wrong_count cumulative — never resets, port as-is
-  if (wrongCount >= LEAK_PLUGGER_THRESHOLD) {
-    box = 1;
-  }
-
-  // Mastery: box 5 + enough correct
-  const mastered = box === MASTERY_BOX && correctCount >= MASTERY_EXTRA_CORRECT;
-
-  const interval = BOX_INTERVALS[box] ?? BOX_INTERVALS[5];
-  const nowSeconds = Date.now() / 1000;
-  const nextReviewAt = nowSeconds + interval;
-
-  const { data: updated } = await supabase
-    .from("srs_state")
-    .update({
-      box,
-      next_review_at: nextReviewAt,
-      correct_count: correctCount,
-      wrong_count: wrongCount,
-      hesitated_count: hesitatedCount,
-      mastered,
-    })
-    .eq("user_id", userId)
-    .eq("word_id", wordId)
-    .select()
-    .single();
-
+  const { data: row } = await supabase.from("srs_state").select("*").eq("user_id", userId).eq("word_id", wordId).single();
+  const progress = computeProgress(row, { outcome, overTimer, hesitated });
+  const fields = { ...progress, next_review_at: nextReviewAfter(progress.box), mastered: isMastered(progress) };
+  const { data: updated } = await supabase.from("srs_state").update(fields).eq("user_id", userId).eq("word_id", wordId).select().single();
   return updated as SrsState;
 }
 

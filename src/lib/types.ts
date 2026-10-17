@@ -88,6 +88,7 @@ export interface SrsState {
   correct_count: number;
   wrong_count: number;
   hesitated_count: number;
+  lapse_streak: number;
   mastered: boolean;
 }
 

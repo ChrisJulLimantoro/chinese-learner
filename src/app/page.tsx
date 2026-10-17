@@ -4,6 +4,7 @@ import { listSessions, dueReviews, getInProgressSession } from "@/lib/services";
 import HomeClient from "./HomeClient";
 import LandingClient from "./LandingClient";
 
+export const maxDuration = 60;
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {

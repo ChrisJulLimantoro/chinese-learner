@@ -39,6 +39,7 @@ function statusLabel(status: string) {
 const WEEKDAYS_CN = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
 
 const NAV = [
+  { cn: "乱", label: "Scramble", desc: "120s word-spelling game", href: "/scramble" },
   { cn: "词库", label: "Vocabulary", desc: "Browse the word bank", href: "/vocabulary" },
   { cn: "进度", label: "Stats", desc: "Mastery & streak", href: "/stats" },
   { cn: "记录", label: "Sessions", desc: "Full history", href: "/sessions" },
@@ -230,12 +231,12 @@ export default function HomeClient({
       </Card>
 
       {/* ── Notebook index ──────────────────────────────────────────── */}
-      <div className="grid sm:grid-cols-3 rounded-2xl border border-border bg-surface overflow-hidden divide-y sm:divide-y-0 sm:divide-x divide-border mb-10">
+      <div className="grid sm:grid-cols-2 gap-px rounded-2xl border border-border bg-border overflow-hidden mb-10">
         {NAV.map((n) => (
           <button
             key={n.href}
             onClick={() => router.push(n.href)}
-            className="group flex items-center gap-3 text-left px-5 py-4 hover:bg-surface-2 transition-colors"
+            className="group flex items-center gap-3 text-left px-5 py-4 bg-surface hover:bg-surface-2 transition-colors"
           >
             <span className="hanzi text-2xl text-seal/70 shrink-0 w-9 text-center" aria-hidden>
               {n.cn}

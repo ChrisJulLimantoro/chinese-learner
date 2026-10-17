@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: "/study",      label: "Study",      icon: "✎" },
   { href: "/vocabulary", label: "Vocabulary", icon: "本" },
   { href: "/sessions",   label: "Sessions",   icon: "☰" },
+  { href: "/scramble",   label: "Scramble",   icon: "字" },
   { href: "/stats",      label: "Stats",      icon: "◉" },
 ];
 

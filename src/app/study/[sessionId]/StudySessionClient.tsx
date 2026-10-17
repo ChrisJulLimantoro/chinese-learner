@@ -13,8 +13,11 @@ import SelfGradePanel from "./SelfGradePanel";
 import ReportQuestionButton from "./ReportQuestionButton";
 import ToneOptions from "./ToneOptions";
 import { SKIPPED_ANSWER } from "@/lib/skippedAnswer";
+import { DEFAULT_OVER_TIMER_MS, OVER_TIMER_MS_BY_TYPE } from "@/lib/config";
 
-const TIMER_SECONDS = 120;
+function timerSecondsFor(question: Question | null): number {
+  return (OVER_TIMER_MS_BY_TYPE[question?.type as Question["type"]] ?? DEFAULT_OVER_TIMER_MS) / 1000;
+}
 const TYPE_LABELS: Record<string, string> = {
   en_to_zh:        "Translate to Mandarin",
   cloze:           "Fill in the blank",
@@ -282,7 +285,7 @@ export default function StudySessionClient({ session: initialSession }: { sessio
   const [answer, setAnswer] = useState("");
   const [grading, setGrading] = useState(false);
   const [feedback, setFeedback] = useState<{ graderOut: GraderOutput; outcome: string | null; userAnswer: string } | null>(null);
-  const [timeLeft, setTimeLeft] = useState(TIMER_SECONDS);
+  const [timeLeft, setTimeLeft] = useState(() => timerSecondsFor(initialSession.items[initialSession.cursor]?.question_json ?? null));
   const [overTimer, setOverTimer] = useState(false);
   const [sessionComplete, setSessionComplete] = useState(initialSession.status === "completed");
   const [showStamp, setShowStamp] = useState(false);
@@ -300,6 +303,7 @@ export default function StudySessionClient({ session: initialSession }: { sessio
   const startTimeRef = useRef<number>(0); // set on each drill mount, before any read
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const answerRef = useRef<HTMLInputElement>(null);
+  const timerSeconds = timerSecondsFor(items[cursor]?.question_json ?? null);
 
   // Helper to update a single item in state
   const patchItem = useCallback((idx: number, patch: Partial<Session["items"][number]>) => {
@@ -387,7 +391,7 @@ export default function StudySessionClient({ session: initialSession }: { sessio
 
   useEffect(() => {
     if (phase !== "drill" || loadingQuestion) return;
-    setTimeLeft(TIMER_SECONDS); // eslint-disable-line react-hooks/set-state-in-effect -- timer reset is intentional
+    setTimeLeft(timerSeconds); // eslint-disable-line react-hooks/set-state-in-effect -- timer reset is intentional
     setOverTimer(false);
     startTimeRef.current = Date.now();
 
@@ -404,7 +408,7 @@ export default function StudySessionClient({ session: initialSession }: { sessio
 
     answerRef.current?.focus();
     return () => clearInterval(timerRef.current!);
-  }, [phase, cursor, loadingQuestion]);
+  }, [phase, cursor, loadingQuestion, timerSeconds]);
 
   const currentItem = items[cursor] ?? items[items.length - 1];
   const totalDrill = items.length;
@@ -606,15 +610,15 @@ export default function StudySessionClient({ session: initialSession }: { sessio
   };
 
   const timerColor =
-    overTimer ? "text-seal" : timeLeft < 30 ? "text-ochre" : "text-faint";
+    overTimer ? "text-seal" : timeLeft <= timerSeconds / 4 ? "text-ochre" : "text-faint";
 
   const question: Question | null = currentItem?.question_json ?? null;
 
   // Timer rail: fill depletes bottom-upward as time runs out (ink barometer)
-  const timerFillPct = loadingQuestion || overTimer ? 0 : (timeLeft / TIMER_SECONDS) * 100;
+  const timerFillPct = loadingQuestion || overTimer ? 0 : (timeLeft / timerSeconds) * 100;
   const timerFillBg = overTimer
     ? "bg-seal/12"
-    : timeLeft < 30
+    : timeLeft <= timerSeconds / 4
     ? "bg-ochre/18"
     : "bg-jade/12";
 

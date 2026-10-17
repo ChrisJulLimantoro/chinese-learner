@@ -19,7 +19,7 @@ import {
 import { generateLessonCard, stubQuestions } from "./llm";
 import { assignQuestions } from "./questionBank";
 import { SKIPPED_ANSWER } from "./skippedAnswer";
-import { DEFAULT_SESSION_SIZE, START_HSK_LEVEL, FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS, SUPER_ADMIN_EMAIL } from "./config";
+import { DEFAULT_OVER_TIMER_MS, OVER_TIMER_MS_BY_TYPE, DEFAULT_SESSION_SIZE, START_HSK_LEVEL, FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS, SUPER_ADMIN_EMAIL } from "./config";
 import type {
   Word,
   Reading,
@@ -384,7 +384,9 @@ type FinalizedGrade = {
   new_cursor: number;
 };
 
-const OVER_TIMER_MS = 20_000;
+function overTimerMsFor(item: ItemRef): number {
+  return OVER_TIMER_MS_BY_TYPE[item.question?.type as Question["type"]] ?? DEFAULT_OVER_TIMER_MS;
+}
 
 async function saveItemFields(
   supabase: SupabaseClient,
@@ -445,7 +447,7 @@ async function finalizeGrade(
   responseTimeMs: number,
   fields: Record<string, unknown>
 ): Promise<FinalizedGrade> {
-  const flags = { outcome, overTimer: responseTimeMs > OVER_TIMER_MS, hesitated: outcome === "hesitated" };
+  const flags = { outcome, overTimer: responseTimeMs > overTimerMsFor(item), hesitated: outcome === "hesitated" };
   const srs = applyAnswer(currentSrsState(userId, item), flags);
   const params = finalizeParams(item, outcome, responseTimeMs, fields, srs);
   const [finalized] = await Promise.all([finalizeSessionItem(supabase, params), recordQuestionResult(item, fields)]);

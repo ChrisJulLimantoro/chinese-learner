@@ -419,14 +419,13 @@ function wasSkipped(fields: Record<string, unknown>): boolean {
 }
 
 async function recordQuestionResult(
-  supabase: SupabaseClient,
   item: ItemRef,
   fields: Record<string, unknown>
 ): Promise<void> {
   const bankId = item.question?.bank_id;
   const correct = (fields.grader_output as GraderOutput).correct;
   if (!bankId || wasSkipped(fields)) return;
-  await supabase.rpc("record_question_result", { p_question_id: bankId, p_correct: correct });
+  await createAdminClient().rpc("record_question_result", { p_question_id: bankId, p_correct: correct });
 }
 
 async function finalizeGrade(
@@ -438,7 +437,7 @@ async function finalizeGrade(
   fields: Record<string, unknown>
 ): Promise<FinalizedGrade> {
   await saveItemFields(supabase, userId, item.id, { ...fields, response_time_ms: responseTimeMs, outcome });
-  await recordQuestionResult(supabase, item, fields);
+  await recordQuestionResult(item, fields);
   const { sessionComplete, newCursor } = await advanceCursor(supabase, userId, item.session_id);
   const hesitated = outcome === "hesitated";
   const srs = await updateSrs(supabase, userId, item.word_id, outcome, responseTimeMs > OVER_TIMER_MS, hesitated);

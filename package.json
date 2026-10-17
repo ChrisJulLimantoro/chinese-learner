@@ -9,7 +9,8 @@
     "lint": "eslint",
     "seed": "tsx scripts/seed-wordbank.ts",
     "backfill-readings": "tsx scripts/backfill-readings.ts",
-    "prewarm-questions": "tsx scripts/prewarm-questions.ts"
+    "prewarm-questions": "tsx scripts/prewarm-questions.ts",
+    "test": "tsx --test \"src/**/*.test.ts\""
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

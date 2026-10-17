@@ -6,6 +6,7 @@ import { applyAnswer, emptySrsState } from "./srs";
 import { fallbackQuestion } from "./fallbackQuestion";
 import { assignQuestions, pickRequeueQuestion } from "./questionBank";
 import { SKIPPED_ANSWER } from "./skippedAnswer";
+import { outcomeFor } from "./outcome";
 import { normalizeWordRow } from "./wordRow";
 import { DEFAULT_OVER_TIMER_MS, OVER_TIMER_MS_BY_TYPE } from "./config";
 import type { GraderOutput, Outcome, Question, SessionItem, SrsState } from "./types";
@@ -169,12 +170,6 @@ async function finalizeGrade(
   const [finalized] = await Promise.all([finalizeSessionItem(supabase, params), recordQuestionResult(item, fields)]);
   const requeued_item = requeuedItemOf(item, finalized, requeueQuestion);
   return { srs_summary: srs, session_complete: finalized.session_complete, new_cursor: finalized.new_cursor, requeued_item };
-}
-
-function outcomeFor(graderOut: GraderOutput, hesitated: boolean): Outcome {
-  if (hesitated && graderOut.self_grade) return "hesitated";
-  if (!graderOut.correct) return "wrong";
-  return hesitated ? "hesitated" : "correct";
 }
 
 async function loadOwnedItem(supabase: SupabaseClient, userId: string, itemId: number) {

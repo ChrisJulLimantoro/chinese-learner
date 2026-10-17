@@ -30,7 +30,7 @@ export async function ensureSrsState(
   );
 }
 
-type SrsOutcomeFlags = { outcome: Outcome; overTimer: boolean; hesitated: boolean };
+export type SrsOutcomeFlags = { outcome: Outcome; overTimer: boolean; hesitated: boolean };
 type SrsProgress = Pick<SrsState, "box" | "correct_count" | "wrong_count" | "hesitated_count" | "lapse_streak">;
 
 function isCleanCorrect({ outcome, overTimer, hesitated }: SrsOutcomeFlags): boolean {
@@ -75,20 +75,23 @@ function nextReviewAfter(box: number): number {
   return Date.now() / 1000 + (BOX_INTERVALS[box] ?? BOX_INTERVALS[5]);
 }
 
-export async function updateSrs(
-  supabase: SupabaseClient,
-  userId: string,
-  wordId: number,
-  outcome: Outcome,
-  overTimer: boolean = false,
-  hesitated: boolean = false
-): Promise<SrsState> {
-  await ensureSrsState(supabase, userId, wordId);
-  const { data: row } = await supabase.from("srs_state").select("*").eq("user_id", userId).eq("word_id", wordId).single();
-  const progress = computeProgress(row, { outcome, overTimer, hesitated });
-  const fields = { ...progress, next_review_at: nextReviewAfter(progress.box), mastered: isMastered(progress) };
-  const { data: updated } = await supabase.from("srs_state").update(fields).eq("user_id", userId).eq("word_id", wordId).select().single();
-  return updated as SrsState;
+export function emptySrsState(userId: string, wordId: number): SrsState {
+  return {
+    user_id: userId,
+    word_id: wordId,
+    box: 1,
+    next_review_at: 0,
+    correct_count: 0,
+    wrong_count: 0,
+    hesitated_count: 0,
+    lapse_streak: 0,
+    mastered: false,
+  };
+}
+
+export function advanceSrsState(row: SrsState, flags: SrsOutcomeFlags): SrsState {
+  const progress = computeProgress(row, flags);
+  return { ...row, ...progress, next_review_at: nextReviewAfter(progress.box), mastered: isMastered(progress) };
 }
 
 export type RecognitionResult = { wordId: number; correct: boolean };

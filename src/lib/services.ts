@@ -8,7 +8,8 @@ import { createAdminClient } from "./supabase/admin";
 import { gradeAnswerWithCache } from "./grading";
 import {
   ensureSrsState,
-  updateSrs,
+  advanceSrsState,
+  emptySrsState,
   getUnseenWords,
   getDueWords,
   getMixedWords,
@@ -28,6 +29,7 @@ import type {
   Question,
   GraderOutput,
   Outcome,
+  SrsState,
   DueReviews,
   Stats,
   Profile,
@@ -368,7 +370,13 @@ export async function recordStudyActivity(
 
 type WordRow = Parameters<typeof gradeAnswerWithCache>[1];
 
-type ItemRef = { id: number; session_id: number; word_id: number; question: Question | null };
+type ItemRef = {
+  id: number;
+  session_id: number;
+  word_id: number;
+  question: Question | null;
+  words?: { srs_state?: SrsState[] } | null;
+};
 
 type FinalizedGrade = {
   srs_summary: import("./types").SrsState;
@@ -387,33 +395,6 @@ async function saveItemFields(
   await supabase.from("session_items").update(fields).eq("id", itemId).eq("user_id", userId);
 }
 
-async function countSessionItems(supabase: SupabaseClient, userId: string, sessionId: number): Promise<number> {
-  const { count } = await supabase
-    .from("session_items")
-    .select("*", { count: "exact", head: true })
-    .eq("session_id", sessionId)
-    .eq("user_id", userId);
-  return count ?? 0;
-}
-
-async function advanceCursor(
-  supabase: SupabaseClient,
-  userId: string,
-  sessionId: number
-): Promise<{ sessionComplete: boolean; newCursor: number }> {
-  const { data: session } = await supabase
-    .from("sessions")
-    .select("cursor")
-    .eq("id", sessionId)
-    .eq("user_id", userId)
-    .single();
-  const newCursor = ((session?.cursor as number) ?? 0) + 1;
-  const sessionComplete = newCursor >= (await countSessionItems(supabase, userId, sessionId));
-  const completion = sessionComplete ? { status: "completed", completed_at: Date.now() / 1000 } : {};
-  await supabase.from("sessions").update({ cursor: newCursor, ...completion }).eq("id", sessionId).eq("user_id", userId);
-  return { sessionComplete, newCursor };
-}
-
 function wasSkipped(fields: Record<string, unknown>): boolean {
   return fields.user_answer === SKIPPED_ANSWER;
 }
@@ -428,6 +409,33 @@ async function recordQuestionResult(
   await createAdminClient().rpc("record_question_result", { p_question_id: bankId, p_correct: correct });
 }
 
+function currentSrsState(userId: string, item: ItemRef): SrsState {
+  return item.words?.srs_state?.[0] ?? emptySrsState(userId, item.word_id);
+}
+
+function finalizeParams(item: ItemRef, outcome: Outcome, responseTimeMs: number, fields: Record<string, unknown>, srs: SrsState) {
+  return {
+    p_item_id: item.id,
+    p_user_answer: (fields.user_answer as string | undefined) ?? null,
+    p_grader_output: fields.grader_output,
+    p_response_time_ms: responseTimeMs,
+    p_outcome: outcome,
+    p_box: srs.box,
+    p_next_review_at: srs.next_review_at,
+    p_correct_count: srs.correct_count,
+    p_wrong_count: srs.wrong_count,
+    p_hesitated_count: srs.hesitated_count,
+    p_lapse_streak: srs.lapse_streak,
+    p_mastered: srs.mastered,
+  };
+}
+
+async function finalizeSessionItem(supabase: SupabaseClient, params: ReturnType<typeof finalizeParams>) {
+  const { data, error } = await supabase.rpc("finalize_session_item", params).single();
+  if (error) throw new Error(`Failed to finalize item: ${error.message}`);
+  return data as { new_cursor: number; session_complete: boolean };
+}
+
 async function finalizeGrade(
   supabase: SupabaseClient,
   userId: string,
@@ -436,13 +444,11 @@ async function finalizeGrade(
   responseTimeMs: number,
   fields: Record<string, unknown>
 ): Promise<FinalizedGrade> {
-  await saveItemFields(supabase, userId, item.id, { ...fields, response_time_ms: responseTimeMs, outcome });
-  await recordQuestionResult(item, fields);
-  const { sessionComplete, newCursor } = await advanceCursor(supabase, userId, item.session_id);
-  const hesitated = outcome === "hesitated";
-  const srs = await updateSrs(supabase, userId, item.word_id, outcome, responseTimeMs > OVER_TIMER_MS, hesitated);
-  await recordStudyActivity(supabase, userId);
-  return { srs_summary: srs, session_complete: sessionComplete, new_cursor: newCursor };
+  const flags = { outcome, overTimer: responseTimeMs > OVER_TIMER_MS, hesitated: outcome === "hesitated" };
+  const srs = advanceSrsState(currentSrsState(userId, item), flags);
+  const params = finalizeParams(item, outcome, responseTimeMs, fields, srs);
+  const [finalized] = await Promise.all([finalizeSessionItem(supabase, params), recordQuestionResult(item, fields)]);
+  return { srs_summary: srs, session_complete: finalized.session_complete, new_cursor: finalized.new_cursor };
 }
 
 function outcomeFor(graderOut: GraderOutput, hesitated: boolean): Outcome {
@@ -453,7 +459,8 @@ function outcomeFor(graderOut: GraderOutput, hesitated: boolean): Outcome {
 async function loadOwnedItem(supabase: SupabaseClient, userId: string, itemId: number) {
   const { data: item } = await supabase
     .from("session_items")
-    .select("*, words(id, simplified, pinyin, meanings, lesson_card)")
+    .select("*, words(id, simplified, pinyin, meanings, lesson_card, srs_state(*))")
+    .eq("words.srs_state.user_id", userId)
     .eq("id", itemId)
     .eq("user_id", userId)
     .single();

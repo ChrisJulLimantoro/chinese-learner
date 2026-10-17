@@ -2,12 +2,14 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { gradeAnswerAction, ensureItemQuestionAction } from "../../actions/session";
+import { gradeAnswerAction, ensureItemQuestionAction, selfGradeAction } from "../../actions/session";
 import { getWordCardAction } from "../../actions/vocabulary";
 import type { Session, LessonCard, GraderOutput, Outcome, Question } from "@/lib/types";
 import { hasMultipleReadings } from "@/lib/readings";
 import { Button, Badge, ProgressBar, Skeleton, InkLoader } from "@/components/ui";
 import Seal from "@/components/Seal";
+import SelfGradePanel from "./SelfGradePanel";
+import { SKIPPED_ANSWER } from "@/lib/skippedAnswer";
 
 const TIMER_SECONDS = 120;
 const TYPE_LABELS: Record<string, string> = {
@@ -275,7 +277,7 @@ export default function StudySessionClient({ session: initialSession }: { sessio
   const [learnIdx, setLearnIdx] = useState(0);
   const [answer, setAnswer] = useState("");
   const [grading, setGrading] = useState(false);
-  const [feedback, setFeedback] = useState<{ graderOut: GraderOutput; outcome: string } | null>(null);
+  const [feedback, setFeedback] = useState<{ graderOut: GraderOutput; outcome: string | null; userAnswer: string } | null>(null);
   const [timeLeft, setTimeLeft] = useState(TIMER_SECONDS);
   const [overTimer, setOverTimer] = useState(false);
   const [sessionComplete, setSessionComplete] = useState(initialSession.status === "completed");
@@ -536,6 +538,12 @@ export default function StudySessionClient({ session: initialSession }: { sessio
 
   // ── DRILL phase ───────────────────────────────────────────────────────
 
+  const applyFinalOutcome = (outcome: Outcome, complete: boolean) => {
+    setOutcomes((o) => ({ ...o, [currentItem.item_id]: outcome }));
+    if (outcome === "correct") setShowStamp(true);
+    if (complete) setSessionComplete(true);
+  };
+
   const submitAnswer = async (skipped = false) => {
     if (grading || !currentItem.question_json) return;
     const elapsed = Date.now() - startTimeRef.current;
@@ -547,18 +555,27 @@ export default function StudySessionClient({ session: initialSession }: { sessio
     try {
       const result = await gradeAnswerAction(
         currentItem.item_id,
-        answer || (assisted ? "___hesitated___" : ""),
+        answer || (assisted ? SKIPPED_ANSWER : ""),
         elapsed,
         assisted
       );
-      setFeedback({ graderOut: result.grader_output, outcome: result.outcome });
-      setOutcomes((o) => ({ ...o, [currentItem.item_id]: result.outcome }));
-      if (result.grader_output.correct && result.outcome === "correct") {
-        setShowStamp(true);
-      }
-      if (result.session_complete) {
-        setSessionComplete(true);
-      }
+      setFeedback({ graderOut: result.grader_output, outcome: result.outcome, userAnswer: answer });
+      if (result.outcome) applyFinalOutcome(result.outcome, result.session_complete);
+    } catch (e) {
+      alert(String(e));
+    } finally {
+      setGrading(false);
+    }
+  };
+
+  const submitSelfGrade = async (gotIt: boolean) => {
+    if (grading || !feedback) return;
+    setGrading(true);
+    try {
+      const result = await selfGradeAction(currentItem.item_id, gotIt);
+      const graderOut = { ...feedback.graderOut, correct: gotIt, naturalness: gotIt ? 5 : 1, self_grade: false };
+      setFeedback({ ...feedback, graderOut, outcome: result.outcome });
+      applyFinalOutcome(result.outcome, result.session_complete);
     } catch (e) {
       alert(String(e));
     } finally {
@@ -748,7 +765,15 @@ export default function StudySessionClient({ session: initialSession }: { sessio
               )}
 
               {/* Feedback */}
-              {feedback && (
+              {feedback && feedback.outcome === null && (
+                <SelfGradePanel
+                  userAnswer={feedback.userAnswer}
+                  referenceAnswer={feedback.graderOut.reference_answer ?? ""}
+                  busy={grading}
+                  onGrade={submitSelfGrade}
+                />
+              )}
+              {feedback && feedback.outcome !== null && (
                 <div className="space-y-3">
                   <FeedbackView graderOut={feedback.graderOut} outcome={feedback.outcome} />
                   <Button variant="primary" className="w-full" onClick={advance}>

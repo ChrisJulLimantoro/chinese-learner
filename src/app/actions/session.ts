@@ -10,6 +10,7 @@ import {
   dueReviews,
   getInProgressSession,
   gradeAnswer,
+  selfGrade,
   ensureItemQuestion,
 } from "@/lib/services";
 
@@ -61,4 +62,9 @@ export async function gradeAnswerAction(
 export async function ensureItemQuestionAction(itemId: number) {
   const { supabase, userId } = await getUserContext();
   return ensureItemQuestion(supabase, userId, itemId);
+}
+
+export async function selfGradeAction(sessionItemId: number, gotIt: boolean) {
+  const { supabase, userId } = await getUserContext();
+  return selfGrade(supabase, userId, sessionItemId, gotIt);
 }

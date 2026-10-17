@@ -5,6 +5,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createAdminClient } from "./supabase/admin";
 import { grade } from "./llm";
+import { USE_STUB } from "./config";
+import { SKIPPED_ANSWER } from "./skippedAnswer";
+import { selfGradeVerdict, templateVerdict } from "./gradeVerdicts";
+import type { WordFacts } from "./gradeVerdicts";
 import type { GraderOutput, Question } from "./types";
 
 // Punctuation to strip when normalizing (CJK + ASCII)
@@ -57,32 +61,46 @@ export async function storeCache(
   );
 }
 
+export function matchesTarget(question: Question, normalized: string): boolean {
+  if (question.type === "en_to_zh") return false;
+  const accepted = [question.target_word, ...(question.accepted_answers ?? [])];
+  return accepted.some((a) => normalize(a) === normalized);
+}
+
+async function gradeWithModel(
+  wordId: number,
+  question: Question,
+  answer: string,
+  normalized: string
+): Promise<GraderOutput> {
+  const result = await grade(question, answer);
+  result.normalized_answer ||= normalized;
+  if (result.accept_for_cache) await storeCache(wordId, question.type ?? null, normalized, result);
+  return result;
+}
+
+function gradeWithoutModel(word: WordFacts, question: Question, normalized: string): GraderOutput {
+  if (question.type === "en_to_zh") return selfGradeVerdict(question, word, normalized);
+  return templateVerdict(word, false, normalized);
+}
+
+function resolveDeterministic(word: WordFacts, question: Question, normalized: string): GraderOutput | null {
+  if (normalized === SKIPPED_ANSWER) return templateVerdict(word, false, normalized);
+  if (matchesTarget(question, normalized)) return templateVerdict(word, true, normalized);
+  return null;
+}
+
 export async function gradeAnswerWithCache(
   supabase: SupabaseClient,
-  wordId: number,
+  word: WordFacts & { id: number },
   question: Question,
   answer: string
 ): Promise<GraderOutput> {
-  const qtype = question.type ?? null;
   const normalized = normalize(answer);
-
-  // 1. Check cache
-  const cached = await checkCache(supabase, wordId, qtype, normalized);
-  if (cached !== null) {
-    return cached;
-  }
-
-  // 2. Escalate to LLM
-  const result = await grade(question, answer);
-
-  if (!result.normalized_answer) {
-    result.normalized_answer = normalized;
-  }
-
-  // 3. Store in cache if grader approves
-  if (result.accept_for_cache) {
-    await storeCache(wordId, qtype, normalized, result);
-  }
-
-  return result;
+  const deterministic = resolveDeterministic(word, question, normalized);
+  if (deterministic) return deterministic;
+  const cached = await checkCache(supabase, word.id, question.type ?? null, normalized);
+  if (cached) return cached;
+  if (USE_STUB) return gradeWithoutModel(word, question, normalized);
+  return gradeWithModel(word.id, question, answer, normalized);
 }

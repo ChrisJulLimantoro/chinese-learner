@@ -365,6 +365,86 @@ export async function recordStudyActivity(
 // gradeAnswer
 // ---------------------------------------------------------------------------
 
+type WordRow = Parameters<typeof gradeAnswerWithCache>[1];
+
+type ItemRef = { id: number; session_id: number; word_id: number };
+
+type FinalizedGrade = {
+  srs_summary: import("./types").SrsState;
+  session_complete: boolean;
+  new_cursor: number;
+};
+
+const OVER_TIMER_MS = 20_000;
+
+async function saveItemFields(
+  supabase: SupabaseClient,
+  userId: string,
+  itemId: number,
+  fields: Record<string, unknown>
+): Promise<void> {
+  await supabase.from("session_items").update(fields).eq("id", itemId).eq("user_id", userId);
+}
+
+async function countSessionItems(supabase: SupabaseClient, userId: string, sessionId: number): Promise<number> {
+  const { count } = await supabase
+    .from("session_items")
+    .select("*", { count: "exact", head: true })
+    .eq("session_id", sessionId)
+    .eq("user_id", userId);
+  return count ?? 0;
+}
+
+async function advanceCursor(
+  supabase: SupabaseClient,
+  userId: string,
+  sessionId: number
+): Promise<{ sessionComplete: boolean; newCursor: number }> {
+  const { data: session } = await supabase
+    .from("sessions")
+    .select("cursor")
+    .eq("id", sessionId)
+    .eq("user_id", userId)
+    .single();
+  const newCursor = ((session?.cursor as number) ?? 0) + 1;
+  const sessionComplete = newCursor >= (await countSessionItems(supabase, userId, sessionId));
+  const completion = sessionComplete ? { status: "completed", completed_at: Date.now() / 1000 } : {};
+  await supabase.from("sessions").update({ cursor: newCursor, ...completion }).eq("id", sessionId).eq("user_id", userId);
+  return { sessionComplete, newCursor };
+}
+
+async function finalizeGrade(
+  supabase: SupabaseClient,
+  userId: string,
+  item: ItemRef,
+  outcome: Outcome,
+  responseTimeMs: number,
+  fields: Record<string, unknown>
+): Promise<FinalizedGrade> {
+  await saveItemFields(supabase, userId, item.id, { ...fields, response_time_ms: responseTimeMs, outcome });
+  const { sessionComplete, newCursor } = await advanceCursor(supabase, userId, item.session_id);
+  const hesitated = outcome === "hesitated";
+  const srs = await updateSrs(supabase, userId, item.word_id, outcome, responseTimeMs > OVER_TIMER_MS, hesitated);
+  await recordStudyActivity(supabase, userId);
+  return { srs_summary: srs, session_complete: sessionComplete, new_cursor: newCursor };
+}
+
+function outcomeFor(graderOut: GraderOutput, hesitated: boolean): Outcome {
+  if (hesitated) return "hesitated";
+  return graderOut.correct ? "correct" : "wrong";
+}
+
+async function loadOwnedItem(supabase: SupabaseClient, userId: string, itemId: number) {
+  const { data: item } = await supabase
+    .from("session_items")
+    .select("*, words(id, simplified, pinyin, meanings)")
+    .eq("id", itemId)
+    .eq("user_id", userId)
+    .single();
+  if (!item) throw new Error(`session_item ${itemId} not found`);
+  return item;
+}
+
 export async function gradeAnswer(
   supabase: SupabaseClient,
   userId: string,
@@ -374,101 +454,42 @@ export async function gradeAnswer(
   hesitated: boolean = false
 ): Promise<{
   grader_output: GraderOutput;
+  srs_summary: import("./types").SrsState | null;
+  session_complete: boolean;
+  outcome: Outcome | null;
+  new_cursor: number | null;
+}> {
+  const item = await loadOwnedItem(supabase, userId, sessionItemId);
+  const question = (item.question as Question | null) ?? (await ensureItemQuestion(supabase, userId, sessionItemId));
+  const graderOut = await gradeAnswerWithCache(supabase, item.words as WordRow, question, answer);
+  const fields = { user_answer: answer, grader_output: graderOut };
+  if (graderOut.self_grade && !hesitated) {
+    await saveItemFields(supabase, userId, sessionItemId, { ...fields, response_time_ms: responseTimeMs });
+    return { grader_output: graderOut, srs_summary: null, session_complete: false, outcome: null, new_cursor: null };
+  }
+  const outcome = outcomeFor(graderOut, hesitated);
+  const finalized = await finalizeGrade(supabase, userId, item, outcome, responseTimeMs, fields);
+  return { grader_output: graderOut, outcome, ...finalized };
+}
+
+export async function selfGrade(
+  supabase: SupabaseClient,
+  userId: string,
+  sessionItemId: number,
+  gotIt: boolean
+): Promise<{
   srs_summary: import("./types").SrsState;
   session_complete: boolean;
   outcome: Outcome;
   new_cursor: number;
 }> {
-  // Load item
-  const { data: item } = await supabase
-    .from("session_items")
-    .select("*")
-    .eq("id", sessionItemId)
-    .eq("user_id", userId)
-    .single();
-
-  if (!item) throw new Error(`session_item ${sessionItemId} not found`);
-
-  const wordId = item.word_id as number;
-  const sessionId = item.session_id as number;
-
-  // Lazy-generate question if not yet set
-  let question = item.question as Question | null;
-  if (!question) {
-    question = await ensureItemQuestion(supabase, userId, sessionItemId);
-  }
-
-  // Grade
-  const graderOut = await gradeAnswerWithCache(supabase, wordId, question, answer);
-
-  // Determine outcome
-  const overTimer = responseTimeMs > 20_000;
-  let outcome: Outcome;
-  if (hesitated) {
-    outcome = "hesitated";
-  } else if (graderOut.correct) {
-    outcome = "correct";
-  } else {
-    outcome = "wrong";
-  }
-
-  // Persist item
-  await supabase
-    .from("session_items")
-    .update({
-      user_answer: answer,
-      grader_output: graderOut,
-      response_time_ms: responseTimeMs,
-      outcome,
-    })
-    .eq("id", sessionItemId)
-    .eq("user_id", userId);
-
-  // Advance cursor
-  const { data: session } = await supabase
-    .from("sessions")
-    .select("cursor")
-    .eq("id", sessionId)
-    .eq("user_id", userId)
-    .single();
-
-  const newCursor = (session?.cursor as number ?? 0) + 1;
-
-  const { count: totalItems } = await supabase
-    .from("session_items")
-    .select("*", { count: "exact", head: true })
-    .eq("session_id", sessionId)
-    .eq("user_id", userId);
-
-  const sessionComplete = newCursor >= (totalItems ?? 0);
-
-  if (sessionComplete) {
-    await supabase
-      .from("sessions")
-      .update({ cursor: newCursor, status: "completed", completed_at: Date.now() / 1000 })
-      .eq("id", sessionId)
-      .eq("user_id", userId);
-  } else {
-    await supabase
-      .from("sessions")
-      .update({ cursor: newCursor })
-      .eq("id", sessionId)
-      .eq("user_id", userId);
-  }
-
-  // Update SRS
-  const srsSummary = await updateSrs(supabase, userId, wordId, outcome, overTimer, hesitated);
-
-  // Record daily streak
-  await recordStudyActivity(supabase, userId);
-
-  return {
-    grader_output: graderOut,
-    srs_summary: srsSummary,
-    session_complete: sessionComplete,
-    outcome,
-    new_cursor: newCursor,
-  };
+  const item = await loadOwnedItem(supabase, userId, sessionItemId);
+  const graderOut = item.grader_output as GraderOutput | null;
+  if (item.outcome || !graderOut?.self_grade) throw new Error(`session_item ${sessionItemId} is not awaiting self-grade`);
+  const outcome: Outcome = gotIt ? "correct" : "wrong";
+  const resolved = { ...graderOut, correct: gotIt, naturalness: gotIt ? 5 : 1, self_grade: false };
+  const finalized = await finalizeGrade(supabase, userId, item, outcome, item.response_time_ms ?? 0, { grader_output: resolved });
+  return { outcome, ...finalized };
 }
 
 // ---------------------------------------------------------------------------

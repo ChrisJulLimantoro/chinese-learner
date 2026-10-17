@@ -76,6 +76,8 @@ export interface GraderOutput {
   issues: string[];
   confused_with: string | null;
   accept_for_cache: boolean;
+  self_grade?: boolean;
+  reference_answer?: string;
 }
 
 export interface SrsState {

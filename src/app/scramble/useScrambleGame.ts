@@ -78,7 +78,7 @@ export function useScrambleGame() {
     const word = lookups.byText.get(selectionText(lookups, selected));
     if (!word) return rejectSelection("Not a word in your list");
     if (results.some((r) => r.wordId === word.id)) return rejectSelection("Already tried that word");
-    const options = meaningOptions(word, lookups.pools.get(word.level) ?? []);
+    const options = meaningOptions(word, lookups.pools);
     setPicker({ word, options, tileIds: selected });
   };
 

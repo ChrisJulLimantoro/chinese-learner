@@ -5,9 +5,8 @@ export const MAX_WORD_LENGTH = 3;
 export const SCRAMBLE_SECONDS = DRILL_TIMER_SECONDS;
 const OPTION_COUNT = 4;
 const POINTS_PER_CHAR = 10;
-const MAX_PICK_ATTEMPTS = 50;
 
-export type IndexedWord = { id: number; simplified: string; pinyin: string; meaning: string; level: number };
+export type IndexedWord = { id: number; simplified: string; pinyin: string; meaning: string; level: number; pos: string[] };
 export type Tile = { id: number; char: string };
 export type ScrambleBoard = { tiles: Tile[]; index: IndexedWord[] };
 export type WordResult = { wordId: number; correct: boolean };
@@ -41,9 +40,38 @@ export function buildWordIndex(words: IndexedWord[]): Map<string, IndexedWord> {
   return index;
 }
 
-export function levelPools(words: IndexedWord[]): Map<number, IndexedWord[]> {
-  const pools = new Map<number, IndexedWord[]>();
-  words.forEach((w) => (pools.get(w.level) ?? pools.set(w.level, []).get(w.level)!).push(w));
+const STOPWORDS = new Set(["the", "and", "for", "one", "sth", "sb", "etc", "not", "with", "from", "into"]);
+const MIN_TOKEN_LENGTH = 3;
+
+export type DistractorPools = {
+  byLevelPos: Map<string, IndexedWord[]>;
+  byLevel: Map<number, IndexedWord[]>;
+  all: IndexedWord[];
+  tokens: Map<number, Set<string>>;
+};
+
+export function meaningTokens(meaning: string): Set<string> {
+  const words = meaning.toLowerCase().split(/[^a-z]+/);
+  return new Set(words.filter((w) => w.length >= MIN_TOKEN_LENGTH && !STOPWORDS.has(w)));
+}
+
+function posKey(level: number, pos: string): string {
+  return `${level}|${pos}`;
+}
+
+function pushTo<K, V>(map: Map<K, V[]>, key: K, value: V): void {
+  const bucket = map.get(key) ?? [];
+  bucket.push(value);
+  map.set(key, bucket);
+}
+
+export function buildDistractorPools(words: IndexedWord[]): DistractorPools {
+  const pools: DistractorPools = { byLevelPos: new Map(), byLevel: new Map(), all: words, tokens: new Map() };
+  words.forEach((w) => {
+    pushTo(pools.byLevel, w.level, w);
+    w.pos.forEach((p) => pushTo(pools.byLevelPos, posKey(w.level, p), w));
+    pools.tokens.set(w.id, meaningTokens(w.meaning));
+  });
   return pools;
 }
 
@@ -79,19 +107,37 @@ export function shuffleTiles(words: IndexedWord[]): Tile[] {
   return shuffle(chars.map((char, id) => ({ id, char })));
 }
 
-function randomEntry<T>(pool: T[], random: () => number): T {
-  return pool[Math.floor(random() * pool.length)];
+function tokensOf(word: IndexedWord, pools: DistractorPools): Set<string> {
+  return pools.tokens.get(word.id) ?? meaningTokens(word.meaning);
 }
 
-function collectDistractors(word: IndexedWord, pool: IndexedWord[], random: () => number): Set<string> {
-  const meanings = new Set<string>([word.meaning]);
-  for (let tries = 0; meanings.size < OPTION_COUNT && tries < MAX_PICK_ATTEMPTS; tries++) {
-    meanings.add(randomEntry(pool, random).meaning);
+function sharesToken(a: Set<string>, b: Set<string>): boolean {
+  return [...a].some((token) => b.has(token));
+}
+
+function isValidDistractor(candidate: IndexedWord, word: IndexedWord, pools: DistractorPools, chosen: Set<string>): boolean {
+  if (candidate.simplified === word.simplified || chosen.has(candidate.meaning)) return false;
+  return !sharesToken(tokensOf(candidate, pools), tokensOf(word, pools));
+}
+
+function distractorTiers(word: IndexedWord, pools: DistractorPools): IndexedWord[][] {
+  const samePos = word.pos.flatMap((p) => pools.byLevelPos.get(posKey(word.level, p)) ?? []);
+  return [samePos, pools.byLevel.get(word.level) ?? [], pools.all];
+}
+
+function fillFromTier(chosen: Set<string>, tier: IndexedWord[], word: IndexedWord, pools: DistractorPools, random: () => number): void {
+  for (const candidate of shuffle(tier, random)) {
+    if (chosen.size >= OPTION_COUNT) return;
+    if (isValidDistractor(candidate, word, pools, chosen)) chosen.add(candidate.meaning);
   }
-  return meanings;
 }
 
-export function meaningOptions(word: IndexedWord, pool: IndexedWord[], random: () => number = Math.random): string[] {
-  if (pool.length === 0) return [word.meaning];
-  return shuffle([...collectDistractors(word, pool, random)], random);
+function collectDistractors(word: IndexedWord, pools: DistractorPools, random: () => number): Set<string> {
+  const chosen = new Set<string>([word.meaning]);
+  distractorTiers(word, pools).forEach((tier) => fillFromTier(chosen, tier, word, pools, random));
+  return chosen;
+}
+
+export function meaningOptions(word: IndexedWord, pools: DistractorPools, random: () => number = Math.random): string[] {
+  return shuffle([...collectDistractors(word, pools, random)], random);
 }

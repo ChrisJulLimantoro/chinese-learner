@@ -14,9 +14,9 @@ import type { IndexedWord, ScrambleBoard, SrsSnapshot, WordResult } from "./scra
 
 const PAGE_SIZE = 1000;
 const MAX_RESULTS = 60;
-const WORD_COLUMNS = "id, simplified, pinyin, hsk_level, meanings";
+const WORD_COLUMNS = "id, simplified, pinyin, hsk_level, meanings, pos";
 
-type WordRow = { id: number; simplified: string; pinyin: string; hsk_level: number; meanings: string[] | null };
+type WordRow = { id: number; simplified: string; pinyin: string; hsk_level: number; meanings: string[] | null; pos: string[] | null };
 
 function toIndexedWord(row: WordRow): IndexedWord {
   return {
@@ -25,6 +25,7 @@ function toIndexedWord(row: WordRow): IndexedWord {
     pinyin: row.pinyin,
     meaning: shortMeaning(row.meanings ?? []),
     level: row.hsk_level,
+    pos: row.pos ?? [],
   };
 }
 

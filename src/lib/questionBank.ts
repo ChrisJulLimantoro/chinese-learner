@@ -2,6 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { MIN_PER_PREFERRED_TYPE, PREFERRED_TYPES_BY_BOX, QUESTIONS_PER_WORD, TONE_PICK_SHARE, UNSEEN_BOX, USE_STUB } from "./config";
 import { generateQuestions, isUsableQuestion, QUESTION_TYPES } from "./llm";
 import type { QuestionWordInput } from "./llm";
+import { fallbackQuestion } from "./fallbackQuestion";
 import { buildToneQuestion } from "./toneQuestion";
 import type { Question, Word } from "./types";
 
@@ -188,9 +189,9 @@ function questionFor(
   ranks: Map<number, number>,
   word: Word,
   random: () => number
-): Question | null {
+): Question {
   const tone = shouldTryTone(bank, boxes, word, random) ? buildToneQuestion(word, random) : null;
-  return tone ?? bankedQuestion(bank, boxes, ranks, word);
+  return tone ?? bankedQuestion(bank, boxes, ranks, word) ?? fallbackQuestion(word, random);
 }
 
 export async function assignQuestions(
@@ -204,6 +205,5 @@ export async function assignQuestions(
   const [bank, boxes] = await Promise.all([loadBank(supabase, ids), loadBoxes(supabase, userId, ids)]);
   await fillBankQuietly(admin, bank, words, boxes);
   const ranks = await recentRanks(supabase, userId, ids);
-  const questions = words.map((w) => [w.id, questionFor(bank, boxes, ranks, w, random)] as const);
-  return new Map(questions.flatMap(([id, q]) => (q ? [[id, q] as const] : [])));
+  return new Map(words.map((w) => [w.id, questionFor(bank, boxes, ranks, w, random)]));
 }

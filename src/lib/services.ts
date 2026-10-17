@@ -16,7 +16,8 @@ import {
   countDue,
   checkProgression,
 } from "./srs";
-import { generateLessonCard, stubQuestions } from "./llm";
+import { generateLessonCard } from "./llm";
+import { fallbackQuestion } from "./fallbackQuestion";
 import { assignQuestions } from "./questionBank";
 import { SKIPPED_ANSWER } from "./skippedAnswer";
 import { DEFAULT_OVER_TIMER_MS, OVER_TIMER_MS_BY_TYPE, DEFAULT_SESSION_SIZE, START_HSK_LEVEL, FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS, SUPER_ADMIN_EMAIL } from "./config";
@@ -245,7 +246,7 @@ export async function ensureItemQuestion(
   const word = normalizeWordRow(w);
 
   const assigned = await assignQuestions(supabase, createAdminClient(), userId, [word]);
-  const question = assigned.get(word.id) ?? stubQuestions([word])[0];
+  const question = assigned.get(word.id) ?? fallbackQuestion(word);
 
   // Persist
   await supabase

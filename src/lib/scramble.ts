@@ -10,6 +10,7 @@ export type IndexedWord = { id: number; simplified: string; pinyin: string; mean
 export type Tile = { id: number; char: string };
 export type BoardWord = IndexedWord & { options: string[] };
 export type ScrambleBoard = { runId: number; tiles: Tile[]; seeded: number[]; words: BoardWord[] };
+export type WordChoice = { wordId: number; meaning: string };
 export type WordResult = { wordId: number; correct: boolean };
 export type SrsSnapshot = { word_id: number; next_review_at: number; mastered: boolean };
 

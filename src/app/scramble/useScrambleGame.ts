@@ -3,7 +3,7 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { startScrambleAction, submitScrambleAction } from "../actions/scramble";
 import { MAX_WORD_LENGTH, pointsFor } from "@/lib/scramble";
-import type { BoardWord, ScrambleBoard, WordResult } from "@/lib/scramble";
+import type { BoardWord, ScrambleBoard, WordChoice } from "@/lib/scramble";
 import { makeLookups, selectionText } from "./scrambleLookups";
 import type { FoundWord } from "./ScrambleSummary";
 
@@ -21,7 +21,7 @@ export function useScrambleGame() {
   const [selected, setSelected] = useState<number[]>([]);
   const [removed, setRemoved] = useState<Set<number>>(new Set());
   const [picker, setPicker] = useState<PickerState | null>(null);
-  const [results, setResults] = useState<WordResult[]>([]);
+  const [choices, setChoices] = useState<WordChoice[]>([]);
   const [score, setScore] = useState(0);
   const [saved, setSaved] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -34,7 +34,7 @@ export function useScrambleGame() {
     setSelected([]);
     setRemoved(new Set());
     setPicker(null);
-    setResults([]);
+    setChoices([]);
     setScore(0);
     setSaved(false);
     setMessage(null);
@@ -51,12 +51,12 @@ export function useScrambleGame() {
     }
   };
 
-  const finish = useCallback((runId: number, finalResults: WordResult[]) => {
+  const finish = useCallback((runId: number, finalChoices: WordChoice[]) => {
     if (finishedRef.current) return;
     finishedRef.current = true;
     setPicker(null);
     setPhase("done");
-    submitScrambleAction(runId, finalResults)
+    submitScrambleAction(runId, finalChoices)
       .then(() => setSaved(true))
       .catch(() => setMessage("Could not save this run."));
   }, []);
@@ -73,7 +73,7 @@ export function useScrambleGame() {
 
   const rejectionFor = (word: BoardWord | undefined): string | null => {
     if (!word) return "Not a word in your list";
-    return results.some((r) => r.wordId === word.id) ? "Already tried that word" : null;
+    return choices.some((c) => c.wordId === word.id) ? "Already tried that word" : null;
   };
 
   const checkSelection = () => {
@@ -84,24 +84,25 @@ export function useScrambleGame() {
     setPicker({ word: word!, options: word!.options, tileIds: selected });
   };
 
-  const resolvePicker = (correct: boolean) => {
+  const resolvePicker = (meaning: string) => {
     if (!picker || !board || finishedRef.current) return;
-    const nextResults = [...results, { wordId: picker.word.id, correct }];
+    const correct = meaning === picker.word.meaning;
+    const nextChoices = [...choices, { wordId: picker.word.id, meaning }];
     const nextRemoved = correct ? new Set([...removed, ...picker.tileIds]) : removed;
-    setResults(nextResults);
+    setChoices(nextChoices);
     setRemoved(nextRemoved);
     setSelected([]);
     setPicker(null);
     if (correct) setScore((s) => s + pointsFor(picker.word.simplified));
-    if (nextRemoved.size === board.tiles.length) finish(board.runId, nextResults);
+    if (nextRemoved.size === board.tiles.length) finish(board.runId, nextChoices);
   };
 
-  const found: FoundWord[] = results.flatMap((r) => {
-    const word = lookups?.byId.get(r.wordId);
-    return word ? [{ word, correct: r.correct }] : [];
+  const found: FoundWord[] = choices.flatMap((c) => {
+    const word = lookups?.byId.get(c.wordId);
+    return word ? [{ word, correct: word.meaning === c.meaning }] : [];
   });
 
-  const expire = useCallback(() => board && finish(board.runId, results), [board, finish, results]);
+  const expire = useCallback(() => board && finish(board.runId, choices), [board, finish, choices]);
 
   return {
     phase, board, lookups, selected, removed, picker, score, saved, message, found,

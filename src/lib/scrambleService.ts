@@ -14,7 +14,7 @@ import {
   shuffleTiles,
   withMeaningOptions,
 } from "./scramble";
-import type { IndexedWord, ScrambleBoard, SrsSnapshot, WordResult } from "./scramble";
+import type { IndexedWord, ScrambleBoard, SrsSnapshot, WordChoice, WordResult } from "./scramble";
 
 const PAGE_SIZE = 1000;
 const MAX_RESULTS = 60;
@@ -107,10 +107,14 @@ export async function startScramble(supabase: SupabaseClient, userId: string): P
   return { runId: await insertActiveRun(supabase, userId, board), ...board };
 }
 
-function firstResultPerWord(results: WordResult[]): WordResult[] {
-  const byWord = new Map<number, WordResult>();
-  results.filter((r) => Number.isInteger(r.wordId)).slice(0, MAX_RESULTS).forEach((r) => byWord.has(r.wordId) || byWord.set(r.wordId, r));
+function firstChoicePerWord(choices: WordChoice[]): WordChoice[] {
+  const byWord = new Map<number, WordChoice>();
+  choices.filter((c) => Number.isInteger(c.wordId)).slice(0, MAX_RESULTS).forEach((c) => byWord.has(c.wordId) || byWord.set(c.wordId, c));
   return [...byWord.values()];
+}
+
+function gradeChoices(choices: WordChoice[], words: Map<number, WordRow>): WordResult[] {
+  return choices.map((c) => ({ wordId: c.wordId, correct: shortMeaning(words.get(c.wordId)!.meanings ?? []) === c.meaning }));
 }
 
 async function loadActiveRun(supabase: SupabaseClient, userId: string, runId: number): Promise<Set<number>> {
@@ -143,11 +147,12 @@ export async function submitScramble(
   supabase: SupabaseClient,
   userId: string,
   runId: number,
-  submitted: WordResult[]
+  submitted: WordChoice[]
 ): Promise<{ score: number }> {
   const formable = await loadActiveRun(supabase, userId, runId);
-  const results = firstResultPerWord(submitted).filter((r) => formable.has(r.wordId));
-  const words = await fetchResultWords(supabase, results.map((r) => r.wordId));
+  const choices = firstChoicePerWord(submitted).filter((c) => formable.has(c.wordId));
+  const words = await fetchResultWords(supabase, choices.map((c) => c.wordId));
+  const results = gradeChoices(choices, words);
   const score = scoreOf(results, words);
   await completeRun(supabase, userId, runId, score, results);
   await rescheduleFromRecognition(supabase, userId, results);

@@ -9,7 +9,7 @@ const REVEAL_MS = 900;
 interface MeaningPickerProps {
   word: IndexedWord;
   options: string[];
-  onResolved: (correct: boolean) => void;
+  onResolved: (meaning: string) => void;
 }
 
 function optionClass(option: string, chosen: string | null, answer: string): string {
@@ -28,7 +28,7 @@ export default function MeaningPicker({ word, options, onResolved }: MeaningPick
     if (resolvedRef.current) return;
     resolvedRef.current = true;
     setChosen(option);
-    setTimeout(() => onResolved(option === word.meaning), REVEAL_MS);
+    setTimeout(() => onResolved(option), REVEAL_MS);
   };
 
   return (

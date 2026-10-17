@@ -39,10 +39,9 @@ function isCleanCorrect({ outcome, overTimer, hesitated }: SrsOutcomeFlags): boo
 }
 
 function nextCounts(row: SrsProgress, flags: SrsOutcomeFlags): SrsProgress {
-  const counted = flags.outcome !== "wrong" && (flags.outcome === "hesitated" || !flags.hesitated);
   return {
     box: row.box,
-    correct_count: row.correct_count + (counted ? 1 : 0),
+    correct_count: row.correct_count + (flags.outcome === "correct" ? 1 : 0),
     wrong_count: row.wrong_count + (flags.outcome === "wrong" ? 1 : 0),
     hesitated_count: row.hesitated_count + (flags.outcome === "hesitated" ? 1 : 0),
     lapse_streak: row.lapse_streak + (flags.outcome === "wrong" ? 1 : 0),

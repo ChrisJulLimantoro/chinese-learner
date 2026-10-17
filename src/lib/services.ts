@@ -453,8 +453,9 @@ async function finalizeGrade(
 }
 
 function outcomeFor(graderOut: GraderOutput, hesitated: boolean): Outcome {
-  if (hesitated) return "hesitated";
-  return graderOut.correct ? "correct" : "wrong";
+  if (hesitated && graderOut.self_grade) return "hesitated";
+  if (!graderOut.correct) return "wrong";
+  return hesitated ? "hesitated" : "correct";
 }
 
 async function loadOwnedItem(supabase: SupabaseClient, userId: string, itemId: number) {

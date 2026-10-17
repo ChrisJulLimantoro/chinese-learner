@@ -378,8 +378,17 @@ function hasCleanAnswers(q: Question): boolean {
   return (q.accepted_answers ?? []).every((a) => typeof a === "string" && a.trim() !== "");
 }
 
+function withoutHelperWords(prompt: string, helpers: ContextHelper[]): string {
+  return helpers.reduce((text, h) => (h.word ? text.split(h.word).join("") : text), prompt);
+}
+
+function leaksSingleChar(q: Question, target: string, helpers: ContextHelper[]): boolean {
+  return helpers.some((h) => h.word === target) || withoutHelperWords(q.prompt, helpers).includes(target);
+}
+
 function leaksTarget(q: Question, target: string): boolean {
   const helpers = q.context_helpers ?? [];
+  if (Array.from(target).length === 1) return leaksSingleChar(q, target, helpers);
   return q.prompt.includes(target) || helpers.some((h) => h.word?.includes(target));
 }
 

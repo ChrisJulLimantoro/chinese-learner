@@ -9,6 +9,7 @@ import { hasMultipleReadings } from "@/lib/readings";
 import { Button, Badge, ProgressBar, Skeleton, InkLoader } from "@/components/ui";
 import Seal from "@/components/Seal";
 import SelfGradePanel from "./SelfGradePanel";
+import ReportQuestionButton from "./ReportQuestionButton";
 import { SKIPPED_ANSWER } from "@/lib/skippedAnswer";
 
 const TIMER_SECONDS = 120;
@@ -780,6 +781,9 @@ export default function StudySessionClient({ session: initialSession }: { sessio
                     Next →
                   </Button>
                 </div>
+              )}
+              {feedback && question.bank_id && (
+                <ReportQuestionButton key={currentItem.item_id} questionId={question.bank_id} />
               )}
             </>
           ) : (

@@ -17,6 +17,7 @@ import {
 } from "./srs";
 import { generateLessonCard, stubQuestions } from "./llm";
 import { assignQuestions } from "./questionBank";
+import { SKIPPED_ANSWER } from "./skippedAnswer";
 import { DEFAULT_SESSION_SIZE, START_HSK_LEVEL, FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS, SUPER_ADMIN_EMAIL } from "./config";
 import type {
   Word,
@@ -367,7 +368,7 @@ export async function recordStudyActivity(
 
 type WordRow = Parameters<typeof gradeAnswerWithCache>[1];
 
-type ItemRef = { id: number; session_id: number; word_id: number };
+type ItemRef = { id: number; session_id: number; word_id: number; question: Question | null };
 
 type FinalizedGrade = {
   srs_summary: import("./types").SrsState;
@@ -413,6 +414,21 @@ async function advanceCursor(
   return { sessionComplete, newCursor };
 }
 
+function wasSkipped(fields: Record<string, unknown>): boolean {
+  return fields.user_answer === SKIPPED_ANSWER;
+}
+
+async function recordQuestionResult(
+  supabase: SupabaseClient,
+  item: ItemRef,
+  fields: Record<string, unknown>
+): Promise<void> {
+  const bankId = item.question?.bank_id;
+  const correct = (fields.grader_output as GraderOutput).correct;
+  if (!bankId || wasSkipped(fields)) return;
+  await supabase.rpc("record_question_result", { p_question_id: bankId, p_correct: correct });
+}
+
 async function finalizeGrade(
   supabase: SupabaseClient,
   userId: string,
@@ -422,6 +438,7 @@ async function finalizeGrade(
   fields: Record<string, unknown>
 ): Promise<FinalizedGrade> {
   await saveItemFields(supabase, userId, item.id, { ...fields, response_time_ms: responseTimeMs, outcome });
+  await recordQuestionResult(supabase, item, fields);
   const { sessionComplete, newCursor } = await advanceCursor(supabase, userId, item.session_id);
   const hesitated = outcome === "hesitated";
   const srs = await updateSrs(supabase, userId, item.word_id, outcome, responseTimeMs > OVER_TIMER_MS, hesitated);
@@ -470,6 +487,11 @@ export async function gradeAnswer(
   const outcome = outcomeFor(graderOut, hesitated);
   const finalized = await finalizeGrade(supabase, userId, item, outcome, responseTimeMs, fields);
   return { grader_output: graderOut, outcome, ...finalized };
+}
+
+export async function reportQuestion(supabase: SupabaseClient, questionId: number, reason: string): Promise<void> {
+  const { error } = await supabase.rpc("report_question", { p_question_id: questionId, p_reason: reason });
+  if (error) throw new Error(`Failed to report question: ${error.message}`);
 }
 
 export async function selfGrade(

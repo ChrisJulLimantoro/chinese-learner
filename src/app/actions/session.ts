@@ -11,6 +11,7 @@ import {
   getInProgressSession,
   gradeAnswer,
   selfGrade,
+  reportQuestion,
   ensureItemQuestion,
 } from "@/lib/services";
 
@@ -67,4 +68,9 @@ export async function ensureItemQuestionAction(itemId: number) {
 export async function selfGradeAction(sessionItemId: number, gotIt: boolean) {
   const { supabase, userId } = await getUserContext();
   return selfGrade(supabase, userId, sessionItemId, gotIt);
+}
+
+export async function reportQuestionAction(questionId: number, reason: string) {
+  const { supabase } = await getUserContext();
+  return reportQuestion(supabase, questionId, reason);
 }

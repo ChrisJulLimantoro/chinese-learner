@@ -38,7 +38,11 @@ function addRows(bank: QuestionBank, rows: BankRow[]): QuestionBank {
 }
 
 export async function loadBank(supabase: SupabaseClient, wordIds: number[]): Promise<QuestionBank> {
-  const { data } = await supabase.from("word_questions").select(BANK_COLUMNS).in("word_id", wordIds);
+  const { data } = await supabase
+    .from("word_questions")
+    .select(BANK_COLUMNS)
+    .in("word_id", wordIds)
+    .eq("retired", false);
   return addRows(new Map(), (data ?? []) as BankRow[]);
 }
 

@@ -366,14 +366,26 @@ Grounding rules (critical for accuracy):
 
 export const QUESTION_TYPES: Question["type"][] = ["en_to_zh", "cloze", "synonym_discrim", "gloss_to_word"];
 
+const CLOZE_BLANK = "___";
+
 function hasUsableFields(q: Question): boolean {
   if (!QUESTION_TYPES.includes(q.type) || !q.prompt?.trim()) return false;
+  if (q.type === "cloze" && !q.prompt.includes(CLOZE_BLANK)) return false;
   return q.type !== "en_to_zh" || Boolean(q.reference_answer?.trim());
 }
 
+function hasCleanAnswers(q: Question): boolean {
+  return (q.accepted_answers ?? []).every((a) => typeof a === "string" && a.trim() !== "");
+}
+
+function leaksTarget(q: Question, target: string): boolean {
+  const helpers = q.context_helpers ?? [];
+  return q.prompt.includes(target) || helpers.some((h) => h.word?.includes(target));
+}
+
 export function isUsableQuestion(q: Question | undefined, word: { simplified: string }): q is Question {
-  if (!q || !hasUsableFields(q)) return false;
-  return q.target_word === word.simplified && !q.prompt.includes(word.simplified);
+  if (!q || !hasUsableFields(q) || !hasCleanAnswers(q)) return false;
+  return q.target_word === word.simplified && !leaksTarget(q, word.simplified);
 }
 
 export async function generateQuestions(

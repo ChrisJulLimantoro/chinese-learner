@@ -59,8 +59,12 @@ export async function storeCache(
 
 export function matchesTarget(question: Question, normalized: string): boolean {
   if (question.type === "en_to_zh") return false;
-  const accepted = [question.target_word, ...(question.accepted_answers ?? [])];
-  return accepted.some((a) => normalize(a) === normalized);
+  return acceptedTargets(question).some((a) => normalize(a) === normalized);
+}
+
+function acceptedTargets(question: Question): string[] {
+  const accepted = question.accepted_answers ?? [];
+  return question.type === "tone_pick" ? accepted : [question.target_word, ...accepted];
 }
 
 async function gradeWithModel(
@@ -82,6 +86,7 @@ function gradeWithoutModel(word: WordFacts, question: Question, normalized: stri
 
 function resolveDeterministic(word: WordFacts, question: Question, normalized: string): GraderOutput | null {
   if (normalized === SKIPPED_ANSWER) return templateVerdict(word, false, normalized);
+  if (question.type === "tone_pick") return templateVerdict(word, matchesTarget(question, normalized), normalized);
   if (matchesTarget(question, normalized)) return templateVerdict(word, true, normalized);
   return null;
 }

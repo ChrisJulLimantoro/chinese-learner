@@ -10,6 +10,7 @@ const TYPE_LABELS: Record<string, string> = {
   cloze:           "Fill in the blank",
   synonym_discrim: "Synonym discrimination",
   gloss_to_word:   "Gloss to word",
+  tone_pick:       "Pick the tone",
 };
 
 function outcomeVariant(outcome: string | null): "jade" | "seal" | "ochre" | "muted" {

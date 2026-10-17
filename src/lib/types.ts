@@ -51,7 +51,7 @@ export interface ContextHelper {
 }
 
 export interface Question {
-  type: "en_to_zh" | "cloze" | "synonym_discrim" | "gloss_to_word";
+  type: "en_to_zh" | "cloze" | "synonym_discrim" | "gloss_to_word" | "tone_pick";
   prompt: string;
   target_word: string;
   context: string;
@@ -62,6 +62,8 @@ export interface Question {
   /** Free helpers — glosses for other words in the prompt sentence. */
   context_helpers?: ContextHelper[];
   bank_id?: number;
+  /** Multiple-choice options (tone_pick). */
+  options?: string[];
   /** Other hanzi that are valid for the blank / answer. */
   accepted_answers?: string[];
   /** Model translation for en_to_zh, used for self-grading. */

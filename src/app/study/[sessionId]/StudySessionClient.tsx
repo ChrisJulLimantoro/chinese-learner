@@ -10,6 +10,7 @@ import { Button, Badge, ProgressBar, Skeleton, InkLoader } from "@/components/ui
 import Seal from "@/components/Seal";
 import SelfGradePanel from "./SelfGradePanel";
 import ReportQuestionButton from "./ReportQuestionButton";
+import ToneOptions from "./ToneOptions";
 import { SKIPPED_ANSWER } from "@/lib/skippedAnswer";
 
 const TIMER_SECONDS = 120;
@@ -18,6 +19,7 @@ const TYPE_LABELS: Record<string, string> = {
   cloze:           "Fill in the blank",
   synonym_discrim: "Synonym discrimination",
   gloss_to_word:   "Gloss to word",
+  tone_pick:       "Pick the tone",
 };
 
 // ─── PracticeCell (米字格) ──────────────────────────────────────────────────
@@ -545,22 +547,23 @@ export default function StudySessionClient({ session: initialSession }: { sessio
     if (complete) setSessionComplete(true);
   };
 
-  const submitAnswer = async (skipped = false) => {
+  const submitAnswer = async (skipped = false, chosen?: string) => {
     if (grading || !currentItem.question_json) return;
     const elapsed = Date.now() - startTimeRef.current;
     const assisted =
       skipped || overTimer || Boolean(usedTargetHint[currentItem.item_id]);
+    const given = chosen ?? answer;
     setGrading(true);
     clearInterval(timerRef.current!);
 
     try {
       const result = await gradeAnswerAction(
         currentItem.item_id,
-        answer || (assisted ? SKIPPED_ANSWER : ""),
+        given || (assisted ? SKIPPED_ANSWER : ""),
         elapsed,
         assisted
       );
-      setFeedback({ graderOut: result.grader_output, outcome: result.outcome, userAnswer: answer });
+      setFeedback({ graderOut: result.grader_output, outcome: result.outcome, userAnswer: given });
       if (result.outcome) applyFinalOutcome(result.outcome, result.session_complete);
     } catch (e) {
       alert(String(e));
@@ -729,8 +732,17 @@ export default function StudySessionClient({ session: initialSession }: { sessio
                 </div>
               )}
 
+              {!feedback && question.type === "tone_pick" && (
+                <ToneOptions
+                  options={question.options ?? []}
+                  disabled={grading}
+                  onPick={(option) => submitAnswer(false, option)}
+                  onSkip={() => submitAnswer(true)}
+                />
+              )}
+
               {/* Answer input */}
-              {!feedback && (
+              {!feedback && question.type !== "tone_pick" && (
                 <div className="space-y-3 pt-1">
                   <input
                     ref={answerRef}

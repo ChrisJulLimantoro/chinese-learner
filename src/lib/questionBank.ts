@@ -1,7 +1,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { PREFERRED_TYPES_BY_BOX, QUESTIONS_PER_WORD, UNSEEN_BOX, USE_STUB } from "./config";
+import { PREFERRED_TYPES_BY_BOX, QUESTIONS_PER_WORD, TONE_PICK_SHARE, UNSEEN_BOX, USE_STUB } from "./config";
 import { generateQuestions, isUsableQuestion, QUESTION_TYPES } from "./llm";
 import type { QuestionWordInput } from "./llm";
+import { buildToneQuestion } from "./toneQuestion";
 import type { Question, Word } from "./types";
 
 const RECENT_ITEMS_LIMIT = 300;
@@ -11,6 +12,7 @@ export type BankQuestion = { id: number; question: Question };
 export type QuestionBank = Map<number, BankQuestion[]>;
 export type BoxByWord = Map<number, number>;
 type QuestionType = Question["type"];
+const LLM_TYPES = new Set<QuestionType>(QUESTION_TYPES);
 
 type BankRow = {
   id: number;
@@ -64,7 +66,7 @@ function rotatingType(bank: QuestionBank, word: Word): QuestionType {
 
 function requiredType(bank: QuestionBank, boxes: BoxByWord, word: Word): QuestionType {
   const present = new Set((bank.get(word.id) ?? []).map((b) => b.question.type));
-  return preferredTypes(boxes, word.id).find((t) => !present.has(t)) ?? rotatingType(bank, word);
+  return preferredTypes(boxes, word.id).find((t) => LLM_TYPES.has(t) && !present.has(t)) ?? rotatingType(bank, word);
 }
 
 function withRequiredType(bank: QuestionBank, boxes: BoxByWord, word: Word): QuestionWordInput {
@@ -159,16 +161,38 @@ async function fillBankQuietly(
   }
 }
 
+function shouldTryTone(bank: QuestionBank, boxes: BoxByWord, word: Word, random: () => number): boolean {
+  if (!preferredTypes(boxes, word.id).includes("tone_pick")) return false;
+  return !bank.has(word.id) || random() < TONE_PICK_SHARE;
+}
+
+function bankedQuestion(bank: QuestionBank, boxes: BoxByWord, ranks: Map<number, number>, word: Word): Question | null {
+  const candidates = bank.get(word.id);
+  return candidates ? pickQuestion(candidates, ranks, preferredTypes(boxes, word.id)) : null;
+}
+
+function questionFor(
+  bank: QuestionBank,
+  boxes: BoxByWord,
+  ranks: Map<number, number>,
+  word: Word,
+  random: () => number
+): Question | null {
+  const tone = shouldTryTone(bank, boxes, word, random) ? buildToneQuestion(word, random) : null;
+  return tone ?? bankedQuestion(bank, boxes, ranks, word);
+}
+
 export async function assignQuestions(
   supabase: SupabaseClient,
   admin: SupabaseClient,
   userId: string,
-  words: Word[]
+  words: Word[],
+  random: () => number = Math.random
 ): Promise<Map<number, Question>> {
   const ids = words.map((w) => w.id);
   const [bank, boxes] = await Promise.all([loadBank(supabase, ids), loadBoxes(supabase, userId, ids)]);
   await fillBankQuietly(admin, bank, words, boxes);
   const ranks = await recentRanks(supabase, userId, ids);
-  const filled = words.filter((w) => bank.has(w.id));
-  return new Map(filled.map((w) => [w.id, pickQuestion(bank.get(w.id)!, ranks, preferredTypes(boxes, w.id))]));
+  const questions = words.map((w) => [w.id, questionFor(bank, boxes, ranks, w, random)] as const);
+  return new Map(questions.flatMap(([id, q]) => (q ? [[id, q] as const] : [])));
 }

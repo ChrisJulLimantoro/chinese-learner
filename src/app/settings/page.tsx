@@ -1,5 +1,7 @@
 import { getUserContext } from "@/lib/user";
-import { getProfile, vocabCount, listSessions } from "@/lib/services";
+import { getProfile } from "@/lib/profileService";
+import { vocabCount } from "@/lib/vocabularyService";
+import { listSessions } from "@/lib/services";
 import SettingsClient from "./SettingsClient";
 
 export const dynamic = "force-dynamic";

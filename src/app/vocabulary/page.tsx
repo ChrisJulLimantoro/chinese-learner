@@ -1,5 +1,5 @@
 import { getUserContext } from "@/lib/user";
-import { listVocabulary } from "@/lib/services";
+import { listVocabulary } from "@/lib/vocabularyService";
 import VocabularyClient from "./VocabularyClient";
 
 export const dynamic = "force-dynamic";

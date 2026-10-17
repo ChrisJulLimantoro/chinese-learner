@@ -9,11 +9,8 @@ import {
   redrillSession,
   dueReviews,
   getInProgressSession,
-  gradeAnswer,
-  selfGrade,
-  reportQuestion,
-  ensureItemQuestion,
 } from "@/lib/services";
+import { gradeAnswer, selfGrade, reportQuestion, ensureItemQuestion } from "@/lib/sessionGrading";
 
 export async function startSessionAction(kind: string = "mixed", size?: number) {
   const { supabase, userId } = await getUserContext();

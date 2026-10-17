@@ -1,5 +1,5 @@
 import { getUserContext } from "@/lib/user";
-import { getWordCard } from "@/lib/services";
+import { getWordCard } from "@/lib/vocabularyService";
 import WordCardClient from "./WordCardClient";
 import { notFound } from "next/navigation";
 

@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { getUserContext } from "@/lib/user";
-import { getProfile } from "@/lib/services";
+import { getProfile } from "@/lib/profileService";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { SUPER_ADMIN_EMAIL, FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS } from "@/lib/config";
 

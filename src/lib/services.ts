@@ -1,147 +1,18 @@
-/**
- * services.ts — service layer.
- * Faithful port of services.py with per-user scoping via Supabase + RLS.
- * Functions that touch the DB take (supabase, userId, ...).
- */
-import { after } from "next/server";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { after } from "next/server";
 import { createAdminClient } from "./supabase/admin";
-import { gradeAnswerWithCache } from "./grading";
-import {
-  ensureSrsState,
-  applyAnswer,
-  emptySrsState,
-  getUnseenWords,
-  getDueWords,
-  getMixedWords,
-  countDue,
-  checkProgression,
-} from "./srs";
-import { generateLessonCard } from "./llm";
-import { fallbackQuestion } from "./fallbackQuestion";
-import { assignQuestions, pickRequeueQuestion } from "./questionBank";
-import { SKIPPED_ANSWER } from "./skippedAnswer";
-import { DEFAULT_OVER_TIMER_MS, OVER_TIMER_MS_BY_TYPE, DEFAULT_SESSION_SIZE, START_HSK_LEVEL, FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS, SUPER_ADMIN_EMAIL } from "./config";
-import type {
-  Word,
-  Reading,
-  Session,
-  SessionItem,
-  SessionSummary,
-  Question,
-  GraderOutput,
-  Outcome,
-  SrsState,
-  DueReviews,
-  Stats,
-  Profile,
-} from "./types";
-
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
-function normalizeWordRow(row: Record<string, unknown>): Word {
-  return {
-    id: row.id as number,
-    simplified: row.simplified as string,
-    traditional: (row.traditional as string | null) ?? null,
-    pinyin: row.pinyin as string,
-    hsk_level: row.hsk_level as number,
-    frequency_rank: (row.frequency_rank as number | null) ?? null,
-    pos: Array.isArray(row.pos) ? (row.pos as string[]) : [],
-    meanings: Array.isArray(row.meanings) ? (row.meanings as string[]) : [],
-    measure_word: (row.measure_word as { mw: string; pinyin: string } | null) ?? null,
-    lesson_card: (row.lesson_card as import("./types").LessonCard | null) ?? null,
-    readings: Array.isArray(row.readings) ? (row.readings as Reading[]) : [
-      { pinyin: row.pinyin as string, traditional: (row.traditional as string | null) ?? null, meanings: Array.isArray(row.meanings) ? (row.meanings as string[]) : [] }
-    ],
-  };
-}
-
-async function ensureLessonCard(
-  word: Word
-): Promise<Word> {
-  if (word.lesson_card) return word;
-
-  try {
-    const card = await generateLessonCard(word);
-    // Write via service role (shared cache — same card for all users)
-    const admin = createAdminClient();
-    await admin
-      .from("words")
-      .update({ lesson_card: card })
-      .eq("id", word.id);
-
-    return { ...word, lesson_card: card };
-  } catch (error) {
-    // Keep session flow resilient when LLM times out, but do not invent card content.
-    console.warn(`[lesson-card] failed to generate for word ${word.id}:`, error);
-    return word;
-  }
-}
-
-export async function getProfile(
-  supabase: SupabaseClient,
-  userId: string
-): Promise<Profile> {
-  const { data } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("user_id", userId)
-    .single();
-
-  if (data) return data as Profile;
-
-  // Lazy-create profile row (first login before trigger fires)
-  const profile: Profile = {
-    user_id: userId,
-    current_hsk_level: START_HSK_LEVEL,
-    study_streak_days: 0,
-    last_study_date: null,
-    role: "user",
-    email: null,
-    max_vocab_words: 5,
-    max_sessions: 3,
-  };
-  // Only insert the columns the authenticated role is allowed to write
-  await supabase.from("profiles").insert({
-    user_id: userId,
-    current_hsk_level: START_HSK_LEVEL,
-    study_streak_days: 0,
-    last_study_date: null,
-  });
-  return profile;
-}
-
-// ---------------------------------------------------------------------------
-// Limits helpers
-// ---------------------------------------------------------------------------
-
-function isUnlimited(profile: Profile): boolean {
-  // Admins and the super-admin bypass all limits
-  return profile.role === "admin" || profile.email === SUPER_ADMIN_EMAIL;
-}
-
-function getSessionCap(profile: Profile): number | null {
-  if (isUnlimited(profile)) return null;
-  return profile.max_sessions ?? FREE_MAX_SESSIONS;
-}
-
-function getVocabCap(profile: Profile): number | null {
-  if (isUnlimited(profile)) return null;
-  return profile.max_vocab_words ?? FREE_MAX_VOCAB_WORDS;
-}
+import { ensureSrsState, getUnseenWords, getDueWords, getMixedWords, countDue, checkProgression } from "./srs";
+import { assignQuestions } from "./questionBank";
+import { assertSessionCapAvailable, getProfile } from "./profileService";
+import { normalizeWordRow } from "./wordRow";
+import { DEFAULT_SESSION_SIZE, START_HSK_LEVEL } from "./config";
+import type { DueReviews, GraderOutput, Outcome, Question, Session, SessionItem, SessionSummary, Stats, Word } from "./types";
 
 function sessionScore(items: { outcome: string | null }[]): { correct: number; answered: number } {
   const answered = items.filter((it) => it.outcome !== null).length;
   const correct = items.filter((it) => it.outcome === "correct").length;
   return { correct, answered };
 }
-
-// ---------------------------------------------------------------------------
-// _createSession (shared core)
-// ---------------------------------------------------------------------------
 
 async function createSession(
   supabase: SupabaseClient,
@@ -223,49 +94,6 @@ async function createSession(
   };
 }
 
-// ---------------------------------------------------------------------------
-// ensureItemQuestion
-// ---------------------------------------------------------------------------
-
-export async function ensureItemQuestion(
-  supabase: SupabaseClient,
-  userId: string,
-  itemId: number
-): Promise<Question> {
-  // Load item (verify ownership via user_id filter)
-  const { data: item } = await supabase
-    .from("session_items")
-    .select("*, words(id, simplified, traditional, pinyin, hsk_level, pos, meanings, frequency_rank, lesson_card, readings)")
-    .eq("id", itemId)
-    .eq("user_id", userId)
-    .single();
-
-  if (!item) throw new Error(`session_item ${itemId} not found`);
-
-  // Already generated?
-  if (item.question) return item.question as Question;
-
-  const w = (item.words as Record<string, unknown>) ?? {};
-  const word = normalizeWordRow(w);
-
-  const { questions, refillBank } = await assignQuestions(supabase, createAdminClient(), userId, [word]);
-  after(refillBank);
-  const question = questions.get(word.id) ?? fallbackQuestion(word);
-
-  // Persist
-  await supabase
-    .from("session_items")
-    .update({ question })
-    .eq("id", itemId)
-    .eq("user_id", userId);
-
-  return question;
-}
-
-// ---------------------------------------------------------------------------
-// startSession
-// ---------------------------------------------------------------------------
-
 export async function startSession(
   supabase: SupabaseClient,
   userId: string,
@@ -275,19 +103,7 @@ export async function startSession(
   const profile = await getProfile(supabase, userId);
   const level = profile.current_hsk_level ?? START_HSK_LEVEL;
 
-  // Enforce session cap
-  const sessionCap = getSessionCap(profile);
-  if (sessionCap !== null) {
-    const { count: sessionCount } = await supabase
-      .from("sessions")
-      .select("*", { count: "exact", head: true })
-      .eq("user_id", userId);
-    if ((sessionCount ?? 0) >= sessionCap) {
-      throw new Error(
-        `Free plan limit reached (${sessionCap} session${sessionCap === 1 ? "" : "s"}). Ask an admin to raise your limit.`
-      );
-    }
-  }
+  await assertSessionCapAvailable(supabase, userId, profile);
 
   let words: Word[];
   if (kind === "new_drop") {
@@ -315,266 +131,13 @@ export async function startSessionWithWords(
   const profile = await getProfile(supabase, userId);
   const level = profile.current_hsk_level ?? START_HSK_LEVEL;
 
-  // Enforce session cap
-  const sessionCap = getSessionCap(profile);
-  if (sessionCap !== null) {
-    const { count: sessionCount } = await supabase
-      .from("sessions")
-      .select("*", { count: "exact", head: true })
-      .eq("user_id", userId);
-    if ((sessionCount ?? 0) >= sessionCap) {
-      throw new Error(
-        `Free plan limit reached (${sessionCap} session${sessionCap === 1 ? "" : "s"}). Ask an admin to raise your limit.`
-      );
-    }
-  }
+  await assertSessionCapAvailable(supabase, userId, profile);
 
   const { data } = await supabase.from("words").select("*").in("id", wordIds);
   const words = (data ?? []).map(normalizeWordRow);
 
   return createSession(supabase, userId, words, kind, level);
 }
-
-// ---------------------------------------------------------------------------
-// recordStudyActivity
-// ---------------------------------------------------------------------------
-
-export async function recordStudyActivity(
-  supabase: SupabaseClient,
-  userId: string
-): Promise<void> {
-  const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
-  const profile = await getProfile(supabase, userId);
-
-  if (profile.last_study_date === today) return; // already counted today
-
-  let streak = profile.study_streak_days ?? 0;
-  const last = profile.last_study_date
-    ? new Date(profile.last_study_date)
-    : null;
-
-  const todayDate = new Date(today);
-  const yesterday = new Date(todayDate);
-  yesterday.setDate(yesterday.getDate() - 1);
-
-  if (last && last.toISOString().split("T")[0] === yesterday.toISOString().split("T")[0]) {
-    streak += 1;
-  } else {
-    streak = 1;
-  }
-
-  await supabase
-    .from("profiles")
-    .update({ study_streak_days: streak, last_study_date: today })
-    .eq("user_id", userId);
-}
-
-// ---------------------------------------------------------------------------
-// gradeAnswer
-// ---------------------------------------------------------------------------
-
-type WordRow = Parameters<typeof gradeAnswerWithCache>[1];
-
-type ItemRef = {
-  id: number;
-  session_id: number;
-  word_id: number;
-  is_requeue?: boolean;
-  question: Question | null;
-  words?: { srs_state?: SrsState[] } | null;
-};
-
-type ItemWithWord = ItemRef & { words: Record<string, unknown> };
-
-type FinalizedGrade = {
-  srs_summary: import("./types").SrsState;
-  session_complete: boolean;
-  new_cursor: number;
-  requeued_item: SessionItem | null;
-};
-
-type FinalizeResult = { new_cursor: number; session_complete: boolean; requeue_item_id: number | null; requeue_order_index: number | null };
-
-function overTimerMsFor(item: ItemRef): number {
-  return OVER_TIMER_MS_BY_TYPE[item.question?.type as Question["type"]] ?? DEFAULT_OVER_TIMER_MS;
-}
-
-async function saveItemFields(
-  supabase: SupabaseClient,
-  userId: string,
-  itemId: number,
-  fields: Record<string, unknown>
-): Promise<void> {
-  await supabase.from("session_items").update(fields).eq("id", itemId).eq("user_id", userId);
-}
-
-function wasSkipped(fields: Record<string, unknown>): boolean {
-  return fields.user_answer === SKIPPED_ANSWER;
-}
-
-async function recordQuestionResult(
-  item: ItemRef,
-  fields: Record<string, unknown>
-): Promise<void> {
-  const bankId = item.question?.bank_id;
-  const correct = (fields.grader_output as GraderOutput).correct;
-  if (!bankId || wasSkipped(fields)) return;
-  await createAdminClient().rpc("record_question_result", { p_question_id: bankId, p_correct: correct });
-}
-
-function currentSrsState(userId: string, item: ItemRef): SrsState {
-  return item.words?.srs_state?.[0] ?? emptySrsState(userId, item.word_id);
-}
-
-function finalizeParams(item: ItemRef, outcome: Outcome, responseTimeMs: number, fields: Record<string, unknown>, srs: SrsState, requeueQuestion: Question | null) {
-  return {
-    p_item_id: item.id,
-    p_user_answer: (fields.user_answer as string | undefined) ?? null,
-    p_grader_output: fields.grader_output,
-    p_response_time_ms: responseTimeMs,
-    p_outcome: outcome,
-    p_box: srs.box,
-    p_next_review_at: srs.next_review_at,
-    p_correct_count: srs.correct_count,
-    p_wrong_count: srs.wrong_count,
-    p_hesitated_count: srs.hesitated_count,
-    p_lapse_streak: srs.lapse_streak,
-    p_mastered: srs.mastered,
-    p_box5_correct: srs.box5_correct,
-    p_requeue_question: requeueQuestion,
-  };
-}
-
-async function finalizeSessionItem(supabase: SupabaseClient, params: ReturnType<typeof finalizeParams>) {
-  const { data, error } = await supabase.rpc("finalize_session_item", params).single();
-  if (error) throw new Error(`Failed to finalize item: ${error.message}`);
-  return data as FinalizeResult;
-}
-
-function shouldRequeue(item: ItemRef, outcome: Outcome): boolean {
-  return outcome === "wrong" && !item.is_requeue;
-}
-
-async function requeueQuestionFor(supabase: SupabaseClient, userId: string, item: ItemRef, outcome: Outcome): Promise<Question | null> {
-  if (!shouldRequeue(item, outcome)) return null;
-  return pickRequeueQuestion(supabase, userId, item.word_id, item.question);
-}
-
-function nextSrsState(userId: string, item: ItemRef, outcome: Outcome, responseTimeMs: number): SrsState {
-  const current = currentSrsState(userId, item);
-  if (item.is_requeue) return current;
-  return applyAnswer(current, { outcome, overTimer: responseTimeMs > overTimerMsFor(item), hesitated: outcome === "hesitated" });
-}
-
-function requeuedItemOf(item: ItemRef, finalized: FinalizeResult, question: Question | null): SessionItem | null {
-  if (!finalized.requeue_item_id) return null;
-  const word = normalizeWordRow((item as ItemWithWord).words as Record<string, unknown>);
-  return {
-    item_id: finalized.requeue_item_id,
-    order_index: finalized.requeue_order_index!,
-    word,
-    lesson_card: null,
-    question_json: question,
-    user_answer: null,
-    grader_output_json: null,
-    response_time_ms: null,
-    outcome: null,
-    is_requeue: true,
-  };
-}
-
-async function finalizeGrade(
-  supabase: SupabaseClient,
-  userId: string,
-  item: ItemRef,
-  outcome: Outcome,
-  responseTimeMs: number,
-  fields: Record<string, unknown>
-): Promise<FinalizedGrade> {
-  const srs = nextSrsState(userId, item, outcome, responseTimeMs);
-  const requeueQuestion = await requeueQuestionFor(supabase, userId, item, outcome);
-  const params = finalizeParams(item, outcome, responseTimeMs, fields, srs, requeueQuestion);
-  const [finalized] = await Promise.all([finalizeSessionItem(supabase, params), recordQuestionResult(item, fields)]);
-  const requeued_item = requeuedItemOf(item, finalized, requeueQuestion);
-  return { srs_summary: srs, session_complete: finalized.session_complete, new_cursor: finalized.new_cursor, requeued_item };
-}
-
-function outcomeFor(graderOut: GraderOutput, hesitated: boolean): Outcome {
-  if (hesitated && graderOut.self_grade) return "hesitated";
-  if (!graderOut.correct) return "wrong";
-  return hesitated ? "hesitated" : "correct";
-}
-
-async function loadOwnedItem(supabase: SupabaseClient, userId: string, itemId: number) {
-  const { data: item } = await supabase
-    .from("session_items")
-    .select("*, words(id, simplified, traditional, pinyin, hsk_level, pos, meanings, frequency_rank, readings, lesson_card, srs_state(*))")
-    .eq("words.srs_state.user_id", userId)
-    .eq("id", itemId)
-    .eq("user_id", userId)
-    .single();
-  if (!item) throw new Error(`session_item ${itemId} not found`);
-  return item;
-}
-
-export async function gradeAnswer(
-  supabase: SupabaseClient,
-  userId: string,
-  sessionItemId: number,
-  answer: string,
-  responseTimeMs: number,
-  hesitated: boolean = false
-): Promise<{
-  grader_output: GraderOutput;
-  srs_summary: import("./types").SrsState | null;
-  session_complete: boolean;
-  outcome: Outcome | null;
-  new_cursor: number | null;
-  requeued_item: SessionItem | null;
-}> {
-  const item = await loadOwnedItem(supabase, userId, sessionItemId);
-  if (item.outcome) throw new Error(`session_item ${sessionItemId} is already graded`);
-  const question = (item.question as Question | null) ?? (await ensureItemQuestion(supabase, userId, sessionItemId));
-  const graderOut = await gradeAnswerWithCache(supabase, item.words as WordRow, question, answer);
-  const fields = { user_answer: answer, grader_output: graderOut };
-  if (graderOut.self_grade && !hesitated) {
-    await saveItemFields(supabase, userId, sessionItemId, { ...fields, response_time_ms: responseTimeMs });
-    return { grader_output: graderOut, srs_summary: null, session_complete: false, outcome: null, new_cursor: null, requeued_item: null };
-  }
-  const outcome = outcomeFor(graderOut, hesitated);
-  const finalized = await finalizeGrade(supabase, userId, item, outcome, responseTimeMs, fields);
-  return { grader_output: graderOut, outcome, ...finalized };
-}
-
-export async function reportQuestion(supabase: SupabaseClient, questionId: number, reason: string): Promise<void> {
-  const { error } = await supabase.rpc("report_question", { p_question_id: questionId, p_reason: reason });
-  if (error) throw new Error(`Failed to report question: ${error.message}`);
-}
-
-export async function selfGrade(
-  supabase: SupabaseClient,
-  userId: string,
-  sessionItemId: number,
-  gotIt: boolean
-): Promise<{
-  srs_summary: import("./types").SrsState;
-  session_complete: boolean;
-  outcome: Outcome;
-  new_cursor: number;
-  requeued_item: SessionItem | null;
-}> {
-  const item = await loadOwnedItem(supabase, userId, sessionItemId);
-  const graderOut = item.grader_output as GraderOutput | null;
-  if (item.outcome || !graderOut?.self_grade) throw new Error(`session_item ${sessionItemId} is not awaiting self-grade`);
-  const outcome: Outcome = gotIt ? "correct" : "wrong";
-  const resolved = { ...graderOut, correct: gotIt, naturalness: gotIt ? 5 : 1, self_grade: false };
-  const finalized = await finalizeGrade(supabase, userId, item, outcome, item.response_time_ms ?? 0, { grader_output: resolved });
-  return { outcome, ...finalized };
-}
-
-// ---------------------------------------------------------------------------
-// loadSession
-// ---------------------------------------------------------------------------
 
 export async function loadSession(
   supabase: SupabaseClient,
@@ -629,10 +192,6 @@ export async function loadSession(
   };
 }
 
-// ---------------------------------------------------------------------------
-// listSessions
-// ---------------------------------------------------------------------------
-
 export async function listSessions(
   supabase: SupabaseClient,
   userId: string,
@@ -662,10 +221,6 @@ export async function listSessions(
     };
   });
 }
-
-// ---------------------------------------------------------------------------
-// redrillSession
-// ---------------------------------------------------------------------------
 
 export async function redrillSession(
   supabase: SupabaseClient,
@@ -749,10 +304,6 @@ export async function redrillSession(
   };
 }
 
-// ---------------------------------------------------------------------------
-// dueReviews
-// ---------------------------------------------------------------------------
-
 export async function dueReviews(
   supabase: SupabaseClient,
   userId: string
@@ -783,10 +334,6 @@ export async function dueReviews(
 
   return { count: cnt, words };
 }
-
-// ---------------------------------------------------------------------------
-// getStats
-// ---------------------------------------------------------------------------
 
 export async function getStats(
   supabase: SupabaseClient,
@@ -848,10 +395,6 @@ export async function getStats(
   };
 }
 
-// ---------------------------------------------------------------------------
-// getInProgressSession
-// ---------------------------------------------------------------------------
-
 export async function getInProgressSession(
   supabase: SupabaseClient,
   userId: string
@@ -867,201 +410,4 @@ export async function getInProgressSession(
 
   if (!data) return null;
   return loadSession(supabase, userId, data.id as number);
-}
-
-// ---------------------------------------------------------------------------
-// Vocabulary
-// ---------------------------------------------------------------------------
-
-export async function vocabCount(
-  supabase: SupabaseClient,
-  userId: string
-): Promise<number> {
-  const { count } = await supabase
-    .from("srs_state")
-    .select("*", { count: "exact", head: true })
-    .eq("user_id", userId);
-  return count ?? 0;
-}
-
-export async function listVocabulary(
-  supabase: SupabaseClient,
-  userId: string
-): Promise<
-  (Word & {
-    box: number;
-    mastered: boolean;
-    next_review_at: number;
-    correct_count: number;
-    wrong_count: number;
-    due: boolean;
-  })[]
-> {
-  const nowSeconds = Date.now() / 1000;
-
-  // lesson_card is intentionally excluded — it is large JSONB not needed by the list view.
-  const { data: rows } = await supabase
-    .from("srs_state")
-    .select(`
-      box, mastered, next_review_at, correct_count, wrong_count,
-      words (id, simplified, traditional, pinyin, hsk_level, pos, meanings, frequency_rank)
-    `)
-    .eq("user_id", userId)
-    .order("next_review_at", { ascending: true })
-    .order("box", { ascending: true });
-
-  return (rows ?? [])
-    .filter((r) => r.words)
-    .map((r) => {
-      const w = (r.words as unknown) as Record<string, unknown>;
-      const nextReviewAt = r.next_review_at as number;
-      return {
-        ...normalizeWordRow(w),
-        box: r.box as number,
-        mastered: r.mastered as boolean,
-        next_review_at: nextReviewAt,
-        correct_count: r.correct_count as number,
-        wrong_count: r.wrong_count as number,
-        due: nextReviewAt <= nowSeconds,
-      };
-    })
-    .sort((a, b) => {
-      // due first, then lowest box, then by frequency_rank
-      if (a.due !== b.due) return a.due ? -1 : 1;
-      return a.box - b.box;
-    });
-}
-
-export async function getWordCard(
-  supabase: SupabaseClient,
-  userId: string,
-  wordId: number
-): Promise<{
-  word: Word;
-  lesson_card: import("./types").LessonCard | null;
-  srs: import("./types").SrsState | null;
-}> {
-  const { data: wordRow } = await supabase
-    .from("words")
-    .select("*")
-    .eq("id", wordId)
-    .single();
-
-  if (!wordRow) throw new Error(`Word ${wordId} not found`);
-
-  const word = normalizeWordRow(wordRow);
-  const enriched = await ensureLessonCard(word);
-
-  const { data: srsRow } = await supabase
-    .from("srs_state")
-    .select("*")
-    .eq("user_id", userId)
-    .eq("word_id", wordId)
-    .single();
-
-  return {
-    word: normalizeWordRow(enriched as unknown as Record<string, unknown>),
-    lesson_card: enriched.lesson_card,
-    srs: srsRow as import("./types").SrsState | null,
-  };
-}
-
-export async function regenerateWordCard(
-  supabase: SupabaseClient,
-  userId: string,
-  wordId: number,
-  reason?: string
-): Promise<{
-  word: Word;
-  lesson_card: import("./types").LessonCard;
-  srs: import("./types").SrsState | null;
-}> {
-  const { data: wordRow } = await supabase
-    .from("words")
-    .select("*")
-    .eq("id", wordId)
-    .single();
-
-  if (!wordRow) throw new Error(`Word ${wordId} not found`);
-  const word = normalizeWordRow(wordRow);
-
-  const card = await generateLessonCard(word, reason);
-  const admin = createAdminClient();
-  await admin.from("words").update({ lesson_card: card }).eq("id", word.id);
-
-  const { data: srsRow } = await supabase
-    .from("srs_state")
-    .select("*")
-    .eq("user_id", userId)
-    .eq("word_id", wordId)
-    .single();
-
-  return {
-    word: { ...word, lesson_card: card },
-    lesson_card: card,
-    srs: srsRow as import("./types").SrsState | null,
-  };
-}
-
-export async function addWordsToBank(
-  supabase: SupabaseClient,
-  userId: string,
-  count: number = 1
-): Promise<Word[]> {
-  const profile = await getProfile(supabase, userId);
-  const level = profile.current_hsk_level ?? START_HSK_LEVEL;
-
-  // Enforce vocab cap
-  const vocabCap = getVocabCap(profile);
-  if (vocabCap !== null) {
-    const current = await vocabCount(supabase, userId);
-    const remaining = vocabCap - current;
-    if (remaining <= 0) {
-      throw new Error(
-        `Free plan limit reached (${vocabCap} word${vocabCap === 1 ? "" : "s"}). Ask an admin to raise your limit.`
-      );
-    }
-    count = Math.min(count, remaining);
-  }
-
-  let words = await getUnseenWords(supabase, userId, count, level);
-  if (words.length === 0) {
-    // fallback: try any level
-    const { data } = await supabase
-      .from("words")
-      .select(`*, srs_state!left(user_id)`)
-      .is("srs_state", null)
-      .order("frequency_rank", { ascending: true, nullsFirst: false })
-      .limit(count);
-    words = (data ?? []).map(normalizeWordRow);
-  }
-
-  const added: Word[] = [];
-  for (const w of words) {
-    const enriched = await ensureLessonCard(w);
-    await ensureSrsState(supabase, userId, w.id);
-    added.push(normalizeWordRow(enriched as unknown as Record<string, unknown>));
-  }
-  return added;
-}
-
-export async function listAddableWords(
-  supabase: SupabaseClient,
-  userId: string,
-  size: number = 40
-): Promise<Word[]> {
-  const profile = await getProfile(supabase, userId);
-  const level = profile.current_hsk_level ?? START_HSK_LEVEL;
-
-  let words = await getUnseenWords(supabase, userId, size, level);
-  if (words.length === 0) {
-    const { data } = await supabase
-      .from("words")
-      .select(`*, srs_state!left(user_id)`)
-      .is("srs_state", null)
-      .order("frequency_rank", { ascending: true, nullsFirst: false })
-      .limit(size);
-    words = (data ?? []).map(normalizeWordRow);
-  }
-  return words;
 }

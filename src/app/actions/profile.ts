@@ -1,7 +1,7 @@
 "use server";
 
 import { getUserContext } from "@/lib/user";
-import { getProfile } from "@/lib/services";
+import { getProfile } from "@/lib/profileService";
 import { MIN_HSK_LEVEL, MAX_HSK_LEVEL } from "@/lib/config";
 
 export async function getProfileAction() {

@@ -8,8 +8,8 @@ import {
   addWordsToBank,
   listAddableWords,
   vocabCount,
-  getStats,
-} from "@/lib/services";
+} from "@/lib/vocabularyService";
+import { getStats } from "@/lib/services";
 
 export async function listVocabularyAction() {
   const { supabase, userId } = await getUserContext();

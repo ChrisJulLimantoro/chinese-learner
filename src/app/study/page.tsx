@@ -1,5 +1,5 @@
 import { getUserContext } from "@/lib/user";
-import { listVocabulary, listAddableWords } from "@/lib/services";
+import { listVocabulary, listAddableWords } from "@/lib/vocabularyService";
 import StudyBuilderClient from "./StudyBuilderClient";
 
 // Session creation may call LLM

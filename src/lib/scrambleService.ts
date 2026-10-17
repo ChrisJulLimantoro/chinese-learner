@@ -1,7 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { unstable_cache } from "next/cache";
 import { createAdminClient } from "./supabase/admin";
-import { getProfile, recordStudyActivity } from "./services";
+import { getProfile, recordStudyActivity } from "./profileService";
 import { rescheduleFromRecognition } from "./srs";
 import {
   BOARD_SIZE,
@@ -156,6 +156,6 @@ export async function submitScramble(
   const score = scoreOf(results, words);
   await completeRun(supabase, userId, runId, score, results);
   await rescheduleFromRecognition(supabase, userId, results);
-  await recordStudyActivity(supabase, userId);
+  await recordStudyActivity(supabase);
   return { score };
 }

@@ -4,7 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import { getOptionalUser } from "@/lib/user";
 import { createClient } from "@/lib/supabase/server";
-import { getProfile } from "@/lib/services";
+import { getProfile } from "@/lib/profileService";
 import { SUPER_ADMIN_EMAIL } from "@/lib/config";
 
 const geistSans = Geist({

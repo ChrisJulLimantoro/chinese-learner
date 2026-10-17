@@ -164,7 +164,7 @@ export async function getUnseenWords(
       srs_state!left(user_id)
     `)
     .eq("hsk_level", level)
-    .is("srs_state.user_id", null)
+    .is("srs_state", null)
     .order("frequency_rank", { ascending: true, nullsFirst: false })
     .order("id", { ascending: true })
     .limit(size);

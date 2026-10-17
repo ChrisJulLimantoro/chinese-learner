@@ -984,7 +984,7 @@ export async function addWordsToBank(
     const { data } = await supabase
       .from("words")
       .select(`*, srs_state!left(user_id)`)
-      .is("srs_state.user_id", null)
+      .is("srs_state", null)
       .order("frequency_rank", { ascending: true, nullsFirst: false })
       .limit(count);
     words = (data ?? []).map(normalizeWordRow);
@@ -1012,7 +1012,7 @@ export async function listAddableWords(
     const { data } = await supabase
       .from("words")
       .select(`*, srs_state!left(user_id)`)
-      .is("srs_state.user_id", null)
+      .is("srs_state", null)
       .order("frequency_rank", { ascending: true, nullsFirst: false })
       .limit(size);
     words = (data ?? []).map(normalizeWordRow);

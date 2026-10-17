@@ -16,6 +16,7 @@ export const BOX_INTERVALS: Record<number, number> = {
 
 export const MASTERY_BOX = 5;
 export const MASTERY_EXTRA_CORRECT = 3;      // additional correct in box-5 to mark mastered
+export const MAINTENANCE_INTERVAL = 90 * 86400;
 export const LEAK_PLUGGER_THRESHOLD = 2;     // wrong_count >= N → force back to box 1
 export const MASTERY_PERCENT = 0.95;         // 95% of level words mastered to advance
 export const LEVEL_FLOOR = 150;              // min mastered words at current level to advance

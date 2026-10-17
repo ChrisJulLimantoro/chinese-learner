@@ -86,7 +86,7 @@ export function orderCandidates(words: IndexedWord[], srs: SrsSnapshot[], nowSec
 }
 
 export function isDueRow(row: SrsSnapshot | undefined, nowSeconds: number): boolean {
-  return Boolean(row) && !row!.mastered && row!.next_review_at <= nowSeconds;
+  return Boolean(row) && row!.next_review_at <= nowSeconds;
 }
 
 type SeedState = { picked: IndexedWord[]; remaining: number };

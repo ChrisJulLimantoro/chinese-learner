@@ -7,6 +7,7 @@ import {
   BOX_INTERVALS,
   MASTERY_BOX,
   MASTERY_EXTRA_CORRECT,
+  MAINTENANCE_INTERVAL,
   LEAK_PLUGGER_THRESHOLD,
   LOWER_LEVEL_REVIEW_SHARE,
   MASTERY_PERCENT,
@@ -31,7 +32,7 @@ export async function ensureSrsState(
 }
 
 export type SrsOutcomeFlags = { outcome: Outcome; overTimer: boolean; hesitated: boolean };
-type SrsProgress = Pick<SrsState, "box" | "correct_count" | "wrong_count" | "hesitated_count" | "lapse_streak">;
+type SrsProgress = Pick<SrsState, "box" | "correct_count" | "wrong_count" | "hesitated_count" | "lapse_streak" | "box5_correct">;
 
 function isCleanCorrect({ outcome, overTimer, hesitated }: SrsOutcomeFlags): boolean {
   return outcome === "correct" && !overTimer && !hesitated;
@@ -45,6 +46,7 @@ function nextCounts(row: SrsProgress, flags: SrsOutcomeFlags): SrsProgress {
     wrong_count: row.wrong_count + (flags.outcome === "wrong" ? 1 : 0),
     hesitated_count: row.hesitated_count + (flags.outcome === "hesitated" ? 1 : 0),
     lapse_streak: row.lapse_streak + (flags.outcome === "wrong" ? 1 : 0),
+    box5_correct: row.box5_correct,
   };
 }
 
@@ -55,24 +57,31 @@ function nextBox(box: number, flags: SrsOutcomeFlags): number {
 
 function applyLeakPlugger(progress: SrsProgress): SrsProgress {
   if (progress.lapse_streak < LEAK_PLUGGER_THRESHOLD) return progress;
-  return { ...progress, box: 1, lapse_streak: 0 };
+  return { ...progress, box: 1, lapse_streak: 0, box5_correct: 0 };
 }
 
 function resetStreakOnSolidRecall(row: SrsProgress, flags: SrsOutcomeFlags): SrsProgress {
   return isCleanCorrect(flags) && row.box >= 3 ? { ...row, lapse_streak: 0 } : row;
 }
 
+function nextBox5Correct(row: SrsProgress, flags: SrsOutcomeFlags, box: number): number {
+  if (box !== MASTERY_BOX || row.box !== MASTERY_BOX) return 0;
+  return row.box5_correct + (isCleanCorrect(flags) ? 1 : 0);
+}
+
 export function computeProgress(row: SrsProgress, flags: SrsOutcomeFlags): SrsProgress {
   const counted = resetStreakOnSolidRecall(nextCounts(row, flags), flags);
-  return applyLeakPlugger({ ...counted, box: nextBox(row.box, flags) });
+  const box = nextBox(row.box, flags);
+  return applyLeakPlugger({ ...counted, box, box5_correct: nextBox5Correct(row, flags, box) });
 }
 
-function isMastered(progress: SrsProgress): boolean {
-  return progress.box === MASTERY_BOX && progress.correct_count >= MASTERY_EXTRA_CORRECT;
+export function isMastered(progress: SrsProgress): boolean {
+  return progress.box === MASTERY_BOX && progress.box5_correct >= MASTERY_EXTRA_CORRECT;
 }
 
-function nextReviewAfter(box: number): number {
-  return Date.now() / 1000 + (BOX_INTERVALS[box] ?? BOX_INTERVALS[5]);
+function nextReviewAfter(progress: SrsProgress): number {
+  const interval = isMastered(progress) ? MAINTENANCE_INTERVAL : BOX_INTERVALS[progress.box];
+  return Date.now() / 1000 + interval;
 }
 
 export function emptySrsState(userId: string, wordId: number): SrsState {
@@ -85,13 +94,14 @@ export function emptySrsState(userId: string, wordId: number): SrsState {
     wrong_count: 0,
     hesitated_count: 0,
     lapse_streak: 0,
+    box5_correct: 0,
     mastered: false,
   };
 }
 
 export function advanceSrsState(row: SrsState, flags: SrsOutcomeFlags): SrsState {
   const progress = computeProgress(row, flags);
-  return { ...row, ...progress, next_review_at: nextReviewAfter(progress.box), mastered: isMastered(progress) };
+  return { ...row, ...progress, next_review_at: nextReviewAfter(progress), mastered: isMastered(progress) };
 }
 
 export type RecognitionResult = { wordId: number; correct: boolean };
@@ -163,12 +173,11 @@ export async function getDueWords(
   // Current level due
   const { data: current } = await supabase
     .from("words")
-    .select("*, srs_state!inner(box, next_review_at, mastered, correct_count, wrong_count, hesitated_count, user_id)")
+    .select("*, srs_state!inner(box, next_review_at, mastered, correct_count, wrong_count, hesitated_count, box5_correct, user_id)")
     .eq("hsk_level", level)
     .eq("srs_state.user_id", userId)
     .lte("srs_state.next_review_at", nowSeconds)
-    .eq("srs_state.mastered", false)
-    .order("srs_state(next_review_at)", { ascending: true })
+        .order("srs_state(next_review_at)", { ascending: true })
     .limit(currentSize);
 
   // Lower level due
@@ -176,12 +185,11 @@ export async function getDueWords(
   if (lowerSize > 0) {
     const { data: lowerData } = await supabase
       .from("words")
-      .select("*, srs_state!inner(box, next_review_at, mastered, correct_count, wrong_count, hesitated_count, user_id)")
+      .select("*, srs_state!inner(box, next_review_at, mastered, correct_count, wrong_count, hesitated_count, box5_correct, user_id)")
       .lt("hsk_level", level)
       .eq("srs_state.user_id", userId)
       .lte("srs_state.next_review_at", nowSeconds)
-      .eq("srs_state.mastered", false)
-      .order("srs_state(next_review_at)", { ascending: true })
+            .order("srs_state(next_review_at)", { ascending: true })
       .limit(lowerSize);
     lower = lowerData ?? [];
   }
@@ -211,8 +219,7 @@ export async function countDue(
     .from("srs_state")
     .select("*", { count: "exact", head: true })
     .eq("user_id", userId)
-    .lte("next_review_at", nowSeconds)
-    .eq("mastered", false);
+    .lte("next_review_at", nowSeconds);
   return count ?? 0;
 }
 

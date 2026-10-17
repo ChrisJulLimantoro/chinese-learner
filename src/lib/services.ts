@@ -427,6 +427,7 @@ function finalizeParams(item: ItemRef, outcome: Outcome, responseTimeMs: number,
     p_hesitated_count: srs.hesitated_count,
     p_lapse_streak: srs.lapse_streak,
     p_mastered: srs.mastered,
+    p_box5_correct: srs.box5_correct,
   };
 }
 
@@ -710,7 +711,6 @@ export async function dueReviews(
     .select("word_id, box, wrong_count, words(simplified, pinyin)")
     .eq("user_id", userId)
     .lte("next_review_at", nowSeconds)
-    .eq("mastered", false)
     .order("next_review_at", { ascending: true })
     .limit(5);
 
@@ -868,7 +868,7 @@ export async function listVocabulary(
         next_review_at: nextReviewAt,
         correct_count: r.correct_count as number,
         wrong_count: r.wrong_count as number,
-        due: nextReviewAt <= nowSeconds && !r.mastered,
+        due: nextReviewAt <= nowSeconds,
       };
     })
     .sort((a, b) => {

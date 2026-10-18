@@ -1,6 +1,7 @@
 import { after } from "next/server";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createAdminClient } from "./supabase/admin";
+import { getUserLlmKey } from "./byokService";
 import { gradeAnswerWithCache } from "./grading";
 import { applyAnswer, emptySrsState } from "./srs";
 import { fallbackQuestion } from "./fallbackQuestion";
@@ -32,7 +33,7 @@ export async function ensureItemQuestion(
   const w = (item.words as Record<string, unknown>) ?? {};
   const word = normalizeWordRow(w);
 
-  const { questions, refillBank } = await assignQuestions(supabase, createAdminClient(), userId, [word]);
+  const { questions, refillBank } = await assignQuestions(supabase, createAdminClient(), [word], await getUserLlmKey(userId));
   after(refillBank);
   const question = questions.get(word.id) ?? fallbackQuestion(word);
 
@@ -128,9 +129,9 @@ function shouldRequeue(item: ItemRef, outcome: Outcome): boolean {
   return outcome === "wrong" && !item.is_requeue;
 }
 
-async function requeueQuestionFor(supabase: SupabaseClient, userId: string, item: ItemRef, outcome: Outcome): Promise<Question | null> {
+async function requeueQuestionFor(supabase: SupabaseClient, item: ItemRef, outcome: Outcome): Promise<Question | null> {
   if (!shouldRequeue(item, outcome)) return null;
-  return pickRequeueQuestion(supabase, userId, item.word_id, item.question);
+  return pickRequeueQuestion(supabase, item.word_id, item.question);
 }
 
 function nextSrsState(userId: string, item: ItemRef, outcome: Outcome, responseTimeMs: number): SrsState {
@@ -165,7 +166,7 @@ async function finalizeGrade(
   fields: Record<string, unknown>
 ): Promise<FinalizedGrade> {
   const srs = nextSrsState(userId, item, outcome, responseTimeMs);
-  const requeueQuestion = await requeueQuestionFor(supabase, userId, item, outcome);
+  const requeueQuestion = await requeueQuestionFor(supabase, item, outcome);
   const params = finalizeParams(item, outcome, responseTimeMs, fields, srs, requeueQuestion);
   const [finalized] = await Promise.all([finalizeSessionItem(supabase, params), recordQuestionResult(item, fields)]);
   const requeued_item = requeuedItemOf(item, finalized, requeueQuestion);
@@ -202,7 +203,7 @@ export async function gradeAnswer(
   const item = await loadOwnedItem(supabase, userId, sessionItemId);
   if (item.outcome) throw new Error(`session_item ${sessionItemId} is already graded`);
   const question = (item.question as Question | null) ?? (await ensureItemQuestion(supabase, userId, sessionItemId));
-  const graderOut = await gradeAnswerWithCache(supabase, item.words as WordRow, question, answer);
+  const graderOut = await gradeAnswerWithCache(supabase, item.words as WordRow, question, answer, userId);
   const fields = { user_answer: answer, grader_output: graderOut };
   if (graderOut.self_grade && !hesitated) {
     await saveItemFields(supabase, userId, sessionItemId, { ...fields, response_time_ms: responseTimeMs });

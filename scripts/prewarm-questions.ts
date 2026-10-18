@@ -1,6 +1,6 @@
 /**
  * prewarm-questions.ts — fill the shared question bank (word_questions)
- * up to QUESTIONS_PER_WORD per word so sessions need no LLM calls.
+ * up to QUESTIONS_FLOOR per word so sessions need no LLM calls.
  *
  * Run:  npm run prewarm-questions -- [hskLevel]
  * Requires LLM_API_KEY. Run AFTER applying migration 006_question_bank.sql.
@@ -11,7 +11,9 @@ import { existsSync } from "node:fs";
 import { createClient } from "@supabase/supabase-js";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Word } from "../src/lib/types";
-import type { QuestionBank } from "../src/lib/questionBank";
+import type { PoolByWord, PoolRow } from "../src/lib/questionPool";
+
+const UNSEEN_BOX_ID = 1;
 
 for (const f of [".env.local", ".env"]) {
   if (existsSync(f)) {
@@ -51,16 +53,34 @@ function chunk<T>(items: T[], size: number): T[][] {
   return Array.from({ length: Math.ceil(items.length / size) }, (_, i) => items.slice(i * size, i * size + size));
 }
 
-function totalQuestions(bank: QuestionBank): number {
-  return [...bank.values()].reduce((sum, qs) => sum + qs.length, 0);
+function totalQuestions(pool: PoolByWord): number {
+  return [...pool.values()].reduce((sum, row) => sum + row.bank_size, 0);
+}
+
+function emptyRow(wordId: number): PoolRow {
+  return { word_id: wordId, box: UNSEEN_BOX_ID, bank_id: null, question: null, accepted_answers: null, reference_answer: null, bank_size: 0, type_counts: {}, exhausted: false };
+}
+
+function addToRow(row: PoolRow, type: string) {
+  row.bank_size += 1;
+  row.type_counts[type] = (row.type_counts[type] ?? 0) + 1;
+}
+
+async function loadPool(admin: SupabaseClient, batch: Word[]): Promise<PoolByWord> {
+  const { data } = await admin.from("word_questions").select("word_id, type").in("word_id", batch.map((w) => w.id)).eq("retired", false);
+  const pool: PoolByWord = new Map(batch.map((w) => [w.id, emptyRow(w.id)]));
+  (data ?? []).forEach((r) => addToRow(pool.get(r.word_id as number)!, r.type as string));
+  return pool;
 }
 
 async function fillBatch(admin: SupabaseClient, batch: Word[]): Promise<void> {
-  const { loadBank, fillBank, wordsNeedingQuestions } = await import("../src/lib/questionBank");
-  const bank = await loadBank(admin, batch.map((w) => w.id));
-  for (let before = -1; wordsNeedingQuestions(bank, batch).length > 0 && before !== totalQuestions(bank); ) {
-    before = totalQuestions(bank);
-    await fillBank(admin, bank, batch);
+  const { fillPool } = await import("../src/lib/questionBank");
+  const { needsGeneration } = await import("../src/lib/questionRefill");
+  let pool = await loadPool(admin, batch);
+  for (let before = -1; [...pool.values()].some(needsGeneration) && before !== totalQuestions(pool); ) {
+    before = totalQuestions(pool);
+    await fillPool(admin, pool, batch);
+    pool = await loadPool(admin, batch);
   }
 }
 

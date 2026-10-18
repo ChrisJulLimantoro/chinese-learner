@@ -34,7 +34,8 @@ export const OVER_TIMER_MS_BY_TYPE: Record<Question["type"], number> = {
 // Session defaults
 // ---------------------------------------------------------------------------
 export const DEFAULT_SESSION_SIZE = 10;
-export const QUESTIONS_PER_WORD = 10;
+export const QUESTIONS_PER_WORD = 30;
+export const QUESTIONS_FLOOR = 4;
 export const MIN_PER_PREFERRED_TYPE = 3;
 export const QUESTIONS_PER_FILL = 3;
 export const MAX_QUESTIONS_PER_LLM_CALL = 12;

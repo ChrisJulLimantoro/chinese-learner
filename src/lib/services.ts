@@ -2,6 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { after } from "next/server";
 import { createAdminClient } from "./supabase/admin";
 import { ensureSrsState, getUnseenWords, getDueWords, getMixedWords, countDue, checkProgression } from "./srs";
+import { getUserLlmKey } from "./byokService";
 import { assignQuestions } from "./questionBank";
 import { assertSessionCapAvailable, getProfile } from "./profileService";
 import { normalizeWordRow } from "./wordRow";
@@ -48,7 +49,7 @@ async function createSession(
 
   const sessionId = sessionRow.id as number;
 
-  const { questions: assigned, refillBank } = await assignQuestions(supabase, createAdminClient(), userId, words);
+  const { questions: assigned, refillBank } = await assignQuestions(supabase, createAdminClient(), words, await getUserLlmKey(userId));
   after(refillBank);
   const itemInserts = words.map((w, i) => ({
     session_id: sessionId,

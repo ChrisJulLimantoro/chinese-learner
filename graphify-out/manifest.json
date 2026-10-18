@@ -264,8 +264,8 @@
     "hash": "f922857871defdd6293348e1adf7bcbb"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/WordCardClient.tsx": {
-    "mtime": 1792332935.7739112,
-    "hash": "e8409ad4da1f488e1416e83bf739afb9"
+    "mtime": 1792335053.528243,
+    "hash": "268e58a8239f07e71b87ce965b249e0c"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/page.tsx": {
     "mtime": 1792256699.767374,
@@ -304,8 +304,8 @@
     "hash": "dc2f005634b3f603c6847a22f3014971"
   },
   "/Users/ceje/development/personal/chinese-learner/src/lib/vocabularyService.ts": {
-    "mtime": 1792256691.4288235,
-    "hash": "be4b177bb0c8d1d4ccfae175fa374a9c"
+    "mtime": 1792335053.5279472,
+    "hash": "5769bb0cd11a2961bc5ed5f186cf282c"
   },
   "/Users/ceje/development/personal/chinese-learner/src/lib/toneQuestion.ts": {
     "mtime": 1792256332.647692,
@@ -344,16 +344,20 @@
     "hash": "297c528b4063474e77a421a0b378e3f4"
   },
   "/Users/ceje/development/personal/chinese-learner/src/lib/types.ts": {
-    "mtime": 1792332924.7838032,
-    "hash": "904c6aef47faf93954de29b8a5521d3f"
+    "mtime": 1792335033.4678257,
+    "hash": "589fdb8a69d1a6af1cde47524a532c0f"
   },
   "/Users/ceje/development/personal/chinese-learner/src/lib/llm.ts": {
-    "mtime": 1792256521.9692938,
-    "hash": "0054a426b13cf0414674ff7bf5b154db"
+    "mtime": 1792335053.5275202,
+    "hash": "f945dc757500e6b1fc061c4177a00a7f"
   },
   "/Users/ceje/development/personal/chinese-learner/src/lib/outcome.ts": {
     "mtime": 1792256749.8031535,
     "hash": "e9ecf126dcb513c40084055aa9827f49"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/lessonCardCoverage.ts": {
+    "mtime": 1792335033.4547343,
+    "hash": "3d3e2a8282d327b1233c3d1cda73fe1e"
   },
   "/Users/ceje/development/personal/chinese-learner/src/lib/normalize.ts": {
     "mtime": 1792247700.775828,
@@ -362,6 +366,10 @@
   "/Users/ceje/development/personal/chinese-learner/src/lib/leak.test.ts": {
     "mtime": 1792256780.5175018,
     "hash": "b973730108c7f15bb4813ced4034b2e4"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/lessonCardCoverage.test.ts": {
+    "mtime": 1792335033.4564493,
+    "hash": "36c8e91d96bed97fd4b57c0d389b63ff"
   },
   "/Users/ceje/development/personal/chinese-learner/src/lib/pinyin.test.ts": {
     "mtime": 1792256780.511813,

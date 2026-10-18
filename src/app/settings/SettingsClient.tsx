@@ -4,6 +4,8 @@ import IdentityHero from "./IdentityHero";
 import PlanLedger from "./PlanLedger";
 import HskLevelPicker from "./HskLevelPicker";
 import AccountLinks from "./AccountLinks";
+import ByokCard from "./ByokCard";
+import type { ByokCardState } from "@/lib/byokService";
 
 function canAccessAdmin(profile: Profile): boolean {
   return profile.role === "admin" || profile.email === SUPER_ADMIN_EMAIL;
@@ -17,9 +19,10 @@ interface Props {
   profile: Profile;
   wordCount: number;
   sessionCount: number;
+  byok: ByokCardState;
 }
 
-export default function SettingsClient({ profile, wordCount, sessionCount }: Props) {
+export default function SettingsClient({ profile, wordCount, sessionCount, byok }: Props) {
   const isUnlimited = profile.role === "admin";
   const usages = [
     { label: "Words", used: wordCount, cap: usageCap(isUnlimited, profile.max_vocab_words) },
@@ -34,8 +37,9 @@ export default function SettingsClient({ profile, wordCount, sessionCount }: Pro
           <HskLevelPicker currentLevel={profile.current_hsk_level} />
           <PlanLedger usages={usages} isUnlimited={isUnlimited} />
         </div>
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-5 space-y-6">
           <AccountLinks isAdmin={canAccessAdmin(profile)} />
+          <ByokCard state={byok} />
         </div>
       </div>
     </div>

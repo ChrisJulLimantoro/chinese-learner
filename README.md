@@ -102,6 +102,7 @@ Open **http://localhost:3000** and create an account.
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Supabase anon/public key |
 | `SUPABASE_SERVICE_ROLE_KEY` | Yes | Service-role key (server-side admin actions, seeding) |
 | `LLM_API_KEY` | No | OpenRouter key. If unset, the app runs in stub mode. |
+| `BYOK_ENCRYPTION_SECRET` | No | 32-byte base64 secret (`openssl rand -base64 32`) used to encrypt users' own OpenRouter keys. If unset, BYOK is disabled. |
 | `MODEL_LESSON` / `MODEL_QUESTION` / `MODEL_GRADER` | No | Override the model per purpose (default `deepseek-v4-flash-free`) |
 | `LLM_MAX_TOKENS` and `LLM_MAX_TOKENS_*` | No | Per-call output token budgets |
 | `LLM_MAX_RETRIES` | No | Retries on empty/invalid JSON (default `3`) |

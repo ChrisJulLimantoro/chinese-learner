@@ -6,43 +6,43 @@
 import OpenAI from "openai";
 import {
   USE_STUB,
-  OPENROUTER_BASE_URL,
   MODEL_BY_PURPOSE,
   LLM_MAX_TOKENS,
   LLM_MAX_RETRIES,
-  LLM_TIMEOUT_MS,
   MAX_TOKENS_BY_PURPOSE,
 } from "./config";
 import type { ContextHelper, LessonCard, Question, GraderOutput, Reading } from "./types";
+import { getClient } from "./llmClient";
 import { missingExampleReadings } from "./lessonCardCoverage";
-
-// ---------------------------------------------------------------------------
-// OpenAI client (lazy)
-// ---------------------------------------------------------------------------
-let _client: OpenAI | null = null;
-
-function getClient(): OpenAI {
-  if (!_client) {
-    _client = new OpenAI({
-      apiKey: process.env.LLM_API_KEY ?? "",
-      baseURL: OPENROUTER_BASE_URL,
-      timeout: LLM_TIMEOUT_MS,
-      maxRetries: 0,
-    });
-  }
-  return _client;
-}
 
 const THINK_RE = /<think>.*?<\/think>/gis;
 
 const OPENROUTER_REASONING_OFF = { reasoning: { enabled: false } } as object;
 
-async function chat(
+type KeySession = { key: string | null };
+
+async function chatWithKeyFallback(
+  session: KeySession,
   purpose: string,
   messages: OpenAI.Chat.ChatCompletionMessageParam[],
-  temperature = 0.4
+  temperature: number
 ): Promise<[string, string]> {
-  const client = getClient();
+  if (!session.key) return chat(null, purpose, messages, temperature);
+  try {
+    return await chat(session.key, purpose, messages, temperature);
+  } catch {
+    session.key = null;
+    return chat(null, purpose, messages, temperature);
+  }
+}
+
+async function chat(
+  apiKey: string | null,
+  purpose: string,
+  messages: OpenAI.Chat.ChatCompletionMessageParam[],
+  temperature: number
+): Promise<[string, string]> {
+  const client = getClient(apiKey);
   const model = MODEL_BY_PURPOSE[purpose];
   const resp = await client.chat.completions.create({
     model,
@@ -61,12 +61,14 @@ async function chat(
 async function chatJson<T>(
   purpose: string,
   messages: OpenAI.Chat.ChatCompletionMessageParam[],
-  temperature = 0.4
+  temperature = 0.4,
+  apiKey: string | null = null
 ): Promise<T> {
+  const session: KeySession = { key: apiKey };
   let lastErr = "no response";
   for (let attempt = 1; attempt <= LLM_MAX_RETRIES; attempt++) {
     try {
-      const [content, finish] = await chat(purpose, messages, temperature);
+      const [content, finish] = await chatWithKeyFallback(session, purpose, messages, temperature);
       if (!content) {
         lastErr = `empty content (finish_reason=${finish})`;
       } else if (finish === "length") {
@@ -302,7 +304,7 @@ export async function generateLessonCard(word: {
   pos?: string[];
   meanings?: string[];
   readings?: Reading[];
-}, reason?: string): Promise<LessonCard> {
+}, reason?: string, apiKey?: string | null): Promise<LessonCard> {
   if (USE_STUB) return stubLessonCard(word);
 
   const simplified = word.simplified ?? "";
@@ -365,8 +367,8 @@ Grounding rules (critical for accuracy):
 - "character_breakdown" must contain exactly the characters of "${simplified}", in order, and explain those exact characters and nothing else.${correction}
 `;
 
-  const card = await requestLessonCard(system, user);
-  return coversReadings(card, readings) ? card : requestLessonCard(system, user + missingReadingsNote(card, readings));
+  const card = await requestLessonCard(system, user, apiKey);
+  return coversReadings(card, readings) ? card : requestLessonCard(system, user + missingReadingsNote(card, readings), apiKey);
 }
 
 function exampleRule(readings: Reading[] | undefined): string {
@@ -374,9 +376,9 @@ function exampleRule(readings: Reading[] | undefined): string {
   return `at least one example for EACH of the ${readings.length} readings (${readings.map((r) => r.pinyin).join(", ")}), so at least ${readings.length} examples`;
 }
 
-function requestLessonCard(system: string, user: string): Promise<LessonCard> {
+function requestLessonCard(system: string, user: string, apiKey?: string | null): Promise<LessonCard> {
   const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [{ role: "system", content: system }, { role: "user", content: user }];
-  return chatJson<LessonCard>("lesson", messages, 0.2);
+  return chatJson<LessonCard>("lesson", messages, 0.2, apiKey ?? null);
 }
 
 function coversReadings(card: LessonCard, readings: Reading[] | undefined): boolean {
@@ -421,7 +423,8 @@ export function isUsableQuestion(q: Question | undefined, word: { simplified: st
 }
 
 export async function generateQuestions(
-  words: QuestionWordInput[]
+  words: QuestionWordInput[],
+  apiKey?: string | null
 ): Promise<Question[]> {
   if (USE_STUB) return stubQuestions(words);
 
@@ -492,7 +495,7 @@ Return a JSON object {"questions": [...]} whose array holds exactly ${words.leng
   const result = await chatJson<QuestionsPayload>("question", [
     { role: "system", content: system },
     { role: "user", content: user },
-  ], 0.2);
+  ], 0.2, apiKey ?? null);
 
   return questionsFrom(result);
 }
@@ -506,7 +509,7 @@ function questionsFrom(result: QuestionsPayload): Question[] {
   return Object.values(result as Record<string, Question>);
 }
 
-export async function grade(question: Question, answer: string): Promise<GraderOutput> {
+export async function grade(question: Question, answer: string, apiKey?: string | null): Promise<GraderOutput> {
   if (USE_STUB) return stubGrade(question, answer);
 
   const system =
@@ -552,5 +555,5 @@ Rules:
   return chatJson<GraderOutput>("grader", [
     { role: "system", content: system },
     { role: "user", content: user },
-  ]);
+  ], 0.4, apiKey ?? null);
 }

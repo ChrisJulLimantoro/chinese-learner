@@ -4,6 +4,7 @@
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createAdminClient } from "./supabase/admin";
+import { getUserLlmKey } from "./byokService";
 import { grade } from "./llm";
 import { USE_STUB } from "./config";
 import { normalize } from "./normalize";
@@ -61,9 +62,10 @@ async function gradeWithModel(
   wordId: number,
   question: Question,
   answer: string,
-  normalized: string
+  normalized: string,
+  userId: string
 ): Promise<GraderOutput> {
-  const result = await grade(question, answer);
+  const result = await grade(question, answer, await getUserLlmKey(userId));
   result.normalized_answer ||= normalized;
   if (result.accept_for_cache) await storeCache(wordId, question.type ?? null, normalized, result);
   return result;
@@ -78,7 +80,8 @@ export async function gradeAnswerWithCache(
   supabase: SupabaseClient,
   word: WordFacts & { id: number },
   question: Question,
-  answer: string
+  answer: string,
+  userId: string
 ): Promise<GraderOutput> {
   const normalized = normalize(answer);
   const deterministic = resolveDeterministic(word, question, normalized);
@@ -86,5 +89,5 @@ export async function gradeAnswerWithCache(
   const cached = await checkCache(supabase, word.id, question.type ?? null, normalized);
   if (cached) return cached;
   if (USE_STUB) return gradeWithoutModel(word, question, normalized);
-  return gradeWithModel(word.id, question, answer, normalized);
+  return gradeWithModel(word.id, question, answer, normalized, userId);
 }

@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createAdminClient } from "./supabase/admin";
 import { ensureSrsState, getUnseenWords } from "./srs";
+import { getUserLlmKey } from "./byokService";
 import { generateLessonCard } from "./llm";
 import { needsReadingExamples } from "./lessonCardCoverage";
 import { getProfile, getVocabCap } from "./profileService";
@@ -9,12 +10,13 @@ import { START_HSK_LEVEL } from "./config";
 import type { LessonCard, SrsState, Word } from "./types";
 
 async function ensureLessonCard(
-  word: Word
+  word: Word,
+  userId: string
 ): Promise<Word> {
   if (word.lesson_card && !needsReadingExamples(word.lesson_card, word.readings)) return word;
 
   try {
-    const card = await generateLessonCard(word);
+    const card = await generateLessonCard(word, undefined, await getUserLlmKey(userId));
     // Write via service role (shared cache — same card for all users)
     const admin = createAdminClient();
     await admin
@@ -107,7 +109,7 @@ export async function getWordCard(
   if (!wordRow) throw new Error(`Word ${wordId} not found`);
 
   const word = normalizeWordRow(wordRow);
-  const enriched = await ensureLessonCard(word);
+  const enriched = await ensureLessonCard(word, userId);
 
   const { data: srsRow } = await supabase
     .from("srs_state")
@@ -142,7 +144,7 @@ export async function regenerateWordCard(
   if (!wordRow) throw new Error(`Word ${wordId} not found`);
   const word = normalizeWordRow(wordRow);
 
-  const card = await generateLessonCard(word, reason);
+  const card = await generateLessonCard(word, reason, await getUserLlmKey(userId));
   const admin = createAdminClient();
   await admin.from("words").update({ lesson_card: card }).eq("id", word.id);
 
@@ -195,7 +197,7 @@ export async function addWordsToBank(
 
   const added: Word[] = [];
   for (const w of words) {
-    const enriched = await ensureLessonCard(w);
+    const enriched = await ensureLessonCard(w, userId);
     await ensureSrsState(supabase, userId, w.id);
     added.push(normalizeWordRow(enriched as unknown as Record<string, unknown>));
   }

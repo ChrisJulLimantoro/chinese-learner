@@ -8,7 +8,7 @@ import type { Session, SessionItem, LessonCard, GraderOutput, Outcome, Question 
 import { hasMultipleReadings } from "@/lib/readings";
 import { Button, Badge, ProgressBar, Skeleton, InkLoader } from "@/components/ui";
 import Seal from "@/components/Seal";
-import SpeakButton from "@/components/SpeakButton";
+import SpeakWord from "@/components/SpeakWord";
 import SelfGradePanel from "./SelfGradePanel";
 import ReportQuestionButton from "./ReportQuestionButton";
 import ToneOptions from "./ToneOptions";
@@ -800,7 +800,7 @@ export default function StudySessionClient({ session: initialSession }: { sessio
               {feedback && feedback.outcome !== null && (
                 <div className="space-y-3">
                   <FeedbackView graderOut={feedback.graderOut} outcome={feedback.outcome} />
-                  <SpeakButton text={currentItem.word.simplified} />
+                  <div className="flex flex-wrap gap-1"><SpeakWord word={currentItem.word} /></div>
                   <Button variant="primary" className="w-full" onClick={advance}>
                     Next →
                   </Button>

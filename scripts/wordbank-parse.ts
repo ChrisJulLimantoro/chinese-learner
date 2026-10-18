@@ -7,6 +7,8 @@
  * including multi-reading (heteronym) handling.
  */
 
+import { buildSoundIndex, withSpokenReadings } from "../src/lib/spokenReadings";
+
 const WORDBANK_URL_MASTER =
   "https://raw.githubusercontent.com/drkameleon/complete-hsk-vocabulary/master/complete.json";
 const WORDBANK_URL_MAIN =
@@ -40,6 +42,7 @@ export interface Reading {
   pinyin: string;
   traditional: string | null;
   meanings: string[];
+  spoken?: string;
 }
 
 export interface WordRow {
@@ -160,5 +163,10 @@ export function parseRows(raw: unknown[]): WordRow[] {
     });
   }
 
-  return rows;
+  return withVoicedReadings(rows);
+}
+
+function withVoicedReadings(rows: WordRow[]): WordRow[] {
+  const index = buildSoundIndex(rows);
+  return rows.map((row) => withSpokenReadings(index, row));
 }

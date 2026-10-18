@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import type { Word, LessonCard, SrsState } from "@/lib/types";
 import { hasMultipleReadings } from "@/lib/readings";
 import { Card, Button, Badge, ProgressBar } from "@/components/ui";
-import SpeakButton from "@/components/SpeakButton";
+import SpeakWord from "@/components/SpeakWord";
 import { regenerateWordCardAction } from "@/app/actions/vocabulary";
 
 function fmtNextReview(ts: number | null): string {
@@ -156,7 +156,7 @@ export default function WordCardClient({
                 </div>
               )}
               <div className="flex items-center justify-center gap-2 mt-2">
-                <SpeakButton text={word.simplified} />
+                <SpeakWord word={word} />
                 {srs?.mastered && <Badge variant="jade">mastered</Badge>}
               </div>
             </div>

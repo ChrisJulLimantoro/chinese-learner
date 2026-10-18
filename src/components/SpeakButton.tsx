@@ -24,12 +24,14 @@ function speakMandarin(text: string): void {
   window.speechSynthesis.speak(utterance);
 }
 
-export default function SpeakButton({ text, className = "" }: { text: string; className?: string }) {
+type SpeakButtonProps = { text: string; label?: string; className?: string };
+
+export default function SpeakButton({ text, label = "Listen", className = "" }: SpeakButtonProps) {
   const supported = useSyncExternalStore(subscribeNever, speechSupported, neverSupportedOnServer);
   if (!supported) return null;
   return (
-    <Button variant="ghost" size="sm" className={className} onClick={() => speakMandarin(text)} aria-label={`Listen to ${text}`}>
-      Listen
+    <Button variant="ghost" size="sm" className={className} onClick={() => speakMandarin(text)} aria-label={`Listen to ${label}`}>
+      {label === "Listen" ? label : `▶ ${label}`}
     </Button>
   );
 }

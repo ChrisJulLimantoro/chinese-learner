@@ -9,6 +9,7 @@ export interface Reading {
   pinyin: string;
   traditional: string | null;
   meanings: string[];
+  spoken?: string;
 }
 
 export interface Word {

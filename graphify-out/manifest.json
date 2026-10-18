@@ -196,20 +196,24 @@
     "hash": "d4187f55fb7984d483705a9febb86a25"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/scramble/ScrambleSummary.tsx": {
-    "mtime": 1792223735.8534186,
-    "hash": "c2c45453bf30e28bc8a5d1f7764b8936"
+    "mtime": 1792334316.4116418,
+    "hash": "5f66bb62ccc35d0efbca0d4eb447ecd1"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/scramble/useScrambleGame.ts": {
-    "mtime": 1792333925.473603,
-    "hash": "0cb7cffc64630eab71076f1734d57f90"
+    "mtime": 1792334316.4120224,
+    "hash": "966c0be930e211890a8e3703e91dbd07"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/scramble/ScrambleClient.tsx": {
-    "mtime": 1792333954.9774454,
-    "hash": "e5a438cea5ef09dd259d05b273140ccb"
+    "mtime": 1792334316.412322,
+    "hash": "56d062e2d560ea4bd40d0c93e1fd21a3"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/scramble/ScrambleTimer.tsx": {
     "mtime": 1792223697.9813528,
     "hash": "68e9e991a31d94b593a32af54c4ded67"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/scramble/CheckedWordList.tsx": {
+    "mtime": 1792334316.3997269,
+    "hash": "9c0b9ffd2e512c103b56580191c46cca"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/scramble/page.tsx": {
     "mtime": 1792223697.9796906,

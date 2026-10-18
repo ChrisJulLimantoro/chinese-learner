@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { updateHskLevelAction } from "@/app/actions/profile";
 import type { Profile } from "@/lib/types";
 import { Card, Button, Badge, PageHeader } from "@/components/ui";
-import { FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS } from "@/lib/config";
+import AccountLinks from "./AccountLinks";
+import { FREE_MAX_VOCAB_WORDS, FREE_MAX_SESSIONS, SUPER_ADMIN_EMAIL } from "@/lib/config";
 
 const HSK_LABELS: Record<number, string> = {
   1: "HSK 1 — Beginner (~150 words)",
@@ -15,6 +16,10 @@ const HSK_LABELS: Record<number, string> = {
   5: "HSK 5 — Advanced (~2,500 words)",
   6: "HSK 6 — Proficiency (~5,000 words)",
 };
+
+function canAccessAdmin(profile: Profile): boolean {
+  return profile.role === "admin" || profile.email === SUPER_ADMIN_EMAIL;
+}
 
 interface Props {
   profile: Profile;
@@ -51,7 +56,9 @@ export default function SettingsClient({ profile, wordCount, sessionCount }: Pro
 
   return (
     <div className="max-w-2xl">
-      <PageHeader rubric="设置" eyebrow="Account" title="Settings" />
+      <PageHeader rubric="我" eyebrow="Account" title="Me" />
+
+      <AccountLinks isAdmin={canAccessAdmin(profile)} />
 
       {/* Plan / limits panel */}
       <Card variant="paper" padding="md" className="mb-6">

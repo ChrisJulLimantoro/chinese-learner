@@ -1,18 +1,25 @@
-import { DRILL_TIMER_SECONDS } from "./config";
-
-export const BOARD_SIZE = 50;
 export const MAX_WORD_LENGTH = 3;
-export const SCRAMBLE_SECONDS = DRILL_TIMER_SECONDS;
+export const DIFFICULTIES = {
+  easy: { label: "Easy", tiles: 15, seconds: 180 },
+  medium: { label: "Medium", tiles: 30, seconds: 180 },
+  hard: { label: "Hard", tiles: 50, seconds: 180 },
+} as const;
+export type Difficulty = keyof typeof DIFFICULTIES;
+export const DIFFICULTY_ORDER: Difficulty[] = ["easy", "medium", "hard"];
 const OPTION_COUNT = 4;
 const POINTS_BY_LENGTH = [0, 5, 20, 40];
 
 export type IndexedWord = { id: number; simplified: string; pinyin: string; meaning: string; level: number; pos: string[] };
 export type Tile = { id: number; char: string };
 export type BoardWord = IndexedWord & { options: string[] };
-export type ScrambleBoard = { runId: number; tiles: Tile[]; seeded: number[]; words: BoardWord[] };
+export type ScrambleBoard = { runId: number; difficulty: Difficulty; tiles: Tile[]; seeded: number[]; words: BoardWord[] };
 export type WordChoice = { wordId: number; meaning: string };
 export type WordResult = { wordId: number; correct: boolean };
 export type SrsSnapshot = { word_id: number; next_review_at: number; mastered: boolean };
+
+export function isDifficulty(value: unknown): value is Difficulty {
+  return typeof value === "string" && Object.hasOwn(DIFFICULTIES, value);
+}
 
 export function isScrambleLength(simplified: string): boolean {
   return simplified.length >= 1 && simplified.length <= MAX_WORD_LENGTH;
@@ -100,7 +107,7 @@ function takeIfFits(state: SeedState, word: IndexedWord): SeedState {
   return state;
 }
 
-export function pickSeedWords(ordered: IndexedWord[], size: number = BOARD_SIZE): IndexedWord[] {
+export function pickSeedWords(ordered: IndexedWord[], size: number): IndexedWord[] {
   return ordered.reduce(takeIfFits, { picked: [], remaining: size }).picked;
 }
 

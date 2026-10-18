@@ -4,7 +4,7 @@ import { createAdminClient } from "./supabase/admin";
 import { getProfile, recordStudyActivity } from "./profileService";
 import { rescheduleFromRecognition } from "./srs";
 import {
-  BOARD_SIZE,
+  DIFFICULTIES,
   isScrambleLength,
   formableWords,
   orderCandidates,
@@ -14,7 +14,7 @@ import {
   shuffleTiles,
   withMeaningOptions,
 } from "./scramble";
-import type { IndexedWord, ScrambleBoard, SrsSnapshot, WordChoice, WordResult } from "./scramble";
+import type { Difficulty, IndexedWord, ScrambleBoard, SrsSnapshot, WordChoice, WordResult } from "./scramble";
 
 const PAGE_SIZE = 1000;
 const MAX_RESULTS = 60;
@@ -79,13 +79,13 @@ async function fetchSrsSnapshots(supabase: SupabaseClient, userId: string): Prom
   }
 }
 
-function buildBoard(index: IndexedWord[], srs: SrsSnapshot[], level: number) {
+function buildBoard(index: IndexedWord[], srs: SrsSnapshot[], level: number, difficulty: Difficulty) {
   const ordered = orderCandidates(index, srs, Date.now() / 1000, level);
-  const seededWords = pickSeedWords(ordered, BOARD_SIZE);
+  const seededWords = pickSeedWords(ordered, DIFFICULTIES[difficulty].tiles);
   const tiles = shuffleTiles(seededWords);
   const seeded = seededWords.map((w) => w.id);
   const formable = formableWords(index, tiles, new Set(seeded));
-  return { tiles, seeded, words: withMeaningOptions(formable, index) };
+  return { difficulty, tiles, seeded, words: withMeaningOptions(formable, index) };
 }
 
 async function insertActiveRun(
@@ -99,11 +99,11 @@ async function insertActiveRun(
   return data.id as number;
 }
 
-export async function startScramble(supabase: SupabaseClient, userId: string): Promise<ScrambleBoard> {
+export async function startScramble(supabase: SupabaseClient, userId: string, difficulty: Difficulty): Promise<ScrambleBoard> {
   const profile = await getProfile(supabase, userId);
   const level = profile.current_hsk_level;
   const [index, srs] = await Promise.all([cachedIndexWords(level), fetchSrsSnapshots(supabase, userId)]);
-  const board = buildBoard(index, srs, level);
+  const board = buildBoard(index, srs, level, difficulty);
   return { runId: await insertActiveRun(supabase, userId, board), ...board };
 }
 

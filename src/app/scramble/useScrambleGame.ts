@@ -3,12 +3,13 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { startScrambleAction, submitScrambleAction } from "../actions/scramble";
 import { MAX_WORD_LENGTH, pointsFor } from "@/lib/scramble";
-import type { BoardWord, ScrambleBoard, WordChoice } from "@/lib/scramble";
+import type { BoardWord, Difficulty, ScrambleBoard, WordChoice } from "@/lib/scramble";
 import { makeLookups, selectionText } from "./scrambleLookups";
 import type { FoundWord } from "./ScrambleSummary";
 
 export type Phase = "intro" | "loading" | "playing" | "done";
 export type PickerState = { word: BoardWord; options: string[]; tileIds: number[] };
+export type Miss = { word: BoardWord; chosen: string };
 
 function toggleIn(selected: number[], tileId: number): number[] {
   if (selected.includes(tileId)) return selected.filter((id) => id !== tileId);
@@ -20,6 +21,9 @@ export function useScrambleGame() {
   const [board, setBoard] = useState<ScrambleBoard | null>(null);
   const [selected, setSelected] = useState<number[]>([]);
   const [removed, setRemoved] = useState<Set<number>>(new Set());
+  const [missedTiles, setMissedTiles] = useState<Set<number>>(new Set());
+  const [lastMiss, setLastMiss] = useState<Miss | null>(null);
+  const [difficulty, setDifficulty] = useState<Difficulty>("easy");
   const [picker, setPicker] = useState<PickerState | null>(null);
   const [choices, setChoices] = useState<WordChoice[]>([]);
   const [score, setScore] = useState(0);
@@ -33,6 +37,8 @@ export function useScrambleGame() {
     setBoard(next);
     setSelected([]);
     setRemoved(new Set());
+    setMissedTiles(new Set());
+    setLastMiss(null);
     setPicker(null);
     setChoices([]);
     setScore(0);
@@ -41,10 +47,11 @@ export function useScrambleGame() {
     setPhase("playing");
   };
 
-  const start = async () => {
+  const start = async (level: Difficulty = difficulty) => {
+    setDifficulty(level);
     setPhase("loading");
     try {
-      beginRun(await startScrambleAction());
+      beginRun(await startScrambleAction(level));
     } catch (e) {
       setMessage(String(e));
       setPhase("intro");
@@ -64,6 +71,7 @@ export function useScrambleGame() {
   const toggleTile = (tileId: number) => {
     setSelected((s) => toggleIn(s, tileId));
     setMessage(null);
+    setLastMiss(null);
   };
 
   const rejectSelection = (text: string) => {
@@ -91,6 +99,8 @@ export function useScrambleGame() {
     const nextRemoved = correct ? new Set([...removed, ...picker.tileIds]) : removed;
     setChoices(nextChoices);
     setRemoved(nextRemoved);
+    if (!correct) setMissedTiles(new Set([...missedTiles, ...picker.tileIds]));
+    setLastMiss(correct ? null : { word: picker.word, chosen: meaning });
     setSelected([]);
     setPicker(null);
     if (correct) setScore((s) => s + pointsFor(picker.word.simplified));
@@ -105,7 +115,7 @@ export function useScrambleGame() {
   const expire = useCallback(() => board && finish(board.runId, choices), [board, finish, choices]);
 
   return {
-    phase, board, lookups, selected, removed, picker, score, saved, message, found,
+    phase, board, lookups, selected, removed, missedTiles, lastMiss, difficulty, picker, score, saved, message, found,
     start, toggleTile, checkSelection, resolvePicker, expire,
     clearSelection: () => setSelected([]),
   };

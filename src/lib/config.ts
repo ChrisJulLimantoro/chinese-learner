@@ -21,7 +21,6 @@ export const LEAK_PLUGGER_THRESHOLD = 2;     // wrong_count >= N → force back 
 export const MASTERY_PERCENT = 0.95;         // 95% of level words mastered to advance
 export const LEVEL_FLOOR = 150;              // min mastered words at current level to advance
 export const LOWER_LEVEL_REVIEW_SHARE = 0.30; // 30% of reviews from lower levels
-export const DRILL_TIMER_SECONDS = 120;
 export const DEFAULT_OVER_TIMER_MS = 20_000;
 export const OVER_TIMER_MS_BY_TYPE: Record<Question["type"], number> = {
   tone_pick: 10_000,

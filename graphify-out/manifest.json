@@ -4,8 +4,8 @@
     "hash": "239f3ebf717465dc636818a1a619398d"
   },
   "/Users/ceje/development/personal/chinese-learner/next-env.d.ts": {
-    "mtime": 1782025011.7323055,
-    "hash": "2a74d3909800ca5467fa83b0ab4a4890"
+    "mtime": 1792331095.519162,
+    "hash": "d0f8375ae1199dc7acd3977fc33b78b8"
   },
   "/Users/ceje/development/personal/chinese-learner/eslint.config.mjs": {
     "mtime": 1782051262.5393343,
@@ -84,8 +84,8 @@
     "hash": "b6bf96a3d6f57b528fade141027179a3"
   },
   "/Users/ceje/development/personal/chinese-learner/scripts/wordbank-parse.ts": {
-    "mtime": 1782043474.800673,
-    "hash": "141dcc4a8a182a3ed86fcfedc4446883"
+    "mtime": 1792332924.7894824,
+    "hash": "17bf70803451b2ac746f22a8cd3c6cd1"
   },
   "/Users/ceje/development/personal/chinese-learner/scripts/backfill-readings.ts": {
     "mtime": 1782043545.7716124,
@@ -144,8 +144,8 @@
     "hash": "4450ac9d4696c727a5a49ad41a881eb9"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/study/[sessionId]/StudySessionClient.tsx": {
-    "mtime": 1792256634.102757,
-    "hash": "0bdfe1c60bba7ca88319cc09aec11633"
+    "mtime": 1792332935.7705069,
+    "hash": "0f182498788745cfa5d6f1bf8ebf8948"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/study/[sessionId]/SelfGradePanel.tsx": {
     "mtime": 1792223541.9578943,
@@ -156,7 +156,7 @@
     "hash": "fd0136887e96cf5e329f1c850a7f2fc2"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/signup/page.tsx": {
-    "mtime": 1782022437.6902766,
+    "mtime": 1792331501.5076103,
     "hash": "7cb59aeb6060b60d25f03e6e904e922f"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/admin/page.tsx": {
@@ -236,11 +236,11 @@
     "hash": "c386f8102e089d9140edcbd282a0f6ee"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/actions/auth.ts": {
-    "mtime": 1782022401.6538053,
+    "mtime": 1792331501.506977,
     "hash": "1350506a22eda6a1e0ae79902ef4c251"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/login/page.tsx": {
-    "mtime": 1782022414.3505685,
+    "mtime": 1792331501.5072877,
     "hash": "86d93011564de5e3cd17f4b0fce9ee50"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/stats/StatsClient.tsx": {
@@ -260,8 +260,8 @@
     "hash": "f922857871defdd6293348e1adf7bcbb"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/WordCardClient.tsx": {
-    "mtime": 1792256383.0468478,
-    "hash": "953227743d130c508a7bce628bf61ac6"
+    "mtime": 1792332935.7739112,
+    "hash": "e8409ad4da1f488e1416e83bf739afb9"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/page.tsx": {
     "mtime": 1792256699.767374,
@@ -270,6 +270,10 @@
   "/Users/ceje/development/personal/chinese-learner/src/components/Nav.tsx": {
     "mtime": 1792223742.3163059,
     "hash": "8ffbf7e1cf18ab576091ac6add6f8473"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/components/SpeakWord.tsx": {
+    "mtime": 1792332935.7665906,
+    "hash": "c8f4558a7434a0272f67af136266e86e"
   },
   "/Users/ceje/development/personal/chinese-learner/src/components/ThemeToggle.tsx": {
     "mtime": 1782054563.9836824,
@@ -280,8 +284,8 @@
     "hash": "f81e64869e95cff829f3453ab56ddd6e"
   },
   "/Users/ceje/development/personal/chinese-learner/src/components/SpeakButton.tsx": {
-    "mtime": 1792256375.1435826,
-    "hash": "e830b76803242d3c774e9af8af717d76"
+    "mtime": 1792332935.7633693,
+    "hash": "10e29a781046eed21f8af908799b22a8"
   },
   "/Users/ceje/development/personal/chinese-learner/src/components/ui.tsx": {
     "mtime": 1782045836.9671319,
@@ -336,8 +340,8 @@
     "hash": "297c528b4063474e77a421a0b378e3f4"
   },
   "/Users/ceje/development/personal/chinese-learner/src/lib/types.ts": {
-    "mtime": 1792256612.2979264,
-    "hash": "402e893bc022d1b9cea8bd005e6e2813"
+    "mtime": 1792332924.7838032,
+    "hash": "904c6aef47faf93954de29b8a5521d3f"
   },
   "/Users/ceje/development/personal/chinese-learner/src/lib/llm.ts": {
     "mtime": 1792256521.9692938,
@@ -367,9 +371,17 @@
     "mtime": 1792256565.3540714,
     "hash": "6f0fc50eb985bf309a16b699689274ac"
   },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/spokenReadings.ts": {
+    "mtime": 1792332917.5866036,
+    "hash": "5119ef932b271e75d31df414baa0b314"
+  },
   "/Users/ceje/development/personal/chinese-learner/src/lib/deterministicGrading.ts": {
     "mtime": 1792256798.4684784,
     "hash": "6dfa38f02a7042ceddb0a40df2780e1d"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/lib/spokenReadings.test.ts": {
+    "mtime": 1792332917.603587,
+    "hash": "87a26ab5322d17f40dbbef2ece0e52a9"
   },
   "/Users/ceje/development/personal/chinese-learner/src/lib/pinyin.ts": {
     "mtime": 1792256414.5794117,

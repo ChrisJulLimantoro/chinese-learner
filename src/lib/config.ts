@@ -54,14 +54,14 @@ export const START_HSK_LEVEL = 2;
 // ---------------------------------------------------------------------------
 // LLM
 // ---------------------------------------------------------------------------
-export const OPENCODE_ZEN_BASE_URL = "https://opencode.ai/zen/v1";
+export const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1";
 
-const DEFAULT_MODEL = "deepseek-v4-flash-free";
+const DEFAULT_MODEL = "nvidia/nemotron-3-ultra-550b-a55b:free";
 
 export const MODEL_BY_PURPOSE: Record<string, string> = {
-  lesson:   process.env.MODEL_LESSON   ?? DEFAULT_MODEL,
-  question: process.env.MODEL_QUESTION ?? DEFAULT_MODEL,
-  grader:   process.env.MODEL_GRADER   ?? DEFAULT_MODEL,
+  lesson:   process.env.MODEL_LESSON   || DEFAULT_MODEL,
+  question: process.env.MODEL_QUESTION || DEFAULT_MODEL,
+  grader:   process.env.MODEL_GRADER   || DEFAULT_MODEL,
 };
 
 export const LLM_MAX_TOKENS = parseInt(process.env.LLM_MAX_TOKENS ?? "4096", 10);

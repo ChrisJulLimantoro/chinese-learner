@@ -5,7 +5,7 @@ Mandarin SRS learning app. App Router, TypeScript, Tailwind, Supabase (Auth + Po
 ## Stack
 - **Frontend/Backend**: Next.js 15 (App Router), TypeScript, Tailwind CSS
 - **Database/Auth**: Supabase Postgres + Supabase Auth (email + password)
-- **AI**: OpenCode Zen (OpenAI-compatible), deterministic stub when `LLM_API_KEY` absent
+- **AI**: OpenRouter `openrouter/free` (OpenAI-compatible), deterministic stub when `LLM_API_KEY` absent
 - **Deploy**: Vercel (Hobby)
 
 ## Key directories

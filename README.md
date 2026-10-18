@@ -44,7 +44,7 @@ The rest of this README covers the **`main` (Next.js)** branch.
 | Frontend / Backend | Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4 |
 | Database & Auth | Supabase Postgres + Supabase Auth (email + password) |
 | Server logic | Next.js Server Actions (`src/app/actions/`) |
-| AI | OpenCode Zen (OpenAI-compatible API); deterministic stub when `LLM_API_KEY` is absent |
+| AI | OpenRouter free models (OpenAI-compatible API); deterministic stub when `LLM_API_KEY` is absent |
 | Deploy | Vercel (Hobby) |
 
 Key directories:
@@ -62,7 +62,7 @@ Key directories:
 
 - **Node.js 20+** and npm
 - A **Supabase project** (free tier is fine) — for Postgres + Auth
-- *(Optional)* an **OpenCode Zen API key** for real LLM lesson cards and grading.
+- *(Optional)* an **OpenRouter API key** for real LLM lesson cards and grading.
   Without one the app runs in stub mode (deterministic placeholder responses).
 
 ---
@@ -101,7 +101,7 @@ Open **http://localhost:3000** and create an account.
 | `NEXT_PUBLIC_SUPABASE_URL` | Yes | Your Supabase project URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Supabase anon/public key |
 | `SUPABASE_SERVICE_ROLE_KEY` | Yes | Service-role key (server-side admin actions, seeding) |
-| `LLM_API_KEY` | No | OpenCode Zen key. If unset, the app runs in stub mode. |
+| `LLM_API_KEY` | No | OpenRouter key. If unset, the app runs in stub mode. |
 | `MODEL_LESSON` / `MODEL_QUESTION` / `MODEL_GRADER` | No | Override the model per purpose (default `deepseek-v4-flash-free`) |
 | `LLM_MAX_TOKENS` and `LLM_MAX_TOKENS_*` | No | Per-call output token budgets |
 | `LLM_MAX_RETRIES` | No | Retries on empty/invalid JSON (default `3`) |
@@ -129,7 +129,7 @@ file on your machine and there's no login. All you need is **Docker**.
 git checkout local
 
 # (Optional) real LLM grading — otherwise it runs offline in stub mode
-cp .env.example .env        # then paste an OpenCode Zen key into .env
+cp .env.example .env        # then paste an OpenRouter key into .env
 
 make docker-up              # build + start the container (localhost:8080)
 ```

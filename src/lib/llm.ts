@@ -1,12 +1,12 @@
 /**
- * llm.ts — OpenCode Zen client + stub.
+ * llm.ts — OpenRouter client + stub.
  * Ported from llm.py.
  * USE_STUB when LLM_API_KEY is missing — deterministic canned output, no HTTP calls.
  */
 import OpenAI from "openai";
 import {
   USE_STUB,
-  OPENCODE_ZEN_BASE_URL,
+  OPENROUTER_BASE_URL,
   MODEL_BY_PURPOSE,
   LLM_MAX_TOKENS,
   LLM_MAX_RETRIES,
@@ -25,7 +25,7 @@ function getClient(): OpenAI {
   if (!_client) {
     _client = new OpenAI({
       apiKey: process.env.LLM_API_KEY ?? "",
-      baseURL: OPENCODE_ZEN_BASE_URL,
+      baseURL: OPENROUTER_BASE_URL,
       timeout: LLM_TIMEOUT_MS,
       maxRetries: 0,
     });
@@ -34,6 +34,8 @@ function getClient(): OpenAI {
 }
 
 const THINK_RE = /<think>.*?<\/think>/gis;
+
+const OPENROUTER_REASONING_OFF = { reasoning: { enabled: false } } as object;
 
 async function chat(
   purpose: string,
@@ -48,6 +50,7 @@ async function chat(
     temperature,
     max_tokens: MAX_TOKENS_BY_PURPOSE[purpose] ?? LLM_MAX_TOKENS,
     response_format: { type: "json_object" },
+    ...OPENROUTER_REASONING_OFF,
   });
   const msg = resp.choices[0].message;
   const finish = resp.choices[0].finish_reason ?? "stop";
@@ -437,9 +440,9 @@ export async function generateQuestions(
 
   const system =
     "You are a Mandarin-language drill designer. " +
-    "Output a single JSON array and nothing else. " +
+    "Output a single JSON object and nothing else. " +
     "Do not think out loud, do not explain, do not use markdown fences or any prose. " +
-    "Begin your response with '[' and end with ']'. " +
+    "Begin your response with '{' and end with '}'. " +
     "The entire response must be valid for JSON.parse().";
 
   const user = `Generate one practice question for each line below (a word may repeat on several lines).
@@ -483,17 +486,24 @@ Rules:
 - "accepted_answers": for cloze, synonym_discrim and gloss_to_word, list OTHER hanzi words (not the target) that would also be fully correct for the blank / meaning, so the answer can be checked without AI. Use [] when only the target fits.
 - "reference_answer": for en_to_zh ONLY, one natural model Mandarin translation of the prompt sentence that uses the target word. For other types set it to "".
 
-Return a JSON array of exactly ${words.length} question objects, in the same order as the lines.
+Return a JSON object {"questions": [...]} whose array holds exactly ${words.length} question objects, in the same order as the lines.
 `;
 
-  const result = await chatJson<Question[] | Record<string, Question>>("question", [
+  const result = await chatJson<QuestionsPayload>("question", [
     { role: "system", content: system },
     { role: "user", content: user },
   ], 0.2);
 
+  return questionsFrom(result);
+}
+
+type QuestionsPayload = Question[] | Question | { questions: Question[] } | Record<string, Question>;
+
+function questionsFrom(result: QuestionsPayload): Question[] {
   if (Array.isArray(result)) return result;
-  // coerce dict → values (as Python does)
-  return Object.values(result);
+  if ("questions" in result && Array.isArray(result.questions)) return result.questions;
+  if ("target_word" in result) return [result as Question];
+  return Object.values(result as Record<string, Question>);
 }
 
 export async function grade(question: Question, answer: string): Promise<GraderOutput> {

@@ -14,6 +14,7 @@ import {
   MAX_TOKENS_BY_PURPOSE,
 } from "./config";
 import type { ContextHelper, LessonCard, Question, GraderOutput, Reading } from "./types";
+import { missingExampleReadings } from "./lessonCardCoverage";
 
 // ---------------------------------------------------------------------------
 // OpenAI client (lazy)
@@ -168,11 +169,13 @@ export function stubLessonCard(word: {
         hanzi: `我喜欢${simplified}。`,
         pinyin: `Wǒ xǐhuān ${pinyin}。`,
         gloss: `I like ${meanings[0] ?? simplified}.`,
+        reading: pinyin,
       },
       {
         hanzi: `这个${simplified}很好。`,
         pinyin: `Zhège ${pinyin} hěn hǎo。`,
         gloss: `This ${meanings[0] ?? simplified} is very good.`,
+        reading: pinyin,
       },
     ],
     collocations: [simplified],
@@ -344,13 +347,14 @@ Return JSON matching EXACTLY this schema (all fields required unless marked null
   "nuance": string,
   "register": string,
   "measure_word": {"mw": string, "pinyin": string} | null,
-  "examples": [{"hanzi": string, "pinyin": string, "gloss": string}],
+  "examples": [{"hanzi": string, "pinyin": string, "gloss": string, "reading": string}],
   "collocations": [string],
   "near_synonyms": [{"word": string, "pinyin": string, "distinction": string}],
   "common_mistakes": [string],
   "character_breakdown": [{"char": string, "meaning": string, "mnemonic": string}]
 }
-Provide 2-3 examples, near_synonyms if any exist, and character_breakdown for each character.
+Provide ${exampleRule(readings)}, near_synonyms if any exist, and character_breakdown for each character.
+Each example's "reading" is the exact pinyin of the reading of "${simplified}" that the example demonstrates.
 
 Grounding rules (critical for accuracy):
 - Describe ONLY "${simplified}" (${pinyinGrounding}). Do NOT confuse it with a similar-looking or similar-sounding character (e.g. a homophone or a different-tone reading). The pinyin you output must match "${pinyinGrounding}".
@@ -358,10 +362,26 @@ Grounding rules (critical for accuracy):
 - "character_breakdown" must contain exactly the characters of "${simplified}", in order, and explain those exact characters and nothing else.${correction}
 `;
 
-  return chatJson<LessonCard>("lesson", [
-    { role: "system", content: system },
-    { role: "user", content: user },
-  ], 0.2);
+  const card = await requestLessonCard(system, user);
+  return coversReadings(card, readings) ? card : requestLessonCard(system, user + missingReadingsNote(card, readings));
+}
+
+function exampleRule(readings: Reading[] | undefined): string {
+  if (!readings || readings.length < 2) return "2-3 examples";
+  return `at least one example for EACH of the ${readings.length} readings (${readings.map((r) => r.pinyin).join(", ")}), so at least ${readings.length} examples`;
+}
+
+function requestLessonCard(system: string, user: string): Promise<LessonCard> {
+  const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [{ role: "system", content: system }, { role: "user", content: user }];
+  return chatJson<LessonCard>("lesson", messages, 0.2);
+}
+
+function coversReadings(card: LessonCard, readings: Reading[] | undefined): boolean {
+  return !readings || readings.length < 2 || missingExampleReadings(card, readings).length === 0;
+}
+
+function missingReadingsNote(card: LessonCard, readings: Reading[] | undefined): string {
+  return `\nYour previous card had no example for these readings: ${missingExampleReadings(card, readings ?? []).join(", ")}. Include one for each.`;
 }
 
 export const QUESTION_TYPES: Question["type"][] = ["en_to_zh", "cloze", "synonym_discrim", "gloss_to_word"];

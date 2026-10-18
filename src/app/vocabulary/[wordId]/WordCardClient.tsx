@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import type { Word, LessonCard, SrsState } from "@/lib/types";
 import { hasMultipleReadings } from "@/lib/readings";
 import { Card, Button, Badge, ProgressBar } from "@/components/ui";
+import SpeakButton from "@/components/SpeakButton";
 import SpeakWord from "@/components/SpeakWord";
 import { regenerateWordCardAction } from "@/app/actions/vocabulary";
 
@@ -184,7 +185,11 @@ export default function WordCardClient({
                     <div className="space-y-2.5">
                       {card.examples.map((ex, i) => (
                         <div key={i} className="bg-paper rounded-xl p-3.5 border border-border/70">
-                          <p className="hanzi text-base font-semibold text-ink">{ex.hanzi}</p>
+                          <div className="flex items-start gap-2">
+                            <p className="hanzi text-base font-semibold text-ink flex-1">{ex.hanzi}</p>
+                            {ex.reading && hasMultipleReadings(word.readings) && <Badge variant="jade">{ex.reading}</Badge>}
+                            <SpeakButton text={ex.hanzi} className="-mt-1 -mr-2 shrink-0" />
+                          </div>
                           <p className="text-jade text-sm mt-0.5">{ex.pinyin}</p>
                           <p className="text-muted text-sm mt-0.5">{ex.gloss}</p>
                         </div>

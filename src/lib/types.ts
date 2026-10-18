@@ -38,7 +38,7 @@ export interface LessonCard {
   nuance: string;
   register: string;
   measure_word: { mw: string; pinyin: string } | null;
-  examples: { hanzi: string; pinyin: string; gloss: string }[];
+  examples: { hanzi: string; pinyin: string; gloss: string; reading?: string }[];
   collocations: string[];
   near_synonyms: { word: string; pinyin: string; distinction: string }[];
   common_mistakes: string[];

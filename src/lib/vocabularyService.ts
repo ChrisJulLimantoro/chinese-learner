@@ -2,6 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { createAdminClient } from "./supabase/admin";
 import { ensureSrsState, getUnseenWords } from "./srs";
 import { generateLessonCard } from "./llm";
+import { needsReadingExamples } from "./lessonCardCoverage";
 import { getProfile, getVocabCap } from "./profileService";
 import { normalizeWordRow } from "./wordRow";
 import { START_HSK_LEVEL } from "./config";
@@ -10,7 +11,7 @@ import type { LessonCard, SrsState, Word } from "./types";
 async function ensureLessonCard(
   word: Word
 ): Promise<Word> {
-  if (word.lesson_card) return word;
+  if (word.lesson_card && !needsReadingExamples(word.lesson_card, word.readings)) return word;
 
   try {
     const card = await generateLessonCard(word);

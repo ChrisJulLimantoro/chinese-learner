@@ -5,6 +5,7 @@ import { Button, Card, PageHeader } from "@/components/ui";
 import { DIFFICULTIES, DIFFICULTY_ORDER } from "@/lib/scramble";
 import type { Difficulty } from "@/lib/scramble";
 import MeaningPicker from "./MeaningPicker";
+import CheckedWordList from "./CheckedWordList";
 import ScrambleSummary from "./ScrambleSummary";
 import ScrambleTimer from "./ScrambleTimer";
 import TileGrid from "./TileGrid";
@@ -122,6 +123,7 @@ export default function ScrambleClient() {
               onClear={game.clearSelection}
             />
           )}
+          <CheckedWordList found={[...game.found].reverse()} />
         </>
       )}
       {game.phase === "done" && (

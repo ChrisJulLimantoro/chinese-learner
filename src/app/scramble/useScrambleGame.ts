@@ -5,7 +5,7 @@ import { startScrambleAction, submitScrambleAction } from "../actions/scramble";
 import { MAX_WORD_LENGTH, pointsFor } from "@/lib/scramble";
 import type { BoardWord, Difficulty, ScrambleBoard, WordChoice } from "@/lib/scramble";
 import { makeLookups, selectionText } from "./scrambleLookups";
-import type { FoundWord } from "./ScrambleSummary";
+import type { FoundWord } from "./CheckedWordList";
 
 export type Phase = "intro" | "loading" | "playing" | "done";
 export type PickerState = { word: BoardWord; options: string[]; tileIds: number[] };

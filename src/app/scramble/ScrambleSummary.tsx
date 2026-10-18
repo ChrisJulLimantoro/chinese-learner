@@ -1,10 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Badge, Button, Card } from "@/components/ui";
-import type { IndexedWord } from "@/lib/scramble";
-
-export type FoundWord = { word: IndexedWord; correct: boolean };
+import { Button, Card } from "@/components/ui";
+import CheckedWordList from "./CheckedWordList";
+import type { FoundWord } from "./CheckedWordList";
 
 interface ScrambleSummaryProps {
   score: number;
@@ -26,18 +25,7 @@ export default function ScrambleSummary({ score, found, saved, onPlayAgain }: Sc
           {correctCount}/{found.length} words correct{saved ? "" : " · saving…"}
         </p>
       </div>
-      {found.length > 0 && (
-        <ul className="divide-y divide-border rounded-xl border border-border overflow-hidden">
-          {found.map(({ word, correct }) => (
-            <li key={word.id} className="flex items-center gap-3 px-4 py-2.5">
-              <Badge variant={correct ? "jade" : "seal"}>{correct ? "✓" : "✗"}</Badge>
-              <span className="hanzi font-semibold text-ink">{word.simplified}</span>
-              <span className="text-jade text-sm">{word.pinyin}</span>
-              <span className="text-muted text-sm truncate ml-auto">{word.meaning}</span>
-            </li>
-          ))}
-        </ul>
-      )}
+      <CheckedWordList found={found} />
       <div className="flex flex-wrap gap-3 justify-center">
         <Button variant="outline" onClick={() => router.push("/")}>Home</Button>
         <Button variant="primary" onClick={onPlayAgain}>Play again</Button>

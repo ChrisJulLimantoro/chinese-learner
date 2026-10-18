@@ -1,20 +1,23 @@
 import Link from "next/link";
 import { signOut } from "@/app/actions/auth";
 import ThemeToggle from "@/components/ThemeToggle";
-import { Card } from "@/components/ui";
+import LedgerCard, { LedgerHeading } from "./LedgerCard";
 
 const ROW_CLASS =
-  "flex items-center gap-3 w-full min-h-[44px] px-3 rounded-xl text-sm font-medium text-ink hover:bg-surface-2 transition-colors";
+  "group flex items-center gap-3 w-full min-h-[52px] px-5 text-sm font-medium text-ink hover:bg-surface-2 transition-colors";
 
 function Chevron() {
-  return <span className="ml-auto text-faint" aria-hidden>›</span>;
+  return <span className="ml-auto text-faint transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden>›</span>;
 }
 
-function LinkRow({ href, icon, label }: { href: string; icon: string; label: string }) {
+function LinkRow({ href, cn, label, desc }: { href: string; cn: string; label: string; desc: string }) {
   return (
     <Link href={href} className={ROW_CLASS}>
-      <span className="text-base w-5 text-center text-muted" aria-hidden>{icon}</span>
-      {label}
+      <span className="hanzi text-lg w-8 text-center text-seal/70" aria-hidden>{cn}</span>
+      <span className="flex flex-col">
+        {label}
+        <span className="text-xs font-normal text-faint">{desc}</span>
+      </span>
       <Chevron />
     </Link>
   );
@@ -22,9 +25,9 @@ function LinkRow({ href, icon, label }: { href: string; icon: string; label: str
 
 function SignOutRow() {
   return (
-    <form action={signOut} className="border-t border-border mt-2 pt-2">
+    <form action={signOut}>
       <button type="submit" className={`${ROW_CLASS} text-seal`}>
-        <span className="text-base w-5 text-center" aria-hidden>⎋</span>
+        <span className="text-base w-8 text-center" aria-hidden>⎋</span>
         Sign out
       </button>
     </form>
@@ -33,13 +36,15 @@ function SignOutRow() {
 
 export default function AccountLinks({ isAdmin }: { isAdmin: boolean }) {
   return (
-    <Card variant="paper" padding="sm" className="mb-6">
-      <h2 className="font-semibold text-ink px-3 pt-2 pb-1">Account</h2>
-      <LinkRow href="/stats" icon="◉" label="Stats" />
-      <LinkRow href="/sessions" icon="☰" label="Sessions" />
-      {isAdmin && <LinkRow href="/admin" icon="◈" label="Admin" />}
-      <ThemeToggle className="min-h-[44px] rounded-xl text-ink" />
-      <SignOutRow />
-    </Card>
+    <LedgerCard hanzi="我" label="ACCOUNT">
+      <LedgerHeading>Account</LedgerHeading>
+      <div className="divide-y divide-border">
+        <LinkRow href="/stats" cn="进度" label="Stats" desc="Mastery & streak" />
+        <LinkRow href="/sessions" cn="记录" label="Sessions" desc="Full history" />
+        {isAdmin && <LinkRow href="/admin" cn="管" label="Admin" desc="Users & limits" />}
+        <ThemeToggle className="min-h-[52px] rounded-none px-5 text-ink" />
+        <SignOutRow />
+      </div>
+    </LedgerCard>
   );
 }

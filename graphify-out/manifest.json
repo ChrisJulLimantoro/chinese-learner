@@ -108,8 +108,8 @@
     "hash": "445109cd39c72dad316b08c24ddb674a"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/layout.tsx": {
-    "mtime": 1792256699.766593,
-    "hash": "ae127ef261e32b2008ef70ee9aef55c5"
+    "mtime": 1792336794.6943483,
+    "hash": "77e85d298a4afc12ac3b1acc1a3caac6"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/HomeClient.tsx": {
     "mtime": 1792223742.316766,
@@ -119,9 +119,13 @@
     "mtime": 1792223742.317039,
     "hash": "fcaba2222ba8b7e42b63570bd393789e"
   },
+  "/Users/ceje/development/personal/chinese-learner/src/app/settings/AccountLinks.tsx": {
+    "mtime": 1792336794.7044342,
+    "hash": "2df6239c154acb92ad7b83fbeffd267d"
+  },
   "/Users/ceje/development/personal/chinese-learner/src/app/settings/SettingsClient.tsx": {
-    "mtime": 1782024978.6610007,
-    "hash": "2a025d3e2c469e3e6874687447e59628"
+    "mtime": 1792336830.1440701,
+    "hash": "500ee7446157dcaeded78d6d044fb1fb"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/settings/page.tsx": {
     "mtime": 1792256699.7668076,
@@ -272,8 +276,8 @@
     "hash": "48d9ca2c54a94c01ef4ec615be6430a7"
   },
   "/Users/ceje/development/personal/chinese-learner/src/components/Nav.tsx": {
-    "mtime": 1792223742.3163059,
-    "hash": "8ffbf7e1cf18ab576091ac6add6f8473"
+    "mtime": 1792336794.7025318,
+    "hash": "bb39ed4284b81dd8b39efafe5222b471"
   },
   "/Users/ceje/development/personal/chinese-learner/src/components/SpeakWord.tsx": {
     "mtime": 1792332935.7665906,
@@ -290,6 +294,10 @@
   "/Users/ceje/development/personal/chinese-learner/src/components/SpeakButton.tsx": {
     "mtime": 1792332935.7633693,
     "hash": "10e29a781046eed21f8af908799b22a8"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/components/navLinks.ts": {
+    "mtime": 1792336794.6983953,
+    "hash": "8116593fe653db1b5651b688b956e180"
   },
   "/Users/ceje/development/personal/chinese-learner/src/components/ui.tsx": {
     "mtime": 1782045836.9671319,

@@ -311,17 +311,33 @@
     "mtime": 1782053889.649137,
     "hash": "b391df129a8f3a7f53bf29c62683667c"
   },
+  "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/loading.tsx": {
+    "mtime": 1792412278.6518214,
+    "hash": "cbb0902e48771898b8c435444ef3c453"
+  },
   "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/page.tsx": {
     "mtime": 1792256699.7674499,
     "hash": "f922857871defdd6293348e1adf7bcbb"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/WordCardClient.tsx": {
-    "mtime": 1792335053.528243,
-    "hash": "268e58a8239f07e71b87ce965b249e0c"
+    "mtime": 1792412267.7793057,
+    "hash": "cf3a6f5d913fc2349e49fa16495f74a2"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/loading.tsx": {
+    "mtime": 1792412278.6538079,
+    "hash": "d4cfdbb572e2b9c1be97168c08556f81"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/CardPendingNotice.tsx": {
+    "mtime": 1792412254.8851578,
+    "hash": "edf8f3dbca4aea9ad1c962cce8a08c6f"
   },
   "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/page.tsx": {
-    "mtime": 1792256699.767374,
-    "hash": "48d9ca2c54a94c01ef4ec615be6430a7"
+    "mtime": 1792412254.8800306,
+    "hash": "4eacb6b31351d677c6e581c376af216f"
+  },
+  "/Users/ceje/development/personal/chinese-learner/src/app/vocabulary/[wordId]/useLessonCard.ts": {
+    "mtime": 1792412267.7816064,
+    "hash": "48d2d57af2546ddef3245cffa9ad89d6"
   },
   "/Users/ceje/development/personal/chinese-learner/src/components/Nav.tsx": {
     "mtime": 1792336794.7025318,
@@ -360,8 +376,8 @@
     "hash": "dc2f005634b3f603c6847a22f3014971"
   },
   "/Users/ceje/development/personal/chinese-learner/src/lib/vocabularyService.ts": {
-    "mtime": 1792343722.3846862,
-    "hash": "a90f9fcade126cb9f08df56b28f9f586"
+    "mtime": 1792412288.3845344,
+    "hash": "02263330cd49c0a2b0413d277c73a7b3"
   },
   "/Users/ceje/development/personal/chinese-learner/src/lib/byokQuota.ts": {
     "mtime": 1792343779.0990412,

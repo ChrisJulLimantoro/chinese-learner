@@ -191,7 +191,7 @@ export default function WordCardClient({
                           <div className="flex items-start gap-2">
                             <p className="hanzi text-base font-semibold text-ink flex-1">{ex.hanzi}</p>
                             {ex.reading && hasMultipleReadings(word.readings) && <Badge variant="jade">{ex.reading}</Badge>}
-                            <SpeakButton text={ex.hanzi} className="-mt-1 -mr-2 shrink-0" />
+                            <SpeakButton text={ex.hanzi} className="shrink-0" />
                           </div>
                           <p className="text-jade text-sm mt-0.5">{ex.pinyin}</p>
                           <p className="text-muted text-sm mt-0.5">{ex.gloss}</p>

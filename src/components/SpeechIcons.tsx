@@ -1,22 +1,18 @@
-const ICON_PROPS = { width: 16, height: 16, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true } as const;
-
 export function SpeakerIcon() {
   return (
-    <svg {...ICON_PROPS}>
-      <path d="M11 5 6 9H3v6h3l5 4V5z" />
-      <path d="M15.5 8.5a5 5 0 0 1 0 7" />
-      <path d="M18.5 5.5a9 9 0 0 1 0 13" />
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M4 9.5h3l4.5-4v13l-4.5-4H4z" fill="currentColor" fillOpacity="0.12" />
+      <path d="M15 9a4.2 4.2 0 0 1 0 6" />
+      <path d="M17.8 6.5a8 8 0 0 1 0 11" />
     </svg>
   );
 }
 
-export function TurtleIcon() {
+export function SlowSealIcon() {
   return (
-    <svg {...ICON_PROPS}>
-      <path d="M4 15a7 6 0 0 1 14 0z" />
-      <path d="M8 10.5 11 15M14 10.5 11 15" />
-      <path d="M18 15h2.5a1.5 1.5 0 0 0 0-3H18" />
-      <path d="M6 15v2.5M15 15v2.5" />
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
+      <rect x="1" y="1" width="16" height="16" rx="3.5" stroke="var(--seal)" strokeWidth="1.4" />
+      <text x="9" y="13.2" textAnchor="middle" fontSize="11" fontWeight="700" fontFamily="var(--font-hanzi)" fill="var(--seal)">慢</text>
     </svg>
   );
 }

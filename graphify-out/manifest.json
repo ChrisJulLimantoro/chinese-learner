@@ -343,6 +343,10 @@
     "mtime": 1792336794.7025318,
     "hash": "bb39ed4284b81dd8b39efafe5222b471"
   },
+  "/Users/ceje/development/personal/chinese-learner/src/components/speech.ts": {
+    "mtime": 1792413424.5117602,
+    "hash": "329de6b58ebf27621d3bb52fa5b3f330"
+  },
   "/Users/ceje/development/personal/chinese-learner/src/components/SpeakWord.tsx": {
     "mtime": 1792332935.7665906,
     "hash": "c8f4558a7434a0272f67af136266e86e"
@@ -351,13 +355,17 @@
     "mtime": 1782054563.9836824,
     "hash": "1411044ec7c26e7f79eeb8953cab4bab"
   },
+  "/Users/ceje/development/personal/chinese-learner/src/components/SpeechIcons.tsx": {
+    "mtime": 1792413424.5143816,
+    "hash": "e7d36d2bc9791ba68175495b0ec17295"
+  },
   "/Users/ceje/development/personal/chinese-learner/src/components/Seal.tsx": {
     "mtime": 1781971518.717288,
     "hash": "f81e64869e95cff829f3453ab56ddd6e"
   },
   "/Users/ceje/development/personal/chinese-learner/src/components/SpeakButton.tsx": {
-    "mtime": 1792332935.7633693,
-    "hash": "10e29a781046eed21f8af908799b22a8"
+    "mtime": 1792413438.5634103,
+    "hash": "21ccfe8349b1d3d6a940f58c4603cf29"
   },
   "/Users/ceje/development/personal/chinese-learner/src/components/navLinks.ts": {
     "mtime": 1792336794.6983953,

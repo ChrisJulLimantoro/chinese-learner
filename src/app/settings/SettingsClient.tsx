@@ -23,7 +23,7 @@ interface Props {
 }
 
 export default function SettingsClient({ profile, wordCount, sessionCount, byok }: Props) {
-  const isUnlimited = profile.role === "admin";
+  const isUnlimited = canAccessAdmin(profile);
   const usages = [
     { label: "Words", used: wordCount, cap: usageCap(isUnlimited, profile.max_vocab_words) },
     { label: "Sessions", used: sessionCount, cap: usageCap(isUnlimited, profile.max_sessions) },

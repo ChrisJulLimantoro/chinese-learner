@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { after } from "next/server";
 import { createAdminClient } from "./supabase/admin";
 import { ensureSrsState, getUnseenWords } from "./srs";
 import { getUserLlmKey } from "./byokService";
@@ -91,38 +92,35 @@ export async function listVocabulary(
     });
 }
 
-export async function getWordCard(
-  supabase: SupabaseClient,
-  userId: string,
-  wordId: number
-): Promise<{
-  word: Word;
-  lesson_card: LessonCard | null;
-  srs: SrsState | null;
-}> {
-  const { data: wordRow } = await supabase
-    .from("words")
-    .select("*")
-    .eq("id", wordId)
-    .single();
+export type WordDetail = { word: Word; lesson_card: LessonCard | null; srs: SrsState | null; card_pending: boolean };
 
+async function loadWord(supabase: SupabaseClient, wordId: number): Promise<Word> {
+  const { data: wordRow } = await supabase.from("words").select("*").eq("id", wordId).single();
   if (!wordRow) throw new Error(`Word ${wordId} not found`);
+  return normalizeWordRow(wordRow);
+}
 
-  const word = normalizeWordRow(wordRow);
-  const enriched = await ensureLessonCard(word, userId);
+async function loadSrs(supabase: SupabaseClient, userId: string, wordId: number): Promise<SrsState | null> {
+  const { data } = await supabase.from("srs_state").select("*").eq("user_id", userId).eq("word_id", wordId).single();
+  return data as SrsState | null;
+}
 
-  const { data: srsRow } = await supabase
-    .from("srs_state")
-    .select("*")
-    .eq("user_id", userId)
-    .eq("word_id", wordId)
-    .single();
+function isCardPending(word: Word): boolean {
+  return !word.lesson_card || needsReadingExamples(word.lesson_card, word.readings);
+}
 
-  return {
-    word: normalizeWordRow(enriched as unknown as Record<string, unknown>),
-    lesson_card: enriched.lesson_card,
-    srs: srsRow as SrsState | null,
-  };
+function toDetail(word: Word, srs: SrsState | null): WordDetail {
+  return { word, lesson_card: word.lesson_card, srs, card_pending: isCardPending(word) };
+}
+
+export async function getWordDetail(supabase: SupabaseClient, userId: string, wordId: number): Promise<WordDetail> {
+  const [word, srs] = await Promise.all([loadWord(supabase, wordId), loadSrs(supabase, userId, wordId)]);
+  return toDetail(word, srs);
+}
+
+export async function getWordCard(supabase: SupabaseClient, userId: string, wordId: number): Promise<WordDetail> {
+  const [word, srs] = await Promise.all([loadWord(supabase, wordId), loadSrs(supabase, userId, wordId)]);
+  return toDetail(await ensureLessonCard(word, userId), srs);
 }
 
 export async function regenerateWordCard(
@@ -195,13 +193,13 @@ export async function addWordsToBank(
     words = (data ?? []).map(normalizeWordRow);
   }
 
-  const added: Word[] = [];
-  for (const w of words) {
-    const enriched = await ensureLessonCard(w, userId);
-    await ensureSrsState(supabase, userId, w.id);
-    added.push(normalizeWordRow(enriched as unknown as Record<string, unknown>));
-  }
-  return added;
+  await Promise.all(words.map((w) => ensureSrsState(supabase, userId, w.id)));
+  after(() => warmLessonCards(words, userId));
+  return words;
+}
+
+async function warmLessonCards(words: Word[], userId: string): Promise<void> {
+  await Promise.all(words.map((w) => ensureLessonCard(w, userId)));
 }
 
 export async function listAddableWords(

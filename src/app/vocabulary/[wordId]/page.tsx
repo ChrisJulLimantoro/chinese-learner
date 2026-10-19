@@ -1,5 +1,5 @@
 import { getUserContext } from "@/lib/user";
-import { getWordCard } from "@/lib/vocabularyService";
+import { getWordDetail } from "@/lib/vocabularyService";
 import WordCardClient from "./WordCardClient";
 import { notFound } from "next/navigation";
 
@@ -15,7 +15,7 @@ export default async function WordDetailPage({
 
   let data;
   try {
-    data = await getWordCard(supabase, userId, parseInt(wordId, 10));
+    data = await getWordDetail(supabase, userId, parseInt(wordId, 10));
   } catch {
     notFound();
   }

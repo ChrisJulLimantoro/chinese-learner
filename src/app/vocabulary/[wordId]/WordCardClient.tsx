@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useLessonCard } from "./useLessonCard";
+import CardPendingNotice from "./CardPendingNotice";
 import { useRouter } from "next/navigation";
-import type { Word, LessonCard, SrsState } from "@/lib/types";
+import type { WordDetail } from "@/lib/vocabularyService";
 import { hasMultipleReadings } from "@/lib/readings";
 import { Card, Button, Badge, ProgressBar } from "@/components/ui";
 import SpeakButton from "@/components/SpeakButton";
@@ -81,11 +83,11 @@ function RegenerateModal({
 export default function WordCardClient({
   data,
 }: {
-  data: { word: Word; lesson_card: LessonCard | null; srs: SrsState | null };
+  data: WordDetail;
 }) {
   const router = useRouter();
   const { word, srs } = data;
-  const [card, setCard] = useState<LessonCard | null>(data.lesson_card);
+  const { card, setCard, status } = useLessonCard(data);
   const [showModal, setShowModal] = useState(false);
   const [reason, setReason] = useState("");
   const [regenerating, setRegenerating] = useState(false);
@@ -162,6 +164,7 @@ export default function WordCardClient({
               </div>
             </div>
 
+            <CardPendingNotice status={status} />
             {card ? (
               <div className="space-y-5">
                 <Section label="Meanings">

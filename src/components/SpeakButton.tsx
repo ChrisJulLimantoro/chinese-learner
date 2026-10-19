@@ -2,36 +2,31 @@
 
 import { useSyncExternalStore } from "react";
 import { Button } from "@/components/ui";
-
-const MANDARIN = "zh-CN";
+import { NORMAL_RATE, SLOW_RATE, speakMandarin, speechSupported } from "./speech";
+import { SpeakerIcon, TurtleIcon } from "./SpeechIcons";
 
 function subscribeNever(): () => void {
   return () => {};
-}
-
-function speechSupported(): boolean {
-  return "speechSynthesis" in window;
 }
 
 function neverSupportedOnServer(): boolean {
   return false;
 }
 
-function speakMandarin(text: string): void {
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = MANDARIN;
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utterance);
-}
-
 type SpeakButtonProps = { text: string; label?: string; className?: string };
 
-export default function SpeakButton({ text, label = "Listen", className = "" }: SpeakButtonProps) {
+export default function SpeakButton({ text, label, className = "" }: SpeakButtonProps) {
   const supported = useSyncExternalStore(subscribeNever, speechSupported, neverSupportedOnServer);
   if (!supported) return null;
+  const subject = label ?? text;
   return (
-    <Button variant="ghost" size="sm" className={className} onClick={() => speakMandarin(text)} aria-label={`Listen to ${label}`}>
-      {label === "Listen" ? label : `▶ ${label}`}
-    </Button>
+    <span className={`inline-flex items-center gap-0.5 ${className}`}>
+      <Button variant="ghost" size="sm" onClick={() => speakMandarin(text, NORMAL_RATE)} aria-label={`Listen to ${subject}`} title="Listen">
+        <SpeakerIcon />{label && <span className="ml-1">{label}</span>}
+      </Button>
+      <Button variant="ghost" size="sm" onClick={() => speakMandarin(text, SLOW_RATE)} aria-label={`Listen slowly to ${subject}`} title="Listen slowly">
+        <TurtleIcon />
+      </Button>
+    </span>
   );
 }

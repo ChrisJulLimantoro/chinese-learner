@@ -33,6 +33,17 @@ export function pointsFor(simplified: string): number {
   return POINTS_BY_LENGTH[simplified.length] ?? 0;
 }
 
+export type ScoredWord = { simplified: string; correct: boolean };
+
+function sumPoints(words: ScoredWord[]): number {
+  return words.reduce((sum, w) => sum + pointsFor(w.simplified), 0);
+}
+
+export function weightedScore(words: ScoredWord[]): number {
+  const possible = sumPoints(words);
+  return possible === 0 ? 0 : Math.round((100 * sumPoints(words.filter((w) => w.correct))) / possible);
+}
+
 function swap<T>(items: T[], i: number, j: number): void {
   [items[i], items[j]] = [items[j], items[i]];
 }

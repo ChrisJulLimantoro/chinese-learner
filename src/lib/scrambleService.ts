@@ -9,9 +9,9 @@ import {
   formableWords,
   orderCandidates,
   pickSeedWords,
-  pointsFor,
   shortMeaning,
   shuffleTiles,
+  weightedScore,
   withMeaningOptions,
 } from "./scramble";
 import type { Difficulty, IndexedWord, ScrambleBoard, SrsSnapshot, WordChoice, WordResult } from "./scramble";
@@ -129,7 +129,7 @@ async function fetchResultWords(supabase: SupabaseClient, wordIds: number[]): Pr
 }
 
 function scoreOf(results: WordResult[], words: Map<number, WordRow>): number {
-  return results.reduce((sum, r) => sum + (r.correct ? pointsFor(words.get(r.wordId)!.simplified) : 0), 0);
+  return weightedScore(results.map((r) => ({ simplified: words.get(r.wordId)!.simplified, correct: r.correct })));
 }
 
 async function completeRun(supabase: SupabaseClient, userId: string, runId: number, score: number, found: WordResult[]): Promise<void> {

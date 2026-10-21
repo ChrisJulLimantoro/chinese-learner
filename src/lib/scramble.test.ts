@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildDistractorPools, formableWords, meaningOptions } from "./scramble";
+import { buildDistractorPools, formableWords, meaningOptions, weightedScore } from "./scramble";
 import type { IndexedWord, Tile } from "./scramble";
 
 function word(id: number, simplified: string, meaning: string, pos = ["n"]): IndexedWord {
@@ -41,4 +41,13 @@ test("meaning options include the answer and avoid overlapping distractors", () 
   assert.ok(options.includes("water"));
   assert.ok(!options.includes("ice water"));
   assert.equal(new Set(options).size, options.length);
+});
+
+test("weightedScore is 100 when every found word is correct", () => {
+  assert.equal(weightedScore([{ simplified: "好", correct: true }, { simplified: "朋友", correct: true }]), 100);
+});
+
+test("weightedScore weights misses by word length", () => {
+  assert.equal(weightedScore([{ simplified: "好", correct: false }, { simplified: "朋友", correct: true }]), 80);
+  assert.equal(weightedScore([]), 0);
 });

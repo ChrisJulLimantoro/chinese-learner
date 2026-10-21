@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import { startScrambleAction, submitScrambleAction } from "../actions/scramble";
-import { MAX_WORD_LENGTH, pointsFor } from "@/lib/scramble";
+import { MAX_WORD_LENGTH, weightedScore } from "@/lib/scramble";
 import type { BoardWord, Difficulty, ScrambleBoard, WordChoice } from "@/lib/scramble";
 import { hasPlayableWord, makeLookups, selectionText } from "./scrambleLookups";
 import type { FoundWord } from "./CheckedWordList";
@@ -26,7 +26,6 @@ export function useScrambleGame() {
   const [difficulty, setDifficulty] = useState<Difficulty>("easy");
   const [picker, setPicker] = useState<PickerState | null>(null);
   const [choices, setChoices] = useState<WordChoice[]>([]);
-  const [score, setScore] = useState(0);
   const [saved, setSaved] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const finishedRef = useRef(false);
@@ -41,7 +40,6 @@ export function useScrambleGame() {
     setLastMiss(null);
     setPicker(null);
     setChoices([]);
-    setScore(0);
     setSaved(false);
     setMessage(null);
     setPhase("playing");
@@ -103,7 +101,6 @@ export function useScrambleGame() {
     setLastMiss(correct ? null : { word: picker.word, chosen: meaning });
     setSelected([]);
     setPicker(null);
-    if (correct) setScore((s) => s + pointsFor(picker.word.simplified));
     if (!hasPlayableWord(board, nextRemoved, new Set(nextChoices.map((c) => c.wordId)))) finish(board.runId, nextChoices);
   };
 
@@ -111,6 +108,7 @@ export function useScrambleGame() {
     const word = lookups?.byId.get(c.wordId);
     return word ? [{ word, correct: word.meaning === c.meaning }] : [];
   });
+  const score = weightedScore(found.map((f) => ({ simplified: f.word.simplified, correct: f.correct })));
 
   const expire = useCallback(() => board && finish(board.runId, choices), [board, finish, choices]);
 

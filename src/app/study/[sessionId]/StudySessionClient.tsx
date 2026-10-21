@@ -9,6 +9,7 @@ import { hasMultipleReadings } from "@/lib/readings";
 import { Button, Badge, ProgressBar, Skeleton, InkLoader } from "@/components/ui";
 import Seal from "@/components/Seal";
 import SpeakWord from "@/components/SpeakWord";
+import SpeakButton from "@/components/SpeakButton";
 import SelfGradePanel from "./SelfGradePanel";
 import ReportQuestionButton from "./ReportQuestionButton";
 import ToneOptions from "./ToneOptions";
@@ -48,7 +49,11 @@ function PracticeCell({ char }: { char: string }) {
 
 // ─── Lesson card ───────────────────────────────────────────────────────────
 
-function LessonCardView({ card }: { card: LessonCard }) {
+function WordListen({ word }: { word: Session["items"][number]["word"] }) {
+  return <div className="flex flex-wrap items-center justify-center gap-2 mt-2.5"><SpeakWord word={word} /></div>;
+}
+
+function LessonCardView({ card, word }: { card: LessonCard; word: Session["items"][number]["word"] }) {
   return (
     <div className="space-y-5">
       {/* Character hero — full-bleed, no nested panel */}
@@ -60,6 +65,7 @@ function LessonCardView({ card }: { card: LessonCard }) {
           <div className="hanzi text-xl text-muted mb-1.5">{card.traditional}</div>
         )}
         <div className="text-jade text-lg font-medium">{card.pinyin_marked}</div>
+        <WordListen word={word} />
         <span className="mt-2 inline-block text-[10px] font-mono text-faint uppercase tracking-[0.22em]">
           HSK {card.hsk_level}
         </span>
@@ -88,7 +94,10 @@ function LessonCardView({ card }: { card: LessonCard }) {
           <div className="space-y-2">
             {card.examples.map((ex, i) => (
               <div key={i} className="bg-paper rounded-xl px-4 py-3 border border-border/60">
-                <p className="hanzi text-base font-semibold text-ink">{ex.hanzi}</p>
+                <div className="flex items-start gap-2">
+                  <p className="hanzi text-base font-semibold text-ink flex-1">{ex.hanzi}</p>
+                  <SpeakButton text={ex.hanzi} className="shrink-0" />
+                </div>
                 <p className="text-jade text-sm mt-0.5">{ex.pinyin}</p>
                 <p className="text-muted text-sm mt-0.5">{ex.gloss}</p>
               </div>
@@ -143,6 +152,7 @@ function CardLoadingSkeleton({ word }: { word: Session["items"][number]["word"] 
             <div className="text-muted text-sm mt-1">{word.meanings?.join(", ")}</div>
           </>
         )}
+        <WordListen word={word} />
       </div>
 
       {/* Shimmer badges for meanings */}
@@ -446,7 +456,7 @@ export default function StudySessionClient({ session: initialSession }: { sessio
               <CardLoadingSkeleton word={learnItem.word} />
             ) : card ? (
               <div className="animate-fade-up">
-                <LessonCardView card={card} />
+                <LessonCardView card={card} word={learnItem.word} />
               </div>
             ) : (
               /* Fallback if no card and not loading */
@@ -478,6 +488,7 @@ export default function StudySessionClient({ session: initialSession }: { sessio
                     </div>
                   </>
                 )}
+                <WordListen word={learnItem.word} />
               </div>
             )}
           </div>

@@ -1,16 +1,16 @@
 # Graph Report - chinese-learner  (2026-10-21)
 
 ## Corpus Check
-- 145 files · ~133,238 words
+- 145 files · ~133,285 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 918 nodes · 2183 edges · 51 communities (40 shown, 11 thin omitted)
+- 919 nodes · 2184 edges · 52 communities (41 shown, 11 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.82)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f10f2f16`
+- Built from commit: `903a8297`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -57,13 +57,14 @@
 - [[_COMMUNITY_Community 39|Community 39]]
 - [[_COMMUNITY_Community 40|Community 40]]
 - [[_COMMUNITY_Community 41|Community 41]]
-- [[_COMMUNITY_Community 44|Community 44]]
+- [[_COMMUNITY_Community 42|Community 42]]
 - [[_COMMUNITY_Community 45|Community 45]]
 - [[_COMMUNITY_Community 46|Community 46]]
 - [[_COMMUNITY_Community 47|Community 47]]
 - [[_COMMUNITY_Community 48|Community 48]]
 - [[_COMMUNITY_Community 49|Community 49]]
 - [[_COMMUNITY_Community 50|Community 50]]
+- [[_COMMUNITY_Community 51|Community 51]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `getUserContext()` - 53 edges
@@ -80,28 +81,28 @@
 ## Surprising Connections (you probably didn't know these)
 - `fillBatch()` --calls--> `fillPool()`  [INFERRED]
   scripts/prewarm-questions.ts → src/lib/questionBank.ts
+- `fillBatch()` --calls--> `loadBank()`  [EXTRACTED]
+  scripts/prewarm-questions.ts → src/lib/questionBank.ts
+- `fillBatch()` --calls--> `fillBank()`  [EXTRACTED]
+  scripts/prewarm-questions.ts → src/lib/questionBank.ts
 - `SRS Leitner Logic` --implements--> `Supabase Database Schema`  [INFERRED]
   src/lib/srs.ts → supabase/migrations/001_initial_schema.sql
 - `Service Layer` --implements--> `Supabase Database Schema`  [INFERRED]
   src/lib/services.ts → supabase/migrations/001_initial_schema.sql
-- `withVoicedReadings()` --calls--> `buildSoundIndex()`  [EXTRACTED]
-  scripts/wordbank-parse.ts → src/lib/spokenReadings.ts
-- `fillBatch()` --calls--> `loadBank()`  [EXTRACTED]
-  scripts/prewarm-questions.ts → src/lib/questionBank.ts
 
-## Communities (51 total, 11 thin omitted)
+## Communities (52 total, 11 thin omitted)
 
 ### Community 0 - "UI Client Components"
 Cohesion: 0.05
-Nodes (74): PREFERRED_TYPES_BY_BOX, QUESTION_TYPES, addRows(), Assignment, assignQuestions(), bankedQuestion(), BankQuestion, BankRow (+66 more)
+Nodes (81): getProfileAction(), dueReviewsAction(), ensureItemQuestionAction(), getInProgressSessionAction(), gradeAnswerAction(), listSessionsAction(), loadSessionAction(), redrillSessionAction() (+73 more)
 
 ### Community 1 - "SRS & Stats Logic"
-Cohesion: 0.06
-Nodes (55): SpeakWord(), SpokenWord, TYPE_LABELS, acceptedTargets(), matchesTarget(), resolveDeterministic(), baseFeedback(), describeWord() (+47 more)
+Cohesion: 0.05
+Nodes (66): addWordsToBankAction(), getWordCardAction(), listAddableWordsAction(), listVocabularyAction(), regenerateWordCardAction(), vocabCountAction(), SpeakWord(), SpokenWord (+58 more)
 
 ### Community 2 - "App Pages & Routing"
-Cohesion: 0.06
-Nodes (56): gradeAnswerAction(), selfGradeAction(), BOX_INTERVALS, outcomeFor(), currentSrsState(), currentSrsState(), FinalizedGrade, finalizeGrade() (+48 more)
+Cohesion: 0.05
+Nodes (63): AdminUser, deleteUserAction(), listUsersAction(), requireAdmin(), setUserLimitsAction(), setUserRoleAction(), setUserUnlimitedAction(), Props (+55 more)
 
 ### Community 3 - "LLM & Grading"
 Cohesion: 0.09
@@ -112,134 +113,138 @@ Cohesion: 0.06
 Nodes (17): signIn(), signOut(), signUp(), EXTRAS, FEATURES, HSK_LEVELS, STEPS, NAV_LINKS (+9 more)
 
 ### Community 5 - "Auth & Layout"
-Cohesion: 0.08
-Nodes (37): LLM_MAX_RETRIES, LLM_MAX_TOKENS, LLM_TIMEOUT_MS, MAX_TOKENS_BY_PURPOSE, MODEL_BY_PURPOSE, OVER_TIMER_MS_BY_TYPE, q, exampleReadings() (+29 more)
+Cohesion: 0.12
+Nodes (33): acceptedTargets(), matchesTarget(), resolveDeterministic(), baseFeedback(), describeWord(), extraLines(), selfGradeVerdict(), templateFeedback() (+25 more)
 
 ### Community 6 - "Architecture Overview"
 Cohesion: 0.1
-Nodes (26): alignedPairs(), buildSoundIndex(), homophoneFor(), isPolyphone(), SoundIndex, SoundSource, spokenChar(), spokenText() (+18 more)
+Nodes (29): LLM_MAX_RETRIES, LLM_MAX_TOKENS, LLM_TIMEOUT_MS, MAX_TOKENS_BY_PURPOSE, MODEL_BY_PURPOSE, q, chat(), chatJson() (+21 more)
 
 ### Community 7 - "Word Bank Seeding"
-Cohesion: 0.11
-Nodes (30): getStatsAction(), generateQuestions(), questionsFrom(), safeGenerateQuestion(), stubQuestions(), applyResult(), advanceCursor(), countSessionItems() (+22 more)
+Cohesion: 0.1
+Nodes (29): QuestionWordInput, addRows(), Assignment, assignQuestions(), BankQuestion, BankRow, BoxByWord, chunked() (+21 more)
 
 ### Community 8 - "Word Detail Page"
 Cohesion: 0.11
 Nodes (26): applyChanges(), changesAt(), excludedKeys(), joinPinyin(), LOWER_TONE_MARKS, MARKED, markIndex(), otherTones() (+18 more)
 
 ### Community 9 - "Session Proxy"
-Cohesion: 0.14
-Nodes (27): recordStudyActivity(), orderCandidates(), pickSeedWords(), shuffle(), shuffleTiles(), SrsSnapshot, swap(), applyResults() (+19 more)
+Cohesion: 0.13
+Nodes (22): alignedPairs(), buildSoundIndex(), homophoneFor(), isPolyphone(), SoundIndex, SoundSource, spokenChar(), spokenText() (+14 more)
 
 ### Community 10 - "Auth Concepts"
-Cohesion: 0.14
-Nodes (19): dueReviewsAction(), ensureItemQuestionAction(), getInProgressSessionAction(), listSessionsAction(), loadSessionAction(), redrillSessionAction(), reportQuestionAction(), SessionDetailPage() (+11 more)
+Cohesion: 0.11
+Nodes (21): charCounts(), collectDistractors(), DistractorPools, distractorTiers(), fillFromTier(), fitsBoard(), formableWords(), indexByFirstChar() (+13 more)
 
 ### Community 11 - "PostCSS Config"
-Cohesion: 0.11
-Nodes (20): charCounts(), collectDistractors(), DistractorPools, distractorTiers(), fillFromTier(), fitsBoard(), formableWords(), indexByFirstChar() (+12 more)
+Cohesion: 0.12
+Nodes (8): Button(), OVER_TIMER_MS_BY_TYPE, SessionItem, SelfGradePanelProps, StudySessionClient(), timerSecondsFor(), TYPE_LABELS, ToneOptionsProps
 
 ### Community 12 - "ESLint Config"
-Cohesion: 0.17
-Nodes (15): Card, hasTaggedExamples(), needsReadingExamples(), readings, ensureSrsState(), addWordsToBank(), ensureLessonCard(), getWordCard() (+7 more)
-
-### Community 13 - "Next.js Config"
-Cohesion: 0.19
-Nodes (19): getProfileAction(), vocabCountAction(), RootLayout(), assertSessionCapAvailable(), countSessions(), getProfile(), getSessionCap(), getVocabCap() (+11 more)
-
-### Community 14 - "Supabase Browser Client"
-Cohesion: 0.13
-Nodes (9): BadgeVariant, Button(), ButtonProps, ButtonSize, ButtonVariant, CardProps, Skeleton(), SelfGradePanelProps (+1 more)
-
-### Community 15 - "Next Env Types"
-Cohesion: 0.22
-Nodes (17): addWordsToBankAction(), listAddableWordsAction(), listVocabularyAction(), regenerateWordCardAction(), addWordsToBank(), ensureLessonCard(), getWordCard(), listAddableWords() (+9 more)
-
-### Community 16 - "PostCSS (concept)"
-Cohesion: 0.16
-Nodes (13): startScrambleAction(), submitScrambleAction(), Badge(), IndexedWord, isDifficulty(), pointsFor(), WordChoice, WordResult (+5 more)
-
-### Community 17 - "ESLint (concept)"
 Cohesion: 0.14
 Nodes (9): SegmentProps, SpeakButtonProps, mandarinVoice(), speakMandarin(), speechSupported(), ICON_PROPS, SlowSealIcon(), SpeakerIcon() (+1 more)
 
-### Community 18 - "Next Config (concept)"
+### Community 13 - "Next.js Config"
+Cohesion: 0.19
+Nodes (18): recordStudyActivity(), applyResult(), applyResults(), completeRun(), fetchIndexWords(), fetchResultWords(), fetchScopeWords(), fetchSrsPage() (+10 more)
+
+### Community 14 - "Supabase Browser Client"
 Cohesion: 0.11
 Nodes (18): Architecture, code:bash (# 1. Clone), code:bash (git checkout local), code:bash (git show local:README.md), Deploy on Vercel, Enable asymmetric JWT signing keys (recommended), Environment variables, Getting Started (+10 more)
 
-### Community 19 - "README"
+### Community 15 - "Next Env Types"
 Cohesion: 0.12
-Nodes (8): startSessionAction(), startSessionWithWordsAction(), NAV, QUICK, WEEKDAYS_CN, PageHeader(), DueReviews, VocabWord
+Nodes (7): NAV, QUICK, WEEKDAYS_CN, Bento(), PageHeader(), DueReviews, Stats
 
-### Community 20 - "Project Overview"
-Cohesion: 0.18
-Nodes (9): getWordCardAction(), InkLoader(), SrsState, WordDetail, CardStatus, fetchCard(), useLessonCard(), fmtNextReview() (+1 more)
+### Community 16 - "PostCSS (concept)"
+Cohesion: 0.16
+Nodes (8): BadgeVariant, ButtonProps, ButtonSize, ButtonVariant, CardProps, InkLoader(), Skeleton(), CardStatus
 
-### Community 21 - "Auth Proxy (concept)"
-Cohesion: 0.3
-Nodes (10): AdminUser, deleteUserAction(), listUsersAction(), requireAdmin(), setUserLimitsAction(), setUserRoleAction(), setUserUnlimitedAction(), Props (+2 more)
+### Community 17 - "ESLint (concept)"
+Cohesion: 0.2
+Nodes (12): QuestionBank, wordsNeedingQuestions(), PoolByWord, PoolRow, chunk(), createAdmin(), fetchWordPage(), fetchWords() (+4 more)
 
-### Community 22 - "Domain Types"
-Cohesion: 0.23
-Nodes (11): fraunces, geistMono, geistSans, metadata, notoSerifSC, HomePage(), listSessions(), getCachedClaims (+3 more)
+### Community 18 - "Next Config (concept)"
+Cohesion: 0.14
+Nodes (10): IndexedWord, sumPoints(), index, options, result, Tile, weightedScore(), idleTone() (+2 more)
 
-### Community 23 - "Community 23"
+### Community 19 - "README"
 Cohesion: 0.19
 Nodes (7): Profile, HSK_CN, canAccessAdmin(), HSK_LABELS, Props, SettingsClient(), usageCap()
 
-### Community 24 - "Community 24"
+### Community 20 - "Project Overview"
 Cohesion: 0.18
 Nodes (8): DIFFICULTIES, Difficulty, DIFFICULTY_ORDER, IntroCardProps, ScrambleClient(), selectionText(), Miss, useScrambleGame()
 
-### Community 25 - "Community 25"
+### Community 21 - "Auth Proxy (concept)"
 Cohesion: 0.15
 Nodes (12): Chinese Learner — Next.js on Vercel, code:block1 (npm install), code:block2 (git show local:src/learner/<file>.py), Dev, Environment, graphify, Key directories, Manual step — enable asymmetric JWT signing keys (+4 more)
 
-### Community 26 - "Community 26"
+### Community 22 - "Domain Types"
 Cohesion: 0.15
 Nodes (12): Chinese Learner — Next.js on Vercel, code:block1 (npm install), code:block2 (git show local:src/learner/<file>.py), Dev, Environment, graphify, Key directories, Manual step — enable asymmetric JWT signing keys (+4 more)
 
-### Community 27 - "Community 27"
+### Community 23 - "Community 23"
+Cohesion: 0.18
+Nodes (6): ProgressBar(), TYPE_LABELS, Session, ScrambleTimer(), ScrambleTimerProps, timerColor()
+
+### Community 24 - "Community 24"
 Cohesion: 0.17
 Nodes (3): Card(), SessionSummary, MeaningPickerProps
 
-### Community 28 - "Community 28"
+### Community 25 - "Community 25"
+Cohesion: 0.24
+Nodes (10): QUESTION_TYPES, LLM_TYPES, needsGeneration(), nextRequiredType(), PoolStats, requiredTypes(), rotation(), stats (+2 more)
+
+### Community 26 - "Community 26"
 Cohesion: 0.22
 Nodes (4): LedgerHeading(), capLabel(), Usage, UsageMeter()
 
+### Community 27 - "Community 27"
+Cohesion: 0.36
+Nodes (9): buildGlossQuestion(), fallbackQuestion(), lastResortQuestion(), leakFreeMeanings(), questionFor(), shortMeaning(), toIndexedWord(), buildToneQuestion() (+1 more)
+
+### Community 28 - "Community 28"
+Cohesion: 0.25
+Nodes (11): buildDistractorPools(), orderCandidates(), pickSeedWords(), shuffle(), shuffleTiles(), swap(), withMeaningOptions(), buildBoard() (+3 more)
+
 ### Community 29 - "Community 29"
-Cohesion: 0.22
-Nodes (6): Bento(), ProgressBar(), Stats, ScrambleTimer(), ScrambleTimerProps, timerColor()
+Cohesion: 0.27
+Nodes (8): startScrambleAction(), submitScrambleAction(), isDifficulty(), pointsFor(), WordChoice, WordResult, Phase, PickerState
 
 ### Community 30 - "Community 30"
 Cohesion: 0.24
 Nodes (6): updateHskLevelAction(), HSK_LEVELS, HskLevelPicker(), persistLevel(), Status, useSaveLevel()
 
 ### Community 31 - "Community 31"
-Cohesion: 0.29
-Nodes (9): BoardWord, buildWordIndex(), levelPools(), ScrambleBoard, charCounts(), fitsTiles(), hasPlayableWord(), makeLookups() (+1 more)
+Cohesion: 0.24
+Nodes (10): bankSize(), countByType(), preferredTypes(), requestsFor(), requiredType(), requiredTypes(), rotatingType(), shouldTryTone() (+2 more)
 
 ### Community 32 - "Community 32"
-Cohesion: 0.2
-Nodes (7): buildDistractorPools(), sumPoints(), index, options, result, weightedScore(), withMeaningOptions()
+Cohesion: 0.33
+Nodes (8): PREFERRED_TYPES_BY_BOX, BoxByWord, preferredTypes(), QuestionType, boxesOf(), pickParams(), pickRows(), Question
 
 ### Community 33 - "Community 33"
-Cohesion: 0.4
-Nodes (8): buildGlossQuestion(), fallbackQuestion(), lastResortQuestion(), leakFreeMeanings(), shortMeaning(), toIndexedWord(), buildToneQuestion(), toneQuestionOf()
+Cohesion: 0.29
+Nodes (9): BoardWord, buildWordIndex(), levelPools(), ScrambleBoard, charCounts(), fitsTiles(), hasPlayableWord(), makeLookups() (+1 more)
 
 ### Community 34 - "Community 34"
 Cohesion: 0.27
 Nodes (10): Grading & Cache Logic, Home Client Component, Supabase Database Schema, LLM Client (OpenCode Zen), Home Page, Word Bank Seeding Script, Service Layer, Session Server Actions (+2 more)
 
 ### Community 35 - "Community 35"
-Cohesion: 0.4
-Nodes (4): Tile, idleTone(), tileClass(), TileGridProps
+Cohesion: 0.32
+Nodes (4): Badge(), FoundWord, FoundWord, ScrambleSummaryProps
 
 ### Community 36 - "Community 36"
+Cohesion: 0.29
+Nodes (7): bankedQuestion(), ofPreferredTypes(), pickQuestion(), pickRequeueQuestion(), toBankQuestion(), requeueQuestionFor(), shouldRequeue()
+
+### Community 37 - "Community 37"
 Cohesion: 0.5
 Nodes (3): Assets (in this folder), LinkedIn Post — 汉字 Chinese Learner, Post
 
-### Community 38 - "Community 38"
+### Community 39 - "Community 39"
 Cohesion: 0.67
 Nodes (3): Auth Server Actions, Root Layout, User Context Helper
 
@@ -251,17 +256,17 @@ Nodes (3): Auth Server Actions, Root Layout, User Context Helper
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `getUserContext()` connect `Auth Concepts` to `App Pages & Routing`, `LLM & Grading`, `Word Bank Seeding`, `ESLint Config`, `Next.js Config`, `Next Env Types`, `PostCSS (concept)`, `README`, `Project Overview`, `Auth Proxy (concept)`, `Domain Types`, `Community 30`?**
+- **Why does `getUserContext()` connect `UI Client Components` to `SRS & Stats Logic`, `App Pages & Routing`, `LLM & Grading`, `Community 29`, `Community 30`?**
   _High betweenness centrality (0.029) - this node is a cross-community bridge._
-- **Why does `Button()` connect `Supabase Browser Client` to `SRS & Stats Logic`, `LLM & Grading`, `PostCSS (concept)`, `ESLint (concept)`, `README`, `Project Overview`, `Auth Proxy (concept)`, `Community 23`, `Community 24`, `Community 27`, `Community 30`?**
+- **Why does `Button()` connect `PostCSS Config` to `SRS & Stats Logic`, `App Pages & Routing`, `LLM & Grading`, `Community 35`, `ESLint Config`, `Next Env Types`, `PostCSS (concept)`, `README`, `Project Overview`, `Community 23`, `Community 24`, `Community 30`?**
   _High betweenness centrality (0.018) - this node is a cross-community bridge._
-- **Why does `createAdminClient()` connect `Auth Proxy (concept)` to `UI Client Components`, `SRS & Stats Logic`, `App Pages & Routing`, `LLM & Grading`, `Word Bank Seeding`, `Session Proxy`, `Auth Concepts`, `ESLint Config`, `Next Env Types`?**
+- **Why does `createAdminClient()` connect `App Pages & Routing` to `UI Client Components`, `SRS & Stats Logic`, `LLM & Grading`, `Auth & Layout`, `Next.js Config`?**
   _High betweenness centrality (0.016) - this node is a cross-community bridge._
 - **What connects `config`, `eslintConfig`, `nextConfig` to the rest of the system?**
   _168 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `UI Client Components` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `SRS & Stats Logic` be split into smaller, more focused modules?**
-  _Cohesion score 0.06 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `App Pages & Routing` be split into smaller, more focused modules?**
-  _Cohesion score 0.06 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05 - nodes in this community are weakly interconnected._
